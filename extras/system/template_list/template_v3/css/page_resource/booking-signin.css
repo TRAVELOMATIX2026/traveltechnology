@@ -1,0 +1,418 @@
+/* Booking Sign-In Section Styles */
+/* Reusable styles for login, guest booking, and authentication forms */
+/* Updated with light-dark mode support using CSS variables */
+
+/* Login Section */
+.loginspld {
+  float: left;
+  margin: var(--spacing-0);
+  width: 100%;
+}
+
+.logininwrap {
+  background: var(--color-bg-primary) none repeat scroll 0 0;
+  display: block;
+  margin: var(--spacing-5) 0;
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--border-color-light);
+  box-shadow: 0 2px 8px 0 var(--color-bg-overlay-light);
+  border-radius: var(--border-radius-xl);
+}
+
+.signinhde {
+  background: var(--color-bg-primary);
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  overflow: hidden;
+  padding: var(--spacing-3) var(--spacing-6) var(--spacing-4);
+  color: var(--color-text-primary);
+  border-bottom: var(--border-width-thin) solid var(--border-color-light);
+  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  letter-spacing: 0.3px;
+}
+
+.newloginsectn {
+  display: flex;
+  overflow: hidden;
+  padding: var(--spacing-6);
+  width: 100%;
+}
+
+.celoty {
+
+  margin-bottom: var(--spacing-5);
+}
+
+.celoty:last-child {
+  margin-bottom: var(--spacing-0);
+}
+.insidechs {
+  width: 100%;
+  display: block;
+}
+
+.insidechs.booklogin {
+  width: 100%;
+  display: block;
+  margin: 0;
+}
+
+.insidechs .mailenter {
+  margin-bottom: var(--spacing-3);
+}
+
+.newslterinput {
+  border: var(--border-width-thin) solid var(--border-color-medium);
+  font-size: var(--font-size-base);
+  height: 48px;
+  padding: 0 var(--spacing-4);
+  width: 100%;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+}
+
+
+
+.newslterinput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.nputbrd {
+  border: var(--border-width-thin) solid var(--border-color-medium);
+}
+
+.noteinote {
+  color: var(--color-text-secondary);
+  display: block;
+  margin: var(--spacing-2) 0 0;
+  overflow: hidden;
+  width: 100%;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+}
+
+.havealrdy {
+  display: flex;
+  align-items: center;
+  margin: var(--spacing-4) 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.squaredThree {
+  float: left;
+  margin-right: var(--spacing-3);
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.squaredThree input[type="checkbox"] {
+  visibility: hidden;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.squaredThree label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: var(--border-width-thin) solid var(--border-color-medium);
+  border-radius: var(--border-radius-sm) !important;
+  background: var(--color-bg-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.squaredThree input[type="checkbox"]:checked + label {
+  background: var(--color-primary-primary);
+  border-color: var(--color-primary-primary);
+}
+
+.squaredThree input[type="checkbox"]:checked + label::after {
+  content: "✓";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-text-inverse);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.haveacntd {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-0);
+  padding-left: 0;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.twotogle {
+  display: block;
+  overflow: hidden;
+}
+
+.cntgust {
+  display: block;
+  overflow: hidden;
+}
+
+.phoneumber {
+  display: flex;
+  overflow: hidden;
+  gap: var(--spacing-0);
+  align-items: center;
+  margin-top: var(--spacing-0);
+}
+
+.phoneumber .col-5,
+.phoneumber .col-6 {
+  display: flex;
+  align-items: center;
+}
+
+.phoneumber .sidepo {
+  padding: 0 var(--spacing-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.sidepo {
+  display: block;
+  margin: var(--spacing-0);
+  overflow: hidden;
+  text-align: center;
+}
+
+.continye {
+  margin: var(--spacing-5) 0 0;
+}
+
+.bookcont {
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;;
+  border: none;
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-3) var(--spacing-5);
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--color-bg-overlay-light);
+  letter-spacing: 0.3px;
+}
+
+.bookcont:hover {
+  background: var(--color-primary-midtone);
+  box-shadow: 0 4px 8px var(--color-bg-overlay-light);
+  transform: translateY(-1px);
+}
+
+.bookcont:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px var(--color-bg-overlay-light);
+}
+
+.alrdyacnt {
+  display: none;
+  overflow: hidden;
+}
+
+.relativemask {
+  float: left;
+  position: relative;
+  width: 100%;
+  height: 48px;
+  margin-bottom: var(--spacing-3);
+}
+
+.clainput {
+  border: var(--border-width-thin) solid var(--border-color-medium) !important;
+  float: left;
+  font-size: var(--font-size-base);
+  height: 48px;
+  padding: 0 var(--spacing-4);
+  width: 100%;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+}
+
+
+
+.clainput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.frgotpaswrd {
+  display: block;
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-2) 0 0;
+  overflow: hidden;
+  color: var(--color-primary-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.frgotpaswrd:hover {
+  color: var(--color-primary-obsidian);
+  text-decoration: underline;
+}
+
+/* Remove OR divider - new vertical design */
+
+/* Social login section - now stacked vertically */
+.leftpul {
+  margin: var(--spacing-5) 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  width: 100%;
+  padding-top: var(--spacing-4);
+}
+
+.orround{
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 var(--spacing-4) 0;
+  position: relative;
+  text-align: center;
+  background: var(--color-bg-primary);
+  padding: 0 var(--spacing-3);
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orround span{
+  position: relative;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orround::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--spacing-0);
+  height: 100%;
+  background: var(--border-color-light);
+  z-index: 0;
+  width: 1px;
+  margin: auto;
+}
+.nsm7Bb-HzV7m-LgbsSe {
+  background: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  border: var(--border-width-thin) solid var(--border-color-medium) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: var(--spacing-3) var(--spacing-4) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-medium) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--spacing-3) !important;
+  padding: var(--spacing-3) var(--spacing-4) !important;
+  border: var(--border-width-thin) solid var(--border-color-medium) !important;
+  border-radius: var(--border-radius-md) !important;
+  background: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  font-size: var(--font-size-base) !important;
+  font-weight: var(--font-weight-medium) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb{
+  display: block !important;
+}
+.nsm7Bb-HzV7m-LgbsSe { height: auto !important;}
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c{
+  margin: var(--spacing-3) auto !important;
+    height: 30px;
+    margin-right: 8px;
+    min-width: 18px;
+    width: 30px;
+    display: block;
+  
+}
+.leftpul a,
+.leftpul button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: var(--border-width-thin) solid var(--border-color-medium);
+  border-radius: var(--border-radius-md);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.leftpul a:hover,
+.leftpul button:hover {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 2px 4px var(--color-bg-overlay-light);
+  transform: translateY(-1px);
+}
+
+.leftpul a:active,
+.leftpul button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .newloginsectn{
+    flex-direction: column;
+  }
+
+  .continye{ width: var(--width-full);}
+  .celoty{
+    width: var(--width-full);
+  }
+  .linetopbtm{ margin-bottom: 0px;}
+  .leftpul{
+    margin-top: var(--spacing-0) !important;
+    padding-top: var(--spacing-0);
+  }
+}

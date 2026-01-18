@@ -1,0 +1,879 @@
+/* Car Search Form CSS */
+
+/* ============================================
+   Field Icons
+   ============================================ */
+.car_form .field-icon {
+  position: absolute;
+  color: var(--color-text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.car_form .field-icon-right {
+  right: var(--spacing-2);
+  top: var(--spacing-3);
+  font-size: 24px;
+}
+
+/* Icon hover and focus states */
+.car_form .relativemask:hover .field-icon,
+.car_form .relativemask:focus-within .field-icon {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Car Form Container
+   ============================================ */
+.car_form {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-8);
+  padding: 0 var(--spacing-0);
+}
+
+.car_form .tabrow {
+  float: left;
+  width: var(--width-full);
+  max-width: 100%;
+}
+
+.car_form .outsideserach {
+  float: left;
+  width: var(--width-full);
+  max-width: 100%;
+}
+
+.car_form .custom_divclass {
+  display: flex;
+  width: var(--width-full);
+  max-width: 100%;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: var(--spacing-2);
+}
+
+
+/* ============================================
+   Car Location Input Fields
+   ============================================ */
+.car_form .cr_plce {
+  display: flex;
+  flex: 0 0 40%;
+  min-width: 0;
+  gap: var(--spacing-1);
+}
+
+.car_form .date_time_picker {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--spacing-2);
+  padding: 0;
+}
+
+.car_form .date_time_picker_item {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.car_form .date_time_picker_item > div {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.car_form .date_time_picker_item .col-7 {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+.car_form .date_time_picker_item .col-5 {
+  flex: 0 0 38%;
+  max-width: 38%;
+}
+
+.car_form .date_time_picker_item .me-2 {
+  margin-right: 0 !important;
+}
+
+.car_form #pick_up,
+.car_form #Drop-of {
+  margin: 0;
+}
+
+.car_form #pick_up .col-sm-12,
+.car_form #Drop-of .col-sm-12 {
+  padding: 0;
+  width: 100%;
+}
+
+.car_form .fromcar,
+.car_form .departcar {
+  width: 100%;
+  border: none !important;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: none !important;
+  font-weight: var(--font-weight-semibold);
+  font-size: 17px;
+  color: var(--color-text-primary);
+  transition: var(--transition-all);
+  line-height: 1.2;
+}
+
+.car_form .fromcar:focus,
+.car_form .departcar:focus {
+  outline: none;
+
+}
+
+.car_form .fromcar::placeholder,
+.car_form .departcar::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   Date and Time Pickers
+   ============================================ */
+.car_form .pkupdt,
+.car_form .retdt {
+  position: relative;
+}
+
+.car_form #car_datepicker1,
+.car_form #car_datepicker2 {
+  width: var(--width-full);
+  border: none !important;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-1) var(--spacing-2) !important;
+  font-size: 17px;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  background: none !important;
+  cursor: pointer;
+  position: relative;
+  top: var(--spacing-0);
+  opacity: 1 !important;
+  left: var(--spacing-0);
+  line-height: 1.2;
+}
+
+.car_form #car_datepicker1:focus,
+.car_form #car_datepicker2:focus {
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.car_form .time_mark {
+  position: relative;
+}
+
+.car_form #depature_time,
+.car_form #return_time {
+  width: var(--width-full);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: 17px;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  background: none !important;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  line-height: 1.2;
+}
+
+.car_form #depature_time:focus,
+.car_form #return_time:focus {
+  outline: none;
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 0 0 var(--border-width-medium) rgba(245, 136, 48, 0.1);
+}
+
+.car_form .timesel {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-2) center;
+  padding-right: var(--spacing-6);
+}
+
+.car_form .normalsel {
+  width: 100%;
+}
+/* ============================================
+   Extra Options Toggle Dropdown
+   ============================================ */
+.car_form_extra_options {
+  margin-top: var(--spacing-4);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Toggle Dropdown Header/Button */
+.car_form_extra_options_toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-0);
+  cursor: pointer;
+  user-select: none;
+  background: var(--color-bg-primary);
+  border: none;
+  width: var(--width-full);
+  text-align: left;
+  transition: var(--transition-all);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.car_form_extra_options_toggle:hover {
+  background: var(--color-bg-secondary);
+}
+
+.car_form_extra_options_toggle:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-primary-primary);
+}
+
+.car_form_extra_options_toggle .toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.car_form_extra_options_toggle .toggle-icon::before {
+  content: "expand_more";
+  font-family: "Material Icons";
+  display: inline-block;
+  font-size: 24px;
+}
+
+.car_form_extra_options_toggle.active .toggle-icon {
+  transform: rotate(180deg);
+  color: var(--color-primary-primary);
+}
+
+.car_form_extra_options_toggle .toggle-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.car_form_extra_options_toggle .toggle-text i {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary-primary);
+}
+
+/* Toggle Dropdown Content */
+.car_form_extra_options_content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: var(--spacing-0) var(--spacing-0);
+}
+
+.car_form_extra_options_content.active {
+  max-height: 500px;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-4);
+}
+
+.car_form_extra_options_content_inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.car_form_extra_options_content.active .car_form_extra_options_content_inner {
+  opacity: 1;
+}
+/* ============================================
+   Nationality Select
+   ============================================ */
+.car_form .car_nation {
+  width: var(--width-full);
+  border:none !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: var(--padding-input) !important;
+  font-size: var(--font-size-sm) !important;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg-primary);
+  cursor: pointer !important;
+  
+}
+
+.car_form .car_nation:focus {
+  outline: none;
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 0 0 var(--border-width-medium) rgba(245, 136, 48, 0.1);
+}
+
+.car_form .nationality_Sec {
+  position: relative;
+}
+
+/* ============================================
+   Driver Age Section
+   ============================================ */
+.car_form .driver-age {
+  float: left;
+}
+
+.car_form .remove_age {
+  float: left;
+  width: var(--width-full);
+  margin-bottom: var(--spacing-0);
+  align-items: center;
+}
+
+.car_form #driver_age {
+  margin-right: var(--spacing-2);
+}
+
+.car_form #add_age {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-2);
+}
+
+.car_form #driver_age_in {
+  width: var(--width-full);
+  max-width: 249px;
+  border: 1px solid var(--border-color-light) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: var(--padding-input) !important;
+  font-size: var(--font-size-sm) !important;
+  color: var(--color-text-primary) !important;
+  background: var(--color-bg-primary) !important;
+  text-align: left !important;
+}
+
+.car_form #driver_age_in:focus {
+  outline: none;
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 0 0 var(--border-width-medium) rgba(245, 136, 48, 0.1);
+}
+
+.car_form .lbllbl {
+  display: inline-block;
+  margin-left: var(--spacing-0);
+  padding-left: var(--spacing-0);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+/* ============================================
+   Extra Options Items (Inside Dropdown)
+   ============================================ */
+.car_form .diff_loc {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-0);
+}
+
+.car_form .driver-age {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-0);
+}
+
+.car_form .nationality_Sec {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-0);
+}
+
+/* Toggle Switch Checkbox Styles for Options */
+.car_form .squaredThree2 {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  margin-right: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.car_form .squaredThree2 input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  margin: var(--spacing-0);
+}
+
+.car_form .squaredThree2 label {
+  display: block;
+  width: 50px;
+  height: 28px;
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: 28px;
+  background: var(--color-gray-300);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-all);
+}
+
+.car_form .squaredThree2 label::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  transform: translateX(0);
+}
+
+.car_form .squaredThree2 input[type="checkbox"]:checked + label {
+  background: var(--color-primary-primary);
+  border-color: var(--color-primary-primary);
+}
+
+.car_form .squaredThree2 input[type="checkbox"]:checked + label::after {
+  transform: translateX(22px);
+  box-shadow: var(--shadow-md);
+}
+
+.car_form .squaredThree2 label:hover {
+  border-color: var(--color-primary-primary);
+}
+
+.car_form .squaredThree2 input[type="checkbox"]:checked + label:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.car_form .squaredThree2 input[type="checkbox"]:focus + label {
+  box-shadow: 0 0 0 3px rgba(245, 136, 48, 0.2);
+  outline: none;
+}
+
+/* Toggle Label Text */
+.car_form .lbllbl {
+  display: inline-block;
+  margin-left: var(--spacing-0);
+  padding-left: var(--spacing-0);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+/* ============================================
+   Car Rental Button
+   ============================================ */
+.car_form .srch_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 0 0 15%;
+  
+  min-width: 150px;
+  padding: 0 !important;
+}
+
+.car_form .car_rental_btn {
+  width: var(--width-full);
+  height: 70px;
+  display: flex;
+  bottom: inherit !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.car_form .car_rental_btn .searchsbmt {
+    border: var(--border-width-none) !important;
+    background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+    background-size: 200% 200% !important;
+    color: var(--color-white) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    padding: 0 var(--spacing-3) !important;
+    letter-spacing: 0.3px !important;
+    position: relative;
+    height: 100%;
+    width: var(--width-full);
+    border-radius: var(--border-radius-lg) !important;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.car_form .car_rental_btn .searchsbmt:hover {
+  background-position: right center !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-orange-hover) !important;
+}
+
+.car_form .car_rental_btn .searchsbmt:active {
+  transform: translateY(0);
+}
+
+.car_form .car_rental_btn .searchsbmt i {
+  margin-right: var(--spacing-2);
+}
+
+/* ============================================
+   Form Labels
+   ============================================ */
+.car_form .lablform {
+  display: block;
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-1);
+  padding-left: var(--spacing-2);
+  line-height: 1;
+  position: relative;
+  top: var(--spacing-0);
+  left: var(--spacing-0);
+}
+
+/* ============================================
+   Input Masks and Icons
+   ============================================ */
+.car_form .relativemask {
+  position: relative;
+  width: var(--width-full);
+  flex: 1;
+}
+
+.car_form .plcemark,
+.car_form .datemark,
+.car_form .selctmark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.car_form .maskimg {
+  display: none;
+}
+
+.car_form .relativemask input,
+.car_form .relativemask select {
+  width: 100%;
+  padding-left: var(--spacing-2) !important;
+  padding-right: var(--spacing-2) !important;
+}
+
+/* ============================================
+   Borders and Spacing
+   ============================================ */
+.car_form .bordrt {
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-bg-primary);
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.car_form .padfive {
+  padding: var(--spacing-2) var(--spacing-0) var(--spacing-0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car_form .marginbotom10 {
+  margin-bottom: var(--spacing-0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.car_form .aftremarg {
+  margin-bottom: var(--spacing-0);
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+@media screen and (max-width: 1200px) {
+  .car_form .custom_divclass {
+    flex-wrap: wrap;
+  }
+
+  .car_form .cr_plce {
+    flex: 0 0 100%;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .car_form .date_time_picker {
+    flex: 0 0 calc(70% - var(--spacing-2));
+  }
+
+  .car_form .srch_btn {
+    flex: 0 0 calc(30% - var(--spacing-2));
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .car_form {
+    padding: 0 var(--spacing-3);
+  }
+
+  .car_form .custom_divclass {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .car_form .cr_plce,
+  .car_form .date_time_picker,
+  .car_form .srch_btn {
+    width: var(--width-full) !important;
+    flex: 1 1 100%;
+  }
+
+  .car_form #pick_up,
+  .car_form #Drop-of {
+    width: var(--width-full) !important;
+  }
+
+  .car_form .bordrt {
+    margin-bottom: 0;
+  }
+
+  .car_form .mobile_width {
+    width: var(--width-full);
+  }
+
+  .car_form .date_time_picker {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .car_form .date_time_picker_item {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .car_form .date_time_picker_item .col-7,
+  .car_form .date_time_picker_item .col-5 {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+
+  .car_form .srch_btn {
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .car_form {
+    padding: 0 var(--spacing-2);
+  }
+
+  .car_form .bordrt {
+    height: 65px;
+  }
+
+  .car_form .car_rental_btn {
+    height: 65px;
+  }
+
+  .car_form .car_rental_btn .searchsbmt {
+    font-size: 14px !important;
+  }
+
+  .car_form .lablform {
+    font-size: 10px;
+    margin-bottom: var(--spacing-1);
+  }
+
+  .car_form .fromcar,
+  .car_form .departcar,
+  .car_form #car_datepicker1,
+  .car_form #car_datepicker2,
+  .car_form #depature_time,
+  .car_form #return_time,
+  .car_form .car_nation {
+    font-size: 13px;
+    padding: var(--spacing-1);
+  }
+
+  /* Toggle Dropdown - Mobile */
+  .car_form_extra_options_toggle {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .car_form_extra_options_content.active {
+    padding: var(--spacing-3) var(--spacing-3) var(--spacing-3);
+  }
+
+  .car_form_extra_options_content_inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+  }
+
+  .car_form .diff_loc,
+  .car_form .driver-age,
+  .car_form .nationality_Sec {
+    width: var(--width-full);
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .car_form .bordrt {
+    height: 60px;
+  }
+
+  .car_form .car_rental_btn {
+    height: 60px;
+  }
+
+  .car_form .car_rental_btn .searchsbmt {
+    font-size: 13px !important;
+  }
+
+  .car_form .lablform {
+    font-size: 9px;
+  }
+
+  .car_form .fromcar,
+  .car_form .departcar,
+  .car_form #car_datepicker1,
+  .car_form #car_datepicker2,
+  .car_form #depature_time,
+  .car_form #return_time {
+    font-size: 17px;
+  }
+
+  .car_form #driver_age_in {
+    max-width: var(--width-full);
+  }
+
+  /* Toggle Dropdown - Small Mobile */
+  .car_form_extra_options_toggle {
+    padding: var(--spacing-2);
+    font-size: var(--font-size-xs);
+  }
+
+  .car_form_extra_options_content.active {
+    padding: var(--spacing-2);
+  }
+
+  .car_form .lbllbl {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.car_form .hide {
+  display: none !important;
+}
+
+.car_form .clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.car_form .nopad {
+  padding: var(--spacing-0) !important;
+}
+
+.car_form .col-lg-4,
+.car_form .col-md-4,
+.car_form .col-md-6,
+.car_form .col-md-2 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.car_form .srch_btn {
+  float: left;
+  padding: var(--spacing-0);
+  border: var(--border-width-none);
+}
+
+/* ============================================
+   Form Validation Styles
+   ============================================ */
+.car_form input:required:invalid,
+.car_form select:required:invalid {
+  border-color: var(--color-danger-primary);
+}
+
+.car_form input:required:valid,
+.car_form select:required:valid {
+  border-color: var(--color-success-primary);
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+.car_form .searchsbmt:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.car_form .searchsbmt.loading {
+  position: relative;
+  color: transparent;
+}
+
+.car_form .searchsbmt.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--size-md);
+  height: var(--size-md);
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-white);
+  border-top-color: transparent;
+  border-radius: var(--border-radius-circle);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

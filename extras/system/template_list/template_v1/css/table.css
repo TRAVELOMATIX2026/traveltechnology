@@ -1,0 +1,633 @@
+  /* Table Container - Professional Data Table Design */
+   .table-responsive,
+   #tableList,
+   .panel .table-responsive,
+   .box .table-responsive,
+   .reprt_tble {
+       background: var(--color-bg-primary);
+       border-radius: var(--border-radius-lg);
+       padding: var(--spacing-0) !important;
+       margin-bottom: var(--spacing-6) !important;
+       box-shadow: var(--shadow-sm);
+       overflow-x: auto;
+       overflow-y: visible;
+   }
+   
+   /* Table Base */
+   .table,
+   .table-bordered,
+   .table-responsive .table {
+       width: 100% !important;
+       border-collapse: separate !important;
+       border-spacing: 0 !important;
+       background: transparent;
+       border: 1px solid var(--border-color-default) !important;
+       margin-bottom: 0 !important;
+   }
+   
+   .table-card {
+       border-radius: var(--border-radius-xl);
+       background: var(--color-bg-primary);
+       padding: 0;
+       box-shadow: var(--shadow-sm);
+       overflow: hidden;
+       border: var(--border-width-thin) solid var(--border-color-light);
+       margin-bottom: var(--spacing-8);
+   }
+   
+   .table-card-header {
+       padding: var(--spacing-6) var(--spacing-8);
+       border-bottom: var(--border-width-thin) solid var(--border-color-light);
+       background: var(--color-bg-secondary);
+   }
+   
+   .table-card-title {
+       font-size: var(--font-size-xl);
+       font-weight: var(--font-weight-semibold);
+       color: var(--color-text-primary);
+       margin: 0;
+   }
+   
+   .table-card-subtitle {
+       font-size: var(--font-size-sm);
+       color: var(--color-text-secondary);
+       margin-top: var(--spacing-1);
+   }
+   
+   /* Table Header Section - Professional Design */
+   .table thead {
+       background: var(--color-bg-secondary) !important;
+       position: sticky !important;
+       top: 0 !important;
+       z-index: 10 !important;
+   }
+   
+   .table thead tr {
+       background: var(--color-bg-overlay-light) !important;
+   }
+   
+   /* Table Headers (th) - Professional Data Table Design */
+   .table tr th {
+       background: var(--color-bg-secondary) !important;
+       color: var(--color-text-secondary) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-bold) !important;
+       text-transform: uppercase !important;
+       letter-spacing: var(--letter-spacing-wide) !important;
+       padding: var(--spacing-4) var(--spacing-5) !important;
+       border-bottom: var(--border-width-medium) solid var(--border-color-medium) !important;
+       border-top: none !important;
+       border-left: none !important;
+       border-right: none !important;
+       text-align: left !important;
+       white-space: nowrap !important;
+       vertical-align: middle !important;
+       position: sticky !important;
+       top: 0 !important;
+       z-index: 10 !important;
+   }
+   
+   .table tr th:first-child {
+       padding-left: var(--spacing-6) !important;
+   }
+   
+   .table tr th:last-child {
+       padding-right: var(--spacing-6) !important;
+   }
+   
+   /* Table Body Rows - Professional Data Table Design */
+   .table tbody {
+       background: var(--color-bg-primary) !important;
+   }
+   
+   .table tbody tr {
+       border-bottom: var(--border-width-thin) solid var(--border-color-lighter) !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   .table tbody tr:last-child {
+       border-bottom: none !important;
+   }
+   
+   .table tbody tr:hover {
+       background: var(--color-bg-secondary) !important;
+       transform: translateY(-1px) !important;
+       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+   }
+   
+   /* Table Body Cells - Proper Spacing for Data Tables */
+   .table tbody tr td {
+       padding: var(--spacing-4) var(--spacing-5) !important;
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-text-primary) !important;
+       border: none !important;
+       vertical-align: middle !important;
+       background: none !important;
+       white-space: nowrap !important;
+       line-height: var(--line-height-normal) !important;
+   }
+   
+   .table tbody tr td:first-child {
+       padding-left: var(--spacing-6) !important;
+       font-weight: var(--font-weight-medium) !important;
+   }
+   
+   .table tbody tr td:last-child {
+       padding-right: var(--spacing-6) !important;
+   }
+   
+   /* Table Bordered Variant - Better Spacing */
+   .table-bordered {
+       border: var(--border-width-thin) solid var(--border-color-light) !important;
+   }
+   
+   .table-bordered thead th {
+       border-bottom: none !important;
+   }
+   
+   .table-bordered tbody tr {
+       border-bottom: var(--border-width-thin) solid var(--border-color-lighter) !important;
+   }
+   
+   /* Table Small Variant - Compact Spacing */
+   .table-sm th,
+   .table-sm td {
+       padding: var(--spacing-3) var(--spacing-4) !important;
+   }
+   
+   .table-sm th:first-child,
+   .table-sm td:first-child {
+       padding-left: var(--spacing-5) !important;
+   }
+   
+   .table-sm th:last-child,
+   .table-sm td:last-child {
+       padding-right: var(--spacing-5) !important;
+   }
+   
+   /* Table Footer (tfoot) - Professional Data Table Design */
+   .table tfoot {
+       background: var(--color-bg-secondary) !important;
+   }
+   
+   .table tfoot tr th {
+       background: var(--color-bg-secondary) !important;
+       color: var(--color-text-secondary) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-bold) !important;
+       text-transform: uppercase !important;
+       letter-spacing: var(--letter-spacing-wide) !important;
+       padding: var(--spacing-4) var(--spacing-5) !important;
+       border-top: var(--border-width-medium) solid var(--border-color-medium) !important;
+       border-bottom: none !important;
+   }
+   
+   .table tfoot tr th:first-child {
+       padding-left: var(--spacing-6) !important;
+   }
+   
+   .table tfoot tr th:last-child {
+       padding-right: var(--spacing-6) !important;
+   }
+   
+   /* Empty State - Professional "No Data Found" Design */
+   .table tbody tr td[colspan],
+   .table tbody tr td.no-data-found {
+       text-align: center !important;
+       padding: var(--spacing-16) var(--spacing-8) !important;
+       background: var(--color-bg-primary) !important;
+       border: none !important;
+   }
+   
+   .table tbody tr td .empty-state {
+       display: flex !important;
+       flex-direction: column !important;
+       align-items: center !important;
+       justify-content: center !important;
+       padding: var(--spacing-0) !important;
+   }
+   
+   .table tbody tr td .empty-state i {
+       font-size: calc(var(--font-size-4xl) * 1.5) !important;
+       color: var(--color-text-muted) !important;
+       margin-bottom: var(--spacing-0) !important;
+       opacity: 0.6 !important;
+   }
+   
+   .table tbody tr td .empty-state h4 {
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+       margin: 0 0 var(--spacing-2) 0 !important;
+       letter-spacing: var(--letter-spacing-normal) !important;
+   }
+   
+   .table tbody tr td .empty-state p {
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-text-secondary) !important;
+       margin: 0 !important;
+       line-height: var(--line-height-relaxed) !important;
+       max-width: 500px !important;
+   }
+   
+   /* Status Badges - Clean Style */
+   .table .badge,
+   .booking_status_label,
+   span[class*="label"],
+   .table .status-badge {
+       display: inline-flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       padding: var(--spacing-2) var(--spacing-3);
+       border-radius: var(--border-radius-md) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       letter-spacing: 0.3px !important;
+       text-transform: uppercase !important;
+       white-space: nowrap !important;
+   }
+   
+   .badge-success,
+   .booking_status_label.success,
+   span.label-success,
+   .status-success {
+       background: var(--color-success-light) !important;
+       color: var(--color-success-obsidian) !important;
+       border: var(--border-width-thin) solid var(--color-success-border) !important;
+   }
+   
+   .badge-warning,
+   .booking_status_label.warning,
+   .booking_status_label.pending,
+   span.label-warning,
+   .status-warning,
+   .status-pending {
+       background: var(--color-warning-light) !important;
+       color: var(--color-warning-obsidian) !important;
+       border: var(--border-width-thin) solid var(--color-warning-border) !important;
+   }
+   
+   .badge-danger,
+   .booking_status_label.danger,
+   .booking_status_label.cancelled,
+   span.label-danger,
+   .status-danger,
+   .status-cancelled {
+       background: var(--color-danger-light) !important;
+       color: var(--color-danger-obsidian) !important;
+       border: var(--border-width-thin) solid var(--color-danger-border) !important;
+   }
+   
+   .badge-info,
+   .booking_status_label.info,
+   .booking_status_label.confirmed,
+   span.label-info,
+   .status-info,
+   .status-confirmed {
+       background: var(--color-info-light) !important;
+       color: var(--color-info-obsidian) !important;
+       border: var(--border-width-thin) solid var(--color-info-border) !important;
+   }
+   
+   /* Action Column - Horizontal Button Layout */
+   /* Hide <br /> tags to convert vertical layout to horizontal */
+   .table tbody tr td br {
+       display: none !important;
+   }
+   
+   /* Action Column - Force horizontal flex layout for buttons */
+   .table tbody tr td:last-child {
+       white-space: normal !important;
+       padding: var(--spacing-4) var(--spacing-5) !important;
+   }
+   
+   /* Ensure all buttons in table cells are inline-flex */
+   .table tbody tr td .btn,
+   .table tbody tr td a.btn {
+       display: inline-flex !important;
+       flex-shrink: 0 !important;
+       margin: 0 !important;
+   }
+   
+   /* Action Buttons - Professional Design with Icons */
+   .table .action-btns,
+   .table .actn_drpdwn,
+   .table tbody tr td .btn {
+       display: inline-flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       gap: var(--spacing-2) !important;
+       border-radius: var(--border-radius-md) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       background: var(--color-bg-primary) !important;
+       color: var(--color-text-secondary) !important;
+       transition: var(--transition-all) !important;
+       cursor: pointer !important;
+       min-width: auto !important;
+       height: auto !important;
+       line-height: 1.4 !important;
+       text-decoration: none !important;
+       white-space: nowrap !important;
+       margin: 0 !important;
+   }
+   
+   /* Button Icon Styling */
+   .table tbody tr td .btn i,
+   .table .action-btns .btn i,
+   .table .action-btns button i,
+   .table .actn_drpdwn .btn i {
+       font-size: var(--font-size-sm) !important;
+       line-height: 1 !important;
+       display: inline-flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+   }
+   
+   /* Button Hover States */
+   .table tbody tr td .btn:hover,
+   .table .action-btns .btn:hover,
+   .table .action-btns button:hover,
+   .table .actn_drpdwn .btn:hover {
+       transform: translateY(-1px) !important;
+       box-shadow: var(--shadow-sm) !important;
+   }
+   
+   /* Button Color Variants */
+   .table tbody tr td .btn.btn-info,
+   .table tbody tr td .btn.btn-primary {
+       background: var(--color-bg-primary) !important;
+       border:1px solid var(--color-border-light) !important;
+       color: var(--color-text-primary) !important;
+   }
+   
+   .table tbody tr td .btn.btn-info:hover,
+   .table tbody tr td .btn.btn-primary:hover {
+       background: var(--color-info) !important;
+       color: var(--color-white) !important;
+       box-shadow: var(--shadow-info) !important;
+   }
+   
+   .table tbody tr td .btn.btn-danger {
+       background: var(--color-danger-light) !important;
+       border-color: var(--color-danger-primary) !important;
+       color: var(--color-danger-primary) !important;
+   }
+   
+   .table tbody tr td .btn.btn-danger:hover {
+       background: var(--color-danger-primary) !important;
+       color: var(--color-white) !important;
+       box-shadow: var(--shadow-danger) !important;
+   }
+   
+   .table tbody tr td .btn.btn-success {
+       background: var(--color-success-light) !important;
+       border-color: var(--color-success-primary) !important;
+       color: var(--color-success-primary) !important;
+   }
+   
+   .table tbody tr td .btn.btn-success:hover {
+       background: var(--color-success-primary) !important;
+       color: var(--color-white) !important;
+       box-shadow: var(--shadow-success) !important;
+   }
+   
+   .table tbody tr td .btn.btn-warning {
+       background: var(--color-warning-light) !important;
+       border-color: var(--color-warning-primary) !important;
+       color: var(--color-warning-primary) !important;
+   }
+   
+   .table tbody tr td .btn.btn-warning:hover {
+       background: var(--color-warning-primary) !important;
+       color: var(--color-white) !important;
+       box-shadow: var(--shadow-orange) !important;
+   }
+   
+   /* Small Button Variant */
+   .table tbody tr td .btn.btn-sm {
+       padding: var(--spacing-1) var(--spacing-2) !important;
+       font-size: var(--font-size-xs) !important;
+       min-height: 28px !important;
+   }
+   
+   .table tbody tr td .btn.btn-sm i {
+       font-size: var(--font-size-xs) !important;
+   }
+   
+   /* Avatar/Image in Table */
+   .table .avatar,
+   .table .avatar-circle,
+   .table img.avatar {
+       width: 40px !important;
+       height: 40px !important;
+       border-radius: var(--border-radius-circle) !important;
+       object-fit: cover !important;
+       border: var(--border-width-medium) solid var(--color-white) !important;
+       box-shadow: var(--shadow-xs) !important;
+   }
+   
+   /* Progress Bar in Table */
+   .table .progress-bar-wrapper {
+       width: 100% !important;
+       max-width: 120px !important;
+   }
+   
+   .table .progress-bar {
+       height: 6px !important;
+       border-radius: var(--border-radius-full) !important;
+       background: var(--color-bg-secondary) !important;
+       overflow: hidden !important;
+       position: relative !important;
+   }
+   
+   .table .progress-bar-fill {
+       height: 100% !important;
+       border-radius: inherit !important;
+       background: var(--gradient-blue) !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   .table .progress-text {
+       font-size: var(--font-size-xs) !important;
+       color: var(--color-text-secondary) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       margin-top: var(--spacing-1) !important;
+   }
+   
+   /* Scrollbar for Table */
+   .table-responsive::-webkit-scrollbar,
+   #tableList::-webkit-scrollbar {
+       height: 8px !important;
+   }
+   
+   .table-responsive::-webkit-scrollbar-track {
+       background: var(--color-bg-secondary) !important;
+       border-radius: var(--border-radius-sm) !important;
+   }
+   
+   .table-responsive::-webkit-scrollbar-thumb {
+       background: var(--border-color-default) !important;
+       border-radius: var(--border-radius-sm) !important;
+       transition: var(--transition-colors) !important;
+   }
+   
+   .table-responsive::-webkit-scrollbar-thumb:hover {
+       background: var(--border-color-light) !important;
+   }
+   
+   /* Table Pagination */
+   .pagination {
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       gap: var(--spacing-2) !important;
+       padding: var(--spacing-6) var(--spacing-8) !important;
+       border-top: var(--border-width-thin) solid var(--border-color-light) !important;
+       background: var(--color-bg-secondary) !important;
+       margin: 0 !important;
+   }
+   
+   .pagination li {
+       list-style: none !important;
+   }
+   
+   .pagination li a,
+   .pagination li span {
+       display: inline-flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       min-width: 36px !important;
+       height: 36px !important;
+       padding: var(--spacing-2) !important;
+       border-radius: var(--border-radius-md) !important;
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-medium) !important;
+       color: var(--color-text-secondary) !important;
+       background: var(--color-bg-primary) !important;
+       border: var(--border-width-thin) solid var(--border-color-light) !important;
+       text-decoration: none !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   .pagination li a:hover {
+       background: var(--color-info-light) !important;
+       border-color: var(--color-info-primary) !important;
+       color: var(--color-info-primary) !important;
+   }
+   
+   .pagination li.active a,
+   .pagination li.active span {
+       background: var(--gradient-orange) !important;
+       border-color: var(--color-primary-primary) !important;
+       color: var(--color-white) !important;
+       box-shadow: var(--shadow-orange) !important;
+   }
+   
+   .pagination li.disabled a,
+   .pagination li.disabled span {
+       opacity: 0.5 !important;
+       cursor: not-allowed !important;
+   }
+   
+   /* Search Filter Container */
+   .serch_area_fltr,
+   #advance_search_form_container {
+       background: var(--color-bg-primary);
+       border-radius: var(--border-radius-xl);
+       padding: var(--spacing-4);
+       margin-bottom: var(--spacing-8);
+       border: var(--border-width-thin) solid var(--border-color-light);
+       box-shadow: var(--shadow-sm);
+   }
+   
+   /* Report Table Specific Styles */
+   .reprt_tble .float-start {
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-4) !important;
+       margin-bottom: var(--spacing-4) !important;
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       background: var(--color-bg-secondary) !important;
+       border-radius: var(--border-radius-lg) !important;
+       flex-wrap: wrap !important;
+   }
+   
+   .totl_bkngs_flt,
+   .totl_bookngs {
+       display: inline-flex !important;
+       align-items: center !important;
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-secondary) !important;
+       padding: var(--spacing-2) var(--spacing-4) !important;
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-md) !important;
+       vertical-align: middle !important;
+   }
+   
+   /* Export Buttons Container */
+   .reprt_tble .clearfix:not(:first-child) {
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-3) !important;
+       margin-bottom: var(--spacing-4) !important;
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       flex-wrap: wrap !important;
+   }
+   
+   .reprt_tble .dropdown {
+       margin: 0 !important;
+   }
+   
+   .reprt_tble .btn-info {
+       padding: var(--spacing-3) var(--spacing-5) !important;
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       border-radius: var(--border-radius-lg) !important;
+       display: inline-flex !important;
+       align-items: center !important;
+       gap: var(--spacing-2) !important;
+   }
+   
+   /* Responsive Design */
+   @media (max-width: 768px) {
+       .table tr th,
+       .table tbody tr td {
+           padding: var(--spacing-4) var(--spacing-5) !important;
+           font-size: var(--font-size-sm) !important;
+       }
+   
+       .table tr th:first-child,
+       .table tbody tr td:first-child {
+           padding-left: var(--spacing-6) !important;
+       }
+   
+       .table tr th:last-child,
+       .table tbody tr td:last-child {
+           padding-right: var(--spacing-6) !important;
+       }
+   
+       .table .action-btns {
+           gap: var(--spacing-2) !important;
+       }
+   
+       .table .action-btns .btn,
+       .table .action-btns button {
+           min-width: 32px !important;
+           height: 32px !important;
+           padding: var(--spacing-2) !important;
+       }
+   
+       .pagination {
+           padding: var(--spacing-5) var(--spacing-6) !important;
+           gap: var(--spacing-2) !important;
+       }
+   
+       .pagination li a,
+       .pagination li span {
+           min-width: 32px !important;
+           height: 32px !important;
+           font-size: var(--font-size-sm) !important;
+       }
+   }

@@ -1,0 +1,934 @@
+/* Transfer Search Form CSS */
+
+/* ============================================
+   Field Icons
+   ============================================ */
+.intabs .field-icon {
+  position: absolute;
+  color: var(--color-text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.intabs .field-icon-right {
+  right: var(--spacing-2);
+  top: var(--spacing-4);
+  font-size: 26px;
+}
+
+.intabs .field-icon-left {
+  right: var(--spacing-2);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+}
+
+/* Icon hover and focus states */
+.intabs .relativemask:hover .field-icon,
+.intabs .relativemask:focus-within .field-icon {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+.intabs .totlall:hover .field-icon-left {
+  color: var(--color-primary-midtone);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.intabs .relativemask.datemark .field-icon-right {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.intabs .relativemask.datemark:hover .field-icon-right,
+.intabs .relativemask.datemark:focus-within .field-icon-right {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Add padding for icons */
+.intabs .totlall .remngwd {
+  padding-left: var(--spacing-8);
+}
+
+/* Custom Radio Button Styles */
+.smalway .wament {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  position: relative;
+  padding-left: var(--spacing-6);
+  margin: var(--spacing-0);
+}
+
+.smalway .wament input[type="radio"] {
+  position: absolute;
+  opacity: var(--opacity-0);
+  cursor: pointer;
+  width: var(--spacing-0);
+  height: var(--spacing-0);
+}
+
+/* Custom radio button circle - unselected state */
+.smalway .wament::before {
+  content: '';
+  position: absolute;
+  left: var(--spacing-0);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--radio-size);
+  height: var(--radio-size);
+  border-radius: var(--border-radius-circle);
+  border: var(--radio-border-width) var(--border-style-solid) var(--border-color-dark);
+  background: transparent;
+  transition: var(--transition-all);
+  box-sizing: border-box;
+}
+
+/* Selected state - bright orange fill with yellow outline */
+.smalway .wament:has(input[type="radio"]:checked)::before {
+  background: var(--radio-selected-outline);
+  border-color: var(--radio-selected-fill);
+  box-shadow: 0 0 0 var(--radio-border-width) var(--radio-selected-fill);
+}
+
+/* Fallback using active class for older browsers */
+.smalway .wament.active::before {
+  background: var(--radio-selected-fill);
+  border-color: var(--border-color-light);
+  box-shadow: 0 0 0 var(--radio-border-width) var(--radio-selected-outline);
+}
+
+.normalinput {
+  border: var(--border-width-none) !important;
+  color: var(--color-text-primary) !important;
+  float: left;
+  font-size: var(--font-size-md) !important;
+  height: 38px;
+  padding: var(--spacing-0) var(--spacing-2) !important;
+  font-family: var(--font-family-base);
+  border-radius: var(--border-radius-lg) !important;
+  width: var(--width-full);
+  border-radius: var(--spacing-0);
+  background: none;
+  box-shadow: var(--shadow-none);
+  font-weight: var(--font-weight-bold);
+  -webkit-box-sizing: unset !important;
+  box-sizing: border-box !important;
+}
+/* ============================================
+   Transfer Form Container
+   ============================================ */
+.intabs {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-8);
+  padding: 0 var(--spacing-0);
+}
+
+/* ============================================
+   One-Way / Roundtrip Toggle
+   ============================================ */
+.waywy {
+  display: flex;
+  margin-bottom: var(--spacing-4);
+  padding-left: var(--spacing-0);
+}
+
+.smalway {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.wament {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  position: relative;
+  padding-left: var(--spacing-6);
+}
+
+.wament input[type="radio"] {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.wament input[type="radio"]:checked + label::before,
+.wament:has(input[type="radio"]:checked)::before {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ============================================
+   Form Layout
+   ============================================ */
+.intabs .outsideserach {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--spacing-2);
+  max-width: 100%;
+}
+
+.intabs .outsideserach > div {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ============================================
+   Form Fields
+   ============================================ */
+.intabs .fiveh {
+  height: 80px;
+  position: relative;
+}
+
+.intabs .borderinp,
+.intabs .border_btms {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.intabs .padfive {
+  padding: var(--spacing-2) var(--spacing-0) var(--spacing-0) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.intabs .marginbotom10 {
+  margin-bottom: var(--spacing-0);
+  justify-content: space-between;
+  height: 100%;
+}
+
+.searchsbmt {
+  width: 255px;
+  border: var(--border-width-none) !important;
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+  background-size: 200% 200% !important;
+  color: var(--color-white) !important;
+  font-size: var(--font-size-lg) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  padding: var(--spacing-4) var(--spacing-10) !important;
+  letter-spacing: 0.5px !important;
+  position: relative;
+  width: var(--width-full);
+  border-radius: var(--border-radius-xl) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+  overflow: hidden;
+  margin:auto;
+}
+.searchsbmtfot {
+  position: relative;
+  bottom: -30px;
+}
+
+/* ============================================
+   Labels
+   ============================================ */
+.intabs .lablform,
+.intabs .mobile_label {
+    display: block;
+    font-size: 11px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-1);
+    padding-left: var(--spacing-1);
+    line-height: normal;
+    position: relative;
+    left: var(--spacing-1);
+    float: left;
+    top: 0px;
+}
+
+/* ============================================
+   Input Fields
+   ============================================ */
+.intabs .normalinput,
+.intabs .fromtransfer,
+.intabs .departtransfer,
+.intabs .forminput {
+  width: 100%;
+  border: none !important;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-0) var(--spacing-8) var(--spacing-0) var(--spacing-2) !important ;
+  background: none !important;
+  font-weight: var(--font-weight-semibold);
+  font-size: 14px;
+  opacity: 1 !important;
+  top: var(--spacing-0) !important;
+  position: relative !important;
+  right: inherit !important;
+  color: var(--color-text-primary);
+  transition: var(--transition-all);
+  line-height: 1.2;
+}
+
+.intabs .normalinput:focus,
+.intabs .fromtransfer:focus,
+.intabs .departtransfer:focus,
+.intabs .forminput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.intabs .normalinput::placeholder,
+.intabs .fromtransfer::placeholder,
+.intabs .departtransfer::placeholder,
+.intabs .forminput::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+/* ============================================
+   Input Masks
+   ============================================ */
+.intabs .relativemask {
+  position: relative;
+  width: var(--width-full);
+  flex: 1;
+}
+
+.intabs .plcemark,
+.intabs .datemark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ============================================
+   From/To Section
+   ============================================ */
+.intabs .col-md-6.nopad {
+  display: flex;
+  flex: 0 0 40%;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+}
+
+.intabs .col-md-6.nopad > div {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+/* ============================================
+   Date Section
+   ============================================ */
+.intabs .col-md-4.nopad {
+  display: flex;
+  flex: 1 1 auto;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+}
+
+.intabs .col-md-4.nopad > div {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+
+
+/* ============================================
+   Search Button Section
+   ============================================ */
+.intabs .srch_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 0 0 15%;
+  min-width: 150px;
+  padding: 0 !important;
+}
+
+/* ============================================
+   Travellers Section - Hidden in Main Row
+   ============================================ */
+
+
+/* ============================================
+   Travellers Dropdown (Original Inline)
+   ============================================ */
+.intabs .totlall {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  min-height: 40px;
+  width: 100%;
+  padding: var(--spacing-1) var(--spacing-2);
+}
+
+
+.intabs .totlall.active::after {
+  transform: rotate(180deg);
+}
+
+.intabs .remngwd {
+  flex: 1;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.intabs .total_pax_count {
+  color: var(--color-primary);
+}
+
+/* ============================================
+   Transfer Extra Options (New Collapsible)
+   ============================================ */
+.transfer_form_extra_options {
+  margin-top: var(--spacing-4);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  z-index: 999;
+  position: relative;
+}
+
+/* Toggle Button */
+.transfer_form_extra_options_toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-0);
+  cursor: pointer;
+  user-select: none;
+  background: var(--color-bg-primary);
+  border: none;
+  width: var(--width-full);
+  text-align: left;
+  transition: var(--transition-all);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.transfer_form_extra_options_toggle:hover {
+  background: var(--color-bg-secondary);
+}
+
+.transfer_form_extra_options_toggle .toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.transfer_form_extra_options_toggle .toggle-icon::before {
+  content: "▼";
+  display: inline-block;
+  font-size: 18px;
+}
+
+.transfer_form_extra_options_toggle.active .toggle-icon {
+  transform: rotate(180deg);
+  color: var(--color-primary-primary);
+}
+
+.transfer_form_extra_options_toggle .toggle-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.transfer_form_extra_options_toggle .toggle-text i {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary-primary);
+}
+
+.transfer_form_extra_options_toggle .toggle-text .total_pax_count {
+  color: var(--color-primary-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.transfer_form_extra_options_content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: var(--spacing-0) var(--spacing-0);
+  max-height: 0;
+}
+
+.transfer_form_extra_options_content.active {
+  max-height: 500px;
+  padding: var(--spacing-4) var(--spacing-4) var(--spacing-4);
+}
+
+.transfer_form_extra_options_content_inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.transfer_form_extra_options_content.active .transfer_form_extra_options_content_inner {
+  opacity: 1;
+}
+
+/* Travellers in Extra Options */
+.intabs .travellers_extra_section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.intabs .travellers_extra_section .borderinp {
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-bg-primary);
+  padding: var(--spacing-3);
+  flex: 1;
+}
+
+/* Pax Count Dropdown */
+.intabs .roomcount {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 380px;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 1000;
+  padding: var(--spacing-4);
+}
+
+.intabs .roomcount.fadeinn {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intabs .roomrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3) 0;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.intabs .roomrow:last-of-type {
+  border-bottom: none;
+}
+
+.intabs .celroe {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.intabs .celroe i {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+}
+
+.intabs .agemns {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.intabs .pax-count-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.intabs .onlynum {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.intabs .btn-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border-color-light) !important;
+  font-size: 18px !important;
+  border-radius: 10px !important;
+  background: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  transition: all 0.2s ease;
+}
+
+.intabs .btn-number:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.intabs .input-number {
+  width: 60px !important;
+  text-align: center;
+  border: none !important;
+  background: transparent !important;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding: 0 !important;
+}
+
+.intabs .comnbtn_room1 {
+  display: block;
+  padding: var(--spacing-3) var(--spacing-6);
+  background: linear-gradient(135deg, #ff9800 0%, #fb923c 100%);
+  color: var(--color-white);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  margin-top: var(--spacing-4);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.intabs .comnbtn_room1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 152, 0, 0.4);
+}
+
+/* Child Ages */
+.intabs .child-ages,
+.intabs .adult-ages {
+  padding: var(--spacing-2);
+}
+
+.intabs .padselctsmal {
+  width: 100%;
+  padding: var(--spacing-2);
+  border: 1px solid var(--border-color-medium);
+  border-radius: var(--border-radius-md);
+  background: var(--color-bg-primary);
+}
+
+/* ============================================
+   Search Button
+   ============================================ */
+.intabs .col-12.fiveh.padfive.float-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 0 0 15%;
+  min-width: 150px;
+  height: 70px;
+  padding: 0 !important;
+  margin-top: 0;
+}
+
+.intabs .transfer_rental_btn {
+  width: var(--width-full);
+  height: 70px;
+  display: flex;
+  bottom: inherit !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.intabs .searchsbmt {
+  border: var(--border-width-none) !important;
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+  background-size: 200% 200% !important;
+  color: var(--color-white) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  letter-spacing: 0.3px !important;
+  position: relative;
+  height: 100%;
+  width: var(--width-full);
+  border-radius: var(--border-radius-lg) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  gap: var(--spacing-2);
+}
+
+.intabs .searchsbmt:hover {
+  background-position: right center !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-orange-hover) !important;
+}
+
+.intabs .searchsbmt:active {
+  transform: translateY(0);
+}
+
+.intabs .searchsbmt i {
+  margin-left: var(--spacing-1);
+}
+
+.intabs .ts-search {
+  font-size: var(--font-size-base);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.intabs .nopad {
+  padding: var(--spacing-0) !important;
+}
+
+.intabs .hide {
+  display: none !important;
+}
+
+.intabs .clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.intabs .float-end {
+  float: right;
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+@media screen and (max-width: 1200px) {
+  .intabs .outsideserach {
+    flex-wrap: wrap;
+  }
+
+  .intabs .col-md-6.nopad {
+    flex: 0 0 100%;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .intabs .col-md-4.nopad {
+    flex: 0 0 calc(70% - var(--spacing-2));
+  }
+
+  .intabs .col-12.fiveh.padfive.float-end {
+    flex: 0 0 calc(30% - var(--spacing-2));
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .intabs {
+    padding: 0 var(--spacing-3);
+  }
+
+  .intabs .outsideserach {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .intabs .col-md-6.nopad,
+  .intabs .col-md-4.nopad,
+  .intabs .col-12.fiveh.padfive.float-end {
+    width: var(--width-full) !important;
+    flex: 1 1 100%;
+  }
+
+  .intabs .col-md-6.nopad > div,
+  .intabs .col-md-4.nopad > div {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .intabs .col-md-6.nopad,
+  .intabs .col-md-4.nopad {
+    gap: var(--spacing-2);
+  }
+
+  .intabs .col-12.fiveh.padfive.float-end {
+    min-width: auto;
+  }
+
+  .intabs .roomcount {
+    min-width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    right: auto;
+    left: 0;
+  }
+
+  .intabs .fiveh {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .intabs {
+    padding: 0 var(--spacing-2);
+  }
+
+  .intabs .fiveh {
+    height: 65px;
+  }
+
+  .intabs .lablform,
+  .intabs .mobile_label {
+    font-size: 10px;
+  }
+
+  .intabs .normalinput,
+  .intabs .fromtransfer,
+  .intabs .departtransfer,
+  .intabs .forminput {
+    font-size: 13px;
+    padding: var(--spacing-1);
+  }
+
+  .intabs .searchsbmt {
+    font-size: 14px !important;
+    padding: 0 var(--spacing-4) !important;
+  }
+
+  .intabs .col-12.fiveh.padfive.float-end,
+  .intabs .transfer_rental_btn {
+    height: 65px;
+  }
+
+  /* Transfer Extra Options - Mobile */
+  .transfer_form_extra_options_toggle {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .transfer_form_extra_options_content.active {
+    padding: var(--spacing-3) var(--spacing-3) var(--spacing-3);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .intabs .fiveh {
+    height: 60px;
+  }
+
+  .intabs .lablform,
+  .intabs .mobile_label {
+    font-size: 9px;
+  }
+
+  .intabs .normalinput,
+  .intabs .fromtransfer,
+  .intabs .departtransfer,
+  .intabs .forminput {
+    font-size: 12px;
+  }
+
+  .intabs .searchsbmt {
+    font-size: 13px !important;
+  }
+
+  .intabs .col-12.fiveh.padfive.float-end,
+  .intabs .transfer_rental_btn {
+    height: 60px;
+  }
+
+  .intabs .waywy {
+    padding-left: var(--spacing-0);
+  }
+
+  .intabs .wament {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Transfer Extra Options - Small Mobile */
+  .transfer_form_extra_options_toggle {
+    padding: var(--spacing-2);
+    font-size: var(--font-size-xs);
+  }
+
+  .transfer_form_extra_options_content.active {
+    padding: var(--spacing-2);
+  }
+}
+
+/* ============================================
+   Focus States
+   ============================================ */
+.intabs button:focus,
+.intabs a:focus,
+.intabs input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+.intabs .searchsbmt:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.intabs .searchsbmt.loading {
+  position: relative;
+  color: transparent;
+}
+
+.intabs .searchsbmt.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--size-md);
+  height: var(--size-md);
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-white);
+  border-top-color: transparent;
+  border-radius: var(--border-radius-circle);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -1,0 +1,76 @@
+/**
+ * Spacing Variables
+ * Spacing scale, padding, and margin variables
+ */
+
+:root {
+    /* ============================================
+       SPACING SCALE (Base: 4px)
+       ============================================ */
+    --spacing-base: 4px;
+
+/* Spacing Scale - Sizes */
+--spacing-0: 0;
+--spacing-1: 4px;      /* 0.25rem */
+--spacing-2: 8px;      /* 0.5rem */
+--spacing-3: 12px;     /* 0.75rem */
+--spacing-4: 16px;     /* 1rem */
+--spacing-5: 20px;     /* 1.25rem */
+--spacing-6: 24px;     /* 1.5rem */
+--spacing-7: 28px;     /* 1.75rem */
+--spacing-8: 32px;     /* 2rem */
+--spacing-9: 36px;     /* 2.25rem */
+--spacing-10: 40px;    /* 2.5rem */
+--spacing-12: 48px;    /* 3rem */
+--spacing-14: 56px;    /* 3.5rem */
+--spacing-16: 64px;    /* 4rem */
+--spacing-20: 80px;    /* 5rem */
+--spacing-24: 96px;    /* 6rem */
+--spacing-32: 128px;   /* 8rem */
+--spacing-40: 160px;   /* 10rem */
+--spacing-48: 192px;   /* 12rem */
+--spacing-64: 256px;   /* 16rem */
+
+/* ============================================
+   PADDING VARIABLES
+   ============================================ */
+--padding-xs: var(--spacing-1);      /* 4px */
+--padding-sm: var(--spacing-2);      /* 8px */
+--padding-md: var(--spacing-4);      /* 16px */
+--padding-lg: var(--spacing-6);      /* 24px */
+--padding-xl: var(--spacing-8);      /* 32px */
+--padding-2xl: var(--spacing-12);    /* 48px */
+--padding-3xl: var(--spacing-16);    /* 64px */
+
+/* Padding - Component Specific */
+--padding-button: var(--spacing-2) var(--spacing-4);
+--padding-button-sm: var(--spacing-1) var(--spacing-3);
+--padding-button-lg: var(--spacing-3) var(--spacing-6);
+--padding-input: var(--spacing-2) var(--spacing-3);
+--padding-input-lg: var(--spacing-3) var(--spacing-4);
+--padding-card: var(--spacing-4);
+--padding-card-lg: var(--spacing-6);
+--padding-section: var(--spacing-8) var(--spacing-4);
+--padding-section-lg: var(--spacing-12) var(--spacing-6);
+--padding-container: var(--spacing-4);
+--padding-container-lg: var(--spacing-6);
+
+/* ============================================
+   MARGIN VARIABLES
+   ============================================ */
+--margin-xs: var(--spacing-1);       /* 4px */
+--margin-sm: var(--spacing-2);        /* 8px */
+--margin-md: var(--spacing-4);       /* 16px */
+--margin-lg: var(--spacing-6);       /* 24px */
+--margin-xl: var(--spacing-8);       /* 32px */
+--margin-2xl: var(--spacing-12);     /* 48px */
+--margin-3xl: var(--spacing-16);     /* 64px */
+
+/* Margin - Component Specific */
+--margin-element: var(--spacing-4);
+--margin-section: var(--spacing-8);
+--margin-section-lg: var(--spacing-12);
+--margin-container: var(--spacing-4);
+--margin-container-lg: var(--spacing-6);
+}
+

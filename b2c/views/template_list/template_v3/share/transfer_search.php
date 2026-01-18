@@ -1,0 +1,248 @@
+
+<?php
+$transfer_model = '';
+$this->load->model('transfer_model');
+Js_Loader::$css[] = array('href' => $GLOBALS['CI']->template->template_css_dir('page_resource/transfer-search-form.css'), 'media' => 'screen');
+Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('page_resource/transfer_suggest_modify_search.js'), 'defer' => 'defer');
+
+if ((isset($transfer_search_params) == false) || (isset($transfer_search_params) == true && valid_array($transfer_search_params) == false)) {
+    $sparam = $this->input->cookie('sparam', TRUE);
+
+    $sparam = unserialize($sparam);
+    $sid = intval(@$sparam[META_TRANSFER_COURSE]);
+    //debug($sid);
+    if ($sid > 0) {
+        $transfer_search_params = $GLOBALS['CI']->transfer_model->get_safe_search_data($sid);
+        $transfer_search_params = $transfer_search_params['data'];
+    }
+}
+
+
+if (!isset($transfer_search_params['adult']) && empty($transfer_search_params['adult'])) {
+    $transfer_search_params['adult'] = 1;
+    $total_pax = 1;
+}
+else{
+    $total_pax = $transfer_search_params['adult']+$transfer_search_params['child'];
+}
+
+$transfer_datepicker = array(array('transfer_datepicker1', FUTURE_DATE_TIME), array('transfer_datepicker2', FUTURE_DATE_TIME));
+$GLOBALS['CI']->current_page->set_datepicker($transfer_datepicker);
+$GLOBALS['CI']->current_page->auto_adjust_datepicker(array(array('transfer_datepicker1', 'transfer_datepicker2')));
+?>
+<form id="trasfer" name="trasfer" autocomplete="off" action="<?= base_url() ?>index.php/general/pre_transfer_search">
+    <div class="intabs mt-4">
+        <div class="waywy mb-2">
+            <div class="smalway">
+                <label class="wament hand-cursor">
+                    <input class="hide" type="radio" name="transfer_type" <?= !isset($transfer_search_params['trip_type']) ? 'checked' : (($transfer_search_params['trip_type'] == 'oneway') ? 'checked="checked"' : '') ?> id="onew-trip" value="oneway" /> One-Way
+                </label>
+                <label class="wament hand-cursor">
+                    <input class="hide" type="radio" name="transfer_type" <?= (@$transfer_search_params['trip_type'] == 'circle' ? 'checked="checked"' : '') ?> id="rnd-trip" value="circle" /> Roundtrip
+                </label>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="outsideserach d-flex">
+            <div class="col-md-6 col-12 d-flex nopad marginbotom10 aftremarg">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 fiveh padfive border_btms">
+                    <div class="borderinp">
+                        <div class="marginbotom10">
+                            <div class="lablform mobile_label">From</div>
+                            <div class="relativemask plcemark"> 
+                                <i class="material-icons field-icon field-icon-right">location_on</i>
+                                <input type="text" value="<?php echo @$transfer_search_params['from'] ?>" placeholder="From, Airport, Hotel, City" name="transfer_from" id="transfer_from" class="normalinput b-r-0 fromtransfer ui-autocomplete-input" required="" aria-required="true" autocomplete="off">
+                                <input class="hide loc_id_holder" name="from_loc_id" type="hidden" value="<?= @$transfer_search_params['from_code'] ?>" >
+                                <input class="hide transfer_type" name="from_transfer_type" type="hidden" value="<?= @$transfer_search_params['from_transfer_type'] ?>" >
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 fiveh padfive border_btms">
+                    <div class="borderinp">
+                        <div class="marginbotom10">
+                            <div class="lablform mobile_label">To</div>
+                            <div class="relativemask plcemark"> 
+                                <i class="material-icons field-icon field-icon-right">place</i>
+                                <input type="text" value="<?php echo @$transfer_search_params['to'] ?>" placeholder="To, Airport, Hotel, City" id="transfer_to" name="transfer_to" class="normalinput b-r-0 departtransfer ui-autocomplete-input" required="" aria-required="true" autocomplete="off">
+                                <input class="hide loc_id_holder" name="to_loc_id" type="hidden" value="<?= @$transfer_search_params['to_code'] ?>" >
+                                <input class="hide transfer_type" name="to_transfer_type" type="hidden" value="<?= @$transfer_search_params['to_transfer_type'] ?>"> 					
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-12 d-flex nopad">
+                <div class="col-6 padfive fiveh border_btms">
+                    <div class="borderinp">
+                        <div class="lablform mobile_label">Departure</div>
+                        <div class="relativemask datemark"> 
+                            <i class="material-icons field-icon field-icon-right">calendar_today</i>
+                            <input type="text" placeholder="Depature Date" required="required"
+                                value="<?php echo @$transfer_search_params['from_date'] ?>" 
+                                class="forminput b-r-0 normalinput date_picker" id="transfer_datepicker1" 
+                                name="depature" aria-required="true" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 padfive fiveh date-wrapper border_btms">
+                    <div class="borderinp">
+                        <div class="lablform mobile_label">Return</div>
+                        <div class="relativemask datemark"> 
+                            <i class="material-icons field-icon field-icon-right">event</i>
+                            <input type="text"  readonly placeholder="Return Date" 
+                                value="<?php echo @$transfer_search_params['to_date'] ?>" 
+                                class="forminput normalinput b-r-0 date_picker" 
+                                id="transfer_datepicker2" name="return"
+                                <?= (@$transfer_search_params['transfer_type'] != 'circle' ? 'disabled="disabled"' : '') ?> autocomplete="off" aria-required="true" >
+                                <!-- <input type="text" value="<?php echo @$transfer_search_params['to'] ?>" placeholder="To, Airport, Hotel, City" id="transfer_to" name="transfer_to" class="ft departtransfer ui-autocomplete-input" required="" aria-required="true" autocomplete="off">-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-2 col-12 nopad last_border">
+                <div class="col-12 padfive mobile_width border_btms last_border">
+                    <div class="borderinp">
+                        <div class="lablform mobile_label">Travellers</div>
+                        <div class="totlall">
+                            <i class="material-icons field-icon field-icon-left">people</i>
+                            <span class="remngwd normalinput"><span class="total_pax_count"><?php echo $total_pax;?></span> <span id="travel_text">Traveller</span></span>
+                            <div class="roomcount pax_count_div">
+                                <div class="mobile_adult_icon">Travelers<i class="fa fa-male"></i></div>
+                                <div class="inallsn">
+                                    <div class="oneroom fltravlr">
+                                        <div class="clearfix"></div>
+                                        <div class="roomrow">
+                                            <div class="celroe col-7"><i class="fal fa-male"></i> Adults
+                                                <span class="agemns">(13+)</span>
+                                            </div>
+                                            <div class="celroe col-5">
+                                                <div class="selectedwrapnum">
+                                                    <div class="onlynumwrap wrap1 pax-count-wrapper">
+                                                        <div class="onlynum">
+
+                                                            <button data-field="adult" data-type="minus"  class="btn btn-secondary btn-number btnpot minusValue adult" type="button"> 
+                                                                <span class="glyphicon glyphicon-minus"></span> </button>
+                                                            <input type="text" id="OWT_transfer_adult" name="adult" class="form-control input-number centertext valid_class pax_count_value" value="<?= (int) @$transfer_search_params['adult'] ?>" min="1" max="6" readonly>
+
+                                                            <button data-field="adult" data-type="plus" class="btn btn-secondary btn-number btnpot btn_right plusValue" type="button"> 
+                                                                <span class="glyphicon glyphicon-plus"></span> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <!--  <div class="col-12 nopad padfive">
+                                                <div class="formlabel11 padfive_child">Adult age at time of travel</div>
+                                                <?php
+                                                for ($d = 1; $d <= 6; $d++) {
+                                                    $classname = 'hide';
+                                                    $disable = 'disabled=""';
+                                                    if ($d == 1 || isset($transfer_search_params['adult_ages'][$d - 1])) {
+                                                        $classname = '';
+                                                        $disable = '';
+                                                    }
+                                                    ?>
+                                                    <div class="col-6 fiveh padfive adult-ages transfer_adult_ageId<?= $d ?> <?= $classname ?>">
+
+                                                        <div class="plcetogo selctmarksml">
+                                                            <select class="normalsel padselctsmal marginbotom10 selectpicker <?= $classname ?>" <?= $disable ?> id="transfer_adult_ageId<?= $d ?>" name="adult_ages[]"><?php
+                                                                for ($i = 13; $i <= 100; $i++) {
+                                                                    if (isset($transfer_search_params['adult_ages'][$d - 1]) && $transfer_search_params['adult_ages'][$d - 1] == $i) {
+                                                                        $selected = "selected";
+                                                                    } else {
+                                                                        $selected = '';
+                                                                    }
+                                                                    ?><option <?= $selected ?>><?= $i ?></option><?php
+                                                                }
+                                                                ?></select>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div> -->
+
+                                        </div>
+
+
+
+
+                                        <div class="roomrow">
+                                            <div class="celroe col-7"><i class="fal fa-child"></i> Children
+                                                <span class="agemns">(0-12)</span>
+                                            </div>
+
+                                            <div class="celroe col-5">
+                                                <div class="selectedwrapnum">
+                                                    <div class="onlynumwrap wrap1">
+                                                        <div id="childs" class="onlynum pax-count-wrapper">
+                                                            <button type="button" class="btn btn-secondary btn-number btnpot minusValue child" data-type="minus" data-field="child"> <span class="glyphicon glyphicon-minus"></span> </button>
+                                                            <input type="text" id="OWT_transfer_child" name="child" class="form-control input-number centertext pax_count_value" value="<?= (int) @$transfer_search_params['child'] ?>" min="0" max="6" readonly>
+                                                            <button type="button" class="btn btn-secondary btn-number btnpot btn_right plusValue" data-field="child" data-type="plus"> <span class="glyphicon glyphicon-plus"></span>  </button>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+
+                                            <div class="col-12 nopad float-end padfive">
+                                                <div class="formlabel11 padfive_child child_age_text hide">Child age at time of travel</div>
+                                                <?php
+                                                for ($c = 1; $c <= 6; $c++) {
+                                                    if (isset($transfer_search_params['child_ages'][$c - 1])) {
+                                                        $classname = '';
+                                                        $disable = '';
+                                                    } else {
+                                                        $disable = 'disabled=""';
+                                                        $classname = "hide";
+                                                    }
+                                                    ?>
+                                                    <div class="col-6 fiveh padfive child-ages transfer_child_ageId<?= $c ?> <?= $classname ?>">
+
+                                                        <div class="plcetogo selctmarksml">
+                                                            <select class="normalsel padselctsmal marginbotom10 selectpicker <?= $classname ?>" <?= $disable ?> id="transfer_child_ageId<?= $c ?>" name="child_ages[]"><?php
+                                                                for ($j = 0; $j <= 12; $j++) {
+                                                                    if (isset($transfer_search_params['child_ages'][$c - 1]) && $transfer_search_params['child_ages'][$c - 1] == $j) {
+                                                                        $selected = "selected";
+                                                                    } else {
+                                                                        $selected = '';
+                                                                    }
+                                                                    ?><option <?= $selected ?>><?= $j ?></option><?php
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </div> 
+
+                                        </div>
+
+
+                                        <a class="done1 comnbtn_room1"><span class="fa fa-check"></span> Done</a>
+                                        <!-- Infant Error Message-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="search_button_container">
+                    <div class="searchsbmtfot flightbutton position-absolute">
+                        <button class="searchsbmt flight_search_btn" type="submit">Search Transfer <i class="fas fa-search ts-search"></i><span class="srcharow"></span></button>
+                    </div>
+            </div>
+    </div>
+</form>

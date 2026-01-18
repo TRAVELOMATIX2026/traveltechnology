@@ -1,0 +1,138 @@
+/**
+ * Autocomplete Styles
+ * jQuery UI Autocomplete component styles using design variables
+ */
+
+/* ============================================
+   AUTocomplete Container
+   ============================================ */
+
+
+@import url('_variables.scss');
+@import url('_spacing.scss');
+@import url('_typography.scss');
+@import url('_colors.scss');
+@import url('_borders.scss');
+@import url('_sizes.scss');
+@import url('_shadows.scss');
+@import url('_transitions.scss');
+@import url('_z-index.scss');
+@import url('_misc.scss');
+
+.ui-autocomplete.ui-widget-content {
+    position: absolute;
+    z-index: 9999;
+    max-width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: var(--spacing-6) !important;
+    overflow-x: hidden;
+    background: var(--color-bg-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-default);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   AUTocomplete Menu Items
+   ============================================ */
+   .ui-autocomplete-category { 
+    padding: var(--spacing-2) var(--spacing-2); 
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    background: var(--color-bg-tertiary);
+ }
+
+.ui-autocomplete .custom-auto-complete.ui-menu-item {
+    display: block;
+    list-style: outside none none;
+    overflow: hidden;
+    padding: var(--spacing-0);
+    text-align: left;
+    background: var(--color-bg-primary);
+}
+
+.ui-autocomplete.ui-widget-content a {
+    border-top: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    color: var(--color-text-primary) !important;
+    display: flex;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    overflow: hidden;
+    padding: var(--spacing-3) var(--spacing-4);
+    position: relative;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ui-autocomplete.ui-widget-content a strong {
+    font-weight: var(--font-weight-semibold);
+    padding-right: var(--spacing-1);
+    color: var(--color-text-info);
+}
+
+.ui-autocomplete.ui-widget-content a img {
+    float: left;
+    margin-right: var(--spacing-1);
+    height: 14px;
+    width: 20px;
+}
+
+/* ============================================
+   AUTocomplete Item States
+   ============================================ */
+.custom-auto-complete.ui-menu-item:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-inverse);
+    cursor: pointer;
+}
+
+.custom-auto-complete.ui-menu-item a.ui-corner-all {
+    color: var(--color-text-primary);
+    padding: var(--padding-md);
+}
+
+.custom-auto-complete.ui-menu-item:hover a.ui-corner-all,
+.custom-auto-complete.ui-menu-item a.ui-corner-all.ui-state-focus {
+    color: var(--color-text-inverse);
+}
+
+.custom-auto-complete.ui-menu-item:hover {
+    border-top: var(--border-style-none);
+}
+
+
+
+.custom-auto-complete.ui-state-focus {
+    background: var(--color-primary-pastel);
+}
+
+.custom-auto-complete.ui-widget-content a {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.custom-auto-complete.ui-state-focus a {
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   AUTocomplete Loading State
+   ============================================ */
+.ui-autocomplete-loading {
+    background: url(../images/loader_v3.gif) no-repeat scroll 98% center var(--color-bg-primary);
+}
+
+
+@media (max-width: 767px) {
+    .ui-autocomplete {
+        z-index: 1000 !important;
+        width: 94% !important;
+        left: 3% !important;
+    }
+}
+

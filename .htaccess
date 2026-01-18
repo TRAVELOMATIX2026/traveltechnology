@@ -1,0 +1,12 @@
+#AddDefaultCharset UTF-8
+#AddType 'text/html; charset=UTF-8' html
+RewriteEngine on
+DirectoryIndex index.php index.html
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+# Force the "www."
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]

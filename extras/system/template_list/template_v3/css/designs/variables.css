@@ -1,0 +1,21 @@
+/**
+ * Design Variables - Color Scheme Setup
+ * This file sets up the color-scheme for light-dark() function to work
+ */
+
+:root {
+    /* Enable light-dark() function to work */
+    color-scheme: light dark;
+}
+
+/* ============================================
+   DARK MODE - Enable color-scheme for light-dark() to work
+   This makes light-dark() function respond to data-bs-theme attribute
+   ============================================ */
+[data-bs-theme="dark"] {
+    /* Set color-scheme so light-dark() function works automatically */
+    color-scheme: dark;
+    
+    /* Hero overlay gradient for dark mode */
+    --hero-overlay-bg: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+}

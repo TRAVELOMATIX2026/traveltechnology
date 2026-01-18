@@ -1,0 +1,229 @@
+/* Sightseeing Search Form CSS */
+
+/* ============================================
+   Field Icons
+   ============================================ */
+.sight_form .field-icon {
+  position: absolute;
+  color: var(--color-text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.sight_form .field-icon-right {
+  right: var(--spacing-2);
+  top: 50% !important;
+  transform: translateY(-50%);
+  font-size: 26px;
+}
+
+/* Icon hover and focus states */
+.sight_form .plcetogo:hover .field-icon,
+.sight_form .plcetogo:focus-within .field-icon {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Sightseeing Form Container
+   ============================================ */
+.sight_form {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-8);
+  padding: 0 var(--spacing-0);
+}
+
+.sight_form .tabrow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-3);
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.sight_form .tabrow > div {
+  display: flex;
+  align-items: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.sight_form .lablform {
+  color: var(--color-text-secondary);
+  display: block;
+  font-size: 11px;
+  padding-left: var(--spacing-3);
+  font-weight: var(--font-weight-medium);
+  position: absolute;
+  top: 8px;
+  left: 0;
+  margin-bottom: 0;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sight_form .padfive {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 70px;
+  position: relative;
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg) !important;
+  background: var(--color-bg-primary);
+  padding: 0;
+  margin-right: 0;
+  overflow: visible;
+  width: 100%;
+}
+
+.sight_form .plcetogo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: var(--spacing-4);
+  padding-left: var(--spacing-0);
+}
+
+.sight_form .plcetogo.sidebord {
+  border-right: none;
+}
+
+.sight_form .plcetogo.plcemark {
+  position: relative;
+}
+
+.sight_form .normalinput {
+  width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  opacity: 1 !important;
+  top: 0 !important;
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3) !important;
+  background: none !important;
+  border: none !important;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text-primary) !important;
+  line-height: 1.2 !important;
+}
+
+.sight_form .normalinput::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+.sight_form .normalinput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.sight_form .srch_sight {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  position: relative;
+  min-width: 0;
+}
+
+.sight_form .srch_sight .lablform {
+  visibility: hidden;
+  height: 19px;
+  margin-bottom: 0;
+}
+
+.sightSeeningBtn {
+  width: var(--width-full);
+  bottom: inherit !important;
+  height: 70px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.sightSeeningBtn .searchsbmt {
+  border: var(--border-width-none) !important;
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+  background-size: 200% 200% !important;
+  color: var(--color-white) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  padding: 0 var(--spacing-4) !important;
+  letter-spacing: 0.5px !important;
+  position: relative;
+  height: 100% !important;
+  width: var(--width-full);
+  border-radius: var(--border-radius-lg) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+  overflow: hidden;
+  text-transform: capitalize !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sightSeeningBtn .searchsbmt:hover {
+  background-position: right center !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-orange-hover) !important;
+}
+
+.sightSeeningBtn .searchsbmt:active {
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .sight_form .tabrow {
+    flex-wrap: wrap;
+  }
+  
+  .sight_form .tabrow > div {
+    flex: 1 1 100%;
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .sight_form .padfive {
+    margin-right: 0;
+  }
+  
+  .sight_form .srch_sight {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sight_form .padfive {
+    height: 60px;
+  }
+  
+  .sight_form .lablform {
+    font-size: 10px;
+    top: 6px;
+  }
+  
+  .sight_form .plcetogo {
+    padding-top: 16px;
+  }
+  
+  .sight_form .normalinput {
+    font-size: 13px !important;
+    padding: var(--spacing-1) var(--spacing-2) var(--spacing-2) var(--spacing-2) !important;
+  }
+  
+  .sightSeeningBtn {
+    height: 60px;
+  }
+  
+  .sightSeeningBtn .searchsbmt {
+    font-size: 14px !important;
+  }
+}

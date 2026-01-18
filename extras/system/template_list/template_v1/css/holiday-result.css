@@ -1,0 +1,331 @@
+/* Tour Result Page CSS */
+
+/* Main Container */
+.cnclpoly {
+  color: #666;
+  display: block;
+  overflow: hidden;
+  padding: 30px 0px;
+}
+
+/* Utilities */
+.clear {
+  clear: both;
+}
+
+.nopad {
+  padding: 0 !important;
+}
+
+.h3 { 
+  margin-top: 0px; 
+}
+
+#contentTitle {
+  margin-top: 0px;
+}
+
+/* Tour Filter Section */
+.tourfilter {
+    display: block;
+    margin-bottom: 15px;
+    overflow: hidden;
+    /* padding: 10px; */
+    /* border: 1px solid #eee; */
+    /* background: #ededed; */
+}
+
+.tourfilter .lbl_txt {
+  padding-bottom: 0px;  
+}
+
+.tourfilter .padselct.padselct {
+  padding: 2px 20px 1.5px 15px;
+  height: 20px;
+  font-size: 13px;
+}
+
+.lbl_txt { 
+  font-size: 14px; 
+  margin-bottom: 5px; 
+  color: #000;
+}
+
+/* Form Elements */
+.tabspl {
+  display: block;
+  overflow: hidden;
+}
+
+.forhotelonly {
+  display: block;
+  overflow: hidden;
+}
+
+.tabrow {
+  display: block;
+  overflow: hidden;
+}
+
+.mobile_width {
+  display: block;
+  overflow: hidden;
+}
+
+.padfive {
+  padding: 5px;
+}
+
+.normalsel {
+  display: block;
+  width: 100%;
+}
+
+.normalsel.cs-select span {
+  border-bottom: 1px solid #eee;
+  padding: 3px 1em;
+}
+
+.normalsel.cs-select > span {
+  background: url("../images/group.png") no-repeat scroll 10px center rgba(0, 0, 0, 0);
+  border: 1px solid #ddd;
+  color: #666;
+  font-size: 14px;
+  padding: 6px 20px 6px 40px;
+  text-align: right;
+}
+
+.cs-select.normalsel span {
+  text-align: right;
+}
+
+.padselct {
+  padding: 5px 20px;
+}
+
+.arimo {
+  font-family: 'Arimo', sans-serif;
+}
+
+/* Search Button */
+.searchsbmtfot {
+  display: block;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.flightbutton {
+  display: block;
+  overflow: hidden;
+}
+
+.holidyasBtn {
+  display: block;
+  overflow: hidden;
+}
+
+.searchsbmt {
+  background: #F18604;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.flight_search_btn {
+  background: #F18604;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 30px;
+  text-transform: uppercase;
+}
+
+/* Package List Container */
+.packgtr { 
+  padding: 0px 12px;  
+}
+
+.masonry {
+  display: block;
+  overflow: hidden;
+}
+
+/* Individual Package Item */
+.inlitp {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #eee;
+  display: block;
+  margin: 0px 0px 10px 0px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.nopadMob {
+  padding: 0;
+}
+
+/* Package Image */
+.tpimage {
+  display: block;
+  height: 150px;
+  overflow: hidden;
+}
+
+.tpimage img {
+  height: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Package Content */
+.tpcontent {
+  display: block;
+  overflow: hidden;
+}
+
+.tpcontent p {
+  color: #666;
+  display: block;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+/* Package Title */
+.tptitle {
+  color: #008100;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 22px;
+  margin: 5px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.txtwrapRow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Package Location/Address */
+.htladrsxl {
+  background: url("../images/map.png") no-repeat scroll left 0 rgba(0,0,0,0);
+  color: #666;
+  display: block;
+  margin: 0 0 5px;
+  overflow: hidden; 
+  font-size: 14px;
+  padding-left: 0px;
+}
+
+/* Package Price Section */
+.pkprice {
+  display: block;
+  overflow: hidden;
+  padding: 15px 0 0 10px;
+}
+
+.pricebolk {
+  color: #000;
+  display: block;
+  font-size: 22px; 
+  margin: 10px 0px 5px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.durtio {
+  color: #383838;
+  display: block;
+  font-size: 12px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* View Detail Button */
+.relativefmsub {
+  display: table;
+  margin: 0 0 0 auto;
+  padding: 0;
+  background: #F18604;
+}
+
+.trssxl {
+  margin: 10px auto auto;
+}
+
+.sfitlblx {
+  color: #fff;
+  float: left;
+  font-family: open_sansregular;
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+
+.trss {
+  background: none repeat scroll 0 0 #ef7d25;
+  float: left;
+  margin: 15px 0 0;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .tourfilter {
+    border: none !important;
+  }
+  .packgtr { 
+    padding: 0px 0px !important; 
+  }
+}
+
+@media (max-width: 767px) {
+  .tourfilter .lbl_txt {
+    padding-bottom: 0px;  
+  }
+  .tourfilter .padselct.padselct {
+    padding: 2px 20px 1.5px 15px;
+    height: 20px;
+    font-size: 13px;
+  }
+  .packgtr .tpcontent {
+    padding: 0;
+  }
+  
+  .nopadMob {
+    padding: 0 !important;
+  }
+  
+  .mobile_width {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .tpimage {
+    height: 120px;
+  }
+  
+  .tpimage img {
+    height: 120px;
+  }
+  
+  .tptitle {
+    font-size: 16px;
+  }
+  
+  .pricebolk {
+    font-size: 18px;
+  }
+}
+

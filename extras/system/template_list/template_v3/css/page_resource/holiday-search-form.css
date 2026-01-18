@@ -1,0 +1,363 @@
+/* Holiday Search Form CSS */
+
+/* ============================================
+   Field Icons
+   ============================================ */
+.tabspl.forhotelonly .field-icon {
+  position: absolute;
+  color: var(--color-text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.tabspl.forhotelonly .field-icon-right {
+  right: var(--spacing-3);
+  top: var(--spacing-4);
+  font-size: 26px;
+}
+
+/* Icon hover and focus states */
+.tabspl.forhotelonly .selectedwrap:hover .field-icon,
+.tabspl.forhotelonly .selectedwrap:focus-within .field-icon {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Holiday Form Container
+   ============================================ */
+.tabspl.forhotelonly {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-8);
+  padding: 0 var(--spacing-0);
+}
+
+.tabspl.forhotelonly .tabrow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-2);
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.tabspl.forhotelonly .tabrow > div {
+  display: flex;
+  align-items: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ============================================
+   Form Labels
+   ============================================ */
+.tabspl.forhotelonly .lablform {
+  color: var(--color-text-secondary);
+  display: block;
+  font-size: 11px;
+  padding-left: var(--spacing-3);
+  font-weight: var(--font-weight-medium);
+  position: absolute;
+  top: 8px;
+  left: 0;
+  margin-bottom: 0;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================
+   Form Fields Container
+   ============================================ */
+.tabspl.forhotelonly .padfive {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 70px;
+  position: relative;
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg) !important;
+  background: var(--color-bg-primary);
+  padding: 0;
+  margin-right: 0;
+  overflow: visible;
+  width: 100%;
+}
+
+.tabspl.forhotelonly .padfive.last_border {
+  border-right: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+}
+
+/* ============================================
+   Select Wrapper
+   ============================================ */
+.tabspl.forhotelonly .selectedwrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: var(--spacing-4);
+  padding-left: var(--spacing-0);
+}
+
+.tabspl.forhotelonly .selectedwrap.sidebord {
+  border-right: none;
+}
+
+/* ============================================
+   Select Elements
+   ============================================ */
+.tabspl.forhotelonly .normalsel.holyday_selct {
+  width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  opacity: 1 !important;
+  top: 0 !important;
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3) !important;
+  background: none !important;
+  border: none !important;
+  font-size: 15px !important;
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text-primary) !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right var(--spacing-3) center !important;
+  padding-right: var(--spacing-8) !important;
+}
+
+.tabspl.forhotelonly .normalsel.holyday_selct option {
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  font-weight: var(--font-weight-normal);
+  padding: var(--spacing-2);
+}
+
+.tabspl.forhotelonly .normalsel.holyday_selct:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.tabspl.forhotelonly .normalsel.holyday_selct:hover {
+  border-color: var(--border-color-medium);
+}
+
+/* ============================================
+   Search Button Container
+   ============================================ */
+.tabspl.forhotelonly .hldy_srch {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  position: relative;
+  min-width: 0;
+}
+
+.tabspl.forhotelonly .hldy_srch .lablform {
+  visibility: hidden;
+  height: 19px;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   Holiday Search Button
+   ============================================ */
+.holiday_searchBtn {
+  width: var(--width-full);
+  bottom: inherit !important;
+  height: 70px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.holiday_searchBtn.searchsbmtfot {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.holiday_searchBtn .searchsbmt,
+.holiday_searchBtn .flight_search_btn {
+  border: var(--border-width-none) !important;
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+  background-size: 200% 200% !important;
+  color: var(--color-white) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  padding: 0 var(--spacing-4) !important;
+  letter-spacing: 0.5px !important;
+  position: relative;
+  height: 100% !important;
+  width: var(--width-full);
+  border-radius: var(--border-radius-lg) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+  overflow: hidden;
+  text-transform: capitalize !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.holiday_searchBtn .searchsbmt:hover,
+.holiday_searchBtn .flight_search_btn:hover {
+  background-position: right center !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-orange-hover) !important;
+}
+
+.holiday_searchBtn .searchsbmt:active,
+.holiday_searchBtn .flight_search_btn:active {
+  transform: translateY(0);
+}
+
+.holiday_searchBtn i {
+  display: none;
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+@media (max-width: 992px) {
+  .tabspl.forhotelonly .tabrow {
+    flex-wrap: wrap;
+  }
+  
+  .tabspl.forhotelonly .tabrow > div {
+    flex: 1 1 calc(50% - var(--spacing-2));
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .tabspl.forhotelonly .padfive {
+    margin-right: 0;
+  }
+  
+  .tabspl.forhotelonly .hldy_srch {
+    flex: 1 1 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabspl.forhotelonly .tabrow > div {
+    flex: 1 1 100%;
+  }
+  
+  .tabspl.forhotelonly .padfive {
+    height: 60px;
+  }
+  
+  .tabspl.forhotelonly .lablform {
+    font-size: 10px;
+    top: 6px;
+  }
+  
+  .tabspl.forhotelonly .selectedwrap {
+    padding-top: 16px;
+  }
+  
+  .tabspl.forhotelonly .normalsel.holyday_selct {
+    font-size: 13px !important;
+    padding: var(--spacing-1) var(--spacing-2) var(--spacing-2) var(--spacing-2) !important;
+    background-position: right var(--spacing-2) center !important;
+    padding-right: var(--spacing-6) !important;
+  }
+  
+  .holiday_searchBtn {
+    height: 60px;
+  }
+  
+  .holiday_searchBtn .searchsbmt,
+  .holiday_searchBtn .flight_search_btn {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabspl.forhotelonly {
+    padding: 0 var(--spacing-2);
+  }
+  
+  .tabspl.forhotelonly .padfive {
+    height: 55px;
+  }
+  
+  .tabspl.forhotelonly .lablform {
+    font-size: 9px;
+    top: 5px;
+  }
+  
+  .tabspl.forhotelonly .normalsel.holyday_selct {
+    font-size: 12px !important;
+    padding: var(--spacing-1) var(--spacing-2) var(--spacing-2) var(--spacing-2) !important;
+  }
+  
+  .holiday_searchBtn {
+    height: 55px;
+  }
+  
+  .holiday_searchBtn .searchsbmt,
+  .holiday_searchBtn .flight_search_btn {
+    font-size: 13px !important;
+    padding: 0 var(--spacing-2) !important;
+  }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.tabspl.forhotelonly .hide {
+  display: none !important;
+}
+
+.tabspl.forhotelonly .clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+.holiday_searchBtn .searchsbmt:disabled,
+.holiday_searchBtn .flight_search_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.holiday_searchBtn .searchsbmt.loading,
+.holiday_searchBtn .flight_search_btn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.holiday_searchBtn .searchsbmt.loading::after,
+.holiday_searchBtn .flight_search_btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--size-md);
+  height: var(--size-md);
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-white);
+  border-top-color: transparent;
+  border-radius: var(--border-radius-circle);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

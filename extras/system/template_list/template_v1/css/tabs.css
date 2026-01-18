@@ -1,0 +1,488 @@
+/* ============================================
+   MODERN TABS DESIGN - TailAdmin Style
+   Clean, Professional Tabs with Underline & Icons
+   Overrides form.css styles for B2B and B2C report tabs
+   ============================================ */
+
+/* Tab Container - Modern Design */
+.nav-tabs {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+    border: none !important;
+    border-bottom: var(--border-width-medium) var(--border-style-solid) var(--border-color-light) !important;
+    padding: 0 !important;
+    margin: 0 0 var(--spacing-0) 0 !important;
+    background: transparent !important;
+    position: relative !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+/* Tab List Items */
+.nav-tabs > li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+/* Tab Links - Beautiful Modern Design */
+.nav-tabs > li > a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--spacing-2) !important;
+    padding: var(--spacing-4) var(--spacing-5) !important;
+    background: transparent !important;
+    color: var(--color-text-secondary) !important;
+    border: none !important;
+    border-bottom: var(--border-width-medium) var(--border-style-solid) transparent !important;
+    border-radius: 0 !important;
+    text-decoration: none !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+    transition: var(--transition-all) !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    margin-bottom: calc(-1 * var(--border-width-medium)) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    text-transform: capitalize !important;
+}
+
+/* Remove pseudo-elements from form.css styles */
+.nav-tabs > li > a::before {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-tabs > li > a::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: calc(-1 * var(--border-width-medium)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: var(--border-width-medium) !important;
+    background: var(--color-info) !important;
+    transform: scaleX(0) !important;
+    transform-origin: center !important;
+    transition: var(--transition-transform) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Tab Link Hover State */
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--color-text-primary) !important;
+    border-bottom-color: var(--border-color-medium) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.nav-tabs > li > a:hover::before,
+.nav-tabs > li > a:hover::after {
+    display: none !important;
+}
+
+/* Active Tab - Blue Underline Style */
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background: transparent !important;
+    color: var(--color-info) !important;
+    border-bottom-color: transparent !important;
+    font-weight: var(--font-weight-semibold) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.nav-tabs > li.active > a::before {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-tabs > li.active > a::after {
+    transform: scaleX(1) !important;
+    box-shadow: none !important;
+}
+
+/* Tab Icons - Beautiful Icon Styling */
+.nav-tabs > li > a i,
+.nav-tabs > li > a .bi,
+.nav-tabs > li > a .fa,
+.nav-tabs > li > a .glyphicon {
+    font-size: var(--icon-size-sm) !important;
+    color: inherit !important;
+    transition: var(--transition-colors) !important;
+    flex-shrink: 0 !important;
+    margin-right: var(--spacing-2) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    text-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Active Tab Icon */
+.nav-tabs > li.active > a i,
+.nav-tabs > li.active > a .bi,
+.nav-tabs > li.active > a .fa,
+.nav-tabs > li.active > a .glyphicon {
+    color: var(--color-info) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    text-shadow: none !important;
+}
+
+/* Hide images in tabs */
+.nav-tabs > li > a img {
+    display: none !important;
+}
+
+/* Tab Content Area */
+.tab-content {
+    padding: var(--spacing-6) 0 !important;
+}
+
+.tab-pane {
+    display: none !important;
+}
+
+.tab-pane.active {
+    display: block !important;
+}
+
+/* B2B Navigation UL Specific - Override form.css */
+.nav-tabs.b2b_navul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0 !important;
+    width: 100%;
+    border: none !important;
+    border-bottom: var(--border-width-medium) var(--border-style-solid) var(--border-color-light) !important;
+    padding: 0 !important;
+    margin: 0 0 var(--spacing-0) 0 !important;
+    background: transparent !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+.nav-tabs.b2b_navul > li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.nav-tabs.b2b_navul > li > a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--spacing-2) !important;
+    padding: var(--spacing-3) var(--spacing-5) !important;
+    background: transparent !important;
+    color: var(--color-text-secondary) !important;
+    border: none !important;
+    border-bottom: var(--border-width-medium) var(--border-style-solid) transparent !important;
+    border-radius: 0 !important;
+    text-decoration: none !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+    transition: var(--transition-all) !important;
+    position: relative !important;
+    white-space: nowrap !important;
+    margin-bottom: calc(-1 * var(--border-width-medium)) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    text-transform: capitalize !important;
+}
+
+.nav-tabs.b2b_navul > li > a::before {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-tabs.b2b_navul > li > a::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: calc(-1 * var(--border-width-medium)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: var(--border-width-medium) !important;
+    background: var(--color-info) !important;
+    transform: scaleX(0) !important;
+    transform-origin: center !important;
+    transition: var(--transition-transform) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.nav-tabs.b2b_navul > li > a:hover,
+.nav-tabs.b2b_navul > li > a:focus {
+    background: transparent !important;
+    border-color: transparent !important;
+    color: var(--color-text-primary) !important;
+    border-bottom-color: var(--border-color-medium) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.nav-tabs.b2b_navul > li > a:hover::before,
+.nav-tabs.b2b_navul > li > a:hover::after {
+    display: none !important;
+}
+
+.nav-tabs.b2b_navul > li.active > a,
+.nav-tabs.b2b_navul > li.active > a:hover,
+.nav-tabs.b2b_navul > li.active > a:focus {
+    background: transparent !important;
+    color: var(--color-info) !important;
+    border-bottom-color: transparent !important;
+    font-weight: var(--font-weight-semibold) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.nav-tabs.b2b_navul > li.active > a::before {
+    display: none !important;
+    content: none !important;
+}
+
+.nav-tabs.b2b_navul > li.active > a::after {
+    transform: scaleX(1) !important;
+    box-shadow: none !important;
+}
+
+.nav-tabs.b2b_navul > li > a i,
+.nav-tabs.b2b_navul > li > a .bi,
+.nav-tabs.b2b_navul > li > a .fa,
+.nav-tabs.b2b_navul > li > a .glyphicon {
+    font-size: var(--icon-size-sm) !important;
+    color: inherit !important;
+    transition: var(--transition-colors) !important;
+    flex-shrink: 0 !important;
+    margin-right: var(--spacing-2) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    text-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.nav-tabs.b2b_navul > li.active > a i,
+.nav-tabs.b2b_navul > li.active > a .bi,
+.nav-tabs.b2b_navul > li.active > a .fa,
+.nav-tabs.b2b_navul > li.active > a .glyphicon {
+    color: var(--color-info) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    text-shadow: none !important;
+}
+
+.nav-tabs.b2b_navul > li > a img {
+    display: none !important;
+}
+
+/* ============================================
+   MODERN TAB VARIANTS
+   ============================================ */
+
+/* Tabs with Badge */
+.nav-tabs > li > a .badge {
+    background: var(--color-text-secondary) !important;
+    color: var(--color-white) !important;
+    padding: var(--spacing-1) var(--spacing-2) !important;
+    border-radius: var(--border-radius-full) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin-left: var(--spacing-1) !important;
+    min-width: var(--spacing-5) !important;
+    height: var(--spacing-5) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+}
+
+.nav-tabs > li.active > a .badge {
+    background: var(--color-info) !important;
+    color: var(--color-white) !important;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .nav-tabs,
+    .nav-tabs.b2b_navul {
+        flex-wrap: wrap !important;
+        border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+        gap: 0 !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: thin !important;
+    }
+    
+    .nav-tabs > li,
+    .nav-tabs.b2b_navul > li {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        display: inline-block !important;
+    }
+    
+    .nav-tabs > li > a,
+    .nav-tabs.b2b_navul > li > a {
+        padding: var(--spacing-2) var(--spacing-3) !important;
+        font-size: var(--font-size-xs) !important;
+        white-space: nowrap !important;
+        justify-content: flex-start !important;
+        border-bottom: var(--border-width-medium) var(--border-style-solid) transparent !important;
+        margin-bottom: calc(-1 * var(--border-width-medium)) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        transform: none !important;
+    }
+    
+    .nav-tabs > li.active > a,
+    .nav-tabs.b2b_navul > li.active > a {
+        border-bottom-color: transparent !important;
+        background: transparent !important;
+    }
+    
+    .nav-tabs > li > a i,
+    .nav-tabs.b2b_navul > li > a i,
+    .nav-tabs > li > a .bi,
+    .nav-tabs.b2b_navul > li > a .bi,
+    .nav-tabs > li > a .fa,
+    .nav-tabs.b2b_navul > li > a .fa,
+    .nav-tabs > li > a .glyphicon,
+    .nav-tabs.b2b_navul > li > a .glyphicon {
+        font-size: var(--icon-size-xs) !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ============================================
+   TAB CONTAINER WITH BACKGROUND
+   ============================================ */
+
+.nav-tabs-container {
+    background: var(--color-bg-primary) !important;
+    border-radius: var(--border-radius-lg) !important;
+    padding: var(--spacing-4) var(--spacing-6) !important;
+    box-shadow: var(--shadow-sm) !important;
+    margin-bottom: var(--spacing-6) !important;
+}
+
+.nav-tabs-container .nav-tabs {
+    margin-bottom: 0 !important;
+    border-bottom-color: var(--border-color-light) !important;
+}
+
+/* ============================================
+   VERTICAL TABS (Optional)
+   ============================================ */
+
+.nav-tabs.nav-tabs-vertical {
+    flex-direction: column !important;
+    border-bottom: none !important;
+    border-right: var(--border-width-medium) var(--border-style-solid) var(--border-color-light) !important;
+    width: 200px !important;
+    margin-right: var(--spacing-6) !important;
+}
+
+.nav-tabs.nav-tabs-vertical > li > a {
+    border-bottom: none !important;
+    border-right: var(--border-width-medium) var(--border-style-solid) transparent !important;
+    margin-bottom: 0 !important;
+    margin-right: calc(-1 * var(--border-width-medium)) !important;
+    justify-content: flex-start !important;
+}
+
+.nav-tabs.nav-tabs-vertical > li.active > a {
+    border-right-color: var(--color-info) !important;
+    border-bottom-color: transparent !important;
+}
+
+/* ============================================
+   TAB DISABLED STATE
+   ============================================ */
+
+.nav-tabs > li.disabled > a {
+    opacity: var(--opacity-40) !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    color: var(--color-text-disabled) !important;
+}
+
+/* ============================================
+   SCROLLABLE TABS (For Many Tabs)
+   ============================================ */
+
+.nav-tabs.nav-tabs-scrollable {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--border-color-medium) transparent !important;
+}
+
+.nav-tabs.nav-tabs-scrollable::-webkit-scrollbar {
+    height: var(--spacing-1) !important;
+}
+
+.nav-tabs.nav-tabs-scrollable::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.nav-tabs.nav-tabs-scrollable::-webkit-scrollbar-thumb {
+    background: var(--border-color-medium) !important;
+    border-radius: var(--border-radius-full) !important;
+}
+
+.nav-tabs.nav-tabs-scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--border-color-dark) !important;
+}
+
+/* ============================================
+   TAB ANIMATIONS
+   ============================================ */
+
+@keyframes tabUnderline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.nav-tabs > li > a::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: calc(-1 * var(--border-width-medium)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: var(--border-width-medium) !important;
+    background: var(--color-info) !important;
+    transform: scaleX(0) !important;
+    transform-origin: center !important;
+    transition: var(--transition-transform) !important;
+}
+
+.nav-tabs > li.active > a::after {
+    transform: scaleX(1) !important;
+}
+
+/* Hide default border on active tab since we're using ::after */
+.nav-tabs > li.active > a {
+    border-bottom-color: transparent !important;
+}

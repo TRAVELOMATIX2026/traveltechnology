@@ -1,0 +1,743 @@
+/* ========================================
+   Sightseeing Booking Page - Modern Clean Design
+   With Bootstrap/Material Icons
+======================================== */
+
+/* ========================================
+   Main Booking Container
+======================================== */
+.hotelistrowhtl {
+  display: flex;
+  width: 100%;
+  background: var(--color-bg-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color-light);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: var(--spacing-4);
+}
+
+
+/* ========================================
+   Layout Structure
+======================================== */
+.xcel {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotelistrowhtl .col-md-4.xcel {
+  flex: 0 0 280px;
+  max-width: 280px;
+}
+
+.bookcol {
+    border:none !important;
+}
+.hotelistrowhtl .col-md-12.xcel {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ========================================
+   Image Section
+======================================== */
+.imagehotel {
+  display: block;
+  height: 100%;
+  height: 285px !important;
+  max-height: 285px !important;
+  overflow: hidden;
+  position: relative;
+  background: var(--color-bg-secondary);
+}
+
+.imagehotel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-radius: var(--border-radius-lg);
+}
+
+.hotelistrowhtl:hover .imagehotel img {
+  transform: scale(1.03);
+}
+
+/* ========================================
+   Content Section
+======================================== */
+.padall10 {
+  padding: var(--spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+/* ========================================
+   Title Section - Clean Typography
+======================================== */
+.hotelhed {
+  color: var(--color-text-primary) !important;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tour Code Badge */
+.hotelhed1 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-1) var(--spacing-3);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-full);
+  width: fit-content;
+  margin-top: var(--spacing-2);
+}
+
+/* Replace emoji with Bootstrap icon */
+.hotelhed1::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z'/%3E%3Cpath d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zM1 7v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7H1z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z'/%3E%3Cpath d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zM1 7v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7H1z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* Description - Truncated with Read More */
+.hotelhed2 {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+}
+
+.hotelhed2.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+
+/* Read More Button */
+.read-more-btn {
+  color: var(--color-primary-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: var(--spacing-1) 0;
+  margin-top: var(--spacing-1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   Location Section - With Icon
+======================================== */
+.mensionspl {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  padding: var(--spacing-2);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+}
+
+/* Location icon using Bootstrap icon */
+.mensionspl::before {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  background: var(--color-primary-primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ========================================
+   Booking Info Section
+======================================== */
+.sckint {
+  display: flex;
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border-color-light);
+  margin-top: auto;
+  background: none !important;
+}
+
+.ffty {
+  flex: 1;
+}
+
+/* Date Display */
+.lblbk_book {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Calendar icon using Material Design icon */
+.lblbk_book .fa {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary-primary);
+}
+
+/* Hide old emoji */
+.lblbk_book::before {
+  display: none;
+}
+
+.fuldate_book {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color-light);
+}
+
+.bigdate_book {
+  color: var(--color-primary-primary);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  padding-right: var(--spacing-3);
+  border-right: 1px solid var(--border-color-light);
+}
+
+.biginre_book {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+/* ========================================
+   Passenger Count
+======================================== */
+.nigthcunt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  border: 1px solid var(--border-color-light);
+}
+
+/* People icon using Bootstrap icon */
+.nigthcunt::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary-primary);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3Cpath fill-rule='evenodd' d='M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z'/%3E%3Cpath d='M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3Cpath fill-rule='evenodd' d='M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z'/%3E%3Cpath d='M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ========================================
+   Utility Classes
+======================================== */
+.nopad {
+  padding: 0;
+}
+
+.hide {
+  display: none !important;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.rhttbepa {
+  padding-left: var(--spacing-4);
+}
+
+.borddo.brdrit {
+  border-right: 1px solid var(--border-color-light);
+}
+
+/* ========================================
+   Responsive Design
+======================================== */
+@media (max-width: 991px) {
+  .hotelistrowhtl .col-md-4.xcel {
+    flex: 0 0 240px;
+    max-width: 240px;
+  }
+  
+  .imagehotel {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hotelistrowhtl {
+    flex-direction: column;
+  }
+  
+  .hotelistrowhtl .col-md-4.xcel,
+  .hotelistrowhtl .col-md-12.xcel {
+    flex: 1;
+    max-width: 100%;
+    width: var(--width-full);
+  }
+  
+  .imagehotel {
+    min-height: 200px;
+    max-height: 200px;
+  }
+  
+  .padall10 {
+    padding: var(--spacing-4);
+  }
+  
+  .sckint {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+  
+  .hotelhed {
+    font-size: var(--font-size-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .padall10 {
+    padding: var(--spacing-3);
+    gap: var(--spacing-2);
+  }
+  
+  .hotelhed {
+    font-size: var(--font-size-base);
+  }
+  
+  .hotelhed1 {
+    font-size: var(--font-size-xs);
+  }
+  
+  .hotelhed2 {
+    font-size: var(--font-size-xs);
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  
+  .bigdate_book {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .biginre_book {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ============================================
+   CANCELLATION POLICY MODAL STYLES
+   ============================================ */
+
+.cancellation-policy-modal {
+  z-index: 1055;
+}
+
+.cancellation-policy-modal .modal-dialog {
+  margin: var(--spacing-6) auto;
+  max-width: 700px;
+}
+
+.cancellation-policy-modal .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.cancellation-policy-content {
+  border: none;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+.cancellation-policy-header {
+  background: var(--color-bg-primary);
+  border-bottom: var(--border-width-thin) solid var(--border-color-light);
+  padding: var(--spacing-5) var(--spacing-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cancellation-policy-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.cancellation-policy-title .material-icons {
+  font-size: 28px;
+  color: var(--color-primary);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  padding: var(--spacing-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  transition: var(--transition-all);
+  color: var(--color-text-secondary);
+}
+
+.modal-close-btn:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.modal-close-btn .material-icons {
+  font-size: 24px;
+}
+
+.cancellation-policy-body {
+  padding: var(--spacing-6);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.cancellation-policy-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cancellation-policy-body::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.cancellation-policy-body::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: var(--border-radius-sm);
+}
+
+.cancellation-policy-body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* Policy Text Styling */
+.cancellation-policy-body .policy_text {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.cancellation-policy-body .policy_text p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Enhanced Policy Item Cards */
+.policy-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+  background: var(--color-bg-secondary);
+  border-left: var(--border-width-medium) solid var(--color-info-primary);
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-all);
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-item-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-info-primary);
+  transition: var(--transition-all);
+}
+
+.policy-item-card:hover {
+  background: var(--color-bg-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.policy-item-card:hover::before {
+  width: 6px;
+}
+
+.policy-item-card.free-cancellation {
+  border-left-color: var(--color-success-primary);
+  background: var(--color-success-light);
+}
+
+.policy-item-card.free-cancellation::before {
+  background: var(--color-success-primary);
+}
+
+.policy-item-card.charged-cancellation {
+  border-left-color: var(--color-warning-primary);
+  background: var(--color-warning-light);
+}
+
+.policy-item-card.charged-cancellation::before {
+  background: var(--color-warning-primary);
+}
+
+.policy-item-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  background: var(--color-bg-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.policy-item-icon .material-icons {
+  font-size: 24px;
+  color: var(--color-info-primary);
+}
+
+.policy-item-card.free-cancellation .policy-item-icon {
+  background: var(--color-success-primary);
+}
+
+.policy-item-card.free-cancellation .policy-item-icon .material-icons {
+  color: var(--color-text-inverse);
+}
+
+.policy-item-card.charged-cancellation .policy-item-icon {
+  background: var(--color-warning-primary);
+}
+
+.policy-item-card.charged-cancellation .policy-item-icon .material-icons {
+  color: var(--color-text-inverse);
+}
+
+.policy-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.policy-amount {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.policy-amount .material-icons {
+  font-size: 20px;
+  color: var(--color-text-secondary);
+}
+
+.policy-item-card.free-cancellation .policy-amount {
+  color: var(--color-success-dark);
+}
+
+.policy-item-card.charged-cancellation .policy-amount {
+  color: var(--color-warning-dark);
+}
+
+.policy-date-range {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.policy-date-range .material-icons {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+}
+
+.policy-date-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.policy-separator {
+  color: var(--color-text-secondary);
+  margin: 0 var(--spacing-2);
+}
+
+.policy-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-1);
+  font-style: italic;
+}
+
+/* Legacy Support - Style old format */
+.cancellation-policy-body .policy_text p {
+  margin-bottom: var(--spacing-3);
+}
+
+.cancellation-policy-body .policy_text br {
+  display: block;
+  margin: var(--spacing-3) 0;
+  content: "";
+}
+
+.cancellation-policy-footer {
+  background: var(--color-bg-secondary);
+  border-top: var(--border-width-thin) solid var(--border-color-light);
+  padding: var(--spacing-4) var(--spacing-6);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancellation-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  border: none;
+  border-radius: var(--border-radius-md);
+  background: var(--color-gray-400);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: var(--transition-all);
+  min-width: 120px;
+}
+
+.cancellation-close-btn:hover {
+  background: var(--color-gray-500);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.cancellation-close-btn:active {
+  transform: translateY(0);
+}
+
+.cancellation-close-btn .material-icons {
+  font-size: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .cancellation-policy-modal .modal-dialog {
+    margin: var(--spacing-4);
+    max-width: calc(100% - var(--spacing-8));
+  }
+
+  .rhttbepa { padding: 0px !important; width: var(--width-full);}
+
+  .cancellation-policy-header {
+    padding: var(--spacing-4);
+  }
+
+  .cancellation-policy-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .cancellation-policy-title .material-icons {
+    font-size: 24px;
+  }
+
+  .cancellation-policy-body {
+    padding: var(--spacing-4);
+    max-height: 50vh;
+  }
+
+  .cancellation-policy-footer {
+    padding: var(--spacing-4);
+  }
+
+  .cancellation-close-btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .policy-item-card {
+    padding: var(--spacing-3);
+  }
+
+  .policy-item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .policy-item-icon .material-icons {
+    font-size: 20px;
+  }
+}

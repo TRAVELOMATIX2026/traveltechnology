@@ -1,0 +1,1492 @@
+/* ============================================
+   TAILADMIN STYLE DASHBOARD - CLEAN & MINIMAL
+   Single Color Theme with Line Icons
+   ============================================ */
+
+/* Dashboard Container */
+.dashboard-container {
+    padding: var(--padding-md) var(--padding-lg);
+}
+
+.dashboard-row {
+    margin: 0 -0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   STATS CARDS - Beautiful Modern Design
+   ============================================ */
+.stats-card {
+    background: var(--color-bg-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-2xl);
+    padding: var(--spacing-4);
+    height: 100%;
+    transition: var(--transition-all);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Beautiful gradient overlay on hover */
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stats-card:hover {
+    transform: translateY(calc(-1 * var(--spacing-1)));
+    box-shadow: var(--shadow-xl);
+    border-color: transparent;
+}
+
+.stats-card:hover::before {
+    opacity: var(--opacity-5);
+}
+
+/* All child elements should be above the gradient */
+.stats-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Card Header Layout */
+.stats-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-5);
+}
+
+/* Card Icon - Beautiful with Background Colors */
+.stats-card-icon {
+    width:56px;
+    height:56px;
+    border-radius: var(--border-radius-xl);
+    display: flex;
+    border: none !important;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    transition: var(--transition-all);
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.stats-card:hover .stats-card-icon {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-md);
+}
+
+/* Flight - Purple Background */
+.flight-l-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: var(--color-white) !important;
+}
+
+/* Hotel - Pink Background */
+.hotel-l-bg {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    color: var(--color-white) !important;
+}
+
+/* Bus - Orange Background */
+.bus-l-bg {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%) !important;
+    color: var(--color-white) !important;
+}
+
+/* Transfers - Cyan Background */
+.transfers-l-bg {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+    color: var(--color-white) !important;
+}
+
+/* Activities - Green Background */
+.activities-l-bg {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+    color: var(--color-white) !important;
+}
+
+/* Car - Teal Background */
+.car-l-bg {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Holiday - Peach Background */
+.holiday-l-bg {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Icon styling - ensure Bootstrap Icons display properly */
+.stats-card-icon i {
+    font-family: "bootstrap-icons" !important;
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-none);
+    font-style: normal;
+    font-weight: var(--font-weight-normal) !important;
+    font-variant: normal;
+    text-transform: none;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.stats-card-icon i::before {
+    display: inline-block;
+}
+
+/* Card Content Area */
+.stats-card-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-2);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Card Number - Bold & Beautiful */
+.stats-card-number {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-none);
+    letter-spacing: var(--letter-spacing-tighter);
+    background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: var(--spacing-1);
+}
+
+/* Card Links - Buttons Left and Right */
+.stats-card-links {
+    display: flex;
+    gap: var(--spacing-2);
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: var(--spacing-5);
+    border-top: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    flex-wrap: nowrap;
+}
+
+/* Beautiful Report Buttons */
+.report-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: var(--transition-all);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-lg);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: var(--letter-spacing-wide);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+/* Icon in button */
+.report-btn i {
+    font-size: var(--font-size-sm);
+    transition: var(--transition-transform);
+}
+
+.report-btn:hover i {
+    transform: translateX(var(--spacing-1));
+}
+
+/* Primary Button (B2C) - Using Color Info Variable */
+.report-btn-primary {
+    background: var(--color-info);
+    color: var(--color-white) !important;
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.report-btn-primary:hover {
+    transform: translateY(calc(-1 * var(--spacing-1)));
+    box-shadow: var(--shadow-lg);
+    background: var(--color-info-dark);
+}
+
+.report-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button (Agent) - No Border Style */
+.report-btn-secondary {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary) !important;
+    border: none;
+    box-shadow: var(--shadow-none);
+}
+
+.report-btn-secondary:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary) !important;
+    transform: translateY(calc(-1 * var(--spacing-1)));
+    box-shadow: var(--shadow-sm);
+}
+
+.report-btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Loading state (optional) */
+.report-btn:disabled {
+    opacity: var(--opacity-60);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Old link styles - keeping for backwards compatibility */
+.stats-card-links a:not(.report-btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary) !important;
+    text-decoration: none;
+    transition: var(--transition-all);
+    padding: var(--spacing-2) 0;
+    position: relative;
+}
+
+.stats-card-links a:not(.report-btn)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: var(--border-width-medium);
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transition: var(--transition-base);
+}
+
+.stats-card-links a:not(.report-btn):hover {
+    color: var(--color-text-primary) !important;
+    transform: translateX(var(--spacing-1));
+}
+
+.stats-card-links a:not(.report-btn):hover::after {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stats-card {
+        padding: var(--spacing-6) var(--spacing-5);
+    }
+    
+    .stats-card-icon {
+        width: var(--size-lg);
+        height: var(--size-lg);
+        font-size: var(--font-size-xl);
+    }
+    
+    .stats-card-icon i {
+        font-size: var(--font-size-xl);
+    }
+    
+    .stats-card-number {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .stats-card-links {
+        gap: var(--spacing-2);
+    }
+    
+    .report-btn {
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-2) var(--spacing-3);
+    }
+    
+    .report-btn i {
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* ============================================
+   CHART CARDS - Modern Calendar & Timeline Design
+   ============================================ */
+.chart-card {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-2xl);
+    padding: var(--spacing-7);
+    transition: var(--transition-all);
+    margin-bottom: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+}
+
+.chart-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.chart-card-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-6) 0;
+    padding-bottom: var(--spacing-4);
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.chart-card-title i {
+    font-size: var(--font-size-xl);
+    color: var(--color-info);
+}
+
+/* ============================================
+   MODERN BOOKING CALENDAR DESIGN
+   ============================================ */
+#booking-calendar {
+    min-height: 450px;
+    padding: 0.5rem;
+}
+
+/* Main Calendar Container */
+.fc {
+    background: transparent;
+    font-family: inherit;
+}
+
+/* Calendar Toolbar - Modern Header */
+.fc .fc-toolbar {
+    background: transparent !important;
+    padding: var(--spacing-3) !important;
+    margin-bottom: var(--spacing-6);
+    border: none !important;
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    gap: var(--spacing-4);
+}
+
+.fc .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+/* Month/Year Title */
+.fc .fc-toolbar-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    letter-spacing: var(--letter-spacing-tighter);
+    margin: 0;
+}
+
+/* Navigation Buttons - Modern Style */
+.fc .fc-button {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    color: var(--color-text-secondary) !important;
+    border-radius: var(--border-radius-lg) !important;
+    padding: var(--spacing-3) var(--spacing-4) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: var(--font-size-sm) !important;
+    transition: var(--transition-all) !important;
+    box-shadow: var(--shadow-sm) !important;
+    height: var(--button-height-md);
+    min-width: var(--button-height-md);
+}
+
+.fc .fc-button:hover {
+    background: var(--color-info) !important;
+    border-color: var(--color-info) !important;
+    color: var(--color-white) !important;
+    transform: translateY(calc(-1 * var(--spacing-1)));
+    box-shadow: var(--shadow-md) !important;
+}
+
+.fc .fc-button:active,
+.fc .fc-button:focus {
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.fc .fc-button-active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+    background: var(--color-info) !important;
+    border-color: var(--color-info) !important;
+    color: var(--color-white) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.fc .fc-button:disabled {
+    opacity: var(--opacity-40);
+    cursor: not-allowed;
+}
+
+/* Today Button */
+.fc .fc-today-button {
+    background: var(--color-gray-50) !important;
+    border-color: var(--border-color-light) !important;
+    color: var(--color-text-primary) !important;
+    padding: var(--spacing-3) var(--spacing-5) !important;
+}
+
+.fc .fc-today-button:hover {
+    background: var(--color-info) !important;
+    border-color: var(--color-info) !important;
+    color: var(--color-white) !important;
+}
+
+/* Calendar Header - Days of Week */
+.fc .fc-col-header {
+    background: transparent !important;
+    border: none !important;
+}
+
+.fc .fc-col-header-cell {
+    padding: var(--spacing-4) var(--spacing-2);
+    border: none !important;
+    background: transparent;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-widest);
+    padding: var(--spacing-2);
+}
+
+/* Calendar Grid - Days */
+.fc .fc-scrollgrid {
+    border: none !important;
+}
+
+.fc .fc-daygrid-day {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    transition: var(--transition-all);
+    position: relative;
+}
+
+.fc .fc-daygrid-day:hover {
+    background: var(--color-gray-50) !important;
+    border-color: var(--color-info) !important;
+    z-index: 10;
+}
+
+/* Day Numbers */
+.fc .fc-daygrid-day-top {
+    padding: var(--spacing-3);
+    justify-content: center;
+}
+
+.fc .fc-daygrid-day-number {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-all);
+}
+
+.fc .fc-daygrid-day:hover .fc-daygrid-day-number {
+    background: var(--color-info);
+    color: var(--color-white);
+}
+
+/* Today's Date - Highlight */
+.fc .fc-day-today {
+    background: var(--color-bg-info) !important;
+    border-color: var(--color-info) !important;
+}
+
+.fc .fc-day-today .fc-daygrid-day-number {
+    background: var(--color-info);
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-md);
+}
+
+/* Other Month Days */
+.fc .fc-daygrid-day.fc-day-other {
+    background: var(--color-gray-50) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-number {
+    color: var(--color-text-tertiary);
+    opacity: var(--opacity-50);
+}
+
+/* Events on Calendar */
+.fc .fc-event {
+    background: var(--color-info) !important;
+    border: none !important;
+    border-left: var(--border-width-thick) var(--border-style-solid) var(--color-info-dark) !important;
+    border-radius: var(--border-radius-md) !important;
+    padding: var(--spacing-1) var(--spacing-2) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin: var(--spacing-1) var(--spacing-2) !important;
+    transition: var(--transition-all);
+    cursor: pointer;
+}
+
+.fc .fc-event:hover {
+    background: var(--color-info-dark) !important;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+.fc .fc-event-title {
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+}
+
+.fc .fc-daygrid-event-dot {
+    display: none;
+}
+
+/* More Events Link */
+.fc .fc-daygrid-more-link {
+    color: var(--color-info);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-all);
+}
+
+.fc .fc-daygrid-more-link:hover {
+    background: var(--color-info);
+    color: var(--color-white);
+}
+
+/* Popover for More Events */
+.fc .fc-popover {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    border-radius: var(--border-radius-xl) !important;
+    box-shadow: var(--shadow-2xl) !important;
+}
+
+.fc .fc-popover-header {
+    background: var(--color-bg-secondary) !important;
+    padding: var(--spacing-3) var(--spacing-4) !important;
+    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0 !important;
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+}
+
+.fc .fc-popover-title {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+}
+
+.fc .fc-popover-close {
+    color: var(--color-text-secondary);
+    opacity: var(--opacity-70);
+    transition: var(--transition-opacity);
+}
+
+.fc .fc-popover-close:hover {
+    opacity: var(--opacity-100);
+}
+
+/* Remove default borders */
+.fc-theme-standard td,
+.fc-theme-standard th {
+    border-color: var(--border-color-light) !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border-color: transparent !important;
+}
+
+/* ============================================
+   MODERN TOOLTIP DESIGN
+   ============================================ */
+/* Hide Tooltips - Disabled */
+.tooltip, .ui-tooltip {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+[data-bs-toggle="tooltip"],
+[data-toggle="tooltip"],
+[title] {
+    pointer-events: auto !important;
+}
+
+/* Disable tooltip initialization */
+.fc-event[data-bs-toggle="tooltip"],
+.fc-event[data-toggle="tooltip"] {
+    pointer-events: auto !important;
+}
+
+/* Hide Bootstrap tooltips */
+.tooltip.show,
+.tooltip.fade,
+.tooltip.bs-tooltip-top,
+.tooltip.bs-tooltip-bottom,
+.tooltip.bs-tooltip-start,
+.tooltip.bs-tooltip-end {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+.tooltip .tooltip-inner {
+    display: none !important;
+}
+
+.tooltip .tooltip-arrow {
+    display: none !important;
+}
+
+/* Popover Styling */
+.popover {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    border-radius: var(--border-radius-xl) !important;
+    box-shadow: var(--shadow-2xl) !important;
+}
+
+.popover-header {
+    background: var(--color-bg-secondary) !important;
+    color: var(--color-text-primary) !important;
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    padding: var(--spacing-3) var(--spacing-4) !important;
+    font-weight: var(--font-weight-bold) !important;
+    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0 !important;
+}
+
+.popover-body {
+    color: var(--color-text-primary) !important;
+    padding: var(--spacing-4) !important;
+    font-size: var(--font-size-sm) !important;
+}
+
+/* ============================================
+   CALENDAR OVERRIDE STYLES - HIGH SPECIFICITY
+   ============================================ */
+/* Force modern calendar styles with higher specificity */
+#booking-calendar .fc .fc-view-harness {
+    background: transparent !important;
+}
+
+#booking-calendar .fc-theme-standard .fc-scrollgrid,
+.dashboard-container .fc-theme-standard .fc-scrollgrid {
+    border: none !important;
+}
+
+/* Force table cell borders */
+#booking-calendar .fc-theme-standard td,
+#booking-calendar .fc-theme-standard th,
+.dashboard-container .fc-theme-standard td,
+.dashboard-container .fc-theme-standard th {
+    border-color: var(--border-color-light) !important;
+}
+
+/* Force day cell styling */
+#booking-calendar .fc .fc-daygrid-day-frame {
+    background: transparent !important;
+}
+
+#booking-calendar .fc .fc-daygrid-day.fc-day {
+    background: var(--color-bg-primary) !important;
+}
+
+/* Force today styling */
+#booking-calendar .fc .fc-day-today,
+.dashboard-container .fc .fc-day-today {
+    background: light-dark(rgba(3, 147, 242, 0.05), rgba(3, 151, 243, 0.1)) !important;
+    border-color: var(--color-info) !important;
+}
+
+#booking-calendar .fc .fc-day-today .fc-daygrid-day-number,
+.dashboard-container .fc .fc-day-today .fc-daygrid-day-number {
+    background: var(--color-info) !important;
+    color: var(--color-white) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 8px light-dark(rgba(3, 147, 242, 0.25), rgba(3, 151, 243, 0.35)) !important;
+    border-radius: 8px !important;
+}
+
+/* Force event styling */
+#booking-calendar .fc-event,
+.dashboard-container .fc-event {
+    background: var(--color-info) !important;
+    border: none !important;
+    border-left: 3px solid var(--color-info-dark) !important;
+}
+
+/* Override any inline styles on calendar */
+.fc-daygrid-day[style] {
+    background: var(--color-bg-primary) !important;
+}
+
+.fc-day-today[style] {
+    background: light-dark(rgba(3, 147, 242, 0.05), rgba(3, 151, 243, 0.1)) !important;
+}
+
+/* Booking Timeline Styling */
+#booking-timeline {
+    min-height: 400px;
+    padding: 1rem 0;
+}
+
+/* Chart.js Canvas Styling */
+canvas {
+    background: transparent !important;
+    border-radius: 8px;
+}
+
+/* Booking Summary Section */
+#booking-summary {
+    min-height: 300px;
+    padding: 1rem 0;
+}
+
+
+/* ============================================
+   CONTENT WRAPPER STYLING
+   ============================================ */
+.content-wrapper {
+    min-height: 100vh;
+}
+
+.content-header {
+    padding: var(--spacing-8) var(--spacing-10) var(--spacing-4) !important;
+    background: transparent !important;
+    margin-bottom: 0 !important;
+}
+
+.content {
+    padding: 0 !important;
+}
+
+/* ============================================
+   PAGE TITLE
+   ============================================ */
+.content-header h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-2) 0;
+    letter-spacing: var(--letter-spacing-tighter);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.breadcrumb-item {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--border-color-medium);
+}
+
+.breadcrumb-item.active {
+    color: var(--color-info);
+}
+
+/* ============================================
+   TABLE STYLING
+   ============================================ */
+.table {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.table thead {
+    background: var(--color-bg-primary) !important;
+}
+
+.table thead th {
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-4) var(--spacing-5);
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+}
+
+.table tbody tr {
+    transition: var(--transition-colors);
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+}
+
+.table tbody tr:hover {
+    background: var(--color-bg-primary) !important;
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody td {
+    padding: var(--spacing-4) var(--spacing-5);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.badge-success {
+    background: var(--color-bg-success);
+    color: var(--color-success-primary);
+}
+
+.badge-warning {
+    background: var(--color-bg-warning);
+    color: var(--color-warning-primary);
+}
+
+.badge-danger {
+    background: var(--color-bg-danger);
+    color: var(--color-danger-primary);
+}
+
+.badge-info {
+    background: var(--color-bg-info);
+    color: var(--color-info);
+}
+
+/* ============================================
+   SECTION TITLE
+   ============================================ */
+.section-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-6);
+    padding-bottom: var(--spacing-4);
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+/* ============================================
+   HOLIDAY ENQUIRY
+   ============================================ */
+.holiday-enquiry-card {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8) var(--spacing-6);
+    transition: var(--transition-colors);
+}
+
+.holiday-enquiry-card:hover {
+    border-color: var(--border-color-medium);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        padding: var(--spacing-6) var(--spacing-8);
+    }
+    
+    .content-header {
+        padding: var(--spacing-6) var(--spacing-8) var(--spacing-3) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: var(--spacing-4) var(--spacing-5);
+    }
+    
+    .content-header {
+        padding: var(--spacing-4) var(--spacing-5) var(--spacing-2) !important;
+    }
+    
+    .content-header h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .booking-calendar-section,
+    .booking-timeline-section {
+        padding: var(--spacing-6);
+    }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: var(--spacing-2);
+    height: var(--spacing-2);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color-medium);
+    border-radius: var(--border-radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-color-dark);
+}
+
+/* ============================================
+   MODERN USER LIST & TRANSACTIONS CARDS
+   ============================================ */
+.user-list-card {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-2xl);
+    transition: var(--transition-all);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-list-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Card Header */
+.user-list-card .box-header {
+    padding: var(--spacing-6) var(--spacing-6) var(--spacing-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    background: var(--color-bg-primary) !important;
+}
+
+.user-list-card .box-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary) !important;
+    margin: 0;
+    letter-spacing: var(--letter-spacing-tight);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+/* Badges in header */
+.box-tools .badge {
+    background: var(--color-info) !important;
+    color: var(--color-white) !important;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    margin-left: var(--spacing-2);
+}
+
+.box-tools .bg-success {
+    background: var(--color-success-primary) !important;
+}
+
+/* Card Body */
+.user-list-card .box-body {
+    padding: var(--spacing-6);
+    flex: 1;
+    overflow-y: auto;
+    max-height: var(--size-3xl);
+}
+
+/* Users List - Modern Grid */
+.users-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-5);
+}
+
+.users-list li {
+    text-align: center;
+    list-style: none;
+    padding: var(--spacing-4);
+    border-radius: var(--border-radius-xl);
+    transition: var(--transition-all);
+    background: var(--color-bg-secondary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+}
+
+.users-list li:hover {
+    transform: translateY(calc(-1 * var(--spacing-1)));
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-info);
+}
+
+.users-list img {
+    width:56px !important;
+    height:56px !important;
+    border-radius: var(--border-radius-circle);
+    border: var(--border-width-thick) var(--border-style-solid) var(--color-info);
+    margin-bottom: var(--spacing-3);
+    transition: var(--transition-all);
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.users-list li:hover img {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.user-list-card .users-list-name {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    margin-bottom: var(--spacing-1);
+    transition: var(--transition-colors);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-list-card .users-list-name:hover {
+    color: var(--color-info);
+}
+
+.user-list-card .users-list-date {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Card Footer */
+.user-list-card .box-footer {
+    margin-top: auto;
+    padding: var(--spacing-4) var(--spacing-6);
+    border-top: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    text-align: center;
+    background: var(--color-bg-primary) !important;
+}
+
+.user-list-card .box-footer a {
+    color: var(--color-info) !important;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: var(--transition-all);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--border-radius-lg);
+}
+
+.user-list-card .box-footer a:hover {
+    background: var(--color-bg-info);
+    transform: translateX(var(--spacing-1));
+}
+
+/* ============================================
+   MODERN TRANSACTION LIST
+   ============================================ */
+.transaction-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.transaction-list .item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding: var(--spacing-5);
+    border-radius: var(--border-radius-xl);
+    margin-bottom: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    transition: var(--transition-all);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.transaction-list .item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--spacing-1);
+    background: var(--color-info);
+    opacity: var(--opacity-0);
+    transition: var(--transition-opacity);
+}
+
+.transaction-list .item:hover {
+    background: var(--color-bg-primary);
+    border-color: var(--color-info);
+    transform: translateX(var(--spacing-1));
+    box-shadow: var(--shadow-sm);
+}
+
+.transaction-list .item:hover::before {
+    opacity: var(--opacity-100);
+}
+
+.transaction-list .product-img.image {
+    width: var(--size-lg);
+    height: var(--size-lg);
+    min-width: var(--size-lg);
+    border-radius: var(--border-radius-xl);
+    background: linear-gradient(135deg, var(--color-info) 0%, var(--color-info-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-md);
+}
+
+.transaction-list .product-img.image i {
+    color: var(--color-white);
+    font-size: var(--font-size-xl);
+}
+
+.transaction-list .product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-list .product-info > div:first-child,
+.transaction-list .product-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    line-height: var(--line-height-snug);
+}
+
+.transaction-list .product-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    display: block;
+    margin-top: var(--spacing-2);
+    line-height: var(--line-height-normal);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.transaction-list .badge {
+    background: var(--color-info) !important;
+    color: var(--color-white) !important;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-lg);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+}
+
+.transaction-list .badge i {
+    margin-right: var(--spacing-1);
+}
+
+.transaction-list .badge.bg-primary {
+    background: var(--color-info) !important;
+}
+
+/* Empty State */
+.transaction-list:empty::after,
+.users-list:empty::after {
+    content: 'No data available';
+    display: block;
+    text-align: center;
+    padding: var(--spacing-9) var(--spacing-4);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   LOADER
+   ============================================ */
+.loader-img {
+    width: var(--spacing-5);
+    height: var(--spacing-5);
+    opacity: var(--opacity-50);
+}
+
+/* ============================================
+   HIGHCHARTS CUSTOMIZATION
+   ============================================ */
+.highcharts-container {
+    border-radius: var(--border-radius-lg) !important;
+}
+
+.highcharts-background {
+    fill: var(--color-bg-primary) !important;
+}
+
+.highcharts-title {
+    fill: var(--color-text-primary) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.highcharts-subtitle {
+    fill: var(--color-text-secondary) !important;
+}
+
+.highcharts-axis-labels text {
+    fill: var(--color-text-secondary) !important;
+    font-size: var(--font-size-xs) !important;
+}
+
+.highcharts-axis-line,
+.highcharts-tick {
+    stroke: var(--border-color-light) !important;
+}
+
+.highcharts-grid-line {
+    stroke: var(--color-bg-secondary) !important;
+}
+
+.highcharts-legend-item text {
+    fill: var(--color-text-primary) !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.highcharts-tooltip-box {
+    fill: var(--color-bg-primary) !important;
+    stroke: var(--border-color-light) !important;
+}
+
+/* Highcharts Series Colors - Cyan Theme */
+.highcharts-series-0 {
+    stroke: #06b6d4 !important;
+    fill: #06b6d4 !important;
+}
+
+.highcharts-series-1 {
+    stroke: #0891b2 !important;
+    fill: #0891b2 !important;
+}
+
+.highcharts-series-2 {
+    stroke: #10b981 !important;
+    fill: #10b981 !important;
+}
+
+.highcharts-series-3 {
+    stroke: #8b5cf6 !important;
+    fill: #8b5cf6 !important;
+}
+
+.highcharts-series-4 {
+    stroke: #f59e0b !important;
+    fill: #f59e0b !important;
+}
+
+.highcharts-point {
+    stroke-width: 3 !important;
+}
+
+.highcharts-markers {
+    fill: #06b6d4 !important;
+}
+
+.highcharts-button-box {
+    fill: var(--color-gray-50) !important;
+    stroke: var(--border-color-light) !important;
+}
+
+.highcharts-button text {
+    fill: var(--color-text-primary) !important;
+}
+
+/* ============================================
+   DASHBOARD ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: var(--opacity-0);
+        transform: translateY(var(--spacing-5));
+    }
+    to {
+        opacity: var(--opacity-100);
+        transform: translateY(0);
+    }
+}
+
+.chart-card,
+.user-list-card {
+    animation: fadeInUp var(--transition-slower) ease-out;
+}
+
+.chart-card:nth-child(1) { animation-delay: 0.1s; }
+.chart-card:nth-child(2) { animation-delay: 0.2s; }
+
+/* ============================================
+   RESPONSIVE ENHANCEMENTS
+   ============================================ */
+@media (max-width: 992px) {
+    .chart-card {
+        margin-bottom: var(--spacing-6);
+    }
+    
+    #booking-calendar,
+    #booking-timeline,
+    #booking-summary {
+        min-height: var(--size-3xl);
+    }
+}
+
+@media (max-width: 576px) {
+    .user-list-card .users-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: var(--spacing-4);
+    }
+    
+    .user-list-card .users-list img {
+        width: var(--size-lg) !important;
+        height: var(--size-lg) !important;
+    }
+    
+    .users-list li {
+        padding: var(--spacing-3);
+    }
+    
+    .transaction-list .item {
+        padding: var(--spacing-4);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .transaction-list .product-img.image {
+        width: var(--size-md);
+        height: var(--size-md);
+        min-width: var(--size-md);
+    }
+    
+    .user-list-card .box-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-3);
+    }
+    
+    .box-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2);
+    }
+}
+
+/* ============================================
+   FINAL CALENDAR OVERRIDES - MAXIMUM PRIORITY
+   Must be loaded last to override any previous styles
+   ============================================ */
+.dashboard-container #booking-calendar .fc-button.fc-prev-button,
+.dashboard-container #booking-calendar .fc-button.fc-next-button,
+.dashboard-container #booking-calendar .fc-button.fc-today-button {
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+    color: var(--color-text-secondary) !important;
+    border-radius: var(--border-radius-lg) !important;
+    height: auto !important;
+    line-height: normal !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.dashboard-container #booking-calendar .fc-button:hover:not(:disabled) {
+    background: var(--color-info) !important;
+    border-color: var(--color-info) !important;
+    color: var(--color-white) !important;
+    transform: translateY(calc(-1 * var(--spacing-1))) !important;
+}
+
+.dashboard-container #booking-calendar .fc-toolbar-title {
+    font-size: var(--font-size-2xl) !important;
+    font-weight: var(--font-weight-bold) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.dashboard-container #booking-calendar .fc-daygrid-day-number {
+    padding: var(--spacing-2) var(--spacing-3) !important;
+    border-radius: var(--border-radius-lg) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.dashboard-container #booking-calendar .fc-day-today .fc-daygrid-day-number {
+    background: var(--color-info) !important;
+    color: var(--color-white) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+.dashboard-container #booking-calendar .fc-event {
+    background: var(--color-info) !important;
+    border-left: var(--border-width-thick) var(--border-style-solid) var(--color-info-dark) !important;
+    border-radius: var(--border-radius-md) !important;
+}
+
+/* Force remove old background colors if any */
+.dashboard-container #booking-calendar .fc-col-header {
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+.dashboard-container #booking-calendar .fc-scrollgrid,
+.dashboard-container #booking-calendar .fc-scrollgrid table {
+    border: none !important;
+}
+

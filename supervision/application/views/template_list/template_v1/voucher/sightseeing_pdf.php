@@ -1,0 +1,312 @@
+<?php 
+
+  $booking_details = $data['booking_details'][0];
+  $itinerary_details = $data['booking_details'][0]['itinerary_details'][0];
+  //debug($itinerary_details);
+
+  $attributes = json_decode($booking_details['attributes'],true);
+
+  //debug($s_search_params);
+  if($attributes['Additional_info']){
+      $additional_info = json_decode($attributes['Additional_info']);
+  }else{
+    $additional_info =array();
+  }
+  if($attributes['Inclusions']){
+    $inclustions =json_decode($attributes['Inclusions'],true);   
+  }else{
+    $inclustions = array();
+  }
+ 
+  if($attributes['Exclusions']){
+    $exclustions = json_decode($attributes['Exclusions'],true);
+  }else{
+    $exclustions = array();
+    
+    
+  }
+  if($attributes['Duration']){
+    $duration = $attributes['Duration'];
+  }else{
+    $duration = '';
+  }
+   if($attributes['ShortDesc']){
+    $desc = $attributes['ShortDesc'];
+  }else{
+    $desc = $attributes['ShortDesc'];
+  }
+
+if(isset($booking_details)){
+    $app_reference = $booking_details['app_reference'];
+  }
+  if(isset($booking_details)){
+    $booking_source = $booking_details['booking_source'];
+  }
+  if(isset($booking_details)){
+    $status = $booking_details['status'];
+  }
+  if(isset($booking_details)){
+    $lead_pax_email = $booking_details['lead_pax_email'];
+  }
+  $customer_details = $booking_details['customer_details'];
+  // debug($booking_details);
+  // exit;
+
+?>
+
+<table style="border-collapse: collapse; background: #ffffff;font-size: 12pt; margin: 0 auto; font-family: arial;" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tbody>
+    <!-- <tr>
+      <td style="border-collapse: collapse;">
+        <table width="100%" style="border-collapse: collapse;" cellpadding="0" cellspacing="0" border="0"> -->
+			    <tr><td style="font-size:15pt; line-height:30px; width:100%; display:block; font-weight:600; text-align:center">E-Ticket</td></tr>
+			    <tr>
+					  <td>
+              <table width="100%" style="border-collapse: collapse;" cellpadding="0" cellspacing="0" border="0">
+			          <tr>
+					        <td style="width:65%;background-color: #008100;"><img style="width:150px;" src="<?=$GLOBALS['CI']->template->domain_images($data['logo'])?>"></td>
+					        <td style="width:35%;background-color: #008100;padding:5px;">
+                    <table width="100%" style="border-collapse: collapse;text-align: right; font-size:10pt;" cellpadding="0" cellspacing="0" border="0">         		
+                      <tr>
+                        <td align="right" style="color:#fff;"><span>Travel Date: <?=date("l\, jS F Y",strtotime($booking_details['travel_date']));?></span><br><span>Booking Reference: <?=$booking_details['app_reference']?></span><br><span>Activity Code: <?=$booking_details['product_code']?></span></td>
+                      </tr>
+                    </table>
+                  </td>
+				        </tr>
+				      </table>
+            </td>
+          </tr>
+          <tr><td style="line-height:6px;">&nbsp;</td></tr>    
+          <tr>
+            <td align="right" style="line-height:24px;font-size:10pt;border-top:1px solid #008100;border-bottom:1px solid #008100;padding: 5px;">Status: <strong class="<?php echo booking_status_label( $booking_details['status']);?>" style=" font-size:10pt;"><?php 
+                    switch($booking_details['status']){
+                      case 'BOOKING_CONFIRMED': echo 'CONFIRMED';break;
+                      case 'BOOKING_CANCELLED': echo 'CANCELLED';break;
+                      case 'BOOKING_FAILED': echo 'FAILED';break;
+                      case 'BOOKING_INPROGRESS': echo 'INPROGRESS';break;
+                      case 'BOOKING_INCOMPLETE': echo 'INCOMPLETE';break;
+                      case 'BOOKING_HOLD': echo 'HOLD';break;
+                      case 'BOOKING_PENDING': echo 'PENDING';break;
+                      case 'BOOKING_ERROR': echo 'ERROR';break;
+                      
+                    }                            
+                    ?></strong>
+            </td>
+          </tr>
+          <tr><td style="line-height:6px;">&nbsp;</td></tr>                  
+          <tr>
+            <td style="padding:0;">
+              <table width="100%" cellpadding="5" style="padding: 10px;font-size: 10pt;padding:5px;">
+                <tbody>
+                  <tr>
+                    <?php if($attributes['ProductImage']):?>
+                      <td width="20%" style="padding:10px 0"><img style="width:160px; height:107px;" src="<?=$attributes['ProductImage']?>" /></td>
+                    <?php else:?>
+                      <td style="padding:10px 0" width="20%"><img style="width:160px; height:107px;" src="<?=$GLOBALS['CI']->template->template_images("no_image_available.jpg");?>" /></td>
+                    <?php endif;?>
+                    <td width="40%" valign="top" style="padding:10px;line-height:15px;">
+                      <span style="font-size:11pt;color:#008100;vertical-align:middle;font-weight: 600;"><?=$booking_details['product_name']?></span><br>
+                      <span style="display: block;font-size: 10pt;"><?=$attributes['Destination']?> </span><br><br>
+                      <span style="display: block;font-size: 10pt;"><img style="width:50px;" src="<?php echo $GLOBALS['CI']->template->template_images('star_rating-'.$attributes["StarRating"].'.png'); ?>"></span>
+                    </td>
+                    <td width="30%" style="padding:10px 0;text-align: center;line-height:25px;">
+                      <table style="border:2px solid #008100;padding:10px;">
+                        <tbody>
+                          <tr>
+                            <td><span style="font-size:11pt; display:block"><span style="color:#008100;padding:5px; display:block;text-transform:uppercase">Booking ID</span><br><span style="font-size:10pt;padding-bottom: 5px;display:block;font-weight: 600;"><?=$booking_details['booking_reference']?></span></span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr><td style="line-height:2px;">&nbsp;</td></tr>   
+					<!-- <tr>
+					  <td style="padding: 10px;">
+              <table cellpadding="5" cellspacing="0" border="0" width="100%" style="border-collapse: collapse;"> -->
+                <tr>
+                  <td style="background-color:#008100;border: 1px solid #008100; color:#fff; font-size:10pt; padding:5px; line-height:normal;"><img width="12" src="<?=SYSTEM_IMAGE_DIR.'hotel_v.png'?>" /> <span style="font-size:10pt;color:#fff;line-height:12px;"> &nbsp;Activity Details</span></td>
+                </tr>
+                <tr>
+                  <td width="100%" style="border: 1px solid #008100;padding:0">
+                    <table width="100%" cellpadding="5" style="padding: 0px;font-size: 9pt;">	    
+                      <tr>
+                        <td colspan="2" style="background-color:#d9d9d9;color: #333333;"><span>Supplier</span></td>
+                        <td width="100%" style="background-color:#d9d9d9;color: #333333;"><span>Supplier Phone No</span></td>
+                        <td width="100%" style="background-color:#d9d9d9;color: #333333;"><span>Duration</span></td>
+                        <td width="100%" align="center" style="background-color:#d9d9d9;color: #333333;"><span>Total Traveler(s)</span></td>			   
+                        </tr>									    
+                        <tr>
+                        <td colspan="2"><?=$attributes['SupplierName']?></td>
+                        <td width="100%"><?=$attributes['SupplierPhoneNumber']?></td>
+                        <?php 
+                          $total_travell_count = $booking_details['adult_count']+$booking_details['child_count'] +$booking_details['senior_count']+$booking_details['youth_count']+$booking_details['infant_count'];
+                          ?>
+                        <td width="100%"><?=$duration?></td>
+                        <td width="100%" align="center"><?=$total_travell_count?></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+							  <tr><td style="line-height:2px;">&nbsp;</td></tr>
+
+                <tr>
+                  <td style="background-color:#008100;border: 1px solid #008100; color:#fff; font-size:9pt; padding:5px;"><img width="12" style="vertical-align:middle" src="<?=SYSTEM_IMAGE_DIR.'people_group.png'?>" /> <span style="font-size:10pt;color:#fff;vertical-align:middle;"> &nbsp;Traveller(s) Details</span></td>
+                </tr>
+                <tr>
+                  <td width="100%" style="border: 1px solid #008100;padding:0">
+                    <table width="100%" cellpadding="5" style="padding: 0px;font-size: 9pt;">	 
+                      <tr>
+                        <td colspan="2" style="background-color:#d9d9d9;padding:5px;color: #333333;">Sr No.</td>
+                        <td width="100%" style="background-color:#d9d9d9;padding:5px;color: #333333;">Passenger(s) Name</td>
+                        <td width="100%" style="background-color:#d9d9d9;padding:5px;color: #333333;">Type</td>
+                      </tr> 
+                      <?php $i=1;?>  
+                      <?php foreach($customer_details as $name): ?>                         
+                      <tr>
+                        <td colspan="2" style="padding:5px;"><?=$i?></td>
+                        <td width="100%" style="padding:5px"><?=$name['title'].'.  '.$name['first_name'].' '.$name['last_name']?></td>
+                        <td width="100%" style="padding:5px;"><?=$name['pax_type']?></td>                            
+                      </tr>
+                      <?php $i++;?>
+                      <?php endforeach;?>
+                    </table>
+                  </td>
+                </tr>
+                <tr><td style="line-height:2px;">&nbsp;</td></tr>
+                <tr>
+                  <td width="100%" style="padding:0"><table width="100%" cellpadding="5" style="padding: 0;font-size: 9pt;">   
+                      <tbody>
+                        <tr>
+                          <td  width="100%" colspan="4" style="padding:0px;">
+                            <table cellspacing="0" cellpadding="5" width="100%" style="font-size:9pt; padding:0;border:1px solid #008100;">
+                              <tbody>
+                                <tr>
+                                  <td style="border-bottom:1px solid #008100;padding:5px;background:#008100;color:#fff;" width="100%" colspan="4"><span style="font-size:10pt">Payment Details</span></td>
+                                  <td style="border-bottom:1px solid #008100;padding:5px;background:#008100;color:#fff;" width="100%" colspan="4"><span style="font-size:10pt">Amount (<?=$booking_details['currency']?>)</span></td>
+                                </tr>
+                                <?php if($this->uri->segment(2)=='b2b_sightseeing_voucher'):?>
+                                <tr>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%" colspan="4"><span style="font-size:10pt">Base Fare</span></td>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%"><span style="font-size:10pt"><?php echo roundoff_number($booking_details['grand_total']-$booking_details['gst']); ?></span></td>
+                                </tr> 
+                                <?php if($booking_details['gst'] > 0){?>
+                                <tr>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%" colspan="4"><span style="font-size:10pt">GST</span></td>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%"><span style="font-size:10pt"><?php echo roundoff_number($booking_details['gst']); ?></span></td>
+                                </tr> 
+                                <?php } ?>
+                                  <tr>
+                                    <td style="border-top:1px solid #008100;padding:5px"><span style="font-size:10pt">Total Fare</span></td>
+                                    <td style="border-top:1px solid #008100;padding:5px"><span style="font-size:10pt"><?php echo roundoff_number($booking_details['grand_total']); ?></span></td>
+                                </tr>
+                                <?php else: ?>
+                                <tr>
+                                  <td style="padding:5px" width="100%" colspan="4"><span>Base Fare</span></td>
+                                  <td style="padding:5px" width="100%"><span><?php echo roundoff_number($booking_details['product_total_price']); ?></span></td>
+                                </tr>
+                                <tr>
+                                  <td style="padding:5px" width="100%" colspan="4"><span>Taxes</span></td>
+                                  <td style="padding:5px" width="100%"><span><?=$booking_details['convinence_amount']?></span></td>
+                                </tr>
+                                <?php if($itinerary_details['gst'] > 0){?>
+                                  <tr>
+                                    <td style="padding:5px" width="100%" colspan="4"><span>GST</span></td>
+                                    <td style="padding:5px" width="100%"><span><?php echo round($itinerary_details['gst']); ?></span></td>
+                                </tr>
+                                <?php } ?>
+                                <tr>
+                                  <td style="padding:5px" width="100%" colspan="4"><span>Discount</span></td>
+                                  <td style="padding:5px" width="100%"><span><?php echo roundoff_number($booking_details['discount']); ?></span></td>
+                                </tr>
+                                <tr>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%" colspan="4"><span style="font-size:13px">Total Fare</span></td>
+                                  <td style="border-top:1px solid #008100;padding:5px" width="100%" colspan="4"><span style="font-size:13px"><?php echo roundoff_number($booking_details['product_total_price']+$itinerary_details['gst']+$booking_details['convinence_amount']-$booking_details['discount']); ?></span></td>
+                                </tr>
+                                <?php endif;?>
+                              </tbody>
+                            </table>
+                          </td>
+                          <td width="100%" colspan="2" style="padding:0px 0px 0px 14px;">
+                            <table cellspacing="0" cellpadding="5" width="100%" style="border:1px solid #008100;font-size:9pt; padding:0;">
+                              <tbody>
+                                <tr>
+                                  <td width="100%" style="background-color:#008100;border-bottom:1px solid #008100;padding:5px; color:#fff"><span style="font-size:10pt">Activity Inclusions</span></td>
+                                  <td style="background-color:#008100;border-bottom:1px solid #008100;padding:5px;">&nbsp;</td>
+                                </tr>
+                                <?php if($inclustions):?>
+                                <?php foreach($inclustions as $incl):?>
+                                <tr>
+                                  <td style="padding:5px"><span><?=$incl['description']?></span></td>
+                                </tr>
+                                <?php endforeach;?>
+                                <?php else:?>
+                                <tr>
+                                  <td width="100%" style="padding:5px">Acitity Only</td>
+                                </tr>
+                                <?php endif;?>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr><td style="line-height:2px;">&nbsp;</td></tr>
+                <tr>
+                  <td align="center" style="border-bottom:1px solid #008100;padding-bottom:15px">
+                    <span style="font-size:10pt; color:#555;">Customer Contact Details | E-mail : <?=$customer_details[0]['email']?> | Contact No : <?=$booking_details['phone_code']?><?=$customer_details[0]['phone']?></span>
+                  </td>
+                </tr>
+                <tr><td style="line-height:2px;">&nbsp;</td></tr>
+                <tr>
+                  <td>
+                    <span style="font-size: 11pt;line-height:16px;font-weight: 500;">Cancellation Policy</span><br>
+                    <span style="font-size:9pt; color:#555; line-height:16px"><?=$attributes['TM_Cancellation_Policy']?></span>
+                  </td>
+                </tr>
+               
+              <!-- </table>
+            </td>
+			    </tr> -->
+			  <!-- </table>
+      </td>
+    </tr> -->
+  </tbody>
+</table>
+<div style="font-family: arial;">
+  <tr>
+    <td><span style="font-size: 11pt;line-height:12px;font-weight: 500;color:#000;">Tour Information</span><br>
+    <span style="font-size: 10pt;line-height:12px;font-weight: 500;color:#333">Tour Description</span><br>
+    <div style="font-size:9pt; color:#555;"><?=$desc?></div><br>
+    <span style="font-size: 10pt;line-height:12px;font-weight: 500;color:#333">Information</span>
+    <ul style="font-size:9pt; color:#555">
+    <?php foreach($additional_info as $ad):?><li><?=$ad?></li><?php endforeach;?></ul>
+    <span style="font-size: 10pt;line-height:12px;font-weight: 500;color:#333">Exclusions</span>
+
+    <ul style="font-size:9pt; color:#555"><?php foreach($exclustions as $exclu):?><li><?=$exclu['description']?></li><?php endforeach;?></ul>
+    </td>
+  </tr>
+  <!-- <tr><td style="line-height:2px;">&nbsp;</td></tr>  -->
+  <tr>
+    <td><span style="font-size: 11pt;line-height:12px;font-weight: 500;color:#000;">Terms and Conditions</span></td>
+  </tr>
+  <tr>
+    <td style="padding-bottom:15px;"><div style="font-size:9pt; color:#555;"><?php echo$data['terms_conditions'];?></div></td>
+  </tr>
+  <tr><td style="line-height:2px;">&nbsp;</td></tr>
+</div>
+<table style="font-family: arial;border-top:1px solid #008100;" width="100%">
+  <tbody>
+    <tr>
+      <td colspan="2" align="" style="padding-top:10px; line-height:16px;font-size:13px;width:100%;">
+        <strong><?php echo strtoupper($data['domainname'])?></strong>&nbsp;&nbsp; | &nbsp;&nbsp;
+        <strong>Contact No: </strong><?php echo $data['phone_code']?> <?php echo $data['phone']?>&nbsp;&nbsp; | &nbsp;&nbsp;<?php echo $data['address']?>
+      </td>
+    </tr>
+  </tbody>
+</table>

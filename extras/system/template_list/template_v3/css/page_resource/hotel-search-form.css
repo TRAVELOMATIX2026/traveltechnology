@@ -1,0 +1,827 @@
+/* Hotel Search Form CSS */
+
+/* ============================================
+   Hotel Form Container
+   ============================================ */
+.hotel-form {
+  margin-top: var(--spacing-8) !important;
+}
+.tabspl.forhotelonly.modifySearchHotel {
+  float: left;
+  width: var(--width-full);
+  margin-top: var(--spacing-0);
+  padding: 0 var(--spacing-0);
+  overflow: visible;
+  position: relative;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .tabrow {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-2);
+  flex-wrap: nowrap;
+  max-width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .tabrow > div {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Fix nested column structure */
+.tabspl.forhotelonly.modifySearchHotel .tabrow > .nopad {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+}
+
+/* ============================================
+   Form Labels
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .lablform {
+  color: var(--color-text-secondary);
+  display: block;
+  font-size: 11px;
+  padding-left: var(--spacing-0);
+  font-weight: var(--font-weight-medium);
+  position: absolute;
+  top: 8px;
+  left: var(--spacing-3);
+  margin-bottom: 0;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .lablform.mobile_label {
+  display: block;
+}
+
+/* Label for guests & rooms field */
+.tabspl.forhotelonly.modifySearchHotel .padfive:not(.bordrt) .lablform {
+  padding-left: 0;
+  left: var(--spacing-3);
+}
+
+/* ============================================
+   Form Fields Container
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .padfive {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 70px;
+  position: relative;
+  padding: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  overflow: visible;
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .padfive.bordrt {
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg) !important;
+  background: var(--color-bg-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .bordrt {
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg) !important;
+  background: var(--color-bg-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .border_btms {
+  border-bottom: none;
+}
+
+/* Guests & Rooms field - no extra border needed */
+.tabspl.forhotelonly.modifySearchHotel .padfive.mobile_width:not(.bordrt) {
+  border: none;
+  background: none;
+  position: relative;
+  overflow: visible;
+  z-index: 100;
+}
+
+/* Nested column fixes for check-in/check-out and nights/guests */
+.tabspl.forhotelonly.modifySearchHotel .col-md-6.padfive,
+.tabspl.forhotelonly.modifySearchHotel .col-md-4.padfive,
+.tabspl.forhotelonly.modifySearchHotel .col-md-8.padfive {
+  flex: 1 1 auto;
+  padding: 0 !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .col-6.padfive {
+  flex: 1 1 50%;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .mobile_width {
+  width: auto;
+  flex: 1 1 auto;
+}
+
+/* First column - Going to field */
+.tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+/* Check-in and Check-out container */
+.tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3.nopad {
+  flex: 0 0 25%;
+  max-width: 25%;
+  display: flex;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+}
+
+/* Nights and Guests container */
+.tabspl.forhotelonly.modifySearchHotel .tabrow > .col-md-4.nopad {
+  flex: 1 1 auto;
+  display: flex;
+  gap: var(--spacing-2);
+  padding: 0 !important;
+  overflow: visible;
+  position: relative;
+}
+
+/* Search button */
+.tabspl.forhotelonly.modifySearchHotel .tabrow > .col-md-2.srch_btn {
+  flex: 0 0 15%;
+  max-width: 200px;
+  min-width: 150px;
+}
+
+/* ============================================
+   Field Icons
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .field-icon {
+  position: absolute;
+  color: var(--color-text-secondary);
+  z-index: 1;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .field-icon-right {
+  right: var(--spacing-2);
+  top:30px !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .field-icon-left-hotel {
+  right: var(--spacing-2);
+  top: 20px;
+}
+
+/* Icon hover and focus states */
+.tabspl.forhotelonly.modifySearchHotel .plcetogo:hover .field-icon,
+.tabspl.forhotelonly.modifySearchHotel .plcetogo:focus-within .field-icon {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total:hover .field-icon-left-hotel {
+  color: var(--color-primary-midtone);
+  transform: scale(1.1);
+}
+
+/* ============================================
+   Input Fields
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .plcetogo {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: var(--spacing-4);
+  padding-left: var(--spacing-0);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.sidebord {
+  border-right: none;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.plcemark,
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.datemark,
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.nitmark,
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.selctmark,
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.hotel_mark {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalinput {
+  width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  opacity: 1 !important;
+  top: 0 !important;
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3) !important;
+  background: none !important;
+  border: none !important;
+  right:inherit !important;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text-primary) !important;
+  line-height: 1.2 !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalinput::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalinput:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .b-r-0 {
+  border-right: none !important;
+}
+
+/* ============================================
+   Select Elements
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .normalsel {
+  width: 100% !important;
+  height: auto !important;
+  position: relative !important;
+  opacity: 1 !important;
+  top: 0 !important;
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3) !important;
+  background: none !important;
+  border: none !important;
+  font-size: 15px !important;
+  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text-primary) !important;
+  line-height: 1.2 !important;
+  cursor: pointer !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right var(--spacing-3) center !important;
+  padding-right: var(--spacing-8) !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalsel.padselct,
+.tabspl.forhotelonly.modifySearchHotel .normalsel.hotel_slct {
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3) !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalsel:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ============================================
+   Guests & Rooms Section
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 70px;
+  position: relative;
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3) var(--spacing-3);
+  cursor: pointer;
+  background: var(--color-bg-primary);
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg);
+  z-index: 101;
+  overflow: visible;
+  transition: var(--transition-all);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total:hover {
+  border-color: var(--color-primary-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total.active,
+.tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total:has(.roomcount.active) {
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 0 0 1px var(--color-primary-primary);
+  background: var(--color-bg-secondary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .remngwd {
+  float: left;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  flex: 1;
+  padding-right: var(--spacing-6);
+  padding-left: var(--spacing-0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.tabspl.forhotelonly.modifySearchHotel .hotel_total:hover::after {
+  color: var(--color-primary-primary);
+  transform: translateY(-48%);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .hotel_total.active::after,
+.tabspl.forhotelonly.modifySearchHotel .hotel_total:has(.roomcount.active)::after {
+  transform: translateY(-50%) rotate(180deg);
+  color: var(--color-primary-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomcount {
+  position: absolute;
+  top: calc(100% + var(--spacing-2));
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  margin-top: 0;
+  padding: var(--spacing-4);
+  z-index: 1000;
+  max-height: 500px;
+  overflow-y: auto;
+  min-width: 300px;
+  
+  /* Default hidden state with 3D transform */
+  opacity: 0;
+  visibility: hidden;
+  transform: perspective(1000px) rotateX(-15deg) translateY(-20px);
+  transform-origin: top center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomcount.active {
+  /* Active state with full visibility and 3D animation */
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+}
+
+/* Custom scrollbar for dropdown */
+.tabspl.forhotelonly.modifySearchHotel .roomcount::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomcount::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: var(--border-radius-sm);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomcount::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: var(--border-radius-sm);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomcount::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-500);
+}
+
+/* ============================================
+   Dropdown Inner Container
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .inallsn {
+  /* Container for all rooms */
+}
+
+/* ============================================
+   Room Configuration
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .oneroom {
+  margin-bottom: var(--spacing-4);
+  padding: var(--spacing-0);
+  border-radius: var(--border-radius-md);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomone {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .mobile_adult_icon {
+  display: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .roomrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .celroe {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  display:block !important;
+  color: var(--color-text-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .agemns {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-normal);
+}
+
+/* ============================================
+   Counter Buttons
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .countmore.pax-count-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .countmore .btn-number {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-all);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .countmore .btn-number:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .countmore .input-number {
+  width: 60px;
+  height: 32px;
+  text-align: center;
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .countmore .centertext {
+  text-align: center;
+}
+
+/* ============================================
+   Child Age Selection
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .chilagediv {
+  margin-top: var(--spacing-3);
+  padding-top: var(--spacing-3);
+  border-top: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .chldrnage {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .plcetogo.selctmarksml {
+  padding-top: 0;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .normalsel.padselctsmal {
+  padding: var(--spacing-2) var(--spacing-3) !important;
+  font-size: var(--font-size-sm) !important;
+}
+
+/* ============================================
+   Add/Remove Room Buttons
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .add_remove {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+
+}
+
+.tabspl.forhotelonly.modifySearchHotel .comnbtn_room,
+.tabspl.forhotelonly.modifySearchHotel .comnbtn_room1 {
+  flex: 1;
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--color-bg-primary);
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: var(--transition-all);
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .comnbtn_room:hover,
+.tabspl.forhotelonly.modifySearchHotel .comnbtn_room1:hover {
+  background: var(--color-primary-primary);
+  border-color: var(--color-primary-primary);
+  color: var(--color-white);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .done1.comnbtn_room1 {
+  background: var(--color-primary-primary);
+  border-color: var(--color-primary-primary);
+  color: var(--color-white);
+}
+
+.tabspl.forhotelonly.modifySearchHotel .done1.comnbtn_room1:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+/* ============================================
+   Search Button Container
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .srch_btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  flex: 0 0 auto;
+  position: relative;
+  min-width: 150px;
+  padding: 0 !important;
+  height: 70px;
+}
+
+/* ============================================
+   Hotel Search Button
+   ============================================ */
+.hotel_search_btn {
+  width: var(--width-full);
+  bottom: inherit !important;
+  height: 70px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+}
+
+.hotel_search_btn.searchsbmtfot {
+  padding: 0;
+  border: none;
+  background: none;
+  height: 100%;
+}
+
+.hotel_search_btn .searchsbmt,
+.hotel_search_btn .flight_search_btn {
+  border: var(--border-width-none) !important;
+  background: linear-gradient(135deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+  background-size: 200% 200% !important;
+  color: var(--color-white) !important;
+  font-weight: var(--font-weight-semibold) !important;
+  padding: 0 var(--spacing-4) !important;
+  letter-spacing: 0.5px !important;
+  position: relative;
+  height: 100% !important;
+  width: var(--width-full);
+  border-radius: var(--border-radius-lg) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px var(--shadow-orange-default) !important;
+  overflow: hidden;
+  text-transform: capitalize !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 45px !important;
+}
+
+.hotel_search_btn .searchsbmt:hover,
+.hotel_search_btn .flight_search_btn:hover {
+  background-position: right center !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-orange-hover) !important;
+}
+
+.hotel_search_btn .searchsbmt:active,
+.hotel_search_btn .flight_search_btn:active {
+  transform: translateY(0);
+}
+
+.flightbutton i {
+  position: absolute;
+  top: 15px;
+  left: 33px;
+  display: none;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.tabspl.forhotelonly.modifySearchHotel .nopad {
+  padding: 0 !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .mobile_width {
+  width: auto;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .full_clear {
+  /* Utility class */
+}
+
+.tabspl.forhotelonly.modifySearchHotel .hide {
+  display: none !important;
+}
+
+.tabspl.forhotelonly.modifySearchHotel .clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ============================================
+   Select2 Overrides
+   ============================================ */
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 20px !important;
+  padding-top: 8px !important;
+  float: left;
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+@media (max-width: 1200px) {
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3 {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3.nopad {
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-md-2.srch_btn {
+    flex: 0 0 auto;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tabspl.forhotelonly.modifySearchHotel .tabrow {
+    flex-wrap: wrap;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > div {
+    flex: 1 1 calc(50% - var(--spacing-1)) !important;
+    max-width: calc(50% - var(--spacing-1)) !important;
+    margin-bottom: var(--spacing-0) !important;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .srch_btn {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 0;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .mobile_adult_icon {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > div {
+    flex: 1 1 100%;
+  }
+
+  .tabspl.forhotelonly.modifySearchHotel .totlall.hotel_total {
+    min-height: inherit !important;
+  }
+  .tabspl.forhotelonly.modifySearchHotel { margin-top: var(--spacing-0) !important;}
+
+  .tabspl.forhotelonly.modifySearchHotel .tabrow {
+    flex-direction: column;
+  }
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3 {
+    flex: 0 0 100% !important;
+    max-width: var(--width-full) !important;
+    width: var(--width-full) !important;
+  }
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-lg-3.col-md-3.nopad {
+    flex: 0 0 100% !important;
+    max-width: var(--width-full) !important;
+    width: var(--width-full) !important;
+  }
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-md-4.nopad {
+    flex: 0 0 100% !important;
+    max-width: var(--width-full) !important;
+    width: var(--width-full) !important;
+  }
+  .tabspl.forhotelonly.modifySearchHotel .tabrow > .col-md-2.srch_btn {
+    flex: 0 0 100% !important;
+    max-width: var(--width-full) !important;
+    width: var(--width-full) !important;
+  }
+  .tabspl.forhotelonly.modifySearchHotel .srch_btn {
+    flex: 0 0 100% !important;
+    max-width: var(--width-full) !important;
+    width: var(--width-full) !important;
+  }
+
+  .hotel_search_btn {
+    height: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabspl.forhotelonly.modifySearchHotel {
+    padding: 0 var(--spacing-0);
+  }
+  
+
+  .hotel_search_btn {
+    height: 55px;
+  }
+  
+  
+  .tabspl.forhotelonly.modifySearchHotel .roomcount {
+    padding: var(--spacing-0);
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .oneroom {
+    padding: var(--spacing-2);
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .add_remove {
+    flex-direction: column;
+  }
+  
+  .tabspl.forhotelonly.modifySearchHotel .comnbtn_room,
+  .tabspl.forhotelonly.modifySearchHotel .comnbtn_room1 {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+.hotel_search_btn .searchsbmt:disabled,
+.hotel_search_btn .flight_search_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hotel_search_btn .searchsbmt.loading,
+.hotel_search_btn .flight_search_btn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.hotel_search_btn .searchsbmt.loading::after,
+.hotel_search_btn .flight_search_btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--size-md);
+  height: var(--size-md);
+  border: var(--border-width-medium) var(--border-style-solid) var(--color-white);
+  border-top-color: transparent;
+  border-radius: var(--border-radius-circle);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+

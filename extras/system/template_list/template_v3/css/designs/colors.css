@@ -1,0 +1,239 @@
+/**
+ * Color Variables
+ * All color variables including primary, secondary, success, warning, danger, and semantic colors
+ */
+
+:root {
+    /* ============================================
+       COLOR VARIABLES - Auto adapts to light/dark mode using light-dark() for Button Colors and other components
+       ============================================ */
+
+    /* ============================================
+       SEMANTIC COLOR PALETTE
+       ============================================ */
+
+    /* Positive/Primary Colors - Auto adapts */
+    --color-primary-obsidian: light-dark(#CDA213, #FCF5DF);
+    --color-primary-primary: light-dark(#F09814, #F09814);
+    --color-primary-midtone: light-dark(#EFCC57, #EFCC57);
+    --color-primary-pastel: light-dark(#F6E3A2, #ECC032);
+    --color-primary-light: light-dark(#FCF5DF, #CDA213);
+
+    /* Legacy Primary (for backward compatibility) */
+    --color-primary: var(--color-primary-primary);
+    --color-primary-dark: light-dark(#0a58ca, #3d8bfd);
+    --color-primary-light: var(--color-primary-light);
+    --color-primary-lighter: var(--color-primary-pastel);
+    --color-primary-lightest: var(--color-primary-obsidian);
+
+
+    /* Secondary Colors - Auto adapts */
+    --color-secondary-obsidian: light-dark(#495057, #e9ecef);
+    --color-secondary-primary: light-dark(#0dcaf0, #3dd5f3);
+    --color-secondary-midtone: light-dark(#868e96, #868e96);
+    --color-secondary-pastel: light-dark(#adb5bd, #6c757d);
+    --color-secondary-light: light-dark(#e9ecef, #495057);
+
+
+    /* Tertiary Colors - Auto adapts */
+    --color-tertiary-obsidian: light-dark(#343a40, #f8f9fa);
+    --color-tertiary-primary: light-dark(#495057, #dee2e6);
+    --color-tertiary-midtone: light-dark(#6c757d, #6c757d);
+    --color-tertiary-pastel: light-dark(#868e96, #495057);
+    --color-tertiary-light: light-dark(#ced4da, #343a40);
+
+    /* Info Colors - Auto adapts (Logo Color) */
+    --color-info: light-dark(#0393f2, #0397f3);
+    --color-info-dark: light-dark(#0164dd, #0073ff);
+    --color-info-light: light-dark(#00c5f0, #33d1ff);
+    --color-info-lighter: light-dark(#33d1ff, #66ddff);
+    --color-info-lightest: light-dark(#e6f7fc, #0088b3);
+
+    /* Legacy Secondary (for backward compatibility) */
+    --color-secondary: var(--color-secondary-primary);
+    --color-secondary-dark: var(--color-secondary-obsidian);
+    --color-secondary-light: var(--color-secondary-light);
+    --color-secondary-lighter: var(--color-secondary-pastel);
+    --color-secondary-lightest: var(--color-secondary-obsidian);
+
+    /* Success Colors - Auto adapts */
+    --color-success-obsidian: light-dark(#3A8A2E, #E9F6E7);
+    --color-success-primary: light-dark(#48AC39, #ACDFA4);
+    --color-success-midtone: light-dark(#83CF77, #83CF77);
+    --color-success-pastel: light-dark(#ACDFA4, #48AC39);
+    --color-success-light: light-dark(#E9F6E7, #3A8A2E);
+
+    /* Legacy Success (for backward compatibility) */
+    --color-success: var(--color-success-primary);
+    --color-success-dark: var(--color-success-obsidian);
+    --color-success-lighter: var(--color-success-pastel);
+    --color-success-lightest: var(--color-success-obsidian);
+
+    /* Warning Colors - Auto adapts */
+    --color-warning-obsidian: light-dark(#273AC2, #BADDFF);
+    --color-warning-primary: light-dark(#176FF4, #55B3FF);
+    --color-warning-midtone: light-dark(#0092FF, #0092FF);
+    --color-warning-pastel: light-dark(#55B3FF, #176FF4);
+    --color-warning-light: light-dark(#BADDFF, #0566dd);
+
+    /* Legacy Warning (for backward compatibility) */
+    --color-warning: var(--color-warning-primary);
+    --color-warning-dark: var(--color-warning-obsidian);
+    --color-warning-lighter: var(--color-warning-pastel);
+    --color-warning-lightest: var(--color-warning-obsidian);
+
+    /* Danger/Error Colors - Auto adapts */
+    --color-danger-obsidian: light-dark(#B22624, #FFECED);
+    --color-danger-primary: light-dark(#EB4736, #F6ABA2);
+    --color-danger-midtone: light-dark(#F0786A, #F0786A);
+    --color-danger-pastel: light-dark(#F6ABA2, #EB4736);
+    --color-danger-light: light-dark(#FFECED, #B22624);
+
+    /* Legacy Error/Danger (for backward compatibility) */
+    --color-error: var(--color-danger-primary);
+    --color-error-dark: var(--color-danger-obsidian);
+    --color-error-light: var(--color-danger-light);
+    --color-error-lighter: var(--color-danger-pastel);
+    --color-error-lightest: var(--color-danger-obsidian);
+
+
+
+
+
+    /* Neutral Colors - Same in both modes */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray-50: #f8f9fa;
+    --color-gray-100: #e9ecef;
+    --color-gray-200: #dee2e6;
+    --color-gray-300: #ced4da;
+    --color-gray-400: #adb5bd;
+    --color-gray-500: #6c757d;
+    --color-gray-600: #495057;
+    --color-gray-700: #343a40;
+    --color-gray-800: #212529;
+    --color-gray-900: #0d1117;
+
+    /* ============================================
+       TEXT COLORS - Auto adapts to light/dark mode
+       ============================================ */
+
+    /* Primary Text Colors */
+    --color-text-primary: light-dark(#212529, #ffffff);
+    --color-text-secondary: light-dark(#6c757d, #adb5bd);
+    --color-text-tertiary: light-dark(#00a9d6, #00a9d6);
+    --color-text-quaternary: light-dark(#F09814, #F09814);
+    --color-text-muted: light-dark(#adb5bd, #6c757d);
+    --color-text-disabled: light-dark(#ced4da, #495057);
+    --color-text-inverse: light-dark(#ffffff, #212529);
+    --color-text-link: var(--color-primary-primary);
+    --color-text-warning-light: light-dark(#0566dd, #ffffff);
+    --color-text-link-hover: var(--color-primary-obsidian);
+
+    /* Semantic Text Colors */
+    --color-text-success: var(--color-success-primary);
+    --color-text-warning: var(--color-warning-primary);
+    --color-text-danger: var(--color-danger-primary);
+    --color-text-info: var(--color-info);
+
+
+
+    
+
+    /* ============================================
+       BACKGROUND COLORS - Auto adapts to light/dark mode
+       ============================================ */
+
+    /* Base Background Colors */
+    --color-bg-primary: light-dark(#ffffff, #1a2d47);
+    --color-bg-secondary: light-dark(#e9edf0, #152238);
+    --color-bg-tertiary: light-dark(#e9ecef, #0f1a2a);
+    --color-bg-overlay: light-dark(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    --color-bg-overlay-light: light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
+
+    /* Hero Overlay Background - transparent for light, gradient for dark */
+    --hero-overlay-bg: transparent;
+
+    /* Semantic Background Colors */
+    --color-bg-success: var(--color-success-light);
+    --color-bg-warning: var(--color-warning-light);
+    --color-bg-danger: var(--color-danger-light);
+    --color-bg-info: var(--color-info-lightest);
+
+    /* Primary Background Variants */
+    --color-bg-primary-light: var(--color-primary-light);
+    --color-bg-primary-pastel: var(--color-primary-pastel);
+
+    /* Secondary Background Variants */
+    --color-bg-secondary-light: var(--color-secondary-light);
+    --color-bg-secondary-pastel: var(--color-secondary-pastel);
+
+    /* ============================================
+       GRADIENT COLORS - Auto adapts to light/dark mode
+       ============================================ */
+
+    /* Orange Gradient (for Search Button) */
+    --gradient-orange-start: light-dark(#FF6B35, #FF8C42);
+    --gradient-orange-mid: light-dark(#F7931E, #FF7F50);
+    --gradient-orange-end: light-dark(#FFA500, #FF6B35);
+    --gradient-orange: light-dark(
+      linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFA500 100%),
+      linear-gradient(135deg, #FF8C42 0%, #FF7F50 50%, #FF6B35 100%)
+    );
+
+    /* Blue Gradient (for Active Tabs) - Logo Color */
+    --gradient-blue-start: var(--color-info-light);
+    --gradient-blue-mid: var(--color-info);
+    --gradient-blue-end: var(--color-info-dark);
+    --gradient-blue: light-dark(
+      linear-gradient(135deg, #00c5f0 0%, #0393f2 50%, #0164dd 100%),
+      linear-gradient(135deg, #33d1ff 0%, #0397f3 50%, #0073ff 100%)
+    );
+
+    /* Dark Blue Slider Colors */
+    --color-slider-dark: light-dark(#004085, #0056b3);
+    --color-slider-medium: light-dark(#0056b3, #0066cc);
+    --gradient-slider-blue: light-dark(
+      linear-gradient(90deg, #004085 0%, #0056b3 100%),
+      linear-gradient(90deg, #0056b3 0%, #0066cc 100%)
+    );
+
+    /* Section Background Gradient - Top to Bottom (Light to Dark) */
+    /* Light theme: goes from light blue to medium blue-gray */
+    /* Dark theme: goes from medium dark blue to darker blue */
+    --gradient-section-top: light-dark(#dffaff, #0f1a2a);
+    --gradient-section-mid: light-dark(#bfdbfe, #152238);
+    --gradient-section-bottom: light-dark(#dbeafe, #1a2d47);
+    --gradient-section: light-dark(
+      linear-gradient(to bottom, #dbeafe 0%, #bfdbfe 50%, #a5c9e8 100%),
+      linear-gradient(to bottom, #1a2d47 0%, #152238 50%, #0f1a2a 100%)
+    );
+
+    /* ============================================
+       SHADOW COLORS - Auto adapts to light/dark mode
+       ============================================ */
+
+    /* Orange Shadow Colors */
+    --shadow-orange-default: light-dark(
+      rgba(255, 107, 53, 0.4),
+      rgba(255, 140, 66, 0.5)
+    );
+    --shadow-orange-hover: light-dark(
+      rgba(255, 107, 53, 0.6),
+      rgba(255, 140, 66, 0.7)
+    );
+    --shadow-orange-active: light-dark(
+      rgba(255, 107, 53, 0.4),
+      rgba(255, 140, 66, 0.5)
+    );
+
+    /* Blue Shadow Colors */
+    --shadow-blue-default: light-dark(
+      rgba(33, 150, 243, 0.4),
+      rgba(66, 165, 245, 0.5)
+    );
+    --shadow-blue-hover: light-dark(
+      rgba(33, 150, 243, 0.6),
+      rgba(66, 165, 245, 0.7)
+    );
+}

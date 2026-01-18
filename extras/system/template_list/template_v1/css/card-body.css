@@ -1,0 +1,832 @@
+   /* ============================================
+      MODERN MARKUP PAGES DESIGN - Beautiful UI
+      ============================================ */
+   
+   /* Modern Panel Styling */
+   .panel {
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-2xl) !important;
+       box-shadow: var(--shadow-xl) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       margin-bottom: var(--spacing-6) !important;
+       overflow: hidden !important;
+       transition: var(--transition-all) !important;
+   }
+   
+
+   
+   .panel.card {
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-2xl) !important;
+       box-shadow: var(--shadow-xl) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       margin-bottom: var(--spacing-6) !important;
+       overflow: hidden !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   /* Beautiful Gradient Card Header - Design System Colors */
+   .card-header {
+       background: var(--color-bg-pr) !important;
+       color: var(--color-text-primary) !important;
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       border-bottom: var(--border-width-thin) solid var(--border-color-default) !important;
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-3) !important;
+       position: relative !important;
+       overflow: hidden !important;
+       box-shadow: var(--shadow-xs) !important;
+   }
+   
+   .card-header::before {
+       display: none !important;
+   }
+   
+   .card-header:hover::before {
+       display: none !important;
+   }
+   
+   /* Modern Card Title - Design System Colors */
+   .card-title {
+       margin: 0 !important;
+       padding: 0 !important;
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+       display: flex !important;
+       align-items: center !important;
+       width: 100% !important;
+   }
+   
+   .card-title i {
+       color: var(--color-primary-primary) !important;
+       font-size: var(--icon-size-md) !important;
+   }
+   
+   .card-title .float-end {
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-medium) !important;
+       color: var(--color-text-secondary) !important;
+       opacity: 1 !important;
+   }
+   
+   .card-title .float-end strong {
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+   }
+   
+   /* Card Body with Enhanced Spacing - Design System */
+   .card-body {
+       padding: var(--spacing-6) var(--spacing-6) !important;
+       background: var(--color-bg-primary) !important;
+   }
+   
+   /* Modern Fieldset Design - Design System Colors */
+   fieldset {
+       border: var(--border-width-thin) solid var(--border-color-default) !important;
+       border-radius: var(--border-radius-lg) !important;
+       padding: var(--spacing-8) var(--spacing-12) !important;
+       margin: var(--spacing-6) 0 !important;
+       background: var(--color-bg-primary) !important;
+       box-shadow: var(--shadow-sm) !important;
+       position: relative !important;
+       overflow: hidden !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   fieldset::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: var(--border-width-thick);
+       background: linear-gradient(90deg, var(--gradient-orange-start) 0%, var(--gradient-orange-mid) 50%, var(--gradient-orange-end) 100%) !important;
+       box-shadow: var(--shadow-xs);
+   }
+   
+   fieldset:hover {
+       box-shadow: var(--shadow-md) !important;
+       border-color: var(--border-color-light) !important;
+   }
+   
+   /* Beautiful Legend Styling - Design System Colors */
+   legend {
+       font-size: var(--font-size-base) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+       padding: var(--spacing-3) var(--spacing-5) !important;
+       margin: 0 0 var(--spacing-5) 0 !important;
+       border: none !important;
+       width: auto !important;
+       display: inline-flex !important;
+       align-items: center !important;
+       gap: var(--spacing-3) !important;
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-md) !important;
+       box-shadow: var(--shadow-sm) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-default) !important;
+       position: relative !important;
+       z-index: 1 !important;
+   }
+   
+   legend i {
+       color: var(--color-primary-primary) !important;
+       font-size: var(--font-size-lg) !important;
+   }
+   
+   legend i.fa-plus {
+       color: var(--color-success-primary) !important;
+   }
+   
+   /* Box Styling - Design System */
+   .box {
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-lg) !important;
+       box-shadow: var(--shadow-sm) !important;
+       border: var(--border-width-thin) solid var(--border-color-default) !important;
+       margin-bottom: var(--spacing-5) !important;
+       overflow: hidden !important;
+   }
+   
+   .box-header {
+       background: var(--color-bg-secondary) !important;
+       color: var(--color-text-primary) !important;
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       border-bottom: var(--border-width-thin) solid var(--border-color-default) !important;
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-2) !important;
+   }
+   
+   .box-header.with-border {
+       border-bottom: var(--border-width-thin) solid var(--border-color-default) !important;
+   }
+   
+   .box-title {
+       margin: 0 !important;
+       padding: 0 !important;
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+   }
+   
+   .box-body {
+       padding: var(--spacing-6) !important;
+       background: var(--color-bg-primary) !important;
+   }
+   
+   .box-footer {
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       background: var(--color-bg-secondary) !important;
+       border-top: var(--border-width-thin) solid var(--border-color-default) !important;
+       text-align: center !important;
+   }
+   
+   .box-footer a {
+       color: var(--color-primary-primary) !important;
+       text-decoration: none !important;
+       font-weight: var(--font-weight-semibold) !important;
+       font-size: var(--font-size-sm) !important;
+       transition: var(--transition-colors) !important;
+   }
+   
+   .box-footer a:hover {
+       color: var(--color-primary-obsidian) !important;
+   }
+   
+   /* Products List / Transaction List Styling */
+   .products-list,
+   .product-list-in-box {
+       list-style: none !important;
+       margin: 0 !important;
+       padding: 0 !important;
+   }
+   
+   .products-list > li.item {
+       padding: var(--spacing-4) !important;
+       border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-gray-200) !important;
+       display: flex !important;
+       align-items: flex-start !important;
+       gap: var(--spacing-3) !important;
+       transition: var(--transition-colors) !important;
+   }
+   
+   .products-list > li.item:last-child {
+       border-bottom: none !important;
+   }
+   
+   .products-list > li.item:hover {
+       background: var(--color-bg-secondary) !important;
+   }
+   
+   .product-img.image {
+       width: var(--size-lg) !important;
+       height: var(--size-lg) !important;
+       border-radius: var(--border-radius-md) !important;
+       background: var(--color-bg-secondary) !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       flex-shrink: 0 !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--color-gray-300) !important;
+   }
+   
+   .product-img.image i.material-icons {
+       font-size: var(--icon-size-md) !important;
+       color: var(--color-primary-primary) !important;
+       line-height: var(--line-height-none) !important;
+   }
+   
+   .product-info {
+       flex: 1 !important;
+       min-width: 0 !important;
+   }
+   
+   .product-title {
+       font-size: var(--font-size-base) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+       text-decoration: none !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: space-between !important;
+       gap: var(--spacing-2) !important;
+       margin-bottom: var(--spacing-1) !important;
+   }
+   
+   .product-title:hover {
+       color: var(--color-primary-primary) !important;
+   }
+   
+   .product-title .badge {
+       background: var(--color-primary-primary) !important;
+       color: var(--color-white) !important;
+       padding: var(--spacing-1) var(--spacing-2) !important;
+       border-radius: var(--border-radius-md) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       display: inline-flex !important;
+       align-items: center !important;
+       gap: var(--spacing-1) !important;
+   }
+   
+   .product-title .badge i.material-icons {
+       font-size: var(--font-size-xs) !important;
+       line-height: var(--line-height-none) !important;
+   }
+   
+   .product-description {
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-text-secondary) !important;
+       line-height: 1.5 !important;
+       margin: 0 !important;
+       padding: 0 !important;
+   }
+   
+   /* Notification List Styling */
+   .list-notices {
+       padding: var(--padding-md) !important;
+       border-bottom: var(--border-width-thin) var(--border-style-solid) var(--color-gray-200) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-3) !important;
+       transition: var(--transition-colors) !important;
+   }
+   
+   .list-notices:hover {
+       background: var(--color-bg-secondary) !important;
+   }
+   
+   .list-notices a {
+       display: flex !important;
+       align-items: center !important;
+       width: 100% !important;
+       text-decoration: none !important;
+       color: inherit !important;
+   }
+   
+   .list-notices .colslno {
+       font-weight: var(--font-weight-bold) !important;
+       color: var(--color-text-secondary) !important;
+       font-size: var(--font-size-sm) !important;
+       flex-shrink: 0 !important;
+   }
+   
+   .list-notices i.noticetext {
+       font-size: var(--icon-size-md) !important;
+       color: var(--color-primary-primary) !important;
+       flex-shrink: 0 !important;
+   }
+   
+   .list-notices .noticewrp {
+       flex: 1 !important;
+       min-width: 0 !important;
+   }
+   
+   .list-notices .noticemsgagent {
+       display: block !important;
+       font-size: var(--font-size-base) !important;
+       color: var(--color-text-primary) !important;
+       margin-bottom: var(--spacing-1) !important;
+       line-height: 1.5 !important;
+   }
+   
+   .list-notices .timenotice {
+       display: inline-flex !important;
+       align-items: center !important;
+       gap: var(--spacing-1) !important;
+       font-size: var(--font-size-xs) !important;
+       color: var(--color-text-muted) !important;
+   }
+   
+   .list-notices .timenotice i.material-icons {
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-text-muted) !important;
+       line-height: var(--line-height-none) !important;
+   }
+   
+   .list-notices .col-sm-2 {
+       flex-shrink: 0 !important;
+   }
+   
+   .list-notices .col-sm-2 .btn {
+       white-space: nowrap !important;
+       flex-shrink: 0 !important;
+   }
+   
+   /* Booking Calendar & Timeline Styling - Beautiful Modern Design */
+   #booking-calendar {
+       min-height: calc(var(--spacing-4) * 37.5) !important; /* 600px */
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-xl) !important;
+       padding: 0 !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       box-shadow: var(--shadow-lg) !important;
+       overflow: hidden !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   #booking-calendar:hover {
+       box-shadow: var(--shadow-xl) !important;
+   }
+   
+   /* Add top accent bar */
+   #booking-calendar::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: var(--spacing-1);
+       background: var(--gradient-orange);
+       z-index: 100;
+   }
+   
+   #booking-timeline,
+   #booking-summary {
+       height: 100% !important;
+       background: var(--color-bg-primary) !important;
+       border-radius: var(--border-radius-xl) !important;
+       padding: var(--spacing-6) !important;
+       border: var(--border-width-thin) solid var(--border-color-light) !important;
+       box-shadow: var(--shadow-md) !important;
+       transition: var(--transition-all) !important;
+       position: relative;
+   }
+   
+   #booking-timeline:hover,
+   #booking-summary:hover {
+       box-shadow: var(--shadow-lg) !important;
+       transform: translateY(calc(-1 * var(--spacing-1)));
+   }
+   
+   /* Beautiful chart title styling */
+   #booking-timeline .highcharts-title,
+   #booking-summary .highcharts-title {
+       font-weight: var(--font-weight-semibold) !important;
+       fill: var(--color-text-primary) !important;
+   }
+   
+   /* Chart subtitle styling */
+   #booking-timeline .highcharts-subtitle,
+   #booking-summary .highcharts-subtitle {
+       font-weight: var(--font-weight-normal) !important;
+       fill: var(--color-text-secondary) !important;
+   }
+   
+   /* Legend styling */
+   #booking-timeline .highcharts-legend-item text,
+   #booking-summary .highcharts-legend-item text {
+       fill: var(--color-text-primary) !important;
+       font-weight: var(--font-weight-medium) !important;
+   }
+   
+   /* Grid lines */
+   #booking-timeline .highcharts-grid-line,
+   #booking-summary .highcharts-grid-line {
+       stroke: var(--color-bg-secondary) !important;
+   }
+   
+   /* Axis lines */
+   #booking-timeline .highcharts-axis-line,
+   #booking-summary .highcharts-axis-line {
+       stroke: var(--border-color-light) !important;
+   }
+   
+   /* Data labels */
+   #booking-timeline .highcharts-data-label text,
+   #booking-summary .highcharts-data-label text {
+       fill: var(--color-text-primary) !important;
+       font-weight: var(--font-weight-semibold) !important;
+   }
+   
+   /* Calendar wrapper positioning */
+   .box.box-primary {
+       position: relative;
+   }
+   
+   /* ============================================================================
+      BEAUTIFUL NOTIFICATION & TRANSACTIONS UI
+      ============================================================================ */
+   
+   /* Notification & Transaction Cards - Modern Design */
+   .box.box-primary {
+       background: var(--color-bg-primary) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       border-radius: var(--border-radius-xl) !important;
+       box-shadow: var(--shadow-lg) !important;
+       overflow: hidden !important;
+       transition: var(--transition-all) !important;
+   }
+   
+   .box.box-primary:hover {
+       box-shadow: var(--shadow-2xl) !important;
+       transform: translateY(calc(-1 * var(--spacing-1)));
+   }
+   
+   /* Card Header - Beautiful Design */
+   .box-header.with-border {
+       background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+       border-bottom: none !important;
+       padding: var(--spacing-5) var(--spacing-6) !important;
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .box-header.with-border::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(135deg, rgba(255, 255, 255, var(--opacity-10)) 0%, rgba(255, 255, 255, var(--opacity-0)) 100%);
+       pointer-events: none;
+   }
+   
+   .box-header .box-title {
+       font-size: var(--font-size-lg) !important;
+       font-weight: var(--font-weight-bold) !important;
+       color: var(--color-white) !important;
+       letter-spacing: var(--letter-spacing-tighter) !important;
+       margin: 0 !important;
+       position: relative;
+       z-index: 1;
+       display: flex;
+       align-items: center;
+       gap: var(--spacing-3);
+   }
+   
+   .box-header .box-title::before {
+       content: '';
+       width: var(--spacing-1);
+       height: var(--icon-size-md);
+       background: rgba(255, 255, 255, var(--opacity-60));
+       border-radius: var(--border-radius-xs);
+   }
+   
+   /* Card Body - Clean Spacing */
+   .box-body {
+       padding: var(--spacing-6) !important;
+       background: var(--color-bg-primary);
+   }
+   
+   /* Notification List - Modern Style */
+   .products-list.product-list-in-box {
+       padding: 0 !important;
+       margin: 0 !important;
+       list-style: none !important;
+   }
+   
+   /* Notification Items - Beautiful Cards */
+   .list-notices {
+       background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-bg-primary) 100%) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       border-radius: var(--border-radius-lg) !important;
+       padding: var(--spacing-4) var(--spacing-5) !important;
+       margin-bottom: var(--spacing-3) !important;
+       transition: var(--transition-all) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-4) !important;
+       cursor: pointer !important;
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .list-notices::before {
+       content: '';
+       position: absolute;
+       left: 0;
+       top: 0;
+       bottom: 0;
+       width: var(--spacing-1);
+       background: linear-gradient(180deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%);
+       transition: var(--transition-base);
+   }
+   
+   .list-notices:hover {
+       background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-bg-primary) 100%) !important;
+       border-color: var(--color-primary-primary) !important;
+       box-shadow: var(--shadow-md) !important;
+       transform: translateX(var(--spacing-1));
+   }
+   
+   .list-notices:hover::before {
+       width: var(--spacing-2);
+   }
+   
+   .list-notices a {
+       text-decoration: none !important;
+       color: inherit !important;
+       display: flex;
+       align-items: center;
+       width: 100%;
+       gap: var(--spacing-4);
+   }
+   
+   /* Notification Icon */
+   .list-notices .material-icons.noticetext {
+       width: var(--size-lg) !important;
+       height: var(--size-lg) !important;
+       background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+       color: var(--color-white) !important;
+       border-radius: var(--border-radius-xl) !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       font-size: var(--icon-size-md) !important;
+       box-shadow: var(--shadow-md) !important;
+       flex-shrink: 0;
+   }
+   
+   /* Notification Content */
+   .list-notices .noticewrp {
+       flex: 1;
+       display: flex;
+       flex-direction: column;
+       gap: var(--spacing-2);
+   }
+   
+   .list-notices .noticemsgagent {
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-medium) !important;
+       color: var(--color-text-primary) !important;
+       line-height: var(--line-height-normal) !important;
+       display: block;
+   }
+   
+   .list-notices .timenotice {
+       font-size: var(--font-size-xs) !important;
+       color: var(--color-text-secondary) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-1) !important;
+   }
+   
+   .list-notices .timenotice .material-icons {
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-primary-primary) !important;
+   }
+   
+   /* Serial Number Badge */
+   .list-notices .colslno {
+       background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+       color: var(--color-white) !important;
+       font-weight: var(--font-weight-bold) !important;
+       font-size: var(--font-size-xs) !important;
+       padding: var(--spacing-1) var(--spacing-3) !important;
+       border-radius: var(--border-radius-md) !important;
+       display: inline-block !important;
+       box-shadow: var(--shadow-sm) !important;
+       position: absolute;
+       top: var(--spacing-3);
+       left: var(--spacing-3);
+       z-index: 2;
+   }
+   
+   /* View Details Button */
+   .list-notices .btn-primary {
+       background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+       border: none !important;
+       color: var(--color-white) !important;
+       padding: var(--spacing-2) var(--spacing-4) !important;
+       border-radius: var(--border-radius-lg) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       box-shadow: var(--shadow-md) !important;
+       transition: var(--transition-all) !important;
+       white-space: nowrap;
+   }
+   
+   .list-notices .btn-primary:hover {
+       box-shadow: var(--shadow-lg) !important;
+       transform: translateY(calc(-1 * var(--spacing-1)));
+   }
+   
+   /* Recent Transactions - Beautiful Cards */
+   .products-list .item {
+       background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-bg-primary) 100%) !important;
+       border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       border-radius: var(--border-radius-lg) !important;
+       padding: var(--spacing-4) var(--spacing-5) !important;
+       margin-bottom: var(--spacing-3) !important;
+       transition: var(--transition-all) !important;
+       display: flex !important;
+       align-items: center !important;
+       gap: var(--spacing-4) !important;
+       cursor: pointer !important;
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .products-list .item::before {
+       content: '';
+       position: absolute;
+       left: 0;
+       top: 0;
+       bottom: 0;
+       width: var(--spacing-1);
+       background: linear-gradient(180deg, var(--color-success-primary) 0%, var(--color-success-midtone) 100%);
+       transition: var(--transition-base);
+   }
+   
+   .products-list .item:hover {
+       background: linear-gradient(135deg, var(--color-bg-success) 0%, var(--color-bg-primary) 100%) !important;
+       border-color: var(--color-success-primary) !important;
+       box-shadow: var(--shadow-md) !important;
+       transform: translateX(var(--spacing-1));
+   }
+   
+   .products-list .item:hover::before {
+       width: var(--spacing-2);
+   }
+   
+   /* Transaction Icon */
+   .product-img.image {
+       width: var(--size-xl) !important;
+       height: var(--size-xl) !important;
+       background: linear-gradient(135deg, var(--color-success-primary) 0%, var(--color-success-midtone) 100%) !important;
+       border-radius: var(--border-radius-xl) !important;
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       box-shadow: var(--shadow-md) !important;
+       flex-shrink: 0;
+   }
+   
+   .product-img.image .material-icons {
+       font-size: var(--font-size-3xl) !important;
+       color: var(--color-white) !important;
+   }
+   
+   /* Transaction Info */
+   .product-info {
+       flex: 1;
+       display: flex;
+       flex-direction: column;
+       gap: var(--spacing-2);
+   }
+   
+   .product-title {
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       color: var(--color-text-primary) !important;
+       text-decoration: none !important;
+       display: flex;
+       align-items: center;
+       gap: var(--spacing-2);
+       transition: var(--transition-colors);
+   }
+   
+   .product-title:hover {
+       color: var(--color-success-primary) !important;
+   }
+   
+   .product-title .badge {
+       background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+       color: var(--color-white) !important;
+       padding: var(--spacing-1) var(--spacing-3) !important;
+       border-radius: var(--border-radius-md) !important;
+       font-size: var(--font-size-xs) !important;
+       font-weight: var(--font-weight-semibold) !important;
+       box-shadow: var(--shadow-sm) !important;
+       display: inline-flex;
+       align-items: center;
+       gap: var(--spacing-1);
+   }
+   
+   .product-description {
+       font-size: var(--font-size-sm) !important;
+       color: var(--color-text-secondary) !important;
+       line-height: var(--line-height-snug) !important;
+       display: block;
+   }
+   
+   /* Empty State */
+   .list-group-item {
+       background: var(--color-gray-50) !important;
+       border: var(--border-width-medium) var(--border-style-dashed) var(--border-color-medium) !important;
+       border-radius: var(--border-radius-lg) !important;
+       padding: var(--spacing-10) var(--spacing-5) !important;
+       text-align: center !important;
+       color: var(--color-text-secondary) !important;
+       font-size: var(--font-size-sm) !important;
+       font-weight: var(--font-weight-medium) !important;
+   }
+   
+   /* Card Footer - Modern Style */
+   .box-footer {
+       background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-gray-50) 100%) !important;
+       border-top: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+       padding: var(--spacing-4) var(--spacing-6) !important;
+       text-align: center !important;
+   }
+   
+   .box-footer a {
+       color: var(--color-primary-primary) !important;
+       text-decoration: none !important;
+       font-weight: var(--font-weight-semibold) !important;
+       font-size: var(--font-size-sm) !important;
+       text-transform: uppercase !important;
+       letter-spacing: var(--letter-spacing-wide) !important;
+       transition: var(--transition-all) !important;
+       display: inline-flex;
+       align-items: center;
+       gap: var(--spacing-2);
+   }
+   
+   .box-footer a::after {
+       content: '→';
+       font-size: var(--font-size-base);
+       transition: var(--transition-transform);
+   }
+   
+   .box-footer a:hover {
+       color: var(--color-primary-obsidian) !important;
+   }
+   
+   .box-footer a:hover::after {
+       transform: translateX(var(--spacing-1));
+   }
+
+   /* Responsive Design for Card Body Elements */
+   @media (max-width: 768px) {
+       .list-notices,
+       .products-list .item {
+           flex-direction: column;
+           text-align: center;
+       }
+       
+       .list-notices .colslno {
+           position: static;
+           margin-bottom: var(--spacing-2);
+       }
+       
+       .box-header .box-title {
+           font-size: var(--font-size-base) !important;
+       }
+       
+       .box-body {
+           padding: var(--spacing-4) !important;
+       }
+       
+       .card-body {
+           padding: var(--spacing-3) var(--spacing-4) !important;
+       }
+       
+       .card-header {
+           padding: var(--spacing-3) var(--spacing-4) !important;
+       }
+       
+       .panel {
+           border-radius: var(--border-radius-xl);
+           margin-bottom: var(--spacing-4) !important;
+       }
+   }

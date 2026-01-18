@@ -1,0 +1,587 @@
+/**
+ * Dropdown Styles
+ * Modern, elegant dropdown component for use across all pages
+ * Reusable for any dropdown menu (flight class, currency, language, etc.)
+ */
+
+/* ============================================
+   DROPDOWN CONTAINER
+   ============================================ */
+.dropdown-container {
+    position: relative;
+    z-index: var(--z-index-dropdown);
+}
+
+/* ============================================
+   DROPDOWN TRIGGER BUTTON
+   ============================================ */
+.dropdown-trigger {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-3);
+    background: var(--color-bg-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-all);
+    min-height: 40px;
+    width: 100%;
+}
+
+.dropdown-trigger:hover {
+    border-color: var(--color-primary-primary);
+    box-shadow: var(--shadow-sm);
+    background: var(--color-bg-secondary);
+}
+
+.dropdown-trigger:focus,
+.dropdown-trigger:focus-within {
+    outline: none;
+    border-color: var(--color-primary-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.dropdown-trigger.active {
+    border-color: var(--color-primary-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Selected Value Text */
+.dropdown-selected {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    flex: 1;
+    text-align: left;
+}
+
+/* Dropdown Arrow Icon */
+.dropdown-arrow {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    transition: var(--transition-transform);
+    flex-shrink: 0;
+    margin-left: var(--spacing-2);
+}
+
+.dropdown-trigger:hover .dropdown-arrow,
+.dropdown-trigger:focus .dropdown-arrow {
+    color: var(--color-primary-primary);
+}
+
+/* Rotate arrow when dropdown is open */
+.dropdown-trigger.active .dropdown-arrow,
+.dropdown-menu.open ~ .dropdown-trigger .dropdown-arrow {
+    transform: rotate(180deg);
+    color: var(--color-primary-primary);
+}
+
+/* ============================================
+   DROPDOWN MENU
+   ============================================ */
+.dropdown-menu {
+    top: calc(100% + var(--spacing-2));
+    position: absolute;
+    left: var(--spacing-0);
+    width: 220px;
+    background: var(--color-bg-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-2);
+    z-index: var(--z-index-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: perspective(1000px) rotateX(-90deg) translateY(-20px);
+    transform-origin: top left;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s,
+                max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 0;
+    overflow: hidden;
+    display: block;
+    backface-visibility: hidden;
+}
+
+.dropdown-menu.open,
+.dropdown-menu.fadeinn {
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+    max-height: 400px;
+    animation: dropdownFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dropdownFadeIn {
+    0% {
+        opacity: 0;
+        transform: perspective(1000px) rotateX(-90deg) translateY(-20px) scale(0.9);
+    }
+    50% {
+        transform: perspective(1000px) rotateX(10deg) translateY(-5px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+    }
+}
+
+/* Dropdown Inner Container */
+.dropdown-inner {
+    padding: var(--spacing-0);
+}
+
+.dropdown-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--spacing-1);
+}
+
+/* Custom Scrollbar */
+.dropdown-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-sm);
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-bg-tertiary);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-colors);
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-midtone);
+}
+
+/* ============================================
+   DROPDOWN ITEMS
+   ============================================ */
+.dropdown-item {
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: var(--spacing-3) var(--spacing-4);
+    margin: var(--spacing-1) var(--spacing-0);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    width: 100%;
+    transition: var(--transition-all);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: var(--border-width-none);
+    background: transparent;
+}
+
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-primary-primary);
+    transform: scaleY(0);
+    transition: var(--transition-transform);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
+.dropdown-item:hover {
+    background: var(--color-primary-light);
+    color: var(--color-text-primary);
+    transform: translateX(2px);
+    padding-left: var(--spacing-5);
+}
+
+.dropdown-item:hover::before {
+    transform: scaleY(1);
+}
+
+/* Active/Selected Item */
+.dropdown-item.active {
+    background: var(--color-primary-primary);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
+    padding-left: var(--spacing-5);
+}
+
+.dropdown-item.active::before {
+    transform: scaleY(1);
+    background: var(--color-text-inverse);
+    width: 4px;
+}
+
+.dropdown-item.active:hover {
+    background: var(--color-primary-midtone);
+    color: var(--color-text-inverse);
+    transform: translateX(0);
+}
+
+/* Item Icons (Optional - can be added via JavaScript) */
+.dropdown-item .item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: var(--spacing-2);
+    border-radius: var(--border-radius-sm);
+    background: var(--color-bg-tertiary);
+    font-size: var(--font-size-xs);
+    flex-shrink: 0;
+}
+
+.dropdown-item.active .item-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   LEGACY SUPPORT - Backward compatibility for existing classes
+   ============================================ */
+/* Support for existing flight class dropdown */
+.classes_Select {
+    position: relative;
+    z-index: var(--z-index-dropdown);
+}
+
+.classes_Select .alladvnce,
+.advance_opt .alladvnce {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-3);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-all);
+    min-height: 40px;
+}
+
+.classes_Select .alladvnce:hover,
+.advance_opt .alladvnce:hover {
+    border-color: var(--color-primary-primary);
+}
+
+.classes_Select .alladvnce:focus,
+.classes_Select .alladvnce:focus-within,
+.advance_opt .alladvnce:focus,
+.advance_opt .alladvnce:focus-within {
+    outline: none;
+    border-color: var(--color-primary-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.classes_Select .dropdown-icon,
+.advance_opt .dropdown-icon {
+    font-size: 24px;
+    color: var(--color-text-secondary);
+    margin-right: var(--spacing-0);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.classes_Select .remngwd,
+.advance_opt .remngwd {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    flex: 1;
+    text-align: left;
+}
+
+.classes_Select .down_arr,
+.advance_opt .down_arr {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    transition: var(--transition-transform);
+    flex-shrink: 0;
+    margin-left: var(--spacing-0);
+}
+
+.classes_Select .alladvnce:hover .down_arr,
+.classes_Select .alladvnce:focus .down_arr,
+.advance_opt .alladvnce:hover .down_arr,
+.advance_opt .alladvnce:focus .down_arr {
+    color: var(--color-primary-primary);
+}
+
+.classes_Select .alladvnce.active .down_arr,
+.class_advance_div.fadeinn ~ .alladvnce .down_arr,
+.preferred_airlines_advance_div.fadeinn ~ .alladvnce .down_arr {
+    transform: rotate(180deg);
+    color: var(--color-primary-primary);
+}
+
+.classes_Select .advncedown.spladvnce,
+.advance_opt .advncedown.spladvnce {
+    top: calc(100% + var(--spacing-2));
+    position: absolute;
+    left: var(--spacing-0);
+    width: 220px;
+    background: var(--color-bg-primary);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-index-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: perspective(1000px) rotateX(-90deg) translateY(-20px);
+    transform-origin: top left;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.3s,
+                max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.advance_opt .advncedown.spladvnce {
+    width: 100%;
+    min-width: 280px;
+    max-width: 350px;
+    display: none;
+}
+
+.advance_opt .advncedown.spladvnce.fadeinn,
+.advance_opt .preferred_airlines_advance_div.fadeinn {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+    max-height: 400px;
+    animation: dropdownFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.classes_Select .advncedown.spladvnce.fadeinn,
+.class_advance_div.fadeinn,
+.preferred_airlines_advance_div.fadeinn {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+    max-height: 400px;
+    animation: dropdownFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.classes_Select .inallsnnw,
+.advance_opt .inallsnnw {
+    padding: var(--spacing-0);
+}
+
+.airline-search-wrapper {
+    padding: var(--spacing-2);
+    border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    background: var(--color-bg-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.airline-search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.airline-search-icon {
+    position: absolute;
+    left: var(--spacing-3);
+    color: var(--color-text-muted);
+    font-size: 20px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.airline-search-input {
+    width: 100%;
+    padding: var(--spacing-2) var(--spacing-3) var(--spacing-2) calc(var(--spacing-3) + 24px);
+    border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    outline: none;
+    transition: var(--transition-all);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+.airline-search-input:focus {
+    border-color: var(--color-primary-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.airline-search-input-wrapper:focus-within .airline-search-icon {
+    color: var(--color-primary-primary);
+}
+
+.airline-search-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.no-results-message {
+    padding: var(--spacing-4);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+}
+
+.classes_Select .scroladvc,
+.advance_opt .scroladvc {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.classes_Select .scroladvc::-webkit-scrollbar,
+.advance_opt .scroladvc::-webkit-scrollbar {
+    width: 6px;
+}
+
+.classes_Select .scroladvc::-webkit-scrollbar-track,
+.advance_opt .scroladvc::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-sm);
+}
+
+.classes_Select .scroladvc::-webkit-scrollbar-thumb,
+.advance_opt .scroladvc::-webkit-scrollbar-thumb {
+    background: var(--color-bg-tertiary);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-colors);
+}
+
+.classes_Select .scroladvc::-webkit-scrollbar-thumb:hover,
+.advance_opt .scroladvc::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-midtone);
+}
+
+.classes_Select .adscrla,
+.advance_opt .adscrla,
+.choose_preferred_airline {
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: var(--spacing-2) var(--spacing-4);
+    margin: var(--spacing-1) var(--spacing-0);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    width: 100%;
+    transition: var(--transition-all);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.classes_Select .adscrla::before,
+.advance_opt .adscrla::before,
+.choose_preferred_airline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-primary-primary);
+    transform: scaleY(0);
+    transition: var(--transition-transform);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
+.classes_Select .adscrla:hover,
+.advance_opt .adscrla:hover,
+.choose_preferred_airline:hover {
+    background: var(--color-primary-light);
+    color: var(--color-text-primary);
+    transform: translateX(2px);
+    padding-left: var(--spacing-5);
+}
+
+.classes_Select .adscrla:hover::before,
+.advance_opt .adscrla:hover::before,
+.choose_preferred_airline:hover::before {
+    transform: scaleY(1);
+}
+
+.classes_Select .adscrla.active,
+.advance_opt .adscrla.active,
+.choose_preferred_airline.active {
+    background: var(--color-primary-primary);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-sm);
+    padding-left: var(--spacing-5);
+}
+
+.classes_Select .adscrla.active::before,
+.advance_opt .adscrla.active::before,
+.choose_preferred_airline.active::before {
+    transform: scaleY(1);
+    background: var(--color-text-inverse);
+    width: 4px;
+}
+
+.classes_Select .adscrla.active:hover,
+.advance_opt .adscrla.active:hover,
+.choose_preferred_airline.active:hover {
+    background: var(--color-primary-midtone);
+    color: var(--color-text-inverse);
+    transform: translateX(0);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .dropdown-menu,
+    .classes_Select .advncedown.spladvnce {
+        width: 100%;
+        left: var(--spacing-0);
+        right: var(--spacing-0);
+    }
+    
+    .dropdown-selected,
+    .classes_Select .remngwd {
+        font-size: var(--font-size-sm);
+    }
+    
+    .dropdown-item,
+    .classes_Select .adscrla {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================
+   Note: Dark mode is automatically handled by design variables using light-dark() function.
+   ============================================ */
+

@@ -1,0 +1,979 @@
+/* ========================================
+   Sightseeing Slider & Gallery Styles
+   Owl Carousel + Lightbox Gallery
+======================================== */
+
+/* ========================================
+   Slider Container Above Page Content
+======================================== */
+.outactdiv.sghtseen > #actvdeo,
+.outactdiv.sghtseen > #act_sldr,
+.outactdiv.sghtseen > .more_pic,
+.outactdiv.sghtseen > .more_vdeo {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   Slider & Thumbnail Gallery Layout
+======================================== */
+.slider-gallery-wrapper {
+  max-width: 100%;
+  width: 100%;
+  margin: 20px auto 30px;
+  display: flex !important;
+  gap: 15px;
+  padding: 0 0px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.main-slider-section {
+  flex: 1 1 auto;
+  position: relative;
+  min-width: 0;
+  max-width: calc(100% - 300px);
+  display: block !important;
+}
+
+.main-slider-section #actvdeo {
+  display: block;
+  width: 100%;
+}
+
+.main-slider-section #act_sldr {
+  display: block !important;
+  width: 100%;
+}
+
+.thumbnail-gallery-section {
+  width: 340px;
+  flex-shrink: 0;
+  display: block !important;
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  height: 400px; /* Match slider height */
+  align-items: stretch;
+}
+
+.thumb-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 90px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.thumb-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.thumb-item:hover img {
+  transform: scale(1.1);
+}
+
+.thumb-more {
+  position: relative;
+}
+
+.thumb-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.thumb-overlay i {
+  font-size: 28px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.thumb-overlay i.bi {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.thumb-overlay span {
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.thumb-more:hover .thumb-overlay {
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.9) 0%, rgba(255, 87, 34, 0.85) 100%);
+}
+
+.thumb-more:hover .thumb-overlay i,
+.thumb-more:hover .thumb-overlay span {
+  transform: scale(1.1);
+}
+
+/* Active thumbnail animation */
+@keyframes thumbPulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 152, 0, 0.4);
+  }
+}
+
+.thumb-item:active {
+  transform: scale(0.95);
+}
+
+/* Modern border on hover */
+.thumb-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid transparent;
+  border-radius: var(--border-radius-lg);
+  transition: border-color 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.thumb-item:hover::before {
+  border-color: rgba(255, 152, 0, 0.6);
+}
+
+/* Thumbnail grid heading - optional */
+.thumbnail-gallery-section::before {
+  content: '';
+  display: block;
+}
+
+/* ========================================
+   Image Gallery/Slider - Modern Container
+======================================== */
+.masthead-wrapper .col-md-12 {
+  width: 100%;
+  padding: 0;
+}
+
+/* ========================================
+   VIDEO SECTION
+======================================== */
+#actvdeo {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: #000;
+}
+
+#actvdeo video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius-xl);
+}
+
+/* ========================================
+   MODERN MEDIA TOGGLE BUTTONS
+======================================== */
+
+.more_pic,
+.more_vdeo {
+  background: light-dark(
+    rgba(255, 255, 255, 0.95),
+    rgba(26, 45, 71, 0.95)
+  );
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100px;
+  z-index: 110;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 2px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.more_pic i,
+.more_vdeo i {
+  font-size: var(--font-size-lg);
+  transition: transform 0.3s ease;
+}
+
+.more_pic i.bi,
+.more_vdeo i.bi {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.more_pic:hover,
+.more_vdeo:hover {
+  background: var(--gradient-orange);
+  color: var(--color-white);
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 8px 30px var(--shadow-orange-hover);
+  border-color: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+}
+
+.more_pic:hover i,
+.more_vdeo:hover i {
+  transform: scale(1.2);
+}
+
+.more_pic:active,
+.more_vdeo:active {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* ========================================
+   MODERN NAVIGATION BUTTONS
+======================================== */
+
+#hotel_top.act_carsl .owl-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  pointer-events: none;
+  z-index: 100;
+  padding: 0 var(--spacing-4);
+}
+
+#hotel_top.act_carsl .owl-nav button.owl-prev,
+#hotel_top.act_carsl .owl-nav button.owl-next {
+  pointer-events: all;
+  position: absolute;
+  background: color-mix(in srgb, var(--color-primary) 90%, var(--color-black)) !important;
+  color: var(--color-white) !important;
+  border: 2px solid light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)) !important;
+  border-radius: var(--border-radius-circle);
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-2xl);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px var(--shadow-orange-default);
+  backdrop-filter: blur(10px);
+  opacity: 0.9;
+}
+
+#hotel_top.act_carsl .owl-nav button.owl-prev:hover,
+#hotel_top.act_carsl .owl-nav button.owl-next:hover {
+  background: var(--gradient-orange) !important;
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px var(--shadow-orange-hover);
+  opacity: 1;
+  border-color: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4)) !important;
+}
+
+#hotel_top.act_carsl .owl-nav button.owl-prev:active,
+#hotel_top.act_carsl .owl-nav button.owl-next:active {
+  transform: scale(0.95);
+}
+
+#hotel_top.act_carsl .owl-nav button.owl-prev.disabled,
+#hotel_top.act_carsl .owl-nav button.owl-next.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--color-bg-overlay) !important;
+  box-shadow: none;
+}
+
+/* Button positioning */
+#hotel_top.act_carsl .owl-nav button.owl-prev {
+  left: var(--spacing-3);
+}
+
+#hotel_top.act_carsl .owl-nav button.owl-next {
+  right: var(--spacing-3);
+}
+
+/* Icon styling */
+#hotel_top.act_carsl .owl-nav button span,
+#hotel_top.act_carsl .owl-nav button i {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hotel_top.act_carsl .owl-nav button i.bi {
+  font-size: 24px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px var(--shadow-orange-default);
+  }
+  50% {
+    box-shadow: 0 6px 30px var(--shadow-orange-hover);
+  }
+}
+
+#hotel_top.act_carsl .owl-nav button:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* ========================================
+   MODERN ANIMATED DOTS
+======================================== */
+
+#hotel_top.act_carsl .owl-dots {
+  position: absolute;
+  bottom: var(--spacing-5);
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  z-index: 100;
+  padding: var(--spacing-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+#hotel_top.act_carsl .owl-dots button.owl-dot {
+  display: inline-block;
+  pointer-events: all;
+  width: auto;
+  height: auto;
+  padding: var(--spacing-1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#hotel_top.act_carsl .owl-dots button.owl-dot span {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius-circle);
+  display: block;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#hotel_top.act_carsl .owl-dots button.owl-dot:hover span {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 152, 0, 0.8);
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.4);
+}
+
+#hotel_top.act_carsl .owl-dots button.owl-dot.active span {
+  width: 32px;
+  height: 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+  border-color: #ff9800;
+  box-shadow: 0 3px 12px rgba(255, 152, 0, 0.6);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    box-shadow: 0 3px 12px rgba(255, 152, 0, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(255, 152, 0, 0.9);
+    transform: scale(1.05);
+  }
+}
+
+/* Hover on active dot */
+#hotel_top.act_carsl .owl-dots button.owl-dot.active:hover span {
+  transform: scale(1.1);
+}
+
+#hotel_top.act_carsl .owl-dots::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: var(--spacing-2) var(--spacing-6);
+  z-index: -1;
+  min-width: 120px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   MODERN SLIDER DESIGN
+======================================== */
+
+#act_sldr {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0;
+  display: block !important;
+  min-height: 300px;
+  max-height: 400px;
+  height: 400px;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.main-slider-section #act_sldr {
+  margin-bottom: 0;
+  height: 400px;
+}
+
+#hotel_top {
+  width: 100% !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-radius: var(--border-radius-xl);
+}
+
+.main-slider-section #hotel_top {
+  width: 100% !important;
+}
+
+/* Force Owl Carousel to be visible */
+#hotel_top.owl-carousel {
+  display: block !important;
+}
+
+#hotel_top .owl-stage-outer {
+  position: relative;
+  display: block !important;
+  width: var(--width-full);
+  border-radius: var(--border-radius-xl);
+}
+
+#hotel_top .owl-stage {
+  position: relative;
+  display: block !important;
+}
+
+#hotel_top .owl-item {
+  position: relative;
+  float: left;
+  display: block;
+  overflow: hidden;
+}
+
+/* Image with zoom effect on hover */
+#hotel_top .owl-item img {
+  width: var(--width-full);
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  display: block !important;
+  border-radius: var(--border-radius-xl);
+  max-width: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#hotel_top .owl-item.active img {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Zoom on hover */
+#hotel_top:hover .owl-item.active img {
+  transform: scale(1.05);
+}
+
+#hotel_top .item {
+  position: relative;
+  width: 100%;
+  display: block !important;
+  overflow: hidden;
+}
+
+.main-slider-section #hotel_top .item {
+  display: block !important;
+}
+
+#hotel_top .item img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+  cursor: zoom-in;
+}
+
+#hotel_top .item img:hover {
+  opacity: 0.95;
+}
+
+/* Fallback: Show first image if carousel fails to initialize */
+#hotel_top > .item:first-child {
+  display: block !important;
+}
+
+#hotel_top > .item:first-child img {
+  display: block !important;
+  width: 100%;
+  height: auto;
+}
+
+/* Ensure slider is visible in the new layout */
+.slider-gallery-wrapper .main-slider-section {
+  min-height: 300px;
+  max-height: 400px;
+}
+
+.slider-gallery-wrapper .main-slider-section #act_sldr {
+  max-height: 400px;
+  height: 400px;
+}
+
+.slider-gallery-wrapper .main-slider-section #hotel_top .owl-stage-outer,
+.slider-gallery-wrapper .main-slider-section #hotel_top .owl-stage,
+.slider-gallery-wrapper .main-slider-section #hotel_top .owl-item {
+  display: block !important;
+}
+
+/* Debug: Make sure images load */
+.slider-gallery-wrapper .main-slider-section #hotel_top img {
+  display: block !important;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* ========================================
+   GRADIENT OVERLAY FOR MODERN LOOK
+======================================== */
+
+#hotel_top .item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+#hotel_top:hover .owl-item.active .item::after {
+  opacity: 0.8;
+}
+
+/* ========================================
+   LOADING STATE
+======================================== */
+
+#hotel_top.owl-loading {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-secondary);
+}
+
+#hotel_top.owl-loading::before {
+  content: '';
+  width: 50px;
+  height: 50px;
+  border: 4px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   IMAGE LIGHTBOX GALLERY
+======================================== */
+
+.image-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: light-dark(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.98));
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.lightbox-image-wrapper {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Loader */
+.lightbox-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 4px solid light-dark(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+/* Navigation Buttons */
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: color-mix(in srgb, var(--color-primary) 90%, var(--color-black));
+  border: 2px solid light-dark(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  color: var(--color-white);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--gradient-orange);
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px var(--shadow-orange-hover);
+}
+
+.lightbox-close {
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+}
+
+.lightbox-prev {
+  left: var(--spacing-4);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: var(--spacing-4);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Counter */
+.lightbox-counter {
+  position: absolute;
+  bottom: var(--spacing-4);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-bg-overlay);
+  color: var(--color-white);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: 50px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  backdrop-filter: blur(10px);
+  border: 1px solid light-dark(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.15));
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 992px) {
+  .slider-gallery-wrapper {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .thumbnail-gallery-section {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .thumbnail-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    height: auto;
+  }
+  
+  .thumb-item {
+    height: 120px;
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  #act_sldr {
+    min-height: 250px;
+    max-height: 350px;
+  }
+  
+  #actvdeo {
+    max-height: 350px;
+  }
+  
+  #hotel_top .owl-item img,
+  #hotel_top .item img {
+    max-height: 350px;
+  }
+  
+  .slider-gallery-wrapper {
+    padding: 0 10px;
+  }
+  
+  .thumbnail-grid {
+    gap: 8px;
+    height: auto;
+  }
+  
+  .thumb-item {
+    height: 100px;
+    min-height: 100px;
+  }
+  
+  .thumb-overlay i {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  
+  .thumb-overlay span {
+    font-size: 12px;
+  }
+  
+  #hotel_top.act_carsl .owl-nav button.owl-prev,
+  #hotel_top.act_carsl .owl-nav button.owl-next {
+    width: 44px;
+    height: 44px;
+    font-size: var(--font-size-lg);
+  }
+  
+  #hotel_top.act_carsl .owl-nav button.owl-prev {
+    left: var(--spacing-2);
+  }
+  
+  #hotel_top.act_carsl .owl-nav button.owl-next {
+    right: var(--spacing-2);
+  }
+  
+  #hotel_top.act_carsl .owl-dots {
+    bottom: var(--spacing-3);
+  }
+  
+  #hotel_top.act_carsl .owl-dots button.owl-dot.active span {
+    width: 24px;
+  }
+  
+  .more_pic,
+  .more_vdeo {
+    bottom: 80px;
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: 12px;
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .lightbox-close {
+    top: var(--spacing-2);
+    right: var(--spacing-2);
+  }
+  
+  .lightbox-prev {
+    left: var(--spacing-2);
+  }
+  
+  .lightbox-next {
+    right: var(--spacing-2);
+  }
+  
+  .lightbox-image-wrapper {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+  
+  .lightbox-counter {
+    bottom: var(--spacing-2);
+    font-size: 12px;
+    padding: var(--spacing-1) var(--spacing-3);
+  }
+}
+
+@media (max-width: 480px) {
+  #act_sldr {
+    border-radius: var(--border-radius-lg);
+    min-height: 200px;
+    max-height: 300px;
+  }
+  
+  #actvdeo {
+    max-height: 300px;
+  }
+  
+  #hotel_top .owl-item img,
+  #hotel_top .item img {
+    max-height: 300px;
+  }
+  
+  .slider-gallery-wrapper {
+    padding: 0 5px;
+    gap: 10px;
+  }
+  
+  .thumbnail-grid {
+    gap: 6px;
+    height: auto;
+  }
+  
+  .thumb-item {
+    height: 85px;
+    min-height: 85px;
+  }
+  
+  .thumb-overlay i {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  
+  .thumb-overlay span {
+    font-size: 11px;
+  }
+  
+  #hotel_top.act_carsl .owl-nav button.owl-prev,
+  #hotel_top.act_carsl .owl-nav button.owl-next {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-base);
+  }
+
+  #hotel_top.act_carsl .owl-nav button.owl-next {
+    font-size: var(--font-size-lg);
+  }
+}
+

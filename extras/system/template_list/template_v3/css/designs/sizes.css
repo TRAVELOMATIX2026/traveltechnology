@@ -1,0 +1,63 @@
+/**
+ * Size Variables
+ * Width, height, and component-specific sizes
+ */
+
+:root {
+    /* ============================================
+       SIZE VARIABLES
+       ============================================ */
+    /* Width */
+--width-auto: auto;
+--width-full: 100%;
+--width-screen: 100vw;
+--width-min: min-content;
+--width-max: max-content;
+--width-fit: fit-content;
+
+/* Height */
+--height-auto: auto;
+--height-full: 100%;
+--height-screen: 100vh;
+--height-min: min-content;
+--height-max: max-content;
+--height-fit: fit-content;
+
+/* Component Sizes */
+--size-xs: 16px;
+--size-sm: 24px;
+--size-md: 32px;
+--size-lg: 40px;
+--size-xl: 48px;
+--size-2xl: 64px;
+--size-3xl: 80px;
+
+/* Icon Sizes */
+--icon-size-xs: 12px;
+--icon-size-sm: 16px;
+--icon-size-md: 20px;
+--icon-size-lg: 24px;
+--icon-size-xl: 32px;
+--icon-size-2xl: 40px;
+
+/* Avatar Sizes */
+--avatar-size-xs: 24px;
+--avatar-size-sm: 32px;
+--avatar-size-md: 40px;
+--avatar-size-lg: 48px;
+--avatar-size-xl: 64px;
+--avatar-size-2xl: 96px;
+
+/* Button Sizes */
+--button-height-xs: 24px;
+--button-height-sm: 32px;
+--button-height-md: 40px;
+--button-height-lg: 48px;
+--button-height-xl: 56px;
+
+/* Input Sizes */
+--input-height-sm: 32px;
+--input-height-md: 40px;
+--input-height-lg: 48px;
+}
+

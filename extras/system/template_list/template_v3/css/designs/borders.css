@@ -1,0 +1,62 @@
+/**
+ * Border Variables
+ * Border width, radius, colors, and styles
+ */
+
+:root {
+    /* ============================================
+       BORDER VARIABLES
+       ============================================ */
+    /* Border Width */
+--border-width-none: 0;
+--border-width-thin: 1px;
+--border-width-medium: 2px;
+--border-width-thick: 3px;
+--border-width-thicker: 4px;
+
+/* Border Radius */
+--border-radius-none: 0;
+--border-radius-xs: 2px;
+--border-radius-sm: 4px;
+--border-radius-md: 6px;
+--border-radius-lg: 8px;
+--border-radius-xl: 12px;
+--border-radius-2xl: 16px;
+--border-radius-3xl: 24px;
+--border-radius-30px: 30px;
+--border-radius-40px: 40px;
+--border-radius-50px: 50px;
+--border-radius-60px: 60px;
+--border-radius-70px: 70px;
+--border-radius-80px: 80px;
+--border-radius-90px: 90px;
+--border-radius-100px: 100px;
+--border-radius-full: 9999px;
+--border-radius-circle: 50%;
+
+/* Border Radius - Component Specific */
+--border-radius-button: var(--border-radius-md);
+--border-radius-button-sm: var(--border-radius-sm);
+--border-radius-button-lg: var(--border-radius-lg);
+--border-radius-input: var(--border-radius-md);
+--border-radius-card: var(--border-radius-lg);
+--border-radius-modal: var(--border-radius-xl);
+--border-radius-badge: var(--border-radius-full);
+
+/* Border Colors - Auto adapts to light/dark mode */
+--border-color-default: light-dark(#dee2e6, #495057);
+--border-color-light: light-dark(#e9ecef, #3d577c);
+--border-color-medium: light-dark(#ced4da, #495057);
+--border-color-dark: light-dark(#adb5bd, #6c757d);
+--border-color-focus: var(--color-positive-primary);
+--border-color-error: var(--color-danger-primary);
+--border-color-success: var(--color-success-primary);
+--border-color-warning: var(--color-warning-primary);
+
+/* Border Style */
+--border-style-solid: solid;
+--border-style-dashed: dashed;
+--border-style-dotted: dotted;
+--border-style-none: none;
+}
+

@@ -1,0 +1,149 @@
+/* Flight Details Section Styles */
+/* Extracted from flight-booking.css for flight details HTML structure */
+/* Updated with light-dark mode support using CSS variables */
+
+/* Flight Details Container */
+.moreflt.boksectn {
+  display: block;
+}
+
+.boksectn .allboxflt {
+  background: var(--color-bg-primary) none repeat scroll 0 0;
+  border: 1px solid var(--border-color-light);
+  box-shadow: 0 1px 2px 0 var(--color-bg-overlay-light);
+  padding: var(--spacing-3);
+  display: flex;
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--border-radius-md);
+  align-items: center;
+}
+
+.boksectn .labltowr.arimobold {
+  margin: var(--spacing-0) 0 var(--spacing-2);
+}
+
+.ontyp {
+  display: block;
+  overflow: hidden;
+  padding: var(--spacing-0);
+}
+
+.labltowr {
+  color: var(--color-text-primary);
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: var(--spacing-0);
+  margin-bottom: var(--spacing-4);
+  overflow: hidden;
+  font-weight: var(--font-weight-semibold);
+}
+
+.labltowr strong {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-light);
+}
+
+.allboxflt {
+  display: flex;
+  overflow: hidden;
+  padding: var(--spacing-2) 0;
+}
+
+.allboxflt .airlblxl {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Airline Information */
+.jetimg {
+  float: left;
+  margin-right: var(--spacing-3);
+}
+
+.jetimg img {
+  width: 40px;
+}
+
+.alldiscrpo {
+  color: var(--color-text-primary);
+  display: block;
+  font-size: var(--font-size-base);
+  overflow: hidden;
+}
+
+.sgsmal {
+  color: var(--color-text-primary);
+  display: block;
+  font-size: var(--font-size-xs);
+  margin: var(--spacing-0);
+  overflow: hidden;
+}
+
+/* Airport and Time Information */
+.airlblxl {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.portnme {
+  color: var(--color-text-primary);
+  display: block;
+  font-size: var(--font-size-sm);
+  margin: var(--spacing-1) 0;
+  overflow: hidden;
+  font-weight: var(--font-weight-semibold);
+}
+
+.textcntr {
+  text-align: center;
+}
+
+.arimobold {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Layout Classes */
+.sector-flex {
+  display: flex;
+  text-align: center;
+}
+
+
+.nopadding {
+  padding: var(--spacing-0);
+}
+
+/* Baggage Styles */
+.Baggage_block {
+  width: 100%;
+  float: left;
+}
+
+.termnl1 {
+  display: block;
+  margin: var(--spacing-0) 0 var(--spacing-1);
+  overflow: hidden;
+  font-size: var(--font-size-sm);
+}
+
+.flo_w {
+  width: auto;
+  float: right;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  text-align: left;
+  padding: 0 var(--spacing-3);
+  line-height: var(--spacing-5);
+}
+
+.bag_icon {
+  width: 14px;
+  height: 20px;
+  margin-right: var(--spacing-1);
+  float: left;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}

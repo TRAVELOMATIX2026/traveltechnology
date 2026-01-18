@@ -1,0 +1,673 @@
+/**
+ * Modern Traveler Dropdown UI
+ * Only styles for the traveler dropdown (.totlall and .roomcount)
+ */
+
+/* ============================================
+   TRAVELERS FIELD (Modern Design)
+   ============================================ */
+.totlall {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1;
+  padding: var(--spacing-1) var(--spacing-4);
+  width: 100%;
+  border-radius: var(--border-radius-xl);
+  transition: var(--transition-all);
+}
+
+
+.totlall .remngwd {
+  padding-left: var(--spacing-0);
+  margin-top: var(--spacing-0);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.totlall .remngwd #travel_text {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: var(--spacing-1);
+}
+
+/* ============================================
+   ROOM COUNT DROPDOWN (Modern Popup)
+   ============================================ */
+.roomcount {
+  display: none;
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  line-height: normal;
+  position: absolute;
+  right: var(--spacing-0);
+  top: calc(100% + var(--spacing-2));
+  width: 320px;
+  min-width: 280px;
+  z-index: var(--z-index-dropdown);
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+  padding: var(--spacing-4);
+  opacity: 0;
+  visibility: hidden;
+  transform: perspective(1000px) rotateX(-90deg) translateY(-20px);
+  transform-origin: top right;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.3s;
+  backface-visibility: hidden;
+}
+
+.roomcount.fadeinn {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
+  animation: dropdownFlipIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dropdownFlipIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-90deg) translateY(-20px) scale(0.9);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(10deg) translateY(-5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+/* Modern scrollbar for dropdown */
+.roomcount::-webkit-scrollbar {
+  width: 6px;
+}
+
+.roomcount::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: var(--border-radius-full);
+}
+
+.roomcount::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: var(--border-radius-full);
+}
+
+.roomcount::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-primary);
+}
+
+/* ============================================
+   PREFERRED AIRLINE SECTION
+   ============================================ */
+.roomcount .advance_opt {
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+}
+
+.roomcount .lablform2 {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-0);
+  padding: var(--spacing-0) !important;
+}
+
+.roomcount .alladvnce select {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-medium);
+  border-radius: var(--border-radius-md);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  cursor: pointer;
+  transition: var(--transition-all);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-2) center;
+  padding-right: calc(var(--spacing-3) + 16px);
+}
+
+.roomcount .alladvnce select:hover {
+  border-color: var(--color-primary-primary);
+}
+
+.roomcount .alladvnce select:focus {
+  outline: none;
+  border-color: var(--color-primary-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* ============================================
+   TRAVELLERS SECTION
+   ============================================ */
+
+
+.roomcount .oneroom {
+  padding: var(--spacing-0);
+  margin: var(--spacing-0);
+}
+
+.roomcount .oneroom .lablform2 {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--spacing-0);
+  margin-top: var(--spacing-0);
+  padding: var(--spacing-0) !important;
+}
+
+/* ============================================
+   TRAVELER ROWS (Adults, Children, Infants)
+   ============================================ */
+.roomcount .roomrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4) var(--spacing-0);
+  margin: var(--spacing-0);
+  border-bottom: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);
+  transition: var(--transition-all);
+  gap: var(--spacing-6);
+  min-height: 60px;
+}
+
+.roomcount .roomrow:last-child {
+  border-bottom: none;
+}
+
+.roomcount .roomrow:hover {
+  background: var(--color-bg-secondary);
+  margin: var(--spacing-0) calc(var(--spacing-0) - var(--spacing-4));
+  border-radius: var(--border-radius-md);
+}
+
+.roomcount .celroe {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-0);
+  margin: var(--spacing-0);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.roomcount .celroe.col-7 {
+  flex: 1 1 auto;
+  min-width: 120px;
+  max-width: 200px;
+  display: block;
+  position: relative;
+  line-height: 1.5;
+}
+
+.roomcount .celroe.col-5 {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 140px;
+}
+
+.roomcount .celroe i {
+  color: var(--color-primary-primary);
+  font-size: var(--font-size-base);
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Material Icons styling for col-7 */
+.roomcount .celroe.col-7 .material-icons {
+  font-size: 20px !important;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-primary);
+  flex-shrink: 0;
+  margin-right: var(--spacing-2);
+  vertical-align: middle;
+  float: left;
+}
+
+/* Icon and label text stay on first line */
+.roomcount .celroe.col-7 > i,
+.roomcount .celroe.col-7 > .material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: var(--spacing-2);
+  float: left;
+  margin-top: 2px; /* Slight vertical alignment adjustment */
+}
+
+/* Age text on second line */
+.roomcount .celroe .agemns {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  margin-left: var(--spacing-0);
+  display: block;
+  width: 100%;
+  line-height: 1.3;
+  margin-top: var(--spacing-1);
+  padding-left: calc(20px + var(--spacing-2)); /* Align with text, accounting for icon width */
+  clear: both;
+}
+
+/* ============================================
+   COUNTER BUTTONS (Modern Design)
+   ============================================ */
+.roomcount .countmore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2);
+  width: 100%;
+  min-width: 140px;
+  max-width: 160px;
+}
+
+.roomcount .input-group {
+  display: contents !important;
+  width: auto !important;
+  margin: var(--spacing-0) !important;
+  padding: var(--spacing-0) !important;
+}
+
+.roomcount .input-group span.input-group {
+  display: contents !important;
+  margin: var(--spacing-0) !important;
+  padding: var(--spacing-0) !important;
+  width: auto !important;
+}
+
+.roomcount .pax-count-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--spacing-2) !important;
+  width: 100% !important;
+  flex-wrap: nowrap !important;
+}
+
+.roomcount .btn-number {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  padding: var(--spacing-0) !important;
+  margin: var(--spacing-0) !important;
+  border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light) !important;
+  border-radius: var(--border-radius-md) !important;
+  background: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  transition: var(--transition-all);
+  font-size: var(--font-size-base) !important;
+  line-height: 1 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0 !important;
+  position: relative;
+}
+
+.roomcount .btn-number:hover {
+  background: var(--color-primary-primary) !important;
+  color: var(--color-text-inverse) !important;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.roomcount .btn-number:active {
+  transform: scale(0.95);
+}
+
+.roomcount .btn-number:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Fix glyphicon icons - replace with CSS content */
+.roomcount .btn-number .glyphicon {
+  display: none !important;
+}
+
+.roomcount .btn-number[data-type="plus"]::before {
+  content: '+';
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.roomcount .btn-number[data-type="minus"]::before {
+  content: '−';
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Alternative: Use Material Icons if available */
+.roomcount .btn-number .material-icons {
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   COUNTER INPUT
+   ============================================ */
+.roomcount .input-number {
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  text-align: center !important;
+  border: var(--border-width-none) !important;
+  background: transparent !important;
+  font-size: var(--font-size-xl) !important;
+  font-weight: var(--font-weight-bold) !important;
+  color: var(--color-text-primary) !important;
+  padding: var(--spacing-0) !important;
+  margin: var(--spacing-0) !important;
+  box-shadow: none !important;
+  line-height: 1.2 !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+.roomcount .input-number:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: var(--border-width-none) !important;
+}
+
+.roomcount .form-control {
+  display: block !important;
+  width: 50px !important;
+  height: auto !important;
+}
+
+.roomcount .centertext {
+  text-align: center !important;
+}
+
+/* ============================================
+   DONE/CONFIRM BUTTON
+   ============================================ */
+.apply-btn-wrapper {
+  margin-top: var(--spacing-4);
+}
+
+.roomcount .done1,
+.apply-travelers-btn,
+.roomcount .comnbtn_room1 {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4) !important;
+  margin: var(--spacing-0) !important;
+  background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%) !important;
+  border: var(--border-width-none) !important;
+  border-radius: var(--border-radius-lg) !important;
+  color: var(--color-text-inverse) !important;
+  font-size: var(--font-size-sm) !important;
+  font-weight: var(--font-weight-bold) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition-all);
+  box-shadow: 0 4px 12px rgba(240, 152, 20, 0.3);
+  display: block;
+}
+
+.roomcount .done1:hover,
+.roomcount .comnbtn_room1:hover,
+.apply-travelers-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(240, 152, 20, 0.4);
+}
+
+.roomcount .done1:active,
+.roomcount .comnbtn_room1:active,
+.apply-travelers-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(240, 152, 20, 0.3);
+}
+
+/* ============================================
+   TOAST/SNACKBAR STYLING (Global - Outside Dropdown)
+   ============================================ */
+/* Toast/Snackbar - Global styles (outside dropdown) */
+.toast-snackbar-wrapper {
+  position: fixed !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 99999 !important;
+  width: calc(100% - 32px) !important;
+  max-width: 500px !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  animation: slideUpFade 0.3s ease-out;
+}
+
+.toast-snackbar-wrapper.d-none,
+.toast-snackbar-wrapper.hide {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.toast-snackbar-wrapper.show,
+.toast-snackbar-wrapper:not(.d-none):not(.hide) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.toast-snackbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  min-height: 48px;
+  position: relative;
+  border: var(--border-width-none);
+}
+
+.toast-snackbar-error {
+  background: var(--color-danger-primary);
+  color: var(--color-text-inverse);
+}
+
+.toast-snackbar-success {
+  background: var(--color-success-primary);
+  color: var(--color-text-inverse);
+}
+
+.toast-snackbar-warning {
+  background: var(--color-warning-primary);
+  color: var(--color-text-inverse);
+}
+
+.toast-snackbar-info {
+  background: var(--color-info-primary);
+  color: var(--color-text-inverse);
+}
+
+.toast-icon {
+  font-size: 20px !important;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.9;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-message {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+  word-wrap: break-word;
+  display: block;
+}
+
+.toast-close {
+  background: transparent;
+  border: var(--border-width-none);
+  color: var(--color-text-inverse);
+  cursor: pointer;
+  padding: var(--spacing-1);
+  margin: calc(var(--spacing-0) - var(--spacing-1));
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: var(--transition-all);
+}
+
+.toast-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.toast-close:active {
+  transform: scale(0.9);
+}
+
+.toast-close .material-icons {
+  font-size: 18px !important;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  .roomcount {
+    width: 100%;
+    right: var(--spacing-0);
+    left: var(--spacing-0);
+    max-width: 100%;
+    padding: var(--spacing-3);
+  }
+  
+  .totlall {
+    padding: var(--spacing-2) var(--spacing-3);
+    min-height: 70px;
+  }
+  
+  .totlall .remngwd {
+    font-size: var(--font-size-base);
+  }
+  
+  .roomcount .roomrow {
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3) var(--spacing-0);
+  }
+  
+  .roomcount .celroe {
+    justify-content: space-between;
+  }
+  
+
+  .roomcount .countmore {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+  
+  .roomcount .alert {
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-xs);
+    min-height: 44px;
+    gap: var(--spacing-2);
+  }
+  
+  .roomcount .alert-error::before {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .toast-snackbar-wrapper {
+    width: calc(100% - 16px) !important;
+    max-width: calc(100% - 16px) !important;
+    bottom: 16px !important;
+  }
+  
+  .toast-snackbar {
+    padding: 12px 16px;
+    font-size: 13px;
+    min-height: 44px;
+    gap: 12px;
+  }
+  
+  .toast-icon {
+    font-size: 18px !important;
+    width: 18px;
+    height: 18px;
+  }
+}
+

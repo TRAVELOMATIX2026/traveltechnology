@@ -1,0 +1,565 @@
+/* ============================================
+   TAILADMIN STYLE DROPDOWNS - EXACT REPLICA
+   Using Design System Variables
+   Based on demo.tailadmin.com design
+   ============================================ */
+
+/* ============================================
+   BASE DROPDOWN CONTAINER - TAILADMIN EXACT STYLE
+   ============================================ */
+
+.skin-black-light .main-header .navbar-nav > li.dropdown .dropdown-menu,
+.skin-black-light .main-header .navbar-nav > li .dropdown-menu,
+.main-header .navbar-nav > li.dropdown .dropdown-menu,
+.main-header .navbar-nav > li .dropdown-menu,
+.main-header .navbar-nav .dropdown-menu {
+    position: absolute !important;
+    top: calc(100% + var(--spacing-2)) !important;
+    right: 0 !important;
+    left: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    background: var(--color-bg-primary) !important;
+    border: var(--border-width-thin) solid var(--border-color-light) !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: var(--shadow-xl) !important;
+    z-index: 9999 !important;
+    overflow: hidden !important;
+    animation: dropdownSlideDown 0.2s ease-out !important;
+    float: none !important;
+}
+
+@keyframes dropdownSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* No arrow - clean design */
+.skin-black-light .main-header .navbar-nav .dropdown-menu::before,
+.main-header .navbar-nav .dropdown-menu::before {
+    display: none !important;
+}
+
+/* ============================================
+   DROPDOWN HEADER - "You have X notifications"
+   ============================================ */
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu > .header,
+.main-header .navbar-nav .dropdown-menu > .header,
+.main-header .navbar-nav .dropdown-menu .header {
+    padding: var(--spacing-4) var(--spacing-5) !important;
+    margin: 0 !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-semibold) !important;
+    font-family: var(--font-family-heading) !important;
+    color: var(--color-text-primary) !important;
+    background: var(--color-bg-primary) !important;
+    border-bottom: var(--border-width-thin) solid var(--border-color-light) !important;
+    display: block !important;
+    border-radius: 0 !important;
+}
+
+/* ============================================
+   MENU ITEMS CONTAINER
+   ============================================ */
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu > li > .menu,
+.main-header .navbar-nav .dropdown-menu > li > .menu,
+.skin-black-light .main-header .navbar-nav .dropdown-menu .menu,
+.main-header .navbar-nav .dropdown-menu .menu {
+    max-height: 150px !important;
+    height: 150px !important;
+    overflow-y: auto !important;
+    padding: var(--spacing-2) !important;
+    margin: 0 !important;
+    list-style: none !important;
+    background: var(--color-bg-primary) !important;
+}
+
+/* Custom Scrollbar */
+.main-header .navbar-nav .dropdown-menu .menu::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .menu::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .menu::-webkit-scrollbar-thumb {
+    background: var(--border-color-medium) !important;
+    border-radius: var(--border-radius-md) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .menu::-webkit-scrollbar-thumb:hover {
+    background: var(--border-color-dark) !important;
+}
+
+/* ============================================
+   NOTIFICATION ITEMS - TAILADMIN EXACT STYLE
+   ============================================ */
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .menu > li,
+.main-header .navbar-nav .dropdown-menu .menu > li {
+    margin: 0 0 var(--spacing-1) 0 !important;
+    padding: 0 !important;
+    border-radius: var(--border-radius-md) !important;
+    transition: all 0.2s ease !important;
+    border-bottom: none !important;
+}
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .menu > li:last-child,
+.main-header .navbar-nav .dropdown-menu .menu > li:last-child {
+    margin-bottom: 0 !important;
+}
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .menu > li:hover,
+.main-header .navbar-nav .dropdown-menu .menu > li:hover {
+    background: var(--color-bg-secondary) !important;
+}
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .menu > li > a,
+.main-header .navbar-nav .dropdown-menu .menu > li > a {
+    display: flex !important;
+    align-items: flex-start !important;
+    padding: var(--spacing-3) !important;
+    color: var(--color-text-secondary) !important;
+    text-decoration: none !important;
+    gap: var(--spacing-3) !important;
+    border-radius: var(--border-radius-md) !important;
+    transition: all 0.2s ease !important;
+    border-left: none !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-normal) !important;
+    font-family: var(--font-family-base) !important;
+}
+
+/* ============================================
+   AVATAR & ICONS - TAILADMIN STYLE
+   ============================================ */
+
+/* User Avatar */
+.main-header .navbar-nav .dropdown-menu .menu > li > a img,
+.main-header .navbar-nav .dropdown-menu .menu > li > a .pull-left img,
+.main-header .navbar-nav .dropdown-menu .menu > li > a .float-start img {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    border-radius: var(--border-radius-circle) !important;
+    object-fit: cover !important;
+    margin-right: 0 !important;
+    flex-shrink: 0 !important;
+    border: var(--border-width-medium) solid var(--border-color-light) !important;
+}
+
+/* Icon Circle (when no image) */
+.main-header .navbar-nav .dropdown-menu .menu > li > a i {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: var(--font-size-lg) !important;
+    color: var(--color-text-secondary) !important;
+    background: var(--color-bg-secondary) !important;
+    border-radius: var(--border-radius-circle) !important;
+    flex-shrink: 0 !important;
+}
+
+/* ============================================
+   NOTIFICATION CONTENT - TAILADMIN EXACT LAYOUT
+   ============================================ */
+
+/* Content wrapper */
+.main-header .navbar-nav .dropdown-menu .menu > li > a > div {
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--spacing-1) !important;
+}
+
+/* Main notification text */
+.main-header .navbar-nav .dropdown-menu .menu > li > a h3,
+.main-header .navbar-nav .dropdown-menu .menu > li > a h4,
+.main-header .navbar-nav .dropdown-menu .menu > li > a p {
+    margin: 0 !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-normal) !important;
+    font-family: var(--font-family-base) !important;
+    color: var(--color-text-primary) !important;
+    line-height: var(--line-height-normal) !important;
+}
+
+/* Bold names in notifications */
+.main-header .navbar-nav .dropdown-menu .menu > li > a h3 strong,
+.main-header .navbar-nav .dropdown-menu .menu > li > a h4 strong,
+.main-header .navbar-nav .dropdown-menu .menu > li > a p strong {
+    font-weight: var(--font-weight-semibold) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Metadata line: "Project • 5 min ago" */
+.main-header .navbar-nav .dropdown-menu .menu > li > a small,
+.main-header .navbar-nav .dropdown-menu .menu > li > a h3 small,
+.main-header .navbar-nav .dropdown-menu .menu > li > a h4 small {
+    display: block !important;
+    font-size: var(--font-size-xs) !important;
+    color: var(--color-text-muted) !important;
+    font-weight: var(--font-weight-normal) !important;
+    font-family: var(--font-family-base) !important;
+    margin: 0 !important;
+    line-height: var(--line-height-snug) !important;
+}
+
+/* Badge indicator */
+.main-header .navbar-nav .dropdown-menu .menu > li > a .label,
+.main-header .navbar-nav .dropdown-menu .menu > li > a .badge-inline {
+    display: inline-block !important;
+    padding: var(--spacing-1) var(--spacing-2) !important;
+    font-size: var(--font-size-xs) !important;
+    font-weight: var(--font-weight-medium) !important;
+    font-family: var(--font-family-base) !important;
+    background: var(--color-bg-info) !important;
+    color: var(--color-info) !important;
+    border-radius: var(--border-radius-sm) !important;
+    margin-left: var(--spacing-2) !important;
+}
+
+/* Progress bar for tasks */
+.main-header .navbar-nav .dropdown-menu .menu > li > a .progress {
+    width: 100% !important;
+    height: 6px !important;
+    background: var(--color-bg-secondary) !important;
+    border-radius: var(--border-radius-sm) !important;
+    overflow: hidden !important;
+    margin-top: var(--spacing-2) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .menu > li > a .progress .progress-bar {
+    height: 100% !important;
+    background: var(--color-info) !important;
+    border-radius: var(--border-radius-sm) !important;
+    transition: width 0.3s ease !important;
+}
+
+/* ============================================
+   DROPDOWN FOOTER - "View All Notification"
+   ============================================ */
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu > .footer,
+.main-header .navbar-nav .dropdown-menu > .footer,
+.main-header .navbar-nav .dropdown-menu .footer {
+    padding: var(--spacing-3) var(--spacing-5) !important;
+    margin: 0 !important;
+    text-align: center !important;
+    background: var(--color-bg-primary) !important;
+    border-top: var(--border-width-thin) solid var(--border-color-light) !important;
+    border-radius: 0 !important;
+}
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .footer a,
+.main-header .navbar-nav .dropdown-menu .footer a {
+    display: inline-block !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium) !important;
+    font-family: var(--font-family-base) !important;
+    color: var(--color-info) !important;
+    text-decoration: none !important;
+    padding: var(--spacing-1) 0 !important;
+    transition: color 0.2s ease !important;
+}
+
+.skin-black-light .main-header .navbar-nav .dropdown-menu .footer a:hover,
+.main-header .navbar-nav .dropdown-menu .footer a:hover {
+    color: var(--color-info-dark) !important;
+}
+
+/* ============================================
+   USER PROFILE DROPDOWN - MODERN CLEAN DESIGN
+   ============================================ */
+
+.main-header .navbar-nav > .user-menu .dropdown-menu {
+    min-width: 280px !important;
+    max-width: 280px !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.4)) !important;
+    border: 1px solid light-dark(#e5e7eb, #374151) !important;
+}
+
+/* User Header with Avatar, Name, Info */
+.main-header .navbar-nav .dropdown-menu .user-header {
+    padding: 20px 16px !important;
+    background: transparent !important;
+    border-bottom: 1px solid light-dark(#e5e7eb, #374151) !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-header img {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+    border: 3px solid light-dark(#ffffff, #374151) !important;
+    box-shadow: 0 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-header > div,
+.main-header .navbar-nav .dropdown-menu .user-header > p {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-header p {
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#111827, #f9fafb) !important;
+    line-height: 1.4 !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-header p small {
+    display: block !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#6b7280, #9ca3af) !important;
+    margin-top: 4px !important;
+}
+
+/* User Body - Hide Stats/Links Section */
+.main-header .navbar-nav .dropdown-menu .user-body {
+    display: none !important;
+}
+
+/* User Menu Items - TailAdmin Style with Icons */
+.main-header .navbar-nav .user-menu .dropdown-menu .menu {
+    padding: 4px 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li {
+    margin: 0 !important;
+    border-bottom: 1px solid light-dark(#f3f4f6, #2d3748) !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li:last-child {
+    border-bottom: none !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li > a {
+    padding: 12px 16px !important;
+    gap: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    border-radius: 0 !important;
+    text-decoration: none !important;
+    transition: all 0.15s ease !important;
+    background: transparent !important;
+}
+
+/* Icons styling - TailAdmin style */
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li > a i {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    font-size: 18px !important;
+    background: transparent !important;
+    color: light-dark(#6b7280, #9ca3af) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure Bootstrap Icons display correctly */
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li > a i.bi::before {
+    display: inline-block !important;
+    font-family: "bootstrap-icons" !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li > a span {
+    font-size: 14px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#374151, #d1d5db) !important;
+    font-weight: 400 !important;
+    flex: 1 !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li:hover > a {
+    background: light-dark(#f9fafb, #374151) !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li:hover > a i {
+    color: light-dark(#3b82f6, #60a5fa) !important;
+}
+
+.main-header .navbar-nav .user-menu .dropdown-menu .menu > li:hover > a span {
+    color: light-dark(#111827, #f9fafb) !important;
+}
+
+/* User Footer Buttons - Hide or minimal */
+.main-header .navbar-nav .dropdown-menu .user-footer {
+    display: none !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-secondary,
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-flat,
+.main-header .navbar-nav .dropdown-menu .user-footer a,
+.main-header .navbar-nav .dropdown-menu .user-footer button {
+    width: 100% !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    border: 1px solid transparent !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-secondary,
+.main-header .navbar-nav .dropdown-menu .user-footer a:not(.btn-flat) {
+    background: light-dark(#f9fafb, #374151) !important;
+    color: light-dark(#374151, #d1d5db) !important;
+    border-color: light-dark(#e5e7eb, #4b5563) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-secondary:hover,
+.main-header .navbar-nav .dropdown-menu .user-footer a:not(.btn-flat):hover {
+    background: light-dark(#f3f4f6, #4b5563) !important;
+    color: light-dark(#111827, #f9fafb) !important;
+    border-color: light-dark(#d1d5db, #6b7280) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-flat {
+    background: light-dark(#3b82f6, #2563eb) !important;
+    color: #ffffff !important;
+    border-color: light-dark(#3b82f6, #2563eb) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .btn-flat:hover {
+    background: light-dark(#2563eb, #1d4ed8) !important;
+    border-color: light-dark(#2563eb, #1d4ed8) !important;
+}
+
+.main-header .navbar-nav .dropdown-menu .user-footer .float-start {
+    float: none !important;
+    width: 100% !important;
+}
+
+/* ============================================
+   API BALANCE DROPDOWN
+   ============================================ */
+
+.main-header #show-balance {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    min-width: 300px !important;
+    background: light-dark(#ffffff, #1f2937) !important;
+    border: 1px solid light-dark(#e5e7eb, #374151) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px light-dark(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.4)) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    animation: dropdownSlideDown 0.2s ease-out !important;
+    overflow: hidden !important;
+}
+
+.main-header #show-balance::before {
+    display: none !important;
+}
+
+.main-header #show-balance > div {
+    padding: 16px 20px !important;
+}
+
+.main-header #show-balance p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#6b7280, #9ca3af) !important;
+}
+
+.main-header #show-balance p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.main-header #show-balance span {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#9ca3af, #6b7280) !important;
+}
+
+.main-header #show-balance strong {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: light-dark(#111827, #f9fafb) !important;
+}
+
+/* ============================================
+   TASKS DROPDOWN
+   ============================================ */
+
+.main-header .tasks-menu .dropdown-menu .menu > li > a h3 {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.main-header .tasks-menu .dropdown-menu .menu > li > a h3 small {
+    margin-left: auto !important;
+}
+
+/* ============================================
+   DROPDOWN VISIBILITY
+   ============================================ */
+
+.main-header .navbar-nav .open > .dropdown-menu,
+.main-header .navbar-nav .dropdown-menu.show {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .main-header .navbar-nav .dropdown-menu {
+        min-width: 300px !important;
+        max-width: calc(100vw - var(--spacing-8)) !important;
+    }
+    
+    .main-header .navbar-nav > .user-menu .dropdown-menu {
+        min-width: 260px !important;
+        max-width: 260px !important;
+    }
+}

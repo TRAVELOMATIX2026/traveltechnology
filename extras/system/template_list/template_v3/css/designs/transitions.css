@@ -1,0 +1,23 @@
+/**
+ * Transition Variables
+ * Transition timing and property variables
+ */
+
+:root {
+    /* ============================================
+       TRANSITION VARIABLES
+       ============================================ */
+--transition-none: none;
+--transition-fast: 150ms ease;
+--transition-base: 200ms ease;
+--transition-slow: 300ms ease;
+--transition-slower: 500ms ease;
+
+/* Transition Properties */
+--transition-all: all var(--transition-base);
+--transition-colors: color var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+--transition-opacity: opacity var(--transition-base);
+--transition-transform: transform var(--transition-base);
+--transition-shadow: box-shadow var(--transition-base);
+}
+
