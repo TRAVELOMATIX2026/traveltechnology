@@ -124,28 +124,47 @@ jobs:
           FTP_PORT: ${{ secrets.DEV_FTP_PORT || '21' }}
           FTP_PATH: ${{ secrets.DEV_FTP_PATH || '/public_html' }}
         run: |
-          echo "Deploying to development server via FTP..."
+          echo "Deploying to development server via FTP (optimized for speed)..."
           FTP_PATH_FINAL="${FTP_PATH%/}"
           
-          # Create lftp script for deployment
+          # Create optimized lftp script for faster deployment
           cat > /tmp/ftp_deploy.lftp << 'EOF'
+          # Connection settings
           set ftp:ssl-allow no
           set ssl:verify-certificate no
+          set ftp:passive-mode yes
           set ftp:list-options -a
+          
+          # Performance optimizations
           set cmd:fail-exit yes
           set cmd:interactive no
-          set net:timeout 30
-          set net:max-retries 3
-          set mirror:use-pget-n 5
+          set cmd:parallel 10
+          set cmd:queue-parallel 10
+          
+          # Network settings
+          set net:timeout 20
+          set net:max-retries 2
+          set net:reconnect-interval-base 3
+          set net:reconnect-interval-multiplier 1
+          
+          # Transfer optimizations
+          set mirror:use-pget-n 10
+          set mirror:parallel-directories 5
+          set mirror:parallel-transfer-count 10
           set xfer:clobber yes
+          set xfer:rate-limit 0
+          
+          # Buffer settings for faster transfers
+          set cmd:save-cwd-history no
           EOF
           
           echo "open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST" >> /tmp/ftp_deploy.lftp
           echo "cd $FTP_PATH_FINAL" >> /tmp/ftp_deploy.lftp
           echo "lcd ." >> /tmp/ftp_deploy.lftp
-          echo "mirror --reverse --delete --verbose --exclude-glob=.git --exclude-glob=.github --exclude-glob=logs/* --exclude-glob=cache/* --exclude-glob=*.log --exclude-glob=.env --exclude-glob=node_modules --exclude-glob=*.md . ." >> /tmp/ftp_deploy.lftp
+          echo "mirror --reverse --delete --only-newer --parallel=10 --exclude-glob=.git --exclude-glob=.github --exclude-glob=logs/* --exclude-glob=cache/* --exclude-glob=*.log --exclude-glob=.env --exclude-glob=node_modules --exclude-glob=*.md . ." >> /tmp/ftp_deploy.lftp
           echo "quit" >> /tmp/ftp_deploy.lftp
           
+          echo "Starting FTP deployment..."
           lftp -f /tmp/ftp_deploy.lftp
           echo "✅ FTP deployment completed"
       
