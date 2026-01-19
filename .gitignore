@@ -1,0 +1,260 @@
+# ===========================================
+# CodeIgniter & PHP Project .gitignore
+# ===========================================
+
+# ===========================================
+# Environment & Configuration Files
+# ===========================================
+.env
+.env.local
+.env.*.local
+*.env
+config/database.php
+config/config.php.local
+config/production/config.php
+config/development/config.php
+config/testing/config.php
+
+# ===========================================
+# Constants Files (may contain sensitive data)
+# ===========================================
+# Constants files often contain API keys, secrets, and sensitive configuration
+# Option 1: Ignore constants files entirely (recommended if they contain secrets)
+# Uncomment these lines if constants.php contains sensitive data:
+# b2c/config/constants.php
+# agent/application/config/constants.php
+# supervision/application/config/constants.php
+
+# Option 2: Use environment-specific constants files
+*constants.local.php
+*constants.production.php
+*constants.development.php
+constants.php.local
+constants.php.example
+
+# Backup/new versions of constants files
+*constants_new.php
+*constants.backup.php
+*constants.old.php
+constants.php.bak
+
+# ===========================================
+# Logs & Temporary Files
+# ===========================================
+*.log
+logs/*
+!logs/index.html
+!logs/.htaccess
+
+# Application logs
+b2c/logs/*
+!b2c/logs/index.html
+agent/application/logs/*
+!agent/application/logs/index.html
+supervision/logs/*
+!supervision/logs/.gitkeep
+
+# Flight/Hotel logs
+logs/flight/*
+logs/hotel/*
+!logs/flight/.gitkeep
+!logs/hotel/.gitkeep
+
+# ===========================================
+# Cache Directories
+# ===========================================
+cache/*
+!cache/index.html
+!cache/.htaccess
+
+# Application cache
+b2c/cache/*
+!b2c/cache/index.html
+!b2c/cache/.htaccess
+
+agent/application/cache/*
+!agent/application/cache/index.html
+
+# Custom temp files
+b2c/custom/temp/*
+!b2c/custom/temp/.gitkeep
+
+# ===========================================
+# IDE & Editor Files
+# ===========================================
+# PhpStorm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# NetBeans
+nbproject/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Eclipse
+.project
+.classpath
+.settings/
+build/
+
+# ===========================================
+# OS Generated Files
+# ===========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===========================================
+# Backup & Temporary Files
+# ===========================================
+*.bak
+*.backup
+*.backup2
+*.old
+*.orig
+*.save
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+
+# ===========================================
+# Database Files
+# ===========================================
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# ===========================================
+# Dependencies & Vendors
+# ===========================================
+# Composer
+/vendor/
+composer.phar
+composer.lock
+
+# Node.js (if used)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# ===========================================
+# Build & Deployment Files
+# ===========================================
+production-package.tar.gz
+*.tar.gz
+*.zip
+*.rar
+build/
+dist/
+
+# ===========================================
+# User Uploaded Files & Media
+# ===========================================
+# Uncomment if you want to ignore uploaded files
+# uploads/
+# upload/
+# files/
+# assets/uploads/
+
+# ===========================================
+# CodeIgniter Specific
+# ===========================================
+# User uploaded content
+user_guide/
+
+# Session files (if stored in filesystem)
+sessions/*
+
+# ===========================================
+# Testing & Coverage
+# ===========================================
+phpunit.xml
+.phpunit.result.cache
+coverage/
+.phpunit.cache/
+tests/_output/*
+
+# ===========================================
+# Security & Sensitive Files
+# ===========================================
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+id_rsa
+id_rsa.pub
+*.secret
+secrets/
+
+# ===========================================
+# XAMPP Specific
+# ===========================================
+xampp/
+htdocs/temp/
+
+# ===========================================
+# Custom Project Specific
+# ===========================================
+# Add your custom ignores below
+
+# Debug files
+debug.php
+phpinfo.php
+test.php
+info.php
+
+# ===========================================
+# Keep Important Empty Directories
+# ===========================================
+# Keep directory structure but ignore contents
+!logs/.gitkeep
+!cache/.gitkeep
+!b2c/logs/.gitkeep
+!b2c/cache/.gitkeep
