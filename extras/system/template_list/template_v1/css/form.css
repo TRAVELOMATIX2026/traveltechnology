@@ -2631,6 +2631,12 @@ input[type="checkbox"]:checked + label {
 	margin-bottom: var(--spacing-3) !important;
 }
 
+.row > [class*="col-"] {
+	padding-left: var(--spacing-3) !important;
+	padding-right: var(--spacing-3) !important;
+	margin-bottom: var(--spacing-3) !important;
+}
+
 /* Form Group Alignment - Markup Pages */
 .card-body .form-group {
 	margin-bottom: var(--spacing-4) !important;
@@ -2992,4 +2998,83 @@ fieldset .form-group.pt-5 .form-label.pt-3 {
 		display: block !important;
 		margin-bottom: var(--spacing-2) !important;
 	}
+}
+
+/* Markup Pages - Radio Button Labels (without btn class) */
+.btn-outline-primary {
+	display: inline-block;
+	padding: 0.375rem 0.75rem;
+	margin-bottom: 0;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #0d6efd;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid #0d6efd;
+	border-radius: 0.25rem;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+	box-shadow: none !important;
+}
+
+.btn-outline-primary:hover {
+	color: #fff;
+	background-color: #0d6efd;
+	border-color: #0d6efd;
+}
+
+/* Markup Pages - Radio Button Active State */
+.btn-check:checked + .btn-outline-primary {
+	background-color: #0d6efd !important;
+	border-color: #0d6efd !important;
+	color: #fff !important;
+	box-shadow: none !important;
+}
+
+.btn-check:focus + .btn-outline-primary {
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+/* Markup Pages - Icon Colors */
+.card-header h5 i,
+.card-header .bi {
+	color: #000 !important;
+}
+
+/* Markup Pages - Remove Shadows */
+.panel.card.shadow-sm {
+	box-shadow: none !important;
+}
+
+/* Markup Pages - Form Alignment */
+.card-body .row.g-3.align-items-end {
+	align-items: flex-end !important;
+}
+
+.card-body .row.g-3 > [class*="col-"] {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-body .row.g-3 .form-label.mb-2 {
+	margin-bottom: 0.5rem !important;
+}
+
+.card-body .row.g-3 .btn-group.w-100 {
+	margin-top: 0 !important;
+	width: 100% !important;
+}
+
+/* Markup Pages - Button Group Gap */
+.btn-group.gap-3 {
+	gap: 1rem !important;
+	display: flex !important;
+}
+
+.btn-group.gap-3 > label {
+	margin: 0 !important;
 }

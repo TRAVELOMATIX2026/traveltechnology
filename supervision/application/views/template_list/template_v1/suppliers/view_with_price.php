@@ -1,169 +1,126 @@
 <div id="package_types" class="bodyContent col-md-12">
-  <div class="panel card">
-    <!-- PANEL WRAP START -->
-    <div class="card-header">
-      <!-- PANEL HEAD START -->
-      <div class="card-title">
-        <ul class="nav nav-tabs nav-justified" role="tablist" id="myTab">
-          <!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE START-->
-          <li role="presentation" class="active">
-            <a href="#fromList"
-              aria-controls="home" role="tab" data-bs-toggle="tab">
-              <h1>View
-                Packages
-              </h1>
-            </a>
-          </li>
-          <!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE END -->
-        </ul>
+  <div class="panel card mb-4">
+    <div class="card-header bg-white border-bottom">
+      <div class="d-flex w-100 justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-box-seam-fill text-dark"></i> View Packages</h5>
+        <a href="<?php echo base_url(); ?>supplier/add_with_price" class="btn btn-gradient-success">
+          <i class="bi bi-plus-circle"></i> Add Package
+        </a>
       </div>
     </div>
-    <!-- PANEL HEAD START -->
-    <div class="card-body">
-      <!-- PANEL BODY START -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="fromList">
-          <div class="col-md-12 nopad">
-            <div class='row'>
-              <div class='col-sm-12 nopad'>
-                <div class='' style='margin-bottom: 0;'>
-                  <div class=' '>
-                    <div class='actions'>
-                      <a href="<?php echo base_url(); ?>supplier/add_with_price">
-                      <button class='btn btn-primary' style='margin-bottom: 5px'>
-                      + Add Package
-                      </button>
-                      </a> <a href="#"><i> &nbsp</i></a>
-                      <input type="text" id="srch_inpt" onkeyup="srchFunctn()" placeholder="Search...">
-                    </div>
-                  </div>
-                  <?php if(isset($status)){echo $status;}?>
-                  
-                  <div class='responsive-table' id="srch_table">
-                    <div class=''>
-                      <div class='scrollable-area'>
-                        <table
-                          class=' table-striped external'
-                          style='margin-bottom: 0; width:100%;'>
-                          <thead>
-                            <tr>
-                              <th>S.no</th>
-                              <th>Package Name</th>
-                              <th>Location</th>
-                              <th>Image</th>
-                              <th>Status</th>
-                              <th>Display on HomePage</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <?php
-                              if (! empty ( $newpackage )) {
-                              	$count = 1;
-                              	foreach ( $newpackage as $key => $package ) {
-                              		?>
-                            <tr>
-                              <td><?php echo $count; ?></td>
-                              <td><?php echo $package->package_name; ?></td>
-                              <td><?php echo $package->package_city; ?>,<?php $country = $this->Supplierpackage_Model->get_country_name_new($package->package_country); echo $country->name; ?></td>
-                              <td><a data-lightbox='flatty'
-                                href='<?php echo $package->image; ?>'> <img width="70" height="60"
-                                title="<?= $package->package_name; ?>"
-                                alt="<?= $package->package_name; ?>"
-                                src="<?php echo $GLOBALS['CI']->template->domain_upload_pckg_images($package->image); ?>"></a></td>
-                              <td>
-                                <select
-                                  onchange="activate(this.value);">
-                                  <?php if ($package->status == '1') { ?>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_status/<?php
-                                      echo $package->package_id;
-                                      ?>/1"
-                                    selected>Active</option>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_status/<?php
-                                      echo $package->package_id;
-                                      ?>/0">In-Active</option>
-                                  <?php } else { ?>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/1">Active</option>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/0"
-                                    selected>In-Active</option>
-                                </select>
-                                <?php } ?>
-                              </td>
-                              <td>
-                                <select
-                                  onchange="activate(this.value);">
-                                  <?php if ($package->top_destination == '1') { ?>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_top_destination/<?php
-                                      echo $package->package_id;
-                                      ?>/1"
-                                    selected>Active</option>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_top_destination/<?php
-                                      echo $package->package_id;
-                                      ?>/0">In-Active</option>
-                                  <?php } else { ?>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/1">Active</option>
-                                  <option
-                                    value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/0"
-                                    selected>In-Active</option>
-                                </select>
-                                <?php } ?>
-                              </td>
-                              <td class="center custmpackg_btns">
-                                <div class="dropdown actn_drpdwn">
-                                  <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                  </button>
-                                  <ul class="dropdown-menu actn_menu_drpdwn" aria-labelledby="dropdownMenu1">
-                                    <a class="btn-success" data-placement="top" title="" 
-                                      href="<?php echo base_url(); ?>supplier/edit_with_price/<?php echo $package->package_id; ?>"
-                                      data-original-title="Edit Package">
-                                      <i class="glyphicon glyphicon-pencil"></i> Edit Package
-                                    </a>
-                                    <a class="btn-warning" data-placement="top" title=""
-                                      href="<?php echo base_url(); ?>supplier/edit_itinerary/<?php echo $package->package_id; ?>"
-                                      data-original-title="Edit Itinerary"> <i class="glyphicon glyphicon-pencil "></i> Edit Itinerary 
-                                    </a> 
-                                    <a class='btn-info' data-placement='top' title='Change Images'
-                                      href='<?php echo base_url(); ?>supplier/images/<?=$package->package_id;?>/w'>
-                                    <i class='glyphicon glyphicon-th-large'></i> Edit Images
-                                    </a>
-                                    <a class="btn-primary" data-placement="top" title=""
-                                      href="<?php echo base_url(); ?>supplier/view_enquiries/<?php echo $package->package_id; ?>/w"
-                                      data-original-title="View Enquiries"><i class='glyphicon glyphicon-pencil'></i> Edit Enquiries 
-                                    </a>
-                                    <a href="<?php echo base_url(); ?>supplier/delete_package/<?php echo $package->package_id; ?>"
-                                      data-original-title="Delete" onclick="return confirm('Do you want delete this record');"
-                                      class="btn-danger" data-original-title="Delete"> <i class="glyphicon glyphicon-trash"></i>Delete Package
-                                    </a>
-                                  </ul>
-                                </div>
-                              </td>
-                            </tr>
-                            <?php $count++; } } ?>	
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="card-body p-4">
+      <?php if(isset($status)){echo $status;}?>
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+          <input type="text" id="srch_inpt" class="form-control" onkeyup="srchFunctn()" placeholder="Search packages...">
         </div>
+      </div>
+      <div class="table-responsive" id="srch_table">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th width="5%">S.no</th>
+              <th width="20%">Package Name</th>
+              <th width="15%">Location</th>
+              <th width="10%">Image</th>
+              <th width="10%">Status</th>
+              <th width="15%">Display on HomePage</th>
+              <th width="15%">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              if (! empty ( $newpackage )) {
+              	$count = 1;
+              	foreach ( $newpackage as $key => $package ) {
+              		?>
+            <tr>
+              <td><span class="badge bg-secondary"><?php echo $count; ?></span></td>
+              <td><span class="fw-medium"><?php echo $package->package_name; ?></span></td>
+              <td><?php echo $package->package_city; ?>, <?php $country = $this->Supplierpackage_Model->get_country_name_new($package->package_country); echo $country->name; ?></td>
+              <td>
+                <a data-lightbox='flatty' href='<?php echo $package->image; ?>'>
+                  <img width="70" height="60" class="img-thumbnail" 
+                       title="<?= $package->package_name; ?>"
+                       alt="<?= $package->package_name; ?>"
+                       src="<?php echo $GLOBALS['CI']->template->domain_upload_pckg_images($package->image); ?>">
+                </a>
+              </td>
+              <td>
+                <select class="form-select form-select-sm" onchange="activate(this.value);">
+                  <?php if ($package->status == '1') { ?>
+                  <option value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/1" selected>Active</option>
+                  <option value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/0">In-Active</option>
+                  <?php } else { ?>
+                  <option value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/1">Active</option>
+                  <option value="<?php echo base_url(); ?>supplier/update_status/<?php echo $package->package_id; ?>/0" selected>In-Active</option>
+                  <?php } ?>
+                </select>
+              </td>
+              <td>
+                <select class="form-select form-select-sm" onchange="activate(this.value);">
+                  <?php if ($package->top_destination == '1') { ?>
+                  <option value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/1" selected>Active</option>
+                  <option value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/0">In-Active</option>
+                  <?php } else { ?>
+                  <option value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/1">Active</option>
+                  <option value="<?php echo base_url(); ?>supplier/update_top_destination/<?php echo $package->package_id; ?>/0" selected>In-Active</option>
+                  <?php } ?>
+                </select>
+              </td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenu<?php echo $package->package_id; ?>" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots-vertical"></i> Actions
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu<?php echo $package->package_id; ?>">
+                    <li>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>supplier/edit_with_price/<?php echo $package->package_id; ?>">
+                        <i class="bi bi-pencil"></i> Edit Package
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>supplier/edit_itinerary/<?php echo $package->package_id; ?>">
+                        <i class="bi bi-list-ul"></i> Edit Itinerary
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href='<?php echo base_url(); ?>supplier/images/<?=$package->package_id;?>/w'>
+                        <i class="bi bi-images"></i> Edit Images
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>supplier/view_enquiries/<?php echo $package->package_id; ?>/w">
+                        <i class="bi bi-envelope"></i> View Enquiries
+                      </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <a class="dropdown-item text-danger" href="<?php echo base_url(); ?>supplier/delete_package/<?php echo $package->package_id; ?>" 
+                         onclick="return confirm('Do you want delete this record');">
+                        <i class="bi bi-trash"></i> Delete Package
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <?php $count++; } } else { ?>
+            <tr>
+              <td colspan="7" class="text-center text-muted py-4">
+                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                No packages found. <a href="<?php echo base_url(); ?>supplier/add_with_price">Add your first package</a>
+              </td>
+            </tr>
+            <?php } ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-  <!-- PANEL BODY END -->
 </div>
-<!-- PANEL WRAP END -->
-</div>
+
 <script type="text/javascript">
   function activate(that) { window.location.href = that; }
 </script>
