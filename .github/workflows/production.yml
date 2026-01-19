@@ -101,15 +101,46 @@ jobs:
       - name: Create production package
         run: |
           echo "Creating production package..."
-          # Exclude development files
+          
+          # Disable exit on error temporarily to handle tar's exit code 1
+          # which occurs when files change during archive creation
+          set +e
+          
+          # Create tar archive with exclusions
           tar --exclude='.git' \
               --exclude='.github' \
               --exclude='*.md' \
-              --exclude='logs/*' \
-              --exclude='cache/*' \
-              --exclude='b2c/config/development/*' \
-              --exclude='b2c/config/testing/*' \
-              -czf production-package.tar.gz .
+              --exclude='logs' \
+              --exclude='cache' \
+              --exclude='b2c/config/development' \
+              --exclude='b2c/config/testing' \
+              --exclude='node_modules' \
+              --exclude='*.log' \
+              --exclude='.env' \
+              --warning=no-file-changed \
+              -czf production-package.tar.gz . 2>&1
+          
+          TAR_EXIT_CODE=$?
+          set -e
+          
+          # Verify package was created and has content
+          # Exit code 1 from tar is acceptable (file changed warning), as long as file exists
+          if [ -f production-package.tar.gz ] && [ -s production-package.tar.gz ]; then
+            echo "✅ Production package created successfully"
+            ls -lh production-package.tar.gz
+            echo "Package size: $(du -h production-package.tar.gz | cut -f1)"
+          else
+            echo "❌ Failed to create production package or package is empty"
+            echo "Tar exit code: $TAR_EXIT_CODE"
+            exit 1
+          fi
+          
+          # Fail only if tar had a real error (exit code > 1)
+          # Exit code 1 means "file changed" which is acceptable
+          if [ $TAR_EXIT_CODE -gt 1 ]; then
+            echo "❌ Tar failed with exit code: $TAR_EXIT_CODE"
+            exit 1
+          fi
       
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
