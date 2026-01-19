@@ -93,12 +93,24 @@ jobs:
       
       - name: Setup SSH
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEV_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.DEV_SERVER_IP }} >> ~/.ssh/known_hosts
-          # Alternative: Install sshpass for password-based auth
+          # Create .ssh directory using $HOME for reliability
+          mkdir -p $HOME/.ssh
+          chmod 700 $HOME/.ssh
+          
+          # Set up SSH key if provided (optional)
+          if [ -n "${{ secrets.DEV_SSH_KEY }}" ]; then
+            echo "${{ secrets.DEV_SSH_KEY }}" > $HOME/.ssh/deploy_key
+            chmod 600 $HOME/.ssh/deploy_key
+          fi
+          
+          # Add server to known_hosts
+          ssh-keyscan -H ${{ secrets.DEV_SERVER_IP }} >> $HOME/.ssh/known_hosts 2>/dev/null || true
+          chmod 644 $HOME/.ssh/known_hosts
+          
+          # Install sshpass for password-based auth
           sudo apt-get update && sudo apt-get install -y sshpass
+          
+          echo "✅ SSH setup completed"
       
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
