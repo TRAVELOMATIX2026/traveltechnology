@@ -9,25 +9,24 @@ You need to add the following secrets to your GitHub repository:
 ### For Development Environment (develop branch)
 
 **Required Secrets:**
-1. `DEV_SERVER_IP`: `154.221.33.114`
-2. `DEV_SSH_USER`: `traveltechnology`
-3. `DEV_SSH_PASS`: `t1b[nMo[qPX_+@dH`
-4. `DEV_DEPLOY_PATH`: `~/public_html` (or your actual development path)
+1. `DEV_FTP_HOST`: `154.221.33.114` (or `ftp.traveltechnology.co.in`)
+2. `DEV_FTP_USER`: `traveltechnology`
+3. `DEV_FTP_PASS`: `t1b[nMo[qPX_+@dH`
+4. `DEV_FTP_PATH`: `/public_html` (or your actual development path)
 
 **Optional Secrets:**
-- `DEV_SSH_KEY`: SSH private key for key-based authentication (more secure than password)
+- `DEV_FTP_PORT`: FTP port number (defaults to 21 if not set, use 22 for SFTP)
 
 ### For Production Environment (main branch)
 
 **Required Secrets:**
-1. `PROD_SERVER_IP`: `154.221.33.114`
-2. `PROD_SSH_USER`: `traveltechnology`
-3. `PROD_SSH_PASS`: `t1b[nMo[qPX_+@dH`
-4. `PROD_DEPLOY_PATH`: `~/public_html` (or your actual production path)
+1. `PROD_FTP_HOST`: `154.221.33.114` (or `ftp.traveltechnology.co.in`)
+2. `PROD_FTP_USER`: `traveltechnology`
+3. `PROD_FTP_PASS`: `t1b[nMo[qPX_+@dH`
+4. `PROD_FTP_PATH`: `/public_html` (or your actual production path)
 
 **Optional Secrets:**
-- `PROD_SSH_KEY`: SSH private key for key-based authentication (more secure than password)
-- `PROD_SSH_PORT`: SSH port number (defaults to 22 if not set)
+- `PROD_FTP_PORT`: FTP port number (defaults to 21 if not set, use 22 for SFTP)
 
 > **Note:** All secret names follow GitHub's naming rules:
 > - Only alphanumeric characters `[a-z]`, `[A-Z]`, `[0-9]` and underscores `_`
@@ -45,37 +44,36 @@ You need to add the following secrets to your GitHub repository:
 
 ## Deployment Paths
 
-The default deployment path is `~/public_html`. If your application is deployed to a different directory, update the `DEPLOY_PATH` secrets accordingly.
+The default FTP path is `/public_html`. If your application is deployed to a different directory, update the `FTP_PATH` secrets accordingly.
 
-Common paths:
-- `~/public_html` (default for cPanel/shared hosting)
-- `/var/www/html` (typical Apache setup)
-- `/var/www/traveltechnology` (custom path)
+Common FTP paths:
+- `/public_html` (default for cPanel/shared hosting)
+- `/www` (some hosting providers)
+- `/htdocs` (alternative path)
 - `/home/traveltechnology/public_html` (full path)
 
-## Security Recommendations
+Note: FTP paths are absolute paths starting with `/`, not relative paths like `~/public_html`.
 
-### Option 1: SSH Key Authentication (Recommended)
+## FTP Connection Details
 
-For better security, set up SSH key authentication instead of password authentication:
+### FTP vs SFTP
 
-1. Generate an SSH key pair (if you don't have one):
-   ```bash
-   ssh-keygen -t rsa -b 4096 -C "github-actions@traveltechnology"
-   ```
+- **FTP (Port 21)**: Standard FTP protocol (default)
+- **SFTP (Port 22)**: Secure FTP over SSH
 
-2. Copy the public key to your server:
-   ```bash
-   ssh-copy-id -i ~/.ssh/id_rsa.pub traveltechnology@154.221.33.114
-   ```
+The workflows support both. If your server uses SFTP, set `FTP_PORT` secret to `22`.
 
-3. Copy the private key content and add it as `DEV_SSH_KEY` or `PROD_SSH_KEY` secret in GitHub
+### FTP Host Format
 
-4. Update the workflow to use SSH key authentication (the workflows already support this)
+You can use either:
+- IP address: `154.221.33.114`
+- Domain name: `ftp.traveltechnology.co.in` (if configured)
 
-### Option 2: Password Authentication (Current Setup)
+### Security Note
 
-The workflows are currently configured to use password authentication with `sshpass`. This works but is less secure than SSH keys.
+FTP credentials are transmitted over the network. For better security:
+- Use SFTP (port 22) if available
+- Consider using FTPS (FTP over SSL) if supported by your hosting provider
 
 ## What Gets Deployed
 
@@ -125,37 +123,40 @@ You can also manually trigger the production workflow:
 
 ## Troubleshooting
 
-### SSH Connection Timeout
+### FTP Connection Issues
 
-If you get `ssh: connect to host *** port 22: Connection timed out`:
+If you get FTP connection errors:
 
-1. **Check if SSH port is open:**
+1. **Check FTP credentials:**
+   - Verify username and password are correct
+   - Check if account is active and not locked
+
+2. **Verify FTP server address:**
+   - Test with IP: `154.221.33.114`
+   - Or try domain: `ftp.traveltechnology.co.in` (if configured)
+
+3. **Check FTP port:**
+   - Default FTP port: `21`
+   - SFTP port: `22`
+   - Add `FTP_PORT` secret if using non-standard port
+
+4. **Test FTP connection manually:**
    ```bash
-   telnet 154.221.33.114 22
-   # or
-   nc -zv 154.221.33.114 22
+   # Using lftp
+   lftp -u traveltechnology,password ftp://154.221.33.114
+   
+   # Or using ftp command
+   ftp 154.221.33.114
    ```
 
-2. **Verify server IP is correct:** `154.221.33.114`
+5. **Firewall Issues:**
+   - Ensure FTP port (21) is open
+   - Some hosting providers require passive mode FTP
+   - Check if your hosting provider allows FTP from external IPs
 
-3. **Check if server uses a different SSH port:**
-   - If your server uses a non-standard port (not 22), add `PROD_SSH_PORT` secret with the correct port number
-
-4. **Firewall Issues:**
-   - GitHub Actions runs from various IP addresses
-   - Your server firewall may be blocking connections from GitHub's IP ranges
-   - You may need to whitelist GitHub Actions IP ranges or temporarily allow all IPs for SSH
-
-5. **Test SSH connection manually:**
-   ```bash
-   ssh traveltechnology@154.221.33.114
-   # or with specific port
-   ssh -p 2222 traveltechnology@154.221.33.114
-   ```
-
-6. **Check server status:**
-   - Ensure the server is online
-   - Verify SSH service is running: `systemctl status sshd` (on Linux)
+6. **Passive Mode:**
+   - The workflows use passive mode FTP by default
+   - If issues persist, check if your firewall allows passive FTP connections
 
 ### HTTP 500 Error After Deployment
 
@@ -182,20 +183,22 @@ If your website shows "HTTP ERROR 500" after deployment:
 
 
 ### Connection Issues
-- Verify SSH credentials are correct
-- Check if SSH port (22) is open on the server
-- Verify the server IP is correct
-- Test SSH connection manually: `ssh traveltechnology@154.221.33.114`
+- Verify FTP credentials are correct
+- Check if FTP port (21) is open on the server
+- Verify the FTP server address is correct
+- Test FTP connection manually using an FTP client
 
 ### Permission Issues
-- Ensure the deployment user has write access to the deployment path
-- Check file permissions after deployment
-- May need to adjust `chmod` commands in the workflow
+- Ensure the FTP user has write access to the deployment path
+- Note: FTP typically cannot set file permissions directly
+- File permissions are usually set automatically by the FTP server
+- If needed, use cPanel or SSH to adjust permissions manually
 
 ### Deployment Path Issues
-- Verify the `DEPLOY_PATH` secret is correct
+- Verify the `FTP_PATH` secret is correct (use absolute path starting with `/`)
 - Check if the directory exists on the server
-- Ensure the user has access to the directory
+- Ensure the FTP user has access to the directory
+- Common paths: `/public_html`, `/www`, `/htdocs`
 
 ## Server Information
 

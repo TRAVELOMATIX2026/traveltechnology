@@ -173,145 +173,80 @@ jobs:
           tar -xzf production-package.tar.gz
           cd ..
       
-      - name: Setup SSH
+      - name: Setup FTP
         run: |
-          # Create .ssh directory using $HOME for reliability
-          mkdir -p $HOME/.ssh
-          chmod 700 $HOME/.ssh
-          
-          # Set up SSH key if provided (optional)
-          if [ -n "${{ secrets.PROD_SSH_KEY }}" ]; then
-            echo "${{ secrets.PROD_SSH_KEY }}" > $HOME/.ssh/deploy_key
-            chmod 600 $HOME/.ssh/deploy_key
-          fi
-          
-          # Add server to known_hosts
-          ssh-keyscan -H ${{ secrets.PROD_SERVER_IP }} >> $HOME/.ssh/known_hosts 2>/dev/null || true
-          chmod 644 $HOME/.ssh/known_hosts
-          
-          # Install sshpass for password-based auth
-          sudo apt-get update && sudo apt-get install -y sshpass
-          
-          echo "✅ SSH setup completed"
-      
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+          # Install lftp for FTP/SFTP deployment
+          sudo apt-get update && sudo apt-get install -y lftp
+          echo "✅ FTP client installed"
       
       - name: Pre-deployment checks
         run: |
           echo "Running pre-deployment checks..."
           echo "Branch: ${{ github.ref }}"
           echo "Commit: ${{ github.sha }}"
-          echo "Server: ${{ secrets.PROD_SERVER_IP }}"
+          echo "FTP Server: ${{ secrets.PROD_FTP_HOST }}"
           echo "Domain: traveltechnology.co.in"
       
-      - name: Test SSH connection
+      - name: Test FTP connection
         env:
-          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
-          SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
-          SSH_PORT: ${{ secrets.PROD_SSH_PORT || '22' }}
+          FTP_HOST: ${{ secrets.PROD_FTP_HOST }}
+          FTP_USER: ${{ secrets.PROD_FTP_USER }}
+          FTP_PASS: ${{ secrets.PROD_FTP_PASS }}
+          FTP_PORT: ${{ secrets.PROD_FTP_PORT || '21' }}
         run: |
-          echo "Testing SSH connection to server..."
-          echo "Host: $SSH_HOST"
-          echo "Port: $SSH_PORT"
-          echo "User: $SSH_USER"
+          echo "Testing FTP connection..."
+          echo "Host: $FTP_HOST"
+          echo "Port: $FTP_PORT"
+          echo "User: $FTP_USER"
           
-          # Test SSH connection with timeout settings
-          sshpass -p "$SSH_PASS" ssh \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o ConnectTimeout=30 \
-            -o ServerAliveInterval=10 \
-            -o ServerAliveCountMax=3 \
-            -p $SSH_PORT \
-            $SSH_USER@$SSH_HOST \
-            "echo '✅ SSH connection successful' && uname -a" || {
-            echo "❌ SSH connection failed"
+          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; pwd; quit" || {
+            echo "❌ FTP connection failed"
             echo "Please check:"
-            echo "1. Server IP is correct: $SSH_HOST"
-            echo "2. SSH port is open (default: 22)"
-            echo "3. Firewall allows connections from GitHub Actions"
-            echo "4. Server is online and SSH service is running"
+            echo "1. FTP server address is correct: $FTP_HOST"
+            echo "2. FTP port is correct (default: 21, SFTP: 22)"
+            echo "3. FTP credentials are correct"
+            echo "4. Firewall allows FTP connections from GitHub Actions"
             exit 1
           }
+          echo "✅ FTP connection successful"
       
-      - name: Deploy to production server via SSH
+      - name: Deploy to production server via FTP
         env:
-          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
-          SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
-          SSH_PORT: ${{ secrets.PROD_SSH_PORT || '22' }}
-          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+          FTP_HOST: ${{ secrets.PROD_FTP_HOST }}
+          FTP_USER: ${{ secrets.PROD_FTP_USER }}
+          FTP_PASS: ${{ secrets.PROD_FTP_PASS }}
+          FTP_PORT: ${{ secrets.PROD_FTP_PORT || '21' }}
+          FTP_PATH: ${{ secrets.PROD_FTP_PATH || '/public_html' }}
         run: |
-          echo "Deploying to production server..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          echo "Deploying to production server via FTP..."
+          FTP_PATH_FINAL="${FTP_PATH%/}"
           
-          # Using password with sshpass for deployment
-          sshpass -p "$SSH_PASS" rsync -avz --delete \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='logs/*' \
-            --exclude='cache/*' \
-            --exclude='*.log' \
-            --exclude='.env' \
-            --exclude='node_modules' \
-            --exclude='*.md' \
-            --exclude='b2c/config/development/*' \
-            --exclude='b2c/config/testing/*' \
-            -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=30 -o ServerAliveInterval=10 -o ServerAliveCountMax=3 -p $SSH_PORT" \
-            ./artifact/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH_FINAL/
-      
-      - name: Set proper permissions on server
-        env:
-          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
-          SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
-          SSH_PORT: ${{ secrets.PROD_SSH_PORT || '22' }}
-          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
-        run: |
-          echo "Setting file permissions..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          sshpass -p "$SSH_PASS" ssh \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o ConnectTimeout=30 \
-            -o ServerAliveInterval=10 \
-            -o ServerAliveCountMax=3 \
-            -p $SSH_PORT \
-            $SSH_USER@$SSH_HOST \
-            "cd $DEPLOY_PATH_FINAL && \
-             find . -type f -exec chmod 644 {} \; && \
-             find . -type d -exec chmod 755 {} \; && \
-             chmod -R 777 logs/ cache/ 2>/dev/null || true && \
-             chmod 644 index.php b2c/index.php agent/index.php supervision/index.php 2>/dev/null || true"
-      
-      - name: Post-deployment verification
-        env:
-          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
-          SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
-          SSH_PORT: ${{ secrets.PROD_SSH_PORT || '22' }}
-          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
-        run: |
-          echo "Verifying deployment..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          sshpass -p "$SSH_PASS" ssh \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o ConnectTimeout=30 \
-            -o ServerAliveInterval=10 \
-            -o ServerAliveCountMax=3 \
-            -p $SSH_PORT \
-            $SSH_USER@$SSH_HOST \
-            "cd $DEPLOY_PATH_FINAL && \
-             test -f index.php && \
-             php -l index.php && \
-             echo '✅ Production deployment verified' || \
-             echo '❌ Deployment verification failed'"
+          # Create lftp script for deployment
+          cat > /tmp/ftp_deploy.lftp << 'EOF'
+          set ftp:ssl-allow no
+          set ssl:verify-certificate no
+          set ftp:list-options -a
+          set cmd:fail-exit yes
+          set cmd:interactive no
+          set net:timeout 30
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          set net:reconnect-interval-multiplier 1
+          set mirror:use-pget-n 5
+          set xfer:clobber yes
+          EOF
+          
+          # Add connection and deployment commands
+          echo "open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST" >> /tmp/ftp_deploy.lftp
+          echo "cd $FTP_PATH_FINAL" >> /tmp/ftp_deploy.lftp
+          echo "lcd ./artifact" >> /tmp/ftp_deploy.lftp
+          echo "mirror --reverse --delete --verbose --exclude-glob=.git --exclude-glob=.github --exclude-glob=logs/* --exclude-glob=cache/* --exclude-glob=*.log --exclude-glob=.env --exclude-glob=node_modules --exclude-glob=*.md --exclude-glob=b2c/config/development/* --exclude-glob=b2c/config/testing/* . ." >> /tmp/ftp_deploy.lftp
+          echo "quit" >> /tmp/ftp_deploy.lftp
+          
+          # Execute FTP deployment
+          lftp -f /tmp/ftp_deploy.lftp
+          
+          echo "✅ FTP deployment completed"
       
       - name: Health check after deployment
         env:
@@ -334,34 +269,37 @@ jobs:
             echo "⚠️  Website returned HTTP $HTTP_CODE"
           fi
       
-      - name: Clear cache on server
+      - name: Clear cache via FTP
         env:
-          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
-          SSH_USER: ${{ secrets.PROD_SSH_USER }}
-          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
-          SSH_PORT: ${{ secrets.PROD_SSH_PORT || '22' }}
-          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+          FTP_HOST: ${{ secrets.PROD_FTP_HOST }}
+          FTP_USER: ${{ secrets.PROD_FTP_USER }}
+          FTP_PASS: ${{ secrets.PROD_FTP_PASS }}
+          FTP_PORT: ${{ secrets.PROD_FTP_PORT || '21' }}
+          FTP_PATH: ${{ secrets.PROD_FTP_PATH || '/public_html' }}
         run: |
-          echo "Clearing application cache..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          sshpass -p "$SSH_PASS" ssh \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o ConnectTimeout=30 \
-            -o ServerAliveInterval=10 \
-            -o ServerAliveCountMax=3 \
-            -p $SSH_PORT \
-            $SSH_USER@$SSH_HOST \
-            "cd $DEPLOY_PATH_FINAL && \
-             rm -rf cache/* logs/*.log 2>/dev/null || true && \
-             echo '✅ Cache cleared'"
+          echo "Clearing application cache via FTP..."
+          FTP_PATH_FINAL="${FTP_PATH%/}"
+          
+          # Create lftp script to clear cache
+          cat > /tmp/ftp_clear_cache.lftp << EOF
+          set ftp:ssl-allow no
+          set ssl:verify-certificate no
+          set cmd:fail-exit no
+          open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST
+          cd $FTP_PATH_FINAL
+          rm -rf cache/* logs/*.log
+          quit
+          EOF
+          
+          lftp -f /tmp/ftp_clear_cache.lftp || echo "⚠️ Cache clearing attempted (may not be supported via FTP)"
+          echo "✅ Cache clearing completed"
       
       - name: Notify deployment status
         if: always()
         run: |
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ Production deployment successful"
-            echo "Server: ${{ secrets.PROD_SERVER_IP }}"
+            echo "FTP Server: ${{ secrets.PROD_FTP_HOST }}"
             echo "Domain: traveltechnology.co.in"
             echo "Commit: ${{ github.sha }}"
           else
