@@ -210,7 +210,34 @@ jobs:
           }
           echo "✅ FTP connection successful"
       
-      - name: Deploy to production server via FTP
+      - name: Create deployment zip package
+        run: |
+          echo "Creating deployment zip package..."
+          cd ./artifact
+          
+          # Create zip file excluding unnecessary files
+          zip -r ../deployment.zip . \
+            -x "*.git*" \
+            -x "*.github*" \
+            -x "logs/*" \
+            -x "cache/*" \
+            -x "*.log" \
+            -x ".env" \
+            -x "node_modules/*" \
+            -x "*.md" \
+            -x ".DS_Store" \
+            -x "*.swp" \
+            -x "*.swo" \
+            -x "*~" \
+            -x "extract.php" \
+            -x "deployment.zip" \
+            -x "b2c/config/development/*" \
+            -x "b2c/config/testing/*"
+          
+          cd ..
+          echo "✅ Zip package created: $(ls -lh deployment.zip | awk '{print $5}')"
+      
+      - name: Upload zip and extract on server via FTP
         env:
           FTP_HOST: ${{ secrets.PROD_FTP_HOST }}
           FTP_USER: ${{ secrets.PROD_FTP_USER }}
@@ -218,43 +245,72 @@ jobs:
           FTP_PORT: ${{ secrets.PROD_FTP_PORT || '21' }}
           FTP_PATH: ${{ secrets.PROD_FTP_PATH || '/public_html' }}
         run: |
-          echo "Deploying to production server via FTP (optimized for speed)..."
+          echo "Uploading zip package via FTP..."
           FTP_PATH_FINAL="${FTP_PATH%/}"
           
-          # Create optimized lftp script for faster deployment
-          cat > /tmp/ftp_deploy.lftp << 'EOF'
-          # Connection settings
-          set ftp:ssl-allow no
-          set ssl:verify-certificate no
-          set ftp:passive-mode yes
-          set ftp:list-options -a
+          # Upload zip file via FTP
+          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; set ftp:passive-mode yes; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; cd $FTP_PATH_FINAL; put deployment.zip; quit"
           
-          # Performance optimizations
-          set cmd:fail-exit yes
-          set cmd:interactive no
+          echo "✅ Zip file uploaded successfully"
           
-          # Network settings
-          set net:timeout 20
-          set net:max-retries 2
-          set net:reconnect-interval-base 3
+          # Create PHP extraction script
+          cat > extract.php << 'EXTRACT_EOF'
+          <?php
+          // One-time extraction script - will self-delete after execution
+          $zipFile = 'deployment.zip';
+          $extractTo = __DIR__;
           
-          # Transfer optimizations (parallel transfers for faster speed)
-          set mirror:use-pget-n 10
-          set xfer:clobber yes
-          EOF
+          if (file_exists($zipFile)) {
+              $zip = new ZipArchive;
+              if ($zip->open($zipFile) === TRUE) {
+                  // Extract files
+                  $zip->extractTo($extractTo);
+                  $zip->close();
+                  
+                  // Delete zip file
+                  @unlink($zipFile);
+                  
+                  // Self-delete this script
+                  $scriptFile = __FILE__;
+                  ignore_user_abort(true);
+                  @unlink($scriptFile);
+                  
+                  echo "✅ Extraction completed successfully";
+                  exit(0);
+              } else {
+                  echo "❌ Failed to open zip file";
+                  exit(1);
+              }
+          } else {
+              echo "❌ Zip file not found: $zipFile";
+              exit(1);
+          }
+          ?>
+          EXTRACT_EOF
           
-          # Add connection and deployment commands
-          echo "open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST" >> /tmp/ftp_deploy.lftp
-          echo "cd $FTP_PATH_FINAL" >> /tmp/ftp_deploy.lftp
-          echo "lcd ./artifact" >> /tmp/ftp_deploy.lftp
-          echo "mirror --reverse --delete --only-newer --exclude-glob=.git --exclude-glob=.github --exclude-glob=logs/* --exclude-glob=cache/* --exclude-glob=*.log --exclude-glob=.env --exclude-glob=node_modules --exclude-glob=*.md --exclude-glob=b2c/config/development/* --exclude-glob=b2c/config/testing/* . ." >> /tmp/ftp_deploy.lftp
-          echo "quit" >> /tmp/ftp_deploy.lftp
+          # Upload extraction script
+          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; set ftp:passive-mode yes; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; cd $FTP_PATH_FINAL; put extract.php; quit"
           
-          echo "Starting FTP deployment..."
-          # Execute FTP deployment
-          lftp -f /tmp/ftp_deploy.lftp
+          echo "✅ Extraction script uploaded"
           
-          echo "✅ FTP deployment completed"
+          # Trigger extraction via HTTP
+          DOMAIN="traveltechnology.co.in"
+          EXTRACTION_URL="https://${DOMAIN}/extract.php"
+          echo "Triggering extraction via: $EXTRACTION_URL"
+          sleep 2
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$EXTRACTION_URL" || echo "000")
+          
+          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "000" ]; then
+            echo "✅ Extraction triggered (HTTP $HTTP_CODE)"
+            sleep 3  # Wait for extraction to complete
+          else
+            echo "⚠️  Could not trigger extraction via HTTP (HTTP $HTTP_CODE). Please extract manually or check server logs."
+          fi
+          
+          # Clean up local files
+          rm -f deployment.zip extract.php
+          
+          echo "✅ Deployment process completed"
       
       - name: Health check after deployment
         env:
