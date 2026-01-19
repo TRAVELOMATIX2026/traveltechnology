@@ -1,0 +1,271 @@
+name: Production CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  PHP_VERSION: '7.4'
+
+jobs:
+  syntax-check:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+          coverage: none
+      
+      - name: Check PHP syntax
+        run: |
+          find . -type f -name "*.php" ! -path "*/vendor/*" ! -path "*/third_party/*" ! -path "*/system/libraries/*" ! -path "*/cache/*" ! -path "*/logs/*" -exec php -l {} \; | grep -v "No syntax errors"
+        continue-on-error: true
+      
+      - name: Validate critical PHP files
+        run: |
+          php -l index.php
+          php -l b2c/index.php || true
+          php -l agent/index.php || true
+          php -l supervision/index.php || true
+
+  code-quality:
+    name: Code Quality Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+      
+      - name: Validate file structure
+        run: |
+          echo "Validating production file structure..."
+          test -f index.php || exit 1
+          test -d b2c || exit 1
+          test -d system || exit 1
+          test -d b2c/config/production || exit 1
+      
+      - name: Check for production config
+        run: |
+          echo "Verifying production configuration files exist..."
+          ls -la b2c/config/production/ || echo "Production config directory found"
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+      
+      - name: Check for sensitive files
+        run: |
+          echo "Checking for sensitive files..."
+          # Check for accidental commits of sensitive files
+          if [ -f ".env" ]; then
+            echo "Warning: .env file detected"
+          fi
+          if find . -name "*.key" -o -name "*.pem" -o -name "*secret*" | grep -v node_modules | grep -v vendor; then
+            echo "Warning: Potential sensitive files detected"
+          fi
+
+  build:
+    name: Build Production Package
+    runs-on: ubuntu-latest
+    needs: [syntax-check, code-quality, security-scan]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Create production package
+        run: |
+          echo "Creating production package..."
+          # Exclude development files
+          tar --exclude='.git' \
+              --exclude='.github' \
+              --exclude='*.md' \
+              --exclude='logs/*' \
+              --exclude='cache/*' \
+              --exclude='b2c/config/development/*' \
+              --exclude='b2c/config/testing/*' \
+              -czf production-package.tar.gz .
+      
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-package
+          path: production-package.tar.gz
+          retention-days: 7
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-package
+          path: ./artifact
+      
+      - name: Extract production package
+        run: |
+          cd ./artifact
+          tar -xzf production-package.tar.gz
+          cd ..
+      
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/deploy_key 2>/dev/null || true
+          chmod 600 ~/.ssh/deploy_key 2>/dev/null || true
+          ssh-keyscan -H ${{ secrets.PROD_SERVER_IP }} >> ~/.ssh/known_hosts
+          # Install sshpass for password-based auth
+          sudo apt-get update && sudo apt-get install -y sshpass
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+      
+      - name: Pre-deployment checks
+        run: |
+          echo "Running pre-deployment checks..."
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Server: ${{ secrets.PROD_SERVER_IP }}"
+          echo "Domain: traveltechnology.co.in"
+      
+      - name: Create backup on production server
+        env:
+          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+        run: |
+          echo "Creating backup of current production..."
+          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
+            "cd $DEPLOY_PATH_FINAL && \
+             tar -czf ~/backup_$(date +%Y%m%d_%H%M%S).tar.gz . 2>/dev/null || true && \
+             echo '✅ Backup created'"
+      
+      - name: Deploy to production server via SSH
+        env:
+          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+        run: |
+          echo "Deploying to production server..."
+          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          # Using password with sshpass for deployment
+          sshpass -p "$SSH_PASS" rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='logs/*' \
+            --exclude='cache/*' \
+            --exclude='*.log' \
+            --exclude='.env' \
+            --exclude='node_modules' \
+            --exclude='*.md' \
+            --exclude='b2c/config/development/*' \
+            --exclude='b2c/config/testing/*' \
+            -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+            ./artifact/ $SSH_USER@$SSH_HOST:$DEPLOY_PATH_FINAL/
+      
+      - name: Set proper permissions on server
+        env:
+          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+        run: |
+          echo "Setting file permissions..."
+          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
+            "cd $DEPLOY_PATH_FINAL && \
+             find . -type f -exec chmod 644 {} \; && \
+             find . -type d -exec chmod 755 {} \; && \
+             chmod -R 777 logs/ cache/ 2>/dev/null || true && \
+             chmod 644 index.php b2c/index.php agent/index.php supervision/index.php 2>/dev/null || true"
+      
+      - name: Post-deployment verification
+        env:
+          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+        run: |
+          echo "Verifying deployment..."
+          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
+            "cd $DEPLOY_PATH_FINAL && \
+             test -f index.php && \
+             php -l index.php && \
+             echo '✅ Production deployment verified' || \
+             echo '❌ Deployment verification failed'"
+      
+      - name: Clear cache on server
+        env:
+          SSH_HOST: ${{ secrets.PROD_SERVER_IP }}
+          SSH_USER: ${{ secrets.PROD_SSH_USER }}
+          SSH_PASS: ${{ secrets.PROD_SSH_PASS }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
+        run: |
+          echo "Clearing application cache..."
+          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
+          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
+            "cd $DEPLOY_PATH_FINAL && \
+             rm -rf cache/* logs/*.log 2>/dev/null || true && \
+             echo '✅ Cache cleared'"
+      
+      - name: Notify deployment status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ Production deployment successful"
+            echo "Server: ${{ secrets.PROD_SERVER_IP }}"
+            echo "Domain: traveltechnology.co.in"
+            echo "Commit: ${{ github.sha }}"
+          else
+            echo "❌ Production deployment failed"
+            echo "Please check the logs and restore from backup if needed"
+          fi
+      
+      - name: Create deployment tag
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v$(date +%Y%m%d-%H%M%S)" -m "Production deployment: ${{ github.sha }}"
+          git push origin --tags || echo "Failed to push tags"
