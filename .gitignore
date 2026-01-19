@@ -32,6 +32,9 @@ config/testing/config.php
 constants.php.local
 constants.php.example
 
+# constants.php
+constants.php
+
 # Backup/new versions of constants files
 *constants_new.php
 *constants.backup.php

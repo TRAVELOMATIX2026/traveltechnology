@@ -241,7 +241,6 @@ jobs:
           # Transfer optimizations (parallel transfers for faster speed)
           set mirror:use-pget-n 10
           set xfer:clobber yes
-          set xfer:rate-limit 0
           EOF
           
           # Add connection and deployment commands

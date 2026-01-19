@@ -147,7 +147,6 @@ jobs:
           # Transfer optimizations (parallel transfers for faster speed)
           set mirror:use-pget-n 10
           set xfer:clobber yes
-          set xfer:rate-limit 0
           EOF
           
           echo "open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST" >> /tmp/ftp_deploy.lftp
