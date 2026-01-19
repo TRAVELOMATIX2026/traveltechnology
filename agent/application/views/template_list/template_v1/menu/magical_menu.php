@@ -57,7 +57,7 @@ $transfer_module =is_active_transfer_module();
 	<?php if(check_user_previlege('p2')):?>
 	<li class="treeview">
 		<a href="#" class="menu-item group menu-item-inactive">
-			<i class="material-icons">search</i><span class="menu-item-text"> Search </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">chevron_left</i></a>
+			<i class="material-icons">search</i><span class="menu-item-text"> Search </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i></a>
 		<div class="translate transform overflow-hidden">
 			<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
 		<!-- USER TYPES -->
@@ -103,13 +103,13 @@ $transfer_module =is_active_transfer_module();
 	<li class="treeview">
 		<a href="#" class="menu-item group menu-item-inactive">
 			<i class="material-icons">bar_chart</i> 
-			<span class="menu-item-text"> Reports </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">chevron_left</i>
+			<span class="menu-item-text"> Reports </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
 		</a>
 		<div class="translate transform overflow-hidden">
 			<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
 		<!-- USER TYPES -->
 		<?php if(check_user_previlege('p14')): ?>
-			<li><a href="#" class="menu-dropdown-item group menu-dropdown-item-inactive"><i class="material-icons">book</i> Booking Details</a>
+			<li class="treeview"><a href="#" class="menu-dropdown-item group menu-dropdown-item-inactive"><i class="material-icons">book</i> <span>Booking Details</span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i></a>
 				<div class="translate transform overflow-hidden">
 					<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
 				<?php if ($airline_module) { ?>
@@ -161,7 +161,7 @@ $transfer_module =is_active_transfer_module();
 	<li class="treeview">
 		<a href="#" class="menu-item group menu-item-inactive">
 			<i class="material-icons">business_center</i> 
-			<span class="menu-item-text"> My Commission </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">chevron_left</i>
+			<span class="menu-item-text"> My Commission </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
 		</a>
 		<div class="translate transform overflow-hidden">
 			<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
@@ -192,7 +192,7 @@ $transfer_module =is_active_transfer_module();
 	<li class="treeview">
 		<a href="#" class="menu-item group menu-item-inactive">
 			<i class="material-icons">add_circle</i> 
-			<span class="menu-item-text"> My Markup </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">chevron_left</i>
+			<span class="menu-item-text"> My Markup </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
 		</a>
 		<div class="translate transform overflow-hidden">
 			<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
@@ -235,7 +235,7 @@ $transfer_module =is_active_transfer_module();
 	<li class="treeview">
 		<a href="#" class="menu-item group menu-item-inactive">
 			<i class="material-icons">account_balance_wallet</i> 
-			<span class="menu-item-text"> Payment </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">chevron_left</i>
+			<span class="menu-item-text"> Payment </span><i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
 		</a>
 		<div class="translate transform overflow-hidden">
 			<ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">

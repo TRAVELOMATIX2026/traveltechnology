@@ -98,6 +98,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Update database credentials for production
+        env:
+          PROD_DB_HOST: ${{ secrets.PROD_DB_HOST || 'localhost' }}
+          PROD_DB_USERNAME: ${{ secrets.PROD_DB_USERNAME }}
+          PROD_DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
+          PROD_DB_NAME: ${{ secrets.PROD_DB_NAME }}
+        run: |
+          echo "Updating database credentials for production deployment..."
+          if [ -f "scripts/update-db-credentials.sh" ]; then
+            chmod +x scripts/update-db-credentials.sh
+            ./scripts/update-db-credentials.sh production
+          else
+            echo "⚠️  Database update script not found, skipping credential update"
+            echo "Make sure to manually configure database credentials on the server"
+          fi
+      
       - name: Create production package
         run: |
           echo "Creating production package..."
