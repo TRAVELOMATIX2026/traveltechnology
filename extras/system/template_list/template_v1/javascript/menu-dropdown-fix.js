@@ -14,8 +14,8 @@
     });
 
     function initMenuDropdowns() {
-        // Target all menu items with dropdowns
-        $('.sidebar-menu .treeview > a').each(function() {
+        // Target all menu items with dropdowns (including nested submenus)
+        $('.sidebar-menu .treeview > a, .menu-dropdown .treeview > a').each(function() {
             var $link = $(this);
             var $parent = $link.parent('.treeview');
             
@@ -46,13 +46,13 @@
                     var isOpen = $parent.hasClass('menu-open');
                     var $arrow = $link.find('.menu-item-arrow');
                     
-                    console.log('Menu clicked:', $link.find('.menu-item-text').text(), 'isOpen:', isOpen);
+                    console.log('Menu clicked:', $link.find('.menu-item-text, span').first().text().trim() || $link.text().trim(), 'isOpen:', isOpen);
                     
                     if (isOpen) {
                         // Close this menu
                         closeMenuDropdown($parent, $wrapperDiv, $dropdown, $arrow);
                     } else {
-                        // Close all sibling menus first
+                        // Close all sibling menus first (only for same level)
                         $parent.siblings('.treeview.menu-open').each(function() {
                             var $siblingParent = $(this);
                             if (!$siblingParent.hasClass('menu-closing')) {
@@ -76,7 +76,7 @@
             }
         });
         
-        console.log('Initialized', $('.sidebar-menu .treeview > a').length, 'menu items');
+        console.log('Initialized', $('.sidebar-menu .treeview > a, .menu-dropdown .treeview > a').length, 'menu items');
     }
 
     function openMenuDropdown($parent, $wrapperDiv, $dropdown, $arrow) {
