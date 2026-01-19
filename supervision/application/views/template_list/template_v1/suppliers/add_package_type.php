@@ -1,72 +1,36 @@
 <div id="package_types" class="bodyContent col-md-12">
-	<div class="panel card">
-		<!-- PANEL WRAP START -->
-		<div class="card-header">
-			<!-- PANEL HEAD START -->
-			<div class="card-title">
-				<ul class="nav nav-tabs" role="tablist" id="myTab">
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE START-->
-					<li role="presentation" class="active"><a href="#fromList"
-						aria-controls="home" role="tab" data-bs-toggle="tab"><h1>Add / Edit Package Type</h1></a></li>
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE END -->
-				</ul>
-			</div>
+	<div class="panel card mb-4">
+		<div class="card-header bg-white border-bottom">
+			<h5 class="mb-0"><i class="bi bi-box-seam-fill text-dark"></i> <?php echo (isset($pack_data[0])) ? 'Edit' : 'Add'; ?> Package Type</h5>
 		</div>
-		<!-- PANEL HEAD START -->
-		<div class="card-body">
-			<!-- PANEL BODY START -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="fromList">
-					<div class="col-md-12">
-					<div class='row'>
-					<div class='col-sm-12'>
-						<div class=''>
-							<div class='box-header '>
-								<div class='title' id="tab1">  <?php if(isset($status)){echo $status;}?></div>
-								<div class='actions'></div>
-							</div>
-							<div class=''>
-								<form class='form row validate-form'
-									style='margin-bottom: 0;'
-									action="<?php echo base_url(); ?>index.php/supplier/save_packages_type"
-									method="post" name="frm1" enctype="multipart/form-data">
-									<div class='form-group'>
-										<label class='form-label col-sm-2' for='validation_name'>Package
-											Type</label>
-										<div class='col-sm-3 controls'>
-										<input type="hidden" name="package_types_id" value="<?=@$pack_data[0]->package_types_id;?>">
-											<input class='form-control' data-rule-minlength='2'
-												data-rule-required='true' id='pname' name='name' value="<?=@$pack_data[0]->package_types_name;?>"
-												placeholder='Tour Type' type='text' required> <span id="pacname"
-												style="color: #F00; display: none;">Please Select Package
-												Type</span>
-										</div>
-									</div>
-									<div class='form-actions' style='margin-bottom: 0'>
-										<div class='row'>
-											<div class='col-sm-9 offset-sm-4'>
-												<a
-													href="<?php echo base_url(); ?>index.php/supplier/view_packages_types">
-													<button class='btn btn-primary' type='button'>
-														<i class='icon-reply'></i> Back
-													</button>
-												</a>&nbsp;
-												<button class='btn btn-primary' type='submit'>
-													<i class='icon-save'></i> Submit
-												</button>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
+		<div class="card-body p-4">
+			<form action="<?php echo base_url(); ?>index.php/supplier/save_packages_type"
+				  method="post" name="frm1" enctype="multipart/form-data" class="validate-form">
+				<input type="hidden" name="package_types_id" value="<?=@$pack_data[0]->package_types_id;?>">
+				<div class="row g-3 align-items-end">
+					<div class="col-md-6">
+						<label for="pname" class="form-label fw-semibold mb-2">Package Type <span class="text-danger">*</span></label>
+						<input type="text" 
+							   class="form-control" 
+							   id="pname" 
+							   name="name" 
+							   value="<?=@$pack_data[0]->package_types_name;?>" 
+							   placeholder="Enter package type name" 
+							   data-rule-minlength="2"
+							   data-rule-required="true"
+							   required>
+						<span id="pacname" class="text-danger" style="display: none;">Please Select Package Type</span>
 					</div>
 				</div>
-					</div>
+				<div class="d-flex gap-2 mt-4">
+					<a href="<?php echo base_url(); ?>index.php/supplier/view_packages_types" class="btn btn-outline-secondary">
+						<i class="bi bi-arrow-left"></i> Back
+					</a>
+					<button class="btn btn-gradient-success" type="submit">
+						<i class="bi bi-check-circle"></i> <?php echo (isset($pack_data[0])) ? 'Update' : 'Submit'; ?>
+					</button>
 				</div>
-			</div>
+			</form>
 		</div>
-		<!-- PANEL BODY END -->
 	</div>
-	<!-- PANEL WRAP END -->
 </div>

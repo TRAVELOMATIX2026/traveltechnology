@@ -1,177 +1,134 @@
 <div id="Package" class="bodyContent col-md-12">
-	<div class="panel card">
-		<!-- PANEL WRAP START -->
-		<div class="card-header">
-			<!-- PANEL HEAD START -->
-			<div class="card-title">
-				<ul class="nav nav-tabs nav-justified" role="tablist" id="myTab">
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE START-->
-					<li role="presentation" class="active" id="add_package_li">
-						<a href="#add_package" aria-controls="home" role="tab" data-bs-toggle="tab">Add Package </a>
-					</li>
-					<!-- <li role="presentation" class="" id="itenary_li">
-						<a href="#itenary" aria-controls="home" role="tab" data-bs-toggle="">Add Itenary </a>
-					</li>
-					<li role="presentation" class="" id="gallery_li">
-						<a href="#gallery" aria-controls="home" role="tab" data-bs-toggle="">Photo Gallery </a>
-					</li>
-					<li role="presentation" class="" id="rate_card_li">
-						<a href="#rate_card" aria-controls="home" role="tab" data-bs-toggle="">Rate Card </a>
-					</li> -->
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE END -->
-				</ul>
-			</div>
+	<div class="panel card mb-4">
+		<div class="card-header bg-white border-bottom">
+			<h5 class="mb-0"><i class="bi bi-box-seam-fill text-dark"></i> Add Package</h5>
 		</div>
-		<!-- PANEL HEAD START -->
-		<div class="card-body">
-			<!-- PANEL BODY START -->
+		<div class="card-body p-4">
 			<form action="<?php echo base_url(); ?>index.php/supplier/add_package_new" method="post" enctype="multipart/form-data" class='form row validate-form'>
-			<div class="tab-content">
-				<!-- Add Package Starts -->
-				<div role="tabpanel" class="tab-pane active" id="add_package">
-					<div class="col-md-12">
-						
-							<input type="hidden" name="a_wo_p" value="a_w"> <input
-								type="hidden" name="deal" value="0">
-								<div class="form-group hide">
-									<label class="form-label col-sm-3" for="validation_name">Domain</label>
-									<div class="col-sm-6 controls">
-										<select class="form-control" data-rule-required="true" name="domain" id="domain" required="" tabindex="-1" aria-hidden="true">
-											                                  
-											<option value="1">COM</option>  
-											<option value="2">IN</option>                         
-											 </select>
-											 <span id="domain" style="color: #F00; display: none;">validate</span>
-											</div>
-										</div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_name'>Package
-									type</label>
-								<div class='col-sm-6 controls'>
-									<select class='select2 form-control add_pckg_elements select2-drop-down'
-										data-rule-required='true' name='disn' id="disn"
-										required>
-										<option value=''>Select Package Type</option>
-                        <?php
-							for($l = 0; $l < count ( $package_type_data ); $l ++) {
-						?>
-                        <option value='<?php echo $package_type_data[$l]->package_types_id; ?>'> <?php echo $package_type_data[$l]->package_types_name; ?>  </option>
-                        <?php
-							}
-						?>
-                      </select> <span id="distination"
-										style="color: #F00; display: none;">validate</span>
-								</div>
-							</div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Package
-									Name </label>
-								<div class='col-sm-6 controls'>
-									<div class="controls">
-										<input type="text" name="name" id="name"
-											data-rule-minlength='2' data-rule-required='true' placeholder="Enter Package Name"
-											class='form-control add_pckg_elements' required>
-									</div>
-								</div>
-							</div>
-							<div class="form-group"><label class="form-label col-sm-3" for="validation_current">No of Pax </label><div class="col-sm-6 controls"><input type="number" name="no_of_pax" id="no_of_pax" placeholder="Enter Number of Pax"  class="form-control add_pckg_elements"></div></div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='adult'>Price</label>
-								<div class='col-sm-6 controls'>
-									<input type="text" name="p_price" id="p_price"
-										data-rule-number="true" data-rule-required='true' placeholder="Price"
-										class='form-control add_pckg_elements numeric' maxlength='10' minlength='3'required>
-								</div>
-							</div>
-							<!-- <div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Duration - No of Days
-								</label>
-								<div class="col-sm-6 controls">
-									<input type="text" name="duration" data-rule-number='true'
-										data-rule-required='true'
-										class="form-control add_pckg_elements numeric" maxlength='2' minlength='1' id="duration"
-										onblur="show_duration_info(this.value)" size="40"
-										placeholder="Enter Number Between 1-10" required>
-								</div>
-							</div> -->
-							<div class="form-group">
-							<label class='form-label col-sm-3' for='validation_current'>Duration</label>
-								<input type="radio" name="duration_status" value="1" checked onclick="enable_duration(1)"/> With Duration &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="hidden" name="a_wo_p" value="a_w">
+				<input type="hidden" name="deal" value="0">
+				<div class="d-none">
+					<label class="form-label col-sm-3" for="validation_name">Domain</label>
+					<div class="col-sm-6 controls">
+						<select class="form-control" data-rule-required="true" name="domain" id="domain" required="" tabindex="-1" aria-hidden="true">
+							<option value="1">COM</option>  
+							<option value="2">IN</option>                         
+						</select>
+						<span id="domain" style="color: #F00; display: none;">validate</span>
+					</div>
+				</div>
 
-								<input type="radio" name="duration_status" value="0" onclick="enable_duration(0)"/> Without Duration
+				<!-- Basic Information Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-info-circle"></i> Basic Information</h6>
+					<div class="row g-3 align-items-end">
+						<div class="col-md-6">
+							<label for="disn" class="form-label fw-semibold mb-2">Package Type <span class="text-danger">*</span></label>
+							<select class='select2 form-control add_pckg_elements select2-drop-down' 
+									data-rule-required='true' name='disn' id="disn" required>
+								<option value=''>Select Package Type</option>
+								<?php
+								for($l = 0; $l < count ( $package_type_data ); $l ++) {
+								?>
+								<option value='<?php echo $package_type_data[$l]->package_types_id; ?>'><?php echo $package_type_data[$l]->package_types_name; ?></option>
+								<?php
+								}
+								?>
+							</select>
+							<span id="distination" class="text-danger" style="display: none;">validate</span>
+						</div>
+						<div class="col-md-6">
+							<label for="name" class="form-label fw-semibold mb-2">Package Name <span class="text-danger">*</span></label>
+							<input type="text" name="name" id="name"
+								   data-rule-minlength='2' data-rule-required='true' 
+								   placeholder="Enter Package Name"
+								   class='form-control add_pckg_elements' required>
+						</div>
+						<div class="col-md-4">
+							<label for="no_of_pax" class="form-label fw-semibold mb-2">No of Pax</label>
+							<input type="number" name="no_of_pax" id="no_of_pax" 
+								   placeholder="Enter Number of Pax" 
+								   class="form-control add_pckg_elements">
+						</div>
+						<div class="col-md-4">
+							<label for="p_price" class="form-label fw-semibold mb-2">Price <span class="text-danger">*</span></label>
+							<input type="text" name="p_price" id="p_price"
+								   data-rule-number="true" data-rule-required='true' 
+								   placeholder="Enter Price"
+								   class='form-control add_pckg_elements numeric' 
+								   maxlength='10' minlength='3' required>
+						</div>
+						<div class="col-md-4">
+							<label class="form-label fw-semibold mb-2 d-block">Duration</label>
+							<div class="btn-group w-100 gap-3" role="group">
+								<input type="radio" class="btn-check d-none" name="duration_status" value="1" id="with_duration" checked onclick="enable_duration(1)">
+								<label class="btn-outline-primary" for="with_duration">With Duration</label>
+								<input type="radio" class="btn-check d-none" name="duration_status" value="0" id="without_duration" onclick="enable_duration(0)">
+								<label class="btn-outline-primary" for="without_duration">Without Duration</label>
 							</div>
-							<div class='form-group' id="duration_status">
-								<label class='form-label col-sm-3' for='validation_current'>Choose Duration
-								</label>
-								<div class='col-sm-6 col-md-6 controls'>
-						        <select class='select2 form-control select2-drop-down' data-rule-required='true' name='duration' id="duration" data-rule-required='true'>   
+						</div>
+						<div class="col-md-6" id="duration_status_div">
+							<label for="duration" class="form-label fw-semibold mb-2">Choose Duration <span class="text-danger">*</span></label>
+							<select class='select2 form-control select2-drop-down' 
+									data-rule-required='true' name='duration' id="duration" required>   
 								<option value="0">Please Select</option>       
-						          <?php
-						          for($dno=0;$dno<=30;$dno++)
-						          {
-						           if($dno==0) { 
-						            $DayNight = ($dno+1).' Day | '.($dno).' Nights';
-						           }elseif($dno==1) { 
-						            $DayNight = ($dno+1).' Days | '.($dno).' Night';
-						           }else 
-						           {
-						            $DayNight = ($dno+1).' Days | '.($dno).' Nights';
-						           }
-						           echo '<option value="'.($dno+1).'">'.$DayNight.'</option>';
-						          }
-						          ?>
-								</select>				
-								</div>
-							</div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Choose Region
-								</label>
-								<div class='col-sm-6 col-md-6 controls'>
-								<select class='select2 form-control' data-rule-required='true' name='tours_continent' id="tours_continent" data-rule-required='true' required>
-                               <option value="NA">Select Region </option>
-                                <?php
-                                foreach($tours_continent as $tours_continent_key => $tours_continent_value)
-                                {
-                                	echo '<option value="'.$tours_continent_value['origin'].'">'.$tours_continent_value['name'].' </option>';
-                                }
-                                ?>
-								</select>				
-								</div>
-							</div>
+								<?php
+								for($dno=0;$dno<=30;$dno++)
+								{
+									if($dno==0) { 
+										$DayNight = ($dno+1).' Day | '.($dno).' Nights';
+									}elseif($dno==1) { 
+										$DayNight = ($dno+1).' Days | '.($dno).' Night';
+									}else 
+									{
+										$DayNight = ($dno+1).' Days | '.($dno).' Nights';
+									}
+									echo '<option value="'.($dno+1).'">'.$DayNight.'</option>';
+								}
+								?>
+							</select>				
+						</div>
+					</div>
+				</div>
 
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Choose Country
-								</label>
-								<div class='col-sm-6 col-md-6 controls'>
-								<select class='select2 form-control' data-rule-required='true' name='tours_country[]' id="tours_country" multiple data-rule-required='true' style="width:775px;" required>
-                              
-                               
-								</select>				
+				<!-- Location Information Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-geo-alt"></i> Location Information</h6>
+					<div class="row g-3 align-items-end">
+						<div class="col-md-6">
+							<label for="tours_continent" class="form-label fw-semibold mb-2">Choose Region <span class="text-danger">*</span></label>
+							<select class='select2 form-control' data-rule-required='true' name='tours_continent' id="tours_continent" required>
+								<option value="NA">Select Region</option>
+								<?php
+								foreach($tours_continent as $tours_continent_key => $tours_continent_value)
+								{
+									echo '<option value="'.$tours_continent_value['origin'].'">'.$tours_continent_value['name'].'</option>';
+								}
+								?>
+							</select>				
+						</div>
+						<div class="col-md-6">
+							<label for="tours_country" class="form-label fw-semibold mb-2">Choose Country <span class="text-danger">*</span></label>
+							<select class='select2 form-control' data-rule-required='true' name='tours_country[]' id="tours_country" multiple required>
+							</select>				
+						</div>
+						<div class="col-md-12">
+							<label class="form-label fw-semibold mb-2">Choose City <span class="text-danger">*</span></label>
+							<div class="row g-3">
+								<div class="col-md-5">
+									<select class='select2 form-control' data-enable-select2="false" data-rule-required='true' name='tours_city[]' id="tours_city" multiple required>
+									</select>
 								</div>
-							</div>
-
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Choose City
-								</label>
-								<div class='col-sm-3 col-md-3 controls'>
-								
-								<select class='select2 form-control' data-enable-select2="false" data-rule-required='true' name='tours_city[]' id="tours_city" multiple data-rule-required='true' required>
-                                                            
-								</select>
-								
+								<div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+									<button type="button" class="btn btn-sm btn-outline-primary mb-2" onclick="moveCity()">>></button>
+									<button type="button" class="btn btn-sm btn-outline-secondary" onclick="removeCity()"><<</button>
 								</div>
-								<div class='col-sm-1 col-md-1 controls' style="text-align: center;">
-								>><br>
-								<<	
-								</div>
-								<div class='col-sm-3 col-md-3 controls'>
-								
-								<select id="second" class="form-control" data-enable-select2="false" name="tours_city_new[]" multiple>
-								</select>
-											
+								<div class="col-md-5">
+									<select id="second" class="form-control" data-enable-select2="false" name="tours_city_new[]" multiple>
+									</select>
 								</div>		
-								
 							</div>
+						</div>
 							<!-- <div class='form-group'>
 								<label class='form-label col-sm-3' for='validation_country'>Country</label>
 								<div class='col-sm-8 controls'>
@@ -212,16 +169,21 @@
 										class='form-control add_pckg_elements' required>
 								</div>
 							</div> -->
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_company'>Package
-									Display Image</label>
-								<div class='col-sm-8 controls'>
-									<input type="file" title='Image to add'
-										class='add_pckg_elements' data-rule-required='true' id='photo'
-										name='photo' required> <span id="pacmimg"
-										style="color: #F00; display: none">Please Upload Package Image</span>
-								</div>
-							</div>
+					</div>
+				</div>
+
+				<!-- Package Image Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-image"></i> Package Image</h6>
+					<div class="row g-3 align-items-end">
+						<div class="col-md-6">
+							<label for="photo" class="form-label fw-semibold mb-2">Package Display Image <span class="text-danger">*</span></label>
+							<input type="file" title='Image to add' class='form-control add_pckg_elements' 
+								   data-rule-required='true' id='photo' name='photo' required accept="image/*">
+							<span id="pacmimg" class="text-danger" style="display: none">Please Upload Package Image</span>
+						</div>
+					</div>
+				</div>
 							<!-- <div class='form-group'>
 								<label class='form-label col-sm-3' for='validation_current'>Display on HomePage
 								</label>
@@ -234,112 +196,135 @@
 									</select>
 								</div>
 							</div> -->
-							<div class='form-group' id="ckeditordiv">
-								<label class='form-label col-sm-3' for='validation_name'>Description</label>
-								<div class='col-sm-8 controls'>
-									<textarea name="Description" data-rule-required='true' class="form-control summernote"  placeholder="Description" required></textarea>                             <!--   <span id="dorigin_error" style="color:#F00;  display:none;"></span> -->
-
-									<!--   <span id="dorigin_error" style="color:#F00;  display:none;"></span> -->
-								</div>
-							</div>
-							
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_current'>Vendor
-									Name </label>
-								<div class='col-sm-6 controls'>
-									<div class="controls">
-										<input type="text" name="vendor_name" id="vendor_name"
-											data-rule-minlength='2' data-rule-required='true' placeholder="Enter vendor Name"
-											class='form-control add_pckg_elements' required>
-									</div>
-								</div>
-							</div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_rating'>Rating
-								</label>
-								<div class="col-sm-4 controls">
-									<select class='form-control add_pckg_elements select2-drop-down' data-rule-required='true' name='rating' id="rating" required>
-										<option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="form-label col-sm-3" for="top_destination">Status<span class="text-danger">*</span></label>
-								<div class="col-sm-8 controls">
-									<label class="form-check form-check-inline">
-										<input type="radio" name="top_destination" value="1" required checked> Active
-									</label>
-									<label class="form-check form-check-inline">
-										<input type="radio" name="top_destination" value="0" required> Inactive
-									</label>
-								</div>
-							</div>
-							<div class='form-group'>
-								<div id="addCityButton" class="col-lg-2" style="display: none;">
-									<input type="button" class="srchbutn comncolor"
-										id="addCityInput" value="Add Peroid"
-										style="padding: 3px 10px;">
-								</div>
-								<div id="removeCityButton" class="col-lg-2"
-									style="display: none;">
-									<input type="button" class="srchbutn comncolor"
-										id="removeCityInput" value="Remove Peroid"
-										style="padding: 3px 10px;">
-								</div>
-							</div>
-							<!-- <div class='' style='margin-bottom: 0'>
-								<div class='row'>
-									<div class='col-sm-9 offset-sm-3'>
-										<a class='btn btn-primary' id="add_package_button"> submit &
-											continue</a>&nbsp;&nbsp;
-											<a class='btn btn-primary' href="<?php echo base_url(); ?>supplier/view_with_price"> Cancel</a>
-									</div>
-								</div>
-							</div> -->
-					</div>
-					<div class="col-md-12">
-						<div class="duration_info_class clearfix" id="duration_info">
-						<div class='form-group clearfix'>
-								<label class='form-label col-sm-3' for='validation_name'>Days </label>
-								<div class='col-sm-4 controls'>
-									<input type="text" name="days[]" id="days"
-										data-rule-required='true' placeholder="Days"
-										class='form-control itenary_elements' required>
-								</div>
-							</div>
-							<div class='form-group'>
-								<label class='form-label col-sm-3' for='validation_name'>Place </label>
-								<div class='col-sm-6 controls'>
-									<input type="text" name="place[]" id="Place"
-										data-rule-required='true' placeholder="Place"
-										class='form-control itenary_elements' required>
-								</div>
-							</div>
-							<div class='form-group clearfix'>
-								<label class='form-label col-sm-3' for='validation_company'>Itinerary Image</label>
-								<div class='col-sm-3 controls'>
-									<input type="file" title='Image to add'
-										class='itenary_elements' data-rule-required='true' id='image'
-										name='image[]' required> <span id="pacmimg"
-										style="color: #F00; display: none">Please Upload Itinerary
-										Image</span>
-								</div>
-							</div>
-							
-							<div class='form-group clearfix'>
-								<label class='form-label col-sm-3' for='validation_desc'>Itinerary Description </label>
-								<div class='col-sm-8 controls'>
-									<textarea name="desc[]" class="form-control itenary_elements summernote"
-										data-rule-required="true"
-										placeholder="Description" required></textarea>
-								</div>
+				<!-- Description Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-file-text"></i> Description & Details</h6>
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label for="Description" class="form-label fw-semibold mb-2">Description <span class="text-danger">*</span></label>
+							<textarea name="Description" data-rule-required='true' class="form-control summernote" placeholder="Enter package description" required></textarea>
+						</div>
+						<div class="col-md-6">
+							<label for="vendor_name" class="form-label fw-semibold mb-2">Vendor Name <span class="text-danger">*</span></label>
+							<input type="text" name="vendor_name" id="vendor_name"
+								   data-rule-minlength='2' data-rule-required='true' 
+								   placeholder="Enter vendor name"
+								   class='form-control add_pckg_elements' required>
+						</div>
+						<div class="col-md-3">
+							<label for="rating" class="form-label fw-semibold mb-2">Rating <span class="text-danger">*</span></label>
+							<select class='form-control add_pckg_elements select2-drop-down' 
+									data-rule-required='true' name='rating' id="rating" required>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label fw-semibold mb-2 d-block">Status <span class="text-danger">*</span></label>
+							<div class="btn-group w-100 gap-3" role="group">
+								<input type="radio" class="btn-check d-none" name="top_destination" value="1" id="status_active" required checked>
+								<label class="btn-outline-primary" for="status_active">Active</label>
+								<input type="radio" class="btn-check d-none" name="top_destination" value="0" id="status_inactive" required>
+								<label class="btn-outline-primary" for="status_inactive">Inactive</label>
 							</div>
 						</div>
+					</div>
+				</div>
+					</div>
+				</div>
+				<!-- Itinerary Section -->
+				<div class="mb-4" id="itinerary_section">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-calendar-event"></i> Itinerary Details</h6>
+					<div class="duration_info_class" id="duration_info">
+						<div class="row g-3">
+							<div class="col-md-3">
+								<label for="days" class="form-label fw-semibold mb-2">Days <span class="text-danger">*</span></label>
+								<input type="text" name="days[]" id="days"
+									   data-rule-required='true' placeholder="Days"
+									   class='form-control itenary_elements' required>
+							</div>
+							<div class="col-md-6">
+								<label for="Place" class="form-label fw-semibold mb-2">Place <span class="text-danger">*</span></label>
+								<input type="text" name="place[]" id="Place"
+									   data-rule-required='true' placeholder="Place"
+									   class='form-control itenary_elements' required>
+							</div>
+							<div class="col-md-3">
+								<label for="image" class="form-label fw-semibold mb-2">Itinerary Image <span class="text-danger">*</span></label>
+								<input type="file" title='Image to add'
+									   class='form-control itenary_elements' 
+									   data-rule-required='true' id='image'
+									   name='image[]' required accept="image/*">
+								<span id="pacmimg" class="text-danger" style="display: none">Please Upload Itinerary Image</span>
+							</div>
+							<div class="col-md-12">
+								<label for="desc" class="form-label fw-semibold mb-2">Itinerary Description <span class="text-danger">*</span></label>
+								<textarea name="desc[]" class="form-control itenary_elements summernote"
+										  data-rule-required="true"
+										  placeholder="Enter itinerary description" required></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Gallery Images Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-images"></i> Gallery Images</h6>
+					<div class="row g-3">
+						<div class="col-md-6">
+							<label for="traveller" class="form-label fw-semibold mb-2">Add Images <span class="text-danger">*</span></label>
+							<input type="file" title='upload Photos' class='form-control gallery_elements' 
+								   data-rule-required='true' id='traveller' name='traveller[]' 
+								   multiple required accept="image/*">
+							<span id="travel" class="text-danger" style="display: none">Upload Image</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Price Details Section -->
+				<div class="mb-4">
+					<h6 class="mb-3 text-muted border-bottom pb-2"><i class="bi bi-currency-dollar"></i> Price Details</h6>
+					<div class="row g-3">
+						<div class="col-md-12">
+							<label for="includes" class="form-label fw-semibold mb-2">Price Includes <span class="text-danger">*</span></label>
+							<textarea name="includes" class="form-control rate_card_elements summernote" 
+									  data-rule-required="true" placeholder="Enter what's included in the price" required></textarea>
+						</div>
+						<div class="col-md-12">
+							<label for="excludes" class="form-label fw-semibold mb-2">Price Excludes <span class="text-danger">*</span></label>
+							<textarea name="excludes" class="form-control rate_card_elements summernote" 
+									  data-rule-required="true" placeholder="Enter what's excluded from the price" required></textarea>
+						</div>
+						<div class="col-md-12">
+							<label for="advance" class="form-label fw-semibold mb-2">Cancellation In Advance <span class="text-danger">*</span></label>
+							<textarea name="advance" class="form-control rate_card_elements summernote" 
+									  data-rule-required="true" placeholder="Enter cancellation in advance terms" required></textarea>
+						</div>
+						<div class="col-md-12">
+							<label for="penality" class="form-label fw-semibold mb-2">Cancellation Penalty <span class="text-danger">*</span></label>
+							<textarea name="penality" class="form-control rate_card_elements summernote" 
+									  data-rule-required="true" placeholder="Enter cancellation penalty terms" required></textarea>
+						</div>
+					</div>
+				</div>
+
+				<!-- Submit Button -->
+				<div class="d-flex gap-2 mt-4">
+					<a href="<?php echo base_url(); ?>supplier/view_with_price" class="btn btn-outline-secondary">
+						<i class="bi bi-arrow-left"></i> Cancel
+					</a>
+					<button class='btn btn-gradient-success' type='submit'>
+						<i class="bi bi-check-circle"></i> Submit Package
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 						<!-- <div class='form-actions' style='margin-bottom: 0'>
 							<div class='row'>
 								<div class='col-sm-9 offset-sm-3'>
@@ -349,64 +334,6 @@
 							</div>
 						</div> -->
 					</div>
-					<div class="col-md-12">
-						<div class='form-group clearfix'>
-							<label class='form-label col-sm-3' for='validation_company'>Add Images</label>
-							<div class='col-sm-8 controls'>
-								<input type="file" title='upload Photos'
-									class='gallery_elements' data-rule-required='true'
-									value="upload photo" id='traveller' name='traveller[]' multiple
-									required> <span id="travel" style="color: #F00; display: none">
-									Upload Image</span>
-							</div>
-						</div>
-						<!-- <div class='form-actions' style='margin-bottom: 0'>
-							<div class='row'>
-								<div class='col-sm-9 offset-sm-3'>
-									<a class='btn btn-primary' id="gallery_button">submit & continue</a>
-								</div>
-							</div>
-						</div> -->
-					</div>
-					<div class="col-md-12">
-						<div class='form-group clearfix'>
-							<label class='form-label col-sm-3' for='validation_includes'>Price Includes </label>
-							<div class='col-sm-8 controls'>
-								<!-- <input type="text" name="includes" id="includes" data-rule-required='true' class='form-control'> -->
-								<textarea name="includes" class="form-control rate_card_elements summernote"  data-rule-required="true" placeholder="Price Includes" required></textarea>
-							</div>
-						</div>
-						<div class='form-group clearfix'>
-							<label class='form-label col-sm-3' for='validation_excludes'>Price Excludes </label>
-							<div class='col-sm-8 controls'>
-								<textarea name="excludes" class="form-control rate_card_elements summernote" data-rule-required="true" placeholder="Price Excludes" required></textarea>
-							</div>
-						</div>
-						<div class='form-group clearfix'>
-							<label class='form-label col-sm-3' for='validation_advance'>Cancellation In Advance </label>
-							<div class='col-sm-8 controls'>
-								<!-- <input type="text" name="excludes" id="excludes" data-rule-required='true' class='form-control'> -->
-								<textarea name="advance" class="form-control rate_card_elements summernote" data-rule-required="true" placeholder="Cancellation In Advance" required></textarea>
-							</div>
-						</div>
-						<div class='form-group clearfix'>
-							<label class='form-label col-sm-3' for='validation_excludes'>Cancellation Penalty </label>
-							<div class='col-sm-8 controls'>
-								<!-- <input type="text" name="excludes" id="excludes" data-rule-required='true' class='form-control'> -->
-								<textarea name="penality" class="form-control rate_card_elements summernote" data-rule-required="true" placeholder="Cancellation Penalty" required></textarea>
-							</div>
-						</div>
-						<div class='form-actions' style='margin-bottom: 0'>
-							<div class='row'>
-								<div class='col-sm-9 offset-sm-3'>
-									<button class='btn btn-primary'  type='submit'>submit</button>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				<!-- Add PAckage Ends -->
 
 				<!-- Itenary Starts -->
 				<!-- <div role="tabpanel" class="tab-pane" id="itenary">
@@ -534,16 +461,34 @@
 <script type="text/javascript" src="<?php echo SYSTEM_RESOURCE_LIBRARY?>/summernote/dist/summernote.min.js"></script>
 <script type="text/javascript">
 	function enable_duration(status){
-
 		if(status==1){
-         $('#duration_status').show();
-		 $('#duration_info').show();
+			$('#duration_status_div').show();
+			$('#itinerary_section').show();
 		}else{
-		$('#duration').val(0);
-		$('#duration_info').hide();
-		$('#duration_status').hide();
+			$('#duration').val(0);
+			$('#itinerary_section').hide();
+			$('#duration_status_div').hide();
 		}
+	}
 
+	function moveCity(){
+		var selected = $('#tours_city').val();
+		if(selected){
+			selected.forEach(function(val){
+				$('#tours_city option[value="'+val+'"]').clone().appendTo('#second');
+				$('#tours_city option[value="'+val+'"]').remove();
+			});
+		}
+	}
+
+	function removeCity(){
+		var selected = $('#second').val();
+		if(selected){
+			selected.forEach(function(val){
+				$('#second option[value="'+val+'"]').clone().appendTo('#tours_city');
+				$('#second option[value="'+val+'"]').remove();
+			});
+		}
 	}
      $(document).ready(function(){
 		$('.summernote').summernote({
@@ -843,4 +788,5 @@ $('#gallery_button').click(function(){
 		function getSelectMultiple(){
 			$("#second option").prop('selected', true);
 		}
+</script>
 </script>

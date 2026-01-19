@@ -1,85 +1,63 @@
 <div id="package_types" class="bodyContent col-md-12">
-	<div class="panel card">
-		<!-- PANEL WRAP START -->
-		<div class="card-header">
-			<!-- PANEL HEAD START -->
-			<div class="card-title">
-				<ul class="nav nav-tabs nav-justified" role="tablist" id="myTab">
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE START-->
-					<li role="presentation" class="active"><a href="#fromList"
-						aria-controls="home" role="tab" data-bs-toggle="tab"><h1>Package Types</h1></a></li>
-					<!-- INCLUDE TAB FOR ALL THE DETAILS ON THE PAGE END -->
-				</ul>
+	<div class="panel card mb-4">
+		<div class="card-header bg-white border-bottom">
+			<div class="d-flex w-100 justify-content-between align-items-center">
+				<h5 class="mb-0"><i class="bi bi-box-seam-fill text-dark"></i> Package Types</h5>
+				<a href="<?php echo base_url(); ?>index.php/supplier/add_package_type" class="btn btn-gradient-success">
+					<i class="bi bi-plus-circle"></i> Add Tour Types
+				</a>
 			</div>
 		</div>
-		<!-- PANEL HEAD START -->
-		<div class="card-body">
-			<!-- PANEL BODY START -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="fromList">
-					<div class="col-md-12">
-						<div class='row'>
-							<div class=''
-								style='margin-bottom: 0;'>
-								<div class=''>
-									<div class='actions'>
-										<a
-											href="<?php echo base_url(); ?>index.php/supplier/add_package_type">
-											<button class='btn btn-primary' style='margin-bottom: 5px'>
-												<i class='icon-male'></i> + Add Tour Types
-											</button>
-										</a> <a class="btn box-collapse btn-xs btn-link" href="#"><i></i></a>
-										<input type="text" id="srch_inpt" onkeyup="srchFunctn()" placeholder="Search...">
-									</div>
-								</div>
-								<div class=''>
-									<div class='responsive-table' id="srch_table">
-										<div class='scrollable-area'>
-											<table
-												class='data-table-column-filter table table-bordered table-striped'
-												style='margin-bottom: 0;'>
-												<thead>
-													<tr>
-														<th>S.No</th>
-														<th>Package Type</th>
-														<th>Actions</th>
-													</tr>
-												</thead>
-												<tbody>
-                                      <?php if(!empty($package_view_data)){ $c=1;foreach($package_view_data as $k){?>
-                                      <tr>
-														<td><?=$c;?></td>
-														<td><?=$k->package_types_name;?></td>
-														<td>
-															<div class=''>
-																<a class="btn btn-primary btn-xs has-tooltip"
-																	data-placement="top" title=""
-																	href="<?php echo base_url(); ?>index.php/supplier/add_package_type/<?php echo $k->package_types_id; ?>"
-																	data-original-title="Edit Tour"> <i class="icon-edit"></i>Edit
-																</a> &nbsp;<a class='btn btn-danger btn-xs has-tooltip'
-																	data-placement='top' title='Delete'
-																	onclick="return confirm('Are you sure, do you want to delete this record?');"
-																	href='<?php echo base_url(); ?>index.php/supplier/delete_package_type/<?=$k->package_types_id;?>'>
-																	<i class='icon-remove'></i>Delete
-																</a>
-															</div>
-														</td>
-													</tr>
-                                      <?php $c++;}}?>
-                                      </tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<div class="card-body p-4">
+			<div class="mb-3">
+				<div class="input-group">
+					<span class="input-group-text"><i class="bi bi-search"></i></span>
+					<input type="text" id="srch_inpt" class="form-control" onkeyup="srchFunctn()" placeholder="Search package types...">
 				</div>
 			</div>
+			<div class="table-responsive" id="srch_table">
+				<table class="table table-hover align-middle">
+					<thead class="table-light">
+						<tr>
+							<th width="10%">S.No</th>
+							<th>Package Type</th>
+							<th width="20%">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if(!empty($package_view_data)){ $c=1;foreach($package_view_data as $k){?>
+						<tr>
+							<td><span class="badge bg-secondary"><?=$c;?></span></td>
+							<td><span class="fw-medium"><?=$k->package_types_name;?></span></td>
+							<td>
+								<div class="d-flex gap-2">
+									<a class="btn btn-sm btn-outline-primary" 
+									   href="<?php echo base_url(); ?>index.php/supplier/add_package_type/<?php echo $k->package_types_id; ?>"
+									   title="Edit">
+										<i class="bi bi-pencil"></i> Edit
+									</a>
+									<a class='btn btn-sm btn-outline-danger'
+									   onclick="return confirm('Are you sure, do you want to delete this record?');"
+									   href='<?php echo base_url(); ?>index.php/supplier/delete_package_type/<?=$k->package_types_id;?>'
+									   title="Delete">
+										<i class="bi bi-trash"></i> Delete
+									</a>
+								</div>
+							</td>
+						</tr>
+						<?php $c++;}} else { ?>
+						<tr>
+							<td colspan="3" class="text-center text-muted py-4">
+								<i class="bi bi-inbox fs-1 d-block mb-2"></i>
+								No package types found. <a href="<?php echo base_url(); ?>index.php/supplier/add_package_type">Add your first package type</a>
+							</td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<!-- PANEL BODY END -->
 	</div>
-	<!-- PANEL WRAP END -->
 </div>
 <script>
 $.validator.addMethod("buga", (function(value) {

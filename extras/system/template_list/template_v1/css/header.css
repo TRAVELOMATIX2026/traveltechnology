@@ -37,9 +37,9 @@ body.fixed .main-header {
    LOGO ARE
    ============================================ */
 .logo-mini { display: none; width:50px;}
-.logo-lg { display: block; width:220px;}
+.logo-lg { display: block; width:255px;}
 .sidebar-collapse .logo-mini { display: block; width:50px;}
-.sidebar-collapse .logo-lg { display: none; width:220px;}
+.sidebar-collapse .logo-lg { display: none; width:255px;}
 .skin-black-light .main-header > .logo,
 .main-header > .logo {
     display: flex !important;

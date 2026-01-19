@@ -58,6 +58,11 @@ nav .menu-group .sidebar-menu {
   right: 0 !important;
   bottom: 0 !important;
   height: 100vh;
+  min-width: 275px !important;
+}
+
+.sidebar-collapse .main-sidebar {
+  min-width: 50px !important;
 }
 
 .sidebar {
