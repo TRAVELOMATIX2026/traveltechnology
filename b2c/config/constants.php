@@ -71,7 +71,7 @@ define('EMAIL', 'email');
  | Application Folder Names
  |--------------------------------------------------------------------------
  */
- $project_parent_folder = 'tmxv3';
+ $project_parent_folder = '';
 if (empty($project_parent_folder) == false) {
 	define('APP_ROOT_DIR', '/'.$project_parent_folder); //main folder which wraps complete application
 	define('PROJECT_COOKIE_PATH', '/'.$project_parent_folder.'/');
@@ -86,7 +86,7 @@ define('PROJECT_URI', APP_ROOT_DIR.MODULE_ROOT_DIR);
  | RESOURCE FOLDERS
  |--------------------------------------------------------------------------
  */
-define('BASE_PATH',  'http://'.$_SERVER['HTTP_HOST'].'/'); //main folder which holds all the resource
+define('BASE_PATH',  'https://'.$_SERVER['HTTP_HOST'].'/'); //main folder which holds all the resource
 define('RESOURCE_DIR', APP_ROOT_DIR.'/extras'); //main folder which holds all the resource
 define('SYSTEM_RESOURCE_DIR', RESOURCE_DIR.'/system');
 define('CUSTOM_RESOURCE_DIR', RESOURCE_DIR.'/custom');

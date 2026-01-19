@@ -62,7 +62,7 @@ define('PROJECT_NAME','TMX V2');
  | Application Folder Names
  |--------------------------------------------------------------------------
  */
-$project_parent_folder = 'tmxv3';
+$project_parent_folder = '';
 if (empty($project_parent_folder) == false) {
 	//define('APP_ROOT_DIR', '/'.$project_parent_folder); //main folder which wraps complete application
 	define('APP_ROOT_DIR', '/'.$project_parent_folder);
@@ -82,7 +82,7 @@ define('PROJECT_COOKIE_NAME', 'agent');
  | RESOURCE FOLDERS
  |--------------------------------------------------------------------------
  */
-define('BASE_PATH', 'http://'.$_SERVER['HTTP_HOST'].'/');
+define('BASE_PATH', 'https://'.$_SERVER['HTTP_HOST'].'/');
 // define('APP_ROOT_DIR2', 'https://main.starlegends.com.ph'); //main folder which holds all the resource
 define('RESOURCE_DIR', APP_ROOT_DIR.'/extras'); //main folder which holds all the resource
 define('SYSTEM_RESOURCE_DIR', RESOURCE_DIR.'/system');

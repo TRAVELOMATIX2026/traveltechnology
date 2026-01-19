@@ -124,7 +124,7 @@ define('DOMAIN_KEY', 'domain_key');
 
  */
 
-$project_parent_folder = 'tmxv3';
+$project_parent_folder = '';
 
 
 
@@ -162,7 +162,7 @@ define('PROJECT_NAME', 'TMX V3');
 
  */
 
-define('BASE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . '/');
+define('BASE_PATH', 'https://' . $_SERVER['HTTP_HOST'] . '/');
 define('RESOURCE_DIR', APP_ROOT_DIR . '/extras'); //main folder which holds all the resource
 
 define('SYSTEM_RESOURCE_DIR', RESOURCE_DIR . '/system');

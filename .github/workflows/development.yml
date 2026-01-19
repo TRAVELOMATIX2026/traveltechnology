@@ -9,7 +9,7 @@ on:
       - develop
 
 env:
-  PHP_VERSION: '7.4'
+  PHP_VERSION: '8.2'
 
 jobs:
   syntax-check:
@@ -90,107 +90,81 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup SSH
+      - name: Setup FTP
         run: |
-          # Create .ssh directory using $HOME for reliability
-          mkdir -p $HOME/.ssh
-          chmod 700 $HOME/.ssh
-          
-          # Set up SSH key if provided (optional)
-          if [ -n "${{ secrets.DEV_SSH_KEY }}" ]; then
-            echo "${{ secrets.DEV_SSH_KEY }}" > $HOME/.ssh/deploy_key
-            chmod 600 $HOME/.ssh/deploy_key
-          fi
-          
-          # Add server to known_hosts
-          ssh-keyscan -H ${{ secrets.DEV_SERVER_IP }} >> $HOME/.ssh/known_hosts 2>/dev/null || true
-          chmod 644 $HOME/.ssh/known_hosts
-          
-          # Install sshpass for password-based auth
-          sudo apt-get update && sudo apt-get install -y sshpass
-          
-          echo "✅ SSH setup completed"
-      
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: mbstring, gd, xml, zip, pdo, pdo_mysql, redis
+          # Install lftp for FTP/SFTP deployment
+          sudo apt-get update && sudo apt-get install -y lftp
+          echo "✅ FTP client installed"
       
       - name: Prepare deployment
         run: |
-          echo "Preparing deployment package..."
+          echo "Preparing deployment..."
           echo "Deploying commit: ${{ github.sha }}"
           echo "Branch: ${{ github.ref }}"
       
-      - name: Deploy to development server via SSH
+      - name: Test FTP connection
         env:
-          SSH_HOST: ${{ secrets.DEV_SERVER_IP }}
-          SSH_USER: ${{ secrets.DEV_SSH_USER }}
-          SSH_PASS: ${{ secrets.DEV_SSH_PASS }}
-          DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
+          FTP_HOST: ${{ secrets.DEV_FTP_HOST }}
+          FTP_USER: ${{ secrets.DEV_FTP_USER }}
+          FTP_PASS: ${{ secrets.DEV_FTP_PASS }}
+          FTP_PORT: ${{ secrets.DEV_FTP_PORT || '21' }}
         run: |
-          echo "Deploying to development server..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          
-          # Method 1: Using SSH key (Recommended - more secure)
-          # rsync -avz --delete \
-          #   --exclude='.git' \
-          #   --exclude='.github' \
-          #   --exclude='logs/*' \
-          #   --exclude='cache/*' \
-          #   --exclude='*.log' \
-          #   --exclude='.env' \
-          #   --exclude='node_modules' \
-          #   -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-          #   ./ $SSH_USER@$SSH_HOST:$DEPLOY_PATH_FINAL/
-          
-          # Method 2: Using password with sshpass
-          sshpass -p "$SSH_PASS" rsync -avz --delete \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='logs/*' \
-            --exclude='cache/*' \
-            --exclude='*.log' \
-            --exclude='.env' \
-            --exclude='node_modules' \
-            --exclude='*.md' \
-            -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
-            ./ $SSH_USER@$SSH_HOST:$DEPLOY_PATH_FINAL/
+          echo "Testing FTP connection..."
+          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; pwd; quit" || {
+            echo "❌ FTP connection failed"
+            exit 1
+          }
+          echo "✅ FTP connection successful"
       
-      - name: Set proper permissions on server
+      - name: Deploy to development server via FTP
         env:
-          SSH_HOST: ${{ secrets.DEV_SERVER_IP }}
-          SSH_USER: ${{ secrets.DEV_SSH_USER }}
-          SSH_PASS: ${{ secrets.DEV_SSH_PASS }}
-          DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
+          FTP_HOST: ${{ secrets.DEV_FTP_HOST }}
+          FTP_USER: ${{ secrets.DEV_FTP_USER }}
+          FTP_PASS: ${{ secrets.DEV_FTP_PASS }}
+          FTP_PORT: ${{ secrets.DEV_FTP_PORT || '21' }}
+          FTP_PATH: ${{ secrets.DEV_FTP_PATH || '/public_html' }}
         run: |
-          echo "Setting file permissions..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-            "cd $DEPLOY_PATH_FINAL && \
-             find . -type f -exec chmod 644 {} \; && \
-             find . -type d -exec chmod 755 {} \; && \
-             chmod -R 777 logs/ cache/ 2>/dev/null || true"
-      
-      - name: Verify deployment
-        env:
-          SSH_HOST: ${{ secrets.DEV_SERVER_IP }}
-          SSH_USER: ${{ secrets.DEV_SSH_USER }}
-          SSH_PASS: ${{ secrets.DEV_SSH_PASS }}
-          DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
-        run: |
-          echo "Verifying deployment..."
-          DEPLOY_PATH_FINAL="${DEPLOY_PATH:-~/public_html}"
-          sshpass -p "$SSH_PASS" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-            "cd $DEPLOY_PATH_FINAL && test -f index.php && echo '✅ Deployment verified' || echo '❌ Deployment verification failed'"
+          echo "Deploying to development server via FTP (optimized for speed)..."
+          FTP_PATH_FINAL="${FTP_PATH%/}"
+          
+          # Create optimized lftp script for faster deployment
+          cat > /tmp/ftp_deploy.lftp << 'EOF'
+          # Connection settings
+          set ftp:ssl-allow no
+          set ssl:verify-certificate no
+          set ftp:passive-mode yes
+          set ftp:list-options -a
+          
+          # Performance optimizations
+          set cmd:fail-exit yes
+          set cmd:interactive no
+          
+          # Network settings
+          set net:timeout 20
+          set net:max-retries 2
+          set net:reconnect-interval-base 3
+          
+          # Transfer optimizations (parallel transfers for faster speed)
+          set mirror:use-pget-n 10
+          set xfer:clobber yes
+          EOF
+          
+          echo "open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST" >> /tmp/ftp_deploy.lftp
+          echo "cd $FTP_PATH_FINAL" >> /tmp/ftp_deploy.lftp
+          echo "lcd ." >> /tmp/ftp_deploy.lftp
+          echo "mirror --reverse --delete --only-newer --exclude-glob=.git --exclude-glob=.github --exclude-glob=logs/* --exclude-glob=cache/* --exclude-glob=*.log --exclude-glob=.env --exclude-glob=node_modules --exclude-glob=*.md . ." >> /tmp/ftp_deploy.lftp
+          echo "quit" >> /tmp/ftp_deploy.lftp
+          
+          echo "Starting FTP deployment..."
+          lftp -f /tmp/ftp_deploy.lftp
+          echo "✅ FTP deployment completed"
       
       - name: Notify deployment status
         if: always()
         run: |
           if [ "${{ job.status }}" == "success" ]; then
             echo "✅ Development deployment completed successfully"
-            echo "Server: ${{ secrets.DEV_SERVER_IP }}"
+            echo "FTP Server: ${{ secrets.DEV_FTP_HOST }}"
             echo "Domain: traveltechnology.co.in"
           else
             echo "❌ Development deployment failed"
