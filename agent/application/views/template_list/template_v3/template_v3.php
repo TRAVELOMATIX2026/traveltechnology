@@ -64,6 +64,21 @@ if (empty($default_view)) {
 </style>
 
   <body class="skin-black-light sidebar-collapse">
+    <!-- TMX Custom Icons Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <?php 
+      // Get the full path to the SVG file
+      $svg_file_path = SYSTEM_TEMPLATE_LIST_RELATIVE_PATH . '/template_v3/images/icons/tmx-icon.svg';
+      if (file_exists($svg_file_path)) {
+        $svg_content = file_get_contents($svg_file_path);
+        // Extract only the symbol elements from the SVG
+        if (preg_match('/<svg[^>]*>(.*?)<\/svg>/s', $svg_content, $matches)) {
+          echo $matches[1];
+        }
+      }
+      ?>
+    </svg>
+    
   <noscript><img src="<?php echo $GLOBALS['CI']->template->template_images('default_loading.gif'); ?>"
 			class="img-fluid mx-auto d-block"></img></noscript>
 
@@ -103,7 +118,7 @@ if (empty($default_view)) {
 			foreach ($master_module_list as $k => $v) {
 				if (in_array($k, $active_domain_modules)) {
 				?>
-				<li class="normal_srchreali <?=((@$default_view == $k || $default_view == $v) ? 'bg-blue' : '')?>"><a href="<?php echo base_url()?>menu/dashboard/<?php echo ($v)?>?default_view=<?php echo $k?>"><i class="<?=get_arrangement_icon($k)?>"><?=get_arrangement_material_icon($k)?></i> <span class="none_lables"><?php echo ucfirst($v)?></span></a></li>
+				<li class="normal_srchreali <?=((@$default_view == $k || $default_view == $v) ? 'bg-blue' : '')?>"><a href="<?php echo base_url()?>menu/dashboard/<?php echo ($v)?>?default_view=<?php echo $k?>"><?php echo render_tmx_icon(get_arrangement_tmx_icon($k), 'tmx-icon-md'); ?> <span class="none_lables"><?php echo ucfirst($v)?></span></a></li>
 				<?php
 				}
     }
@@ -191,7 +206,7 @@ if (empty($default_view)) {
                   </li>
                   
                   <!-- Menu Actions -->
-                  <li class="user-footer profile-actions">
+                  <li class="profile-actions">
                     <a href="<?php echo base_url().'user/account?uid='.intval($GLOBALS['CI']->entity_user_id); ?>" class="profile-action-btn">
                       <i class="bi bi-person-circle"></i>
                       <span>Profile</span>

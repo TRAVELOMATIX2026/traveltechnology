@@ -4,6 +4,7 @@
         font-weight: inherit;
         padding-right: 10px;
     }
+    .placerows { padding: 0px !important; }
 </style>
 <?php
 $active_domain_modules = $this->active_domain_modules;
