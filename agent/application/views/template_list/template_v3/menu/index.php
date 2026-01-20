@@ -125,6 +125,111 @@ function set_default_active_tab($module_name, &$default_active_tab, $is_tab_pane
        text-transform: uppercase;
        letter-spacing: 0.5px;
    }
+   
+   /* Beautiful Agent Module Tabs */
+   .agent-module-tabs {
+       display: flex !important;
+       justify-content: center !important;
+       align-items: center !important;
+       gap: 8px !important;
+       margin-bottom: 25px !important;
+       padding: 0 15px !important;
+       border: none !important;
+       background: transparent !important;
+   }
+   
+   .agent-module-tabs .nav-item {
+       margin: 0 !important;
+       border: none !important;
+   }
+   
+   .agent-module-tabs .nav-link {
+       display: flex !important;
+       flex-direction: column !important;
+       align-items: center !important;
+       justify-content: center !important;
+       padding: 16px 20px !important;
+       margin: 0 !important;
+       border: 2px solid #e0e0e0 !important;
+       border-radius: 12px !important;
+       background: #ffffff !important;
+       color: #333 !important;
+       text-decoration: none !important;
+       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+       cursor: pointer !important;
+       min-width: 120px !important;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.08) !important;
+   }
+   
+   .agent-module-tabs .nav-link:hover {
+       background: #f8f9fa !important;
+       border-color: #d0d0d0 !important;
+       transform: translateY(-2px) !important;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+   }
+   
+   .agent-module-tabs .nav-item.active .nav-link,
+   .agent-module-tabs .nav-link:focus,
+   .agent-module-tabs .nav-link.active {
+       background: linear-gradient(135deg, #f18604 0%, #ff9800 100%) !important;
+       border-color: #f18604 !important;
+       color: #ffffff !important;
+       transform: translateY(-2px) !important;
+       box-shadow: 0 6px 20px rgba(241, 134, 4, 0.4) !important;
+   }
+   
+   .agent-module-tabs .nav-link .iconcmn {
+       display: flex !important;
+       align-items: center !important;
+       justify-content: center !important;
+       margin-bottom: 8px !important;
+       width: 32px !important;
+       height: 32px !important;
+   }
+   
+   .agent-module-tabs .nav-link .iconcmn .material-icons,
+   .agent-module-tabs .nav-link .iconcmn .tmx-icon {
+       font-size: 24px !important;
+       width: 24px !important;
+       height: 24px !important;
+       color: inherit !important;
+   }
+   
+   .agent-module-tabs .nav-item.active .nav-link .iconcmn .material-icons,
+   .agent-module-tabs .nav-item.active .nav-link .iconcmn .tmx-icon {
+       color: #ffffff !important;
+   }
+   
+   .agent-module-tabs .nav-link label {
+       font-size: 11px !important;
+       font-weight: 700 !important;
+       letter-spacing: 0.8px !important;
+       margin: 0 !important;
+       text-transform: uppercase !important;
+       color: inherit !important;
+       white-space: nowrap !important;
+   }
+   
+   .agent-module-tabs .nav-item.active .nav-link label {
+       color: #ffffff !important;
+   }
+   
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+       .agent-module-tabs {
+           flex-wrap: wrap !important;
+           gap: 8px !important;
+       }
+       
+       .agent-module-tabs .nav-link {
+           min-width: 100px !important;
+           padding: 12px 16px !important;
+       }
+       
+       .agent-module-tabs .nav-link label {
+           font-size: 10px !important;
+       }
+   }
 </style>
 
 <div class="searcharea">
@@ -137,78 +242,76 @@ function set_default_active_tab($module_name, &$default_active_tab, $is_tab_pane
           <!-- Tab panes -->
           <div class="tab-content custmtab">
             <div class="col-12 p-0">
-              <ul class="nav nav-tabs tabstab">
-                <?php if (is_active_airline_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_AIRLINE_COURSE, $default_active_tab) ?>">
-                    <a href="#flight" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">flight</i>
-                      </span>
-                      <label>Flights</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_flight_hotel_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_FLIGHT_HOTEL_COURSE, $default_active_tab) ?>">
-                    <a href="#flightHotel" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">connecting_airports</i>
-                      </span>
-                      <label>Flight + Hotels</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_hotel_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_ACCOMODATION_COURSE, $default_active_tab) ?>">
-                    <a href="#hotel" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">hotel</i>
-                      </span>
-                      <label>Hotels</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_car_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_CAR_COURSE, $default_active_tab) ?>">
-                    <a href="#car" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">directions_car</i>
-                      </span>
+            <ul class="nav nav-tabs tabstab d-flex justify-content-center" role="tablist">
+              <?php if (is_active_airline_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $flight_active; ?>" href="#flight" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-flight', 'tmx-icon-xl'); ?>
+                    </span><label>Flights</label>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_flight_hotel_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $flight_hotel_active; ?>" href="#flightHotel" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <i class="material-icons" size="18">flight</i>
+                    </span>
+                    <label>Flight + Hotels</label>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_hotel_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $hotel_active; ?>" href="#hotel" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-hotel', 'tmx-icon-xl'); ?>
+                    </span>
+                    <label>Hotels</label>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_car_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $car_active; ?>" href="#car" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-car', 'tmx-icon-xl'); ?>
+                    </span>
                       <label>Car Rental</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_sightseeing_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_SIGHTSEEING_COURSE, $default_active_tab) ?>">
-                    <a href="#sightseeing" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">camera_alt</i>
-                      </span>
-                      <label>Sight Seeing</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_transfer_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_TRANSFER_COURSE, $default_active_tab) ?>">
-                    <a href="#transfer" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">transfer_within_a_station</i>
-                      </span>
-                      <label>Transfers</label>
-                    </a>
-                  </li>
-                <?php } ?>
-                <?php if (is_active_package_module()) { ?>
-                  <li class="<?php echo set_default_active_tab(META_PACKAGE_COURSE, $default_active_tab) ?>">
-                    <a href="#holiday" role="tab" data-bs-toggle="tab">
-                      <span class="iconcmn">
-                        <i class="material-icons">beach_access</i>
-                      </span>
-                      <label>Holiday</label>
-                    </a>
-                  </li>
-                <?php } ?>
-              </ul>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_sightseeing_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $sightseeing_active; ?>" href="#sightseeing" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-sighseeing', 'tmx-icon-xl'); ?>
+                    </span>
+                    <label> Sight Seeing</label>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_transfer_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $transfer_active; ?>" href="#transfer" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-transfers', 'tmx-icon-xl'); ?>
+                    </span><label> Transfers</label>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if (is_active_package_module()) { ?>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link <?php echo $holiday_active; ?>" href="#holiday" role="tab" data-bs-toggle="tab">
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-tours', 'tmx-icon-xl'); ?>
+                    </span>
+                    <label> Holiday</label>
+                  </a>
+                </li>
+              <?php } ?>
+            </ul>
               
             </div>
 

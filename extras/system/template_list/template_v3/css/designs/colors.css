@@ -47,7 +47,7 @@
     --color-info-dark: light-dark(#0164dd, #0073ff);
     --color-info-light: light-dark(#00c5f0, #33d1ff);
     --color-info-lighter: light-dark(#33d1ff, #66ddff);
-    --color-info-lightest: light-dark(#e6f7fc, #0088b3);
+    --color-info-lightest: light-dark(#d7f3fb, #d7f3fb);
 
     /* Legacy Secondary (for backward compatibility) */
     --color-secondary: var(--color-secondary-primary);
@@ -201,9 +201,9 @@
     /* Section Background Gradient - Top to Bottom (Light to Dark) */
     /* Light theme: goes from light blue to medium blue-gray */
     /* Dark theme: goes from medium dark blue to darker blue */
-    --gradient-section-top: light-dark(#dffaff, #0f1a2a);
-    --gradient-section-mid: light-dark(#bfdbfe, #152238);
-    --gradient-section-bottom: light-dark(#dbeafe, #1a2d47);
+    --gradient-section-top: light-dark(#044186, #0f1a2a);
+    --gradient-section-mid: light-dark(#0f67ea, #152238);
+    --gradient-section-bottom: light-dark(#044186, #1a2d47);
     --gradient-section: light-dark(
       linear-gradient(to bottom, #dbeafe 0%, #bfdbfe 50%, #a5c9e8 100%),
       linear-gradient(to bottom, #1a2d47 0%, #152238 50%, #0f1a2a 100%)

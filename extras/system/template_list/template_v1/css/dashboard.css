@@ -14,6 +14,23 @@
     flex-wrap: wrap;
 }
 
+.custmtab .tab-pane{ padding: 12px; background: var(--color-bg-primary); box-shadow: var(--shadow-sm);
+border-radius: var(--border-radius-lg); border: var(--border-width-thin) var(--border-style-solid) var(--border-color-light);}
+
+
+.nav-tabs.tabstab > li.active > a, .nav-tabs.tabstab > li.active > a:hover, .nav-tabs.tabstab > li.active > a:focus {
+    background: linear-gradient(135deg, var(--gradient-blue-start) 0%, var(--gradient-blue-mid) 50%, var(--gradient-blue-end) 100%) !important;
+    border-color: transparent !important;
+    color: var(--color-white) !important;
+    box-shadow: none!important;
+}
+
+.nav-tabs.tabstab > li.active > a label{
+    color: var(--color-white) !important;
+    box-shadow: none!important;
+}
+
+
 /* ============================================
    STATS CARDS - Beautiful Modern Design
    ============================================ */

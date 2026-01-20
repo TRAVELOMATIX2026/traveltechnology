@@ -79,7 +79,7 @@ $default_active_tab = $default_view;
     <!-- Material Icons -->
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="<?php echo $GLOBALS['CI']->template->template_css_dir('theme_style.css?v=1'); ?>" rel="stylesheet" type="text/css" id="your_stylesheet">
+    <link href="<?php echo $GLOBALS['CI']->template->template_css_dir('theme_style.css?v=' . time()); ?>" rel="stylesheet" type="text/css" id="your_stylesheet">
     <!-- <link href="<?php echo $GLOBALS['CI']->template->template_css_dir('media.css'); ?>" rel="stylesheet"> -->
 
     <script>
@@ -108,6 +108,21 @@ $default_active_tab = $default_view;
 </head>
 
 <body class="<?php echo (isset($body_class) == false ? 'index_page' : $body_class) ?>">
+    <!-- TMX Custom Icons Sprite -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <?php 
+      // Get the full path to the SVG file
+      $svg_file_path = SYSTEM_TEMPLATE_LIST_RELATIVE_PATH . '/template_v3/images/icons/tmx-icon.svg';
+      if (file_exists($svg_file_path)) {
+        $svg_content = file_get_contents($svg_file_path);
+        // Extract only the symbol elements from the SVG
+        if (preg_match('/<svg[^>]*>(.*?)<\/svg>/s', $svg_content, $matches)) {
+          echo $matches[1];
+        }
+      }
+      ?>
+    </svg>
+    
     <div id="show_log" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -228,7 +243,7 @@ $default_active_tab = $default_view;
                                             <a class="phnumr customer-support-link dropdown-toggle" href="javascript:void(0);" role="button" id="supportDropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                                 <div class="customer-support-icon">
                                                     <div class="support-icon-wrapper">
-                                                        <i class="material-icons support-headphone-icon">headset_mic</i>
+                                                    <?php echo render_tmx_icon('tmx-icon-phone-header', 'tmx-icon-md'); ?>
                                                     </div>
                                                 </div>
                                                 <div class="customer-support-text">
@@ -241,7 +256,7 @@ $default_active_tab = $default_view;
                                             <ul class="dropdown-menu support-dropdown-menu" aria-labelledby="supportDropdown" role="menu">
                                                 <li class="support-dropdown-item">
                                                     <div class="support-item-header">
-                                                        <i class="material-icons support-item-icon">phone</i>
+                                                        <?php echo render_tmx_icon('tmx-icon-call-header', 'tmx-icon-md'); ?>
                                                         <span class="support-item-label">Call Support</span>
                                                     </div>
                                                     <a href="tel:<?= $support_no_tel ?>" class="support-item-link">
@@ -250,7 +265,7 @@ $default_active_tab = $default_view;
                                                 </li>
                                                 <li class="support-dropdown-item">
                                                     <div class="support-item-header">
-                                                        <i class="material-icons support-item-icon">email</i>
+                                                        <?php echo render_tmx_icon('tmx-icon-mail-header', 'tmx-icon-md'); ?>
                                                         <span class="support-item-label">Mail Support</span>
                                                     </div>
                                                     <a href="mailto:<?= $support_email ?>" class="support-item-link">
@@ -290,7 +305,7 @@ $default_active_tab = $default_view;
                                         <a class="topa language-dropdown-toggle" href="javascript:void(0);" role="button" id="languageDropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
                                             <div class="reglognorml">
                                                 <div class="language-icon">
-                                                    <i class="material-icons">language</i>
+                                                    <?php echo render_tmx_icon('tmx-icon-language', 'tmx-icon-sm'); ?>
                                                 </div>
                                                 <div class="language-code">
                                                     <?php echo $lang_code; ?>

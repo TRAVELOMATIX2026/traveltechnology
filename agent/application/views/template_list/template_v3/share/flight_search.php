@@ -46,20 +46,20 @@ if(isset($flight_search_params['adult_config']) == false || intval($flight_searc
 
 <form autocomplete="off" name="flight" id="flight_form" action="<?php echo base_url();?>index.php/general/pre_flight_search" method="get" class="activeForm oneway_frm" style="">
 	<div class="trvlhdr-optn">
-      <div class="flightSearchNavigation-f d-flex gap-4">
+      <div class="flightSearchNavigation-f d-flex gap-4 m-0">
          <div class="trvlhdr nopad dropdown trip_select">
             <div class="smalway">
-            <label class="wament hand-cursor <?= (isset($flight_search_params['trip_type']) == false ? 'active' : (($flight_search_params['trip_type']) == 'oneway' ? 'active' : '')) ?>">
+            <label class="wament m-0 hand-cursor <?= (isset($flight_search_params['trip_type']) == false ? 'active' : (($flight_search_params['trip_type']) == 'oneway' ? 'active' : '')) ?>">
             <input class="hide" type="radio" name="trip_type" <?= (isset($flight_search_params['trip_type']) == false ? 'checked' : (($flight_search_params['trip_type']) == 'oneway' ? 'checked="checked"' : '')) ?> id="onew-trp" value="oneway" />
             <i class="material-icons trip-icon">flight</i>
             <span>One Way</span>
             </label>
-            <label class="wament hand-cursor <?= (@$flight_search_params['trip_type'] == 'circle' ? 'active' : '') ?>">
+            <label class="wament m-0 hand-cursor <?= (@$flight_search_params['trip_type'] == 'circle' ? 'active' : '') ?>">
             <input class="hide" type="radio" name="trip_type" <?= (@$flight_search_params['trip_type'] == 'circle' ? 'checked="checked"' : '') ?> id="rnd-trp" value="circle" />
             <i class="material-icons trip-icon">sync_alt</i>
             <span>RoundTrip</span>
             </label>
-             <label class="wament hand-cursor <?= (@$flight_search_params['trip_type'] == 'multicity' ? 'active' : '') ?>">
+             <label class="wament m-0 hand-cursor <?= (@$flight_search_params['trip_type'] == 'multicity' ? 'active' : '') ?>">
             <input class="hide" type="radio" name="trip_type" <?= (@$flight_search_params['trip_type'] == 'multicity' ? 'checked="checked"' : '') ?> id="multi-trp" value="multicity" />
             <i class="material-icons trip-icon">flight_takeoff</i>
             <span>Multi-City</span>
@@ -113,7 +113,7 @@ if(isset($flight_search_params['adult_config']) == false || intval($flight_searc
 
 	</div>
  
-	<div class="tabspl">
+	<div class="tabspl mt-2">
    <div class="tabrow row m-0">
       <div id="onw_rndw_fieldset" class="col-md-10 p-0 row m-0">
          <div class="col-md-7 placerows p-0 row m-0">
