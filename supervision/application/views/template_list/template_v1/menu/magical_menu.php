@@ -616,7 +616,7 @@ $social = is_active_social_login($social_login);
                <?php endif;
                } ?>
                <li><a href="<?php echo base_url() . 'index.php/cms/why_choose_us' ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Why Choose Us</a></li>
-
+               <li><a href="<?php echo base_url() . 'index.php/cms/faqs' ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">FAQs</a></li>
                <?php if(check_user_previlege('p54')):?>
                   <li><a href="<?php echo base_url() . 'index.php/cms/top_airlines' ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Top Airlines</a></li>
                <?php endif;?>
