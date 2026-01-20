@@ -1368,15 +1368,27 @@
        color: var(--color-text-secondary) !important;
    }
    
-   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a span.none_lables,
-   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a span {
-       display: inline-block !important;
-       line-height: 1.5 !important;
+   /* TMX Icons (SVG) in header menu - Clean Design System Style */
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a svg.tmx-icon {
+
+       min-width: 20px !important;
+       min-height: 20px !important;
+       display: inline-flex !important;
+       align-items: center !important;
+       justify-content: center !important;
        vertical-align: middle !important;
        flex-shrink: 0;
-       white-space: nowrap;
-       margin-left: 0 !important;
-       padding-left: 0 !important;
+       fill: var(--color-text-secondary) !important;
+       transition: fill 0.2s ease !important;
+   }
+   
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali.bg-blue > a svg.tmx-icon {
+       fill: var(--color-white) !important;
+   }
+   
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a span.none_lables,
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a span {
+       display: none !important;
    }
    
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a::before {
@@ -1399,10 +1411,8 @@
    
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a:hover {
        color: var(--color-white) !important;
-       background: linear-gradient(135deg, var(--color-primary-primary) 0%, rgba(250, 128, 52, 0.9) 100%) !important;
+       background: var(--color-info) !important;
        transform: translateY(-2px) scale(1.02) !important;
-       box-shadow: 0 6px 20px rgba(250, 128, 52, 0.3), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-       border-color: rgba(250, 128, 52, 0.3) !important;
    }
    
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a:hover::before {
@@ -1412,6 +1422,12 @@
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a:hover i:not(.bg-blue i) {
        transform: scale(1.15) rotate(5deg) !important;
        color: var(--color-white) !important;
+       filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3)) !important;
+   }
+   
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali > a:hover svg.tmx-icon:not(.bg-blue svg) {
+       transform: scale(1.15) rotate(5deg) !important;
+       fill: var(--color-white) !important;
        filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3)) !important;
    }
    
@@ -1458,9 +1474,21 @@
        filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3)) !important;
    }
    
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali.bg-blue > a svg.tmx-icon {
+       fill: var(--color-white) !important;
+       transform: scale(1.1) !important;
+       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+       filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3)) !important;
+   }
+   
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali.bg-blue > a:hover i {
        transform: none !important;
        color: var(--color-white) !important;
+   }
+   
+   .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali.bg-blue > a:hover svg.tmx-icon {
+       transform: none !important;
+       fill: var(--color-white) !important;
    }
    
    .skin-black-light .main-header .navbar-nav.agent_menu > li.normal_srchreali.bg-blue > a::before {

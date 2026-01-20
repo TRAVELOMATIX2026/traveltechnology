@@ -61,7 +61,6 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   position: relative;
-  padding-left: var(--spacing-6);
   margin: var(--spacing-0);
 }
 
@@ -153,7 +152,6 @@
   color: var(--color-text-primary);
   cursor: pointer;
   position: relative;
-  padding-left: var(--spacing-6);
 }
 
 .wament input[type="radio"] {

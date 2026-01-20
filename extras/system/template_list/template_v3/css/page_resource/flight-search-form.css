@@ -83,18 +83,16 @@
 
 .wament:hover {
   color: var(--color-text-primary);
-  background: var(--color-bg-secondary);
+  background: var(--color-info-lightest);
   transform: translateY(-1px);
 }
 
 .wament.active,
 .wament:has(input[type="radio"]:checked) {
-  color: var(--color-text-inverse);
+  color: var(--color-text-primary);
   font-weight: var(--font-weight-semibold);
-  background: linear-gradient(135deg, var(--color-primary-primary) 0%, var(--color-primary-midtone) 100%);
-  box-shadow: 0 4px 12px rgba(240, 152, 20, 0.3),
-              0 2px 4px rgba(0, 0, 0, 0.1),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: var(--color-info-lightest);
+ 
   transform: translateY(-2px);
   z-index: 1;
 }
@@ -123,7 +121,7 @@
 .smalway .wament:has(input[type="radio"]:checked) .trip-icon {
   opacity: 1;
   transform: scale(1.15);
-  color: var(--color-text-inverse);
+  color: var(--color-black);
 }
 
 .smalway .wament span {
@@ -914,6 +912,7 @@
 .placerows {
   display: flex;
   flex-wrap: wrap;
+  padding: 0px !important;
   position: relative;
 }
 

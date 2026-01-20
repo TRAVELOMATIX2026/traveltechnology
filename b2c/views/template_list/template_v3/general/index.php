@@ -224,7 +224,7 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $flight_active; ?>" href="#flight" role="tab" data-bs-toggle="tab">
                     <span class=" iconcmn">
-                      <i class="material-icons" size="18">flight</i>
+                      <?php echo render_tmx_icon('tmx-icon-flight', 'tmx-icon-md'); ?>
                     </span><label>Flights</label>
                   </a>
                 </li>
@@ -242,35 +242,49 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
               <?php if (is_active_hotel_module()) { ?>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $hotel_active; ?>" href="#hotel" role="tab" data-bs-toggle="tab">
-                    <span class=" iconcmn"><i class="material-icons" size="18">hotel</i></span><label>Hotels</label>
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-hotel', 'tmx-icon-md'); ?>
+                    </span>
+                    <label>Hotels</label>
                   </a>
                 </li>
               <?php } ?>
               <?php if (is_active_car_module()) { ?>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $car_active; ?>" href="#car" role="tab" data-bs-toggle="tab">
-                    <span class=" iconcmn"><i class="material-icons" size="18">directions_car</i></span><label>Car Rental</label>
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-car', 'tmx-icon-md'); ?>
+                    </span>
+                      <label>Car Rental</label>
                   </a>
                 </li>
               <?php } ?>
               <?php if (is_active_sightseeing_module()) { ?>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $sightseeing_active; ?>" href="#sightseeing" role="tab" data-bs-toggle="tab">
-                    <span class=" iconcmn"><i class="material-icons" size="18">camera_alt</i></span><label> Sight Seeing</label>
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-sighseeing', 'tmx-icon-md'); ?>
+                    </span>
+                    <label> Sight Seeing</label>
                   </a>
                 </li>
               <?php } ?>
               <?php if (is_active_transfer_module()) { ?>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $transfer_active; ?>" href="#transfer" role="tab" data-bs-toggle="tab">
-                    <span class=" iconcmn"><i class="material-icons" size="18">transfer_within_a_station</i></span><label> Transfers</label>
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-transfers', 'tmx-icon-md'); ?>
+                    </span><label> Transfers</label>
                   </a>
                 </li>
               <?php } ?>
               <?php if (is_active_package_module()) { ?>
                 <li class="nav-item" role="presentation">
                   <a class="nav-link <?php echo $holiday_active; ?>" href="#holiday" role="tab" data-bs-toggle="tab">
-                    <span class=" iconcmn"><i class="material-icons" size="18">beach_access</i></span><label> Holiday</label>
+                    <span class=" iconcmn">
+                      <?php echo render_tmx_icon('tmx-icon-tours', 'tmx-icon-md'); ?>
+                    </span>
+                    <label> Holiday</label>
                   </a>
                 </li>
               <?php } ?>

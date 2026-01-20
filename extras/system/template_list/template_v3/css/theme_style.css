@@ -26,6 +26,43 @@ body{
     letter-spacing: 0.4px;
 }
 
+ /* TMX Icon Styles */
+ .tmx-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    vertical-align: middle;
+  }
+  .iconcmn .tmx-icon:not(.tmx-icon-sm):not(.tmx-icon-md):not(.tmx-icon-lg):not(.tmx-icon-xl) {
+    width: 18px;
+    height: 18px;
+  }
+  /* Size variations via CSS classes - Higher specificity */
+  .tmx-icon.tmx-icon-sm,
+  .tmx-icon-sm.tmx-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .tmx-icon.tmx-icon-md,
+  .tmx-icon-md.tmx-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .tmx-icon.tmx-icon-lg,
+  .tmx-icon-lg.tmx-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .tmx-icon.tmx-icon-xl,
+  .tmx-icon-xl.tmx-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .material-icons.tmx-icon-replace {
+    display: none;
+  }
+
 /* Material Icons with size attribute - JavaScript will apply the size */
 
 /* Note: Size styling is handled via JavaScript in template_v3.php */

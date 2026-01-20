@@ -1154,6 +1154,47 @@ function get_arrangement_material_icon($arrangement = '') {
     }
     return $icon_name;
 }
+
+/**
+ * Get TMX Icon ID for arrangement
+ * @param string $arrangement
+ * @return string TMX Icon ID
+ */
+function get_arrangement_tmx_icon($arrangement = '') {
+    $icon_id = '';
+    switch ($arrangement) {
+        /* Hotel */
+        case META_ACCOMODATION_COURSE: $icon_id = 'tmx-icon-hotel';
+            break;
+        /* Transfers */
+        case META_TRANSFERS_COURSE : $icon_id = 'tmx-icon-transfers';
+            break;
+        /* Airline */
+        case META_AIRLINE_COURSE: $icon_id = 'tmx-icon-flight';
+            break;
+        /* Transfers */
+        case META_TRANSFERV1_COURSE: $icon_id = 'tmx-icon-transfers';
+            break;
+        case META_TRANSFER_COURSE: $icon_id = 'tmx-icon-transfers';
+            break;
+       /* Sightseeing */
+        case META_SIGHTSEEING_COURSE: $icon_id = 'tmx-icon-sighseeing';
+            break;
+        /* Car */        
+        case META_CAR_COURSE: $icon_id = 'tmx-icon-car';
+            break;
+        /* BUS */
+        case META_BUS_COURSE : $icon_id = 'tmx-icon-transfers';
+            break;
+        /* Package */
+        case META_PACKAGE_COURSE : $icon_id = 'tmx-icon-tours';
+            break;
+        default : $icon_id = 'tmx-icon-flight';
+            break;
+    }
+    return $icon_id;
+}
+
 function get_arrangement_color($arrangement = '') {
     $arrangement_color = '';
     switch ($arrangement) {
@@ -1282,6 +1323,30 @@ function data_to_log_file($data) {
         $data = json_encode($data);
     }
     error_log($data, 3, '/opt/lampp/logs/php_error_log');
+}
+/**
+ * Render TMX Custom Icon
+ * @param string $icon_id - The symbol ID from tmx-icon.svg (e.g., 'tmx-icon-hotel', 'tmx-icon-holiday')
+ * @param string $class - Additional CSS classes for styling and size control
+ * @return string - HTML for SVG icon
+ */
+function render_tmx_icon($icon_id, $class = '') {
+  $icon_url = $GLOBALS['CI']->template->template_images('icons/tmx-icon.svg');
+  
+  // Always include base class
+  $classes = array('tmx-icon');
+  
+  // Add additional class if provided
+  if (!empty($class)) {
+    $class = trim($class);
+    if ($class !== '') {
+      $classes[] = $class;
+    }
+  }
+  
+  $class_attr = implode(' ', $classes);
+  
+  return '<svg class="' . $class_attr . '"><use href="' . $icon_url . '#' . $icon_id . '"></use></svg>';
 }
 /**
  * Balu A
