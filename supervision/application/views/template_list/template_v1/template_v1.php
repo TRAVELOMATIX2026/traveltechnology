@@ -50,6 +50,11 @@ $___favicon_ico = $GLOBALS['CI']->template->domain_images('favicon.ico');
     <!-- Bootstrap Icons ONLY -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
+    <!-- Material Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
      <!-- Ultra Modern Header Styles -->
      <link href="<?php echo $this->template->template_css_dir('header.css')?>?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" />
      

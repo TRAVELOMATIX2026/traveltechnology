@@ -68,22 +68,7 @@ $social = is_active_social_login($social_login);
       <a href="#" class="menu-item menu-item-inactive group">
          <i class="bi bi-speedometer2"></i>
          <span class="menu-item-text">Dashboard-2</span>
-         <svg
-            class="menu-item-arrow menu-item-arrow-inactive"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <path
-               d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-               stroke=""
-               stroke-width="1.5"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-            />
-         </svg>
+         <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
       </a>
       <!-- Dropdown Menu Start -->
       <div class="translate transform overflow-hidden">
@@ -108,22 +93,7 @@ $social = is_active_social_login($social_login);
          <a href="#" class="menu-item menu-item-inactive group">
             <i class="bi bi-wrench"></i>
             <span class="menu-item-text">Management</span>
-            <svg
-               class="menu-item-arrow menu-item-arrow-inactive"
-               width="20"
-               height="20"
-               viewBox="0 0 20 20"
-               fill="none"
-               xmlns="http://www.w3.org/2000/svg"
-            >
-               <path
-                  d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                  stroke=""
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-               />
-            </svg>
+            <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
          </a>
          <!-- Dropdown Menu Start -->
          <div class="translate transform overflow-hidden">
@@ -140,22 +110,7 @@ $social = is_active_social_login($social_login);
             <a href="#" class="menu-item menu-item-inactive group">
                <i class="bi bi-person"></i>
                <span class="menu-item-text">Markup</span>
-               <svg
-                  class="menu-item-arrow menu-item-arrow-inactive"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                     stroke=""
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                  />
-               </svg>
+               <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
             </a>
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden">
@@ -202,22 +157,7 @@ $social = is_active_social_login($social_login);
             <a href="#" class="menu-item menu-item-inactive group">
                <i class="bi bi-person"></i>
                <span class="menu-item-text">Users</span>
-               <svg
-                  class="menu-item-arrow menu-item-arrow-inactive"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                     stroke=""
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                  />
-               </svg>
+               <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
             </a>
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden">
@@ -225,35 +165,51 @@ $social = is_active_social_login($social_login);
                <!-- USER TYPES -->
                <?php if ($b2c) {
                   if (check_user_previlege('p17')): ?>
-                     <li>
-                        <a href="<?php echo base_url() . 'index.php/user/b2c_user?filter=user_type&q=' . B2C_USER; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">B2C</a>
-                        <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                     <li class="treeview">
+                        <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                           <span>B2C</span>
+                           <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                        </a>
+                        <div class="translate transform overflow-hidden">
+                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                            <li><a href="<?php echo base_url() . 'index.php/user/b2c_user?filter=user_type&q=' . B2C_USER . '&user_status=' . ACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Active</a></li>
                            <li><a href="<?php echo base_url() . 'index.php/user/b2c_user?filter=user_type&q=' . B2C_USER . '&user_status=' . INACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">InActive</a></li>
                            <li><a href="<?php echo base_url() . 'index.php/user/get_logged_in_users?filter=user_type&q=' . B2C_USER; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Logged In User</a></li>
-                        </ul>
+                           </ul>
+                        </div>
                      </li>
                <?php endif;
                } ?>
                <?php if ($b2b) {
                   if (check_user_previlege('p24')): ?>
-                     <li>
-                        <a href="<?php echo base_url() . 'index.php/user/b2b_user?filter=user_type&q=' . B2B_USER ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">B2B</a>
-                        <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                     <li class="treeview">
+                        <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                           <span>B2B</span>
+                           <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                        </a>
+                        <div class="translate transform overflow-hidden">
+                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                            <li><a href="<?php echo base_url() . 'index.php/user/b2b_user?user_status=' . ACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Active</a></li>
                            <li><a href="<?php echo base_url() . 'index.php/user/b2b_user?user_status=' . INACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">InActive</a></li>
                            <li><a href="<?php echo base_url() . 'index.php/user/get_logged_in_users?filter=user_type&q=' . B2B_USER; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Logged In User</a></li>
-                        </ul>
+                           </ul>
+                        </div>
                      </li>
                   <?php endif;
                }
                if (check_user_previlege('p73') && $visibility): ?>
-                  <li><a href="<?php echo base_url() . 'index.php/user/user_management?filter=user_type&q=' . SUB_ADMIN ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Sub Admin</a>
-                     <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                  <li class="treeview">
+                     <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                        <span>Sub Admin</span>
+                        <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                     </a>
+                     <div class="translate transform overflow-hidden">
+                        <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                         <li><a href="<?php echo base_url() . 'index.php/user/user_management?filter=user_type&q=' . SUB_ADMIN . '&user_status=' . ACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Active</a></li>
                         <li><a href="<?php echo base_url() . 'index.php/user/user_management?filter=user_type&q=' . SUB_ADMIN . '&user_status=' . INACTIVE; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">InActive</a></li>
                         <li><a href="<?php echo base_url() . 'index.php/user/get_logged_in_users?filter=user_type&q=' . SUB_ADMIN; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Logged In User</a></li>
-                     </ul>
+                        </ul>
+                     </div>
                   </li>
                <?php endif; ?>
                </ul>
@@ -267,22 +223,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-shield-fill"></i>
                   <span class="menu-item-text">Queues</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <?php if (check_user_previlege('p71')): ?>
                   <!-- Dropdown Menu Start -->
@@ -300,22 +241,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-bar-chart-fill"></i>
                   <span class="menu-item-text">Reports</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <!-- Dropdown Menu Start -->
                <div class="translate transform overflow-hidden">
@@ -323,9 +249,13 @@ $social = is_active_social_login($social_login);
                   <!-- USER TYPES -->
                   <?php if ($b2c) {
                      if (check_user_previlege('p74')): ?>
-                        <li>
-                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">B2C</a>
-                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                        <li class="treeview">
+                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                              <span>B2C</span>
+                              <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                           </a>
+                           <div class="translate transform overflow-hidden">
+                              <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                               <?php if ($airline_module) {
                                  if (check_user_previlege('p18')): ?>
                                     <li><a href="<?php echo base_url() . 'index.php/report/b2c_flight_report/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Flight</a></li>
@@ -357,15 +287,20 @@ $social = is_active_social_login($social_login);
                                     <li><a href="<?php echo base_url() . 'index.php/report/b2c_car_report/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Car</a></li>
                               <?php endif;
                               } ?>
-                           </ul>
+                              </ul>
+                           </div>
                         </li>
                      <?php endif;
                   }
                   if ($b2b) {
                      if (check_user_previlege('p75')): ?>
-                        <li>
-                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">B2B</a>
-                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                        <li class="treeview">
+                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                              <span>B2B</span>
+                              <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                           </a>
+                           <div class="translate transform overflow-hidden">
+                              <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                               <?php if ($airline_module) {
                                  if (check_user_previlege('p25')): ?>
                                     <li><a href="<?php echo base_url() . 'index.php/report/b2b_flight_report/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Flight</a></li>
@@ -396,7 +331,8 @@ $social = is_active_social_login($social_login);
                                     <li><a href="<?php echo base_url() . 'index.php/report/b2b_car_report/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Car</a></li>
                               <?php endif;
                               } ?>
-                           </ul>
+                              </ul>
+                           </div>
                         </li>
                   <?php endif;
                   } ?>
@@ -422,22 +358,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-cash"></i>
                   <span class="menu-item-text">Account</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <!-- Dropdown Menu Start -->
                <div class="translate transform overflow-hidden">
@@ -459,22 +380,7 @@ $social = is_active_social_login($social_login);
                   <a href="#" class="menu-item menu-item-inactive group">
                      <i class="bi bi-briefcase"></i>
                      <span class="menu-item-text">Commission</span>
-                     <svg
-                        class="menu-item-arrow menu-item-arrow-inactive"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path
-                           d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                           stroke=""
-                           stroke-width="1.5"
-                           stroke-linecap="round"
-                           stroke-linejoin="round"
-                        />
-                     </svg>
+                     <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                   </a>
                   <!-- Dropdown Menu Start -->
                   <div class="translate transform overflow-hidden">
@@ -496,22 +402,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-plus-square"></i>
                   <span class="menu-item-text">Markup</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <!-- Dropdown Menu Start -->
                <div class="translate transform overflow-hidden">
@@ -519,9 +410,13 @@ $social = is_active_social_login($social_login);
                   <!-- Markup TYPES -->
                   <?php if ($b2c) {
                      if (check_user_previlege('p35')): ?>
-                        <li>
-                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">B2C</a>
-                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                        <li class="treeview">
+                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                              <span>B2C</span>
+                              <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                           </a>
+                           <div class="translate transform overflow-hidden">
+                              <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                               <?php if ($airline_module) {
                                  if (check_user_previlege('p35')): ?>
                                     <li><a href="<?php echo base_url() . 'index.php/management/b2c_airline_markup/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Flight</a></li>
@@ -555,16 +450,21 @@ $social = is_active_social_login($social_login);
                               <?php endif;
                               }
                               ?>
-                           </ul>
+                              </ul>
+                           </div>
                         </li>
                      <?php endif;
                   }
                   if ($b2b) {
                      if (check_user_previlege('p36')):
                      ?>
-                        <li>
-                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">B2B</a>
-                           <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
+                        <li class="treeview">
+                           <a href="#" class="menu-dropdown-item menu-dropdown-item-inactive group">
+                              <span>B2B</span>
+                              <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
+                           </a>
+                           <div class="translate transform overflow-hidden">
+                              <ul class="menu-dropdown mt-2 flex flex-col gap-1 pl-9">
                               <?php if ($airline_module) {
                                  if (check_user_previlege('p35')): ?>
                                     <li><a href="<?php echo base_url() . 'index.php/management/b2b_airline_markup/'; ?>" class="menu-dropdown-item menu-dropdown-item-inactive group">Flight</a></li>
@@ -597,7 +497,8 @@ $social = is_active_social_login($social_login);
                               <?php endif;
                               }
                               ?>
-                           </ul>
+                              </ul>
+                           </div>
                         </li>
                   <?php endif;
                   } ?>
@@ -614,22 +515,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-cash"></i>
                   <span class="menu-item-text">Master Balance Manager</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <!-- Dropdown Menu Start -->
                <div class="translate transform overflow-hidden">
@@ -653,22 +539,7 @@ $social = is_active_social_login($social_login);
                <a href="#" class="menu-item menu-item-inactive group">
                   <i class="bi bi-plus-square"></i>
                   <span class="menu-item-text">Package Management</span>
-                  <svg
-                     class="menu-item-arrow menu-item-arrow-inactive"
-                     width="20"
-                     height="20"
-                     viewBox="0 0 20 20"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                        stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                     />
-                  </svg>
+                  <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
                </a>
                <!-- Dropdown Menu Start -->
                <div class="translate transform overflow-hidden">
@@ -700,22 +571,7 @@ $social = is_active_social_login($social_login);
             <a href="#" class="menu-item menu-item-inactive group">
                <i class="bi bi-envelope"></i>
                <span class="menu-item-text">Email Subscriptions</span>
-               <svg
-                  class="menu-item-arrow menu-item-arrow-inactive"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                     stroke=""
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                  />
-               </svg>
+               <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
             </a>
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden">
@@ -733,22 +589,7 @@ $social = is_active_social_login($social_login);
             <a href="#" class="menu-item menu-item-inactive group">
                <i class="bi bi-laptop"></i>
                <span class="menu-item-text">CMS</span>
-               <svg
-                  class="menu-item-arrow menu-item-arrow-inactive"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                     stroke=""
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                  />
-               </svg>
+               <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
             </a>
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden">
@@ -795,22 +636,7 @@ $social = is_active_social_login($social_login);
          <a href="#" class="menu-item menu-item-inactive group">
             <i class="far fa-retweet"></i>
             <span class="menu-item-text">Masters</span>
-            <svg
-               class="menu-item-arrow menu-item-arrow-inactive"
-               width="20"
-               height="20"
-               viewBox="0 0 20 20"
-               fill="none"
-               xmlns="http://www.w3.org/2000/svg"
-            >
-               <path
-                  d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                  stroke=""
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-               />
-            </svg>
+            <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
          </a>
          <!-- Dropdown Menu Start -->
          <div class="translate transform overflow-hidden">
@@ -827,22 +653,7 @@ $social = is_active_social_login($social_login);
             <a href="#" class="menu-item menu-item-inactive group">
                <i class="bi bi-globe"></i>
                <span class="menu-item-text">SEO</span>
-               <svg
-                  class="menu-item-arrow menu-item-arrow-inactive"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                     stroke=""
-                     stroke-width="1.5"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                  />
-               </svg>
+               <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
             </a>
             <!-- Dropdown Menu Start -->
             <div class="translate transform overflow-hidden">
@@ -876,22 +687,7 @@ $social = is_active_social_login($social_login);
          <a href="#" class="menu-item menu-item-inactive group">
             <i class="bi bi-gear"></i>
             <span class="menu-item-text">Settings</span>
-            <svg
-               class="menu-item-arrow menu-item-arrow-inactive"
-               width="20"
-               height="20"
-               viewBox="0 0 20 20"
-               fill="none"
-               xmlns="http://www.w3.org/2000/svg"
-            >
-               <path
-                  d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
-                  stroke=""
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-               />
-            </svg>
+            <i class="material-icons menu-item-arrow menu-item-arrow-inactive float-end">expand_more</i>
          </a>
          <!-- Dropdown Menu Start -->
          <div class="translate transform overflow-hidden">

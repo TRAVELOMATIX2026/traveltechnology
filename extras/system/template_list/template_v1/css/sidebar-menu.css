@@ -3,6 +3,26 @@
    Clean, Professional Design with Perfect Alignment
    ============================================ */
 
+/* Material Icons Base Styles */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'liga';
+}
+
 /* Reset conflicting styles from existing sidebar.css */
 nav .menu-item,
 nav .menu-dropdown-item {
@@ -38,6 +58,11 @@ nav .menu-group .sidebar-menu {
   right: 0 !important;
   bottom: 0 !important;
   height: 100vh;
+  min-width: 275px !important;
+}
+
+.sidebar-collapse .main-sidebar {
+  min-width: 50px !important;
 }
 
 .sidebar {
@@ -256,8 +281,8 @@ nav {
   position: absolute !important;
   right: 12px !important;
   top: 50% !important;
-  transform: translateY(-50%) !important;
-  transition: transform 0.3s ease, stroke 0.2s ease !important;
+  transform: translateY(-50%) rotate(0deg) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease, stroke 0.2s ease !important;
   font-size: 16px !important;
   width: 16px !important;
   height: 16px !important;
@@ -265,20 +290,131 @@ nav {
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0 !important;
+  pointer-events: none !important;
+}
+
+/* SVG elements with menu-item-arrow class - ensure they're visible */
+svg.menu-item-arrow {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) rotate(0deg) !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+/* Material Icons chevron */
+.menu-item-arrow.material-icons {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* SVG chevron - when SVG itself has the class */
+svg.menu-item-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.2s ease !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* SVG chevron - when SVG is inside element with class */
+.menu-item-arrow svg {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.2s ease !important;
+}
+
+svg.menu-item-arrow path,
+.menu-item-arrow svg path {
+  transition: stroke 0.2s ease !important;
 }
 
 .menu-item-arrow-inactive {
   color: light-dark(#667085, #9ca3af) !important;
 }
 
+/* SVG with inactive class */
+svg.menu-item-arrow-inactive {
+  color: light-dark(#667085, #9ca3af) !important;
+}
+
+svg.menu-item-arrow-inactive path {
+  stroke: light-dark(#667085, #9ca3af) !important;
+  fill: none !important;
+}
+
+/* SVG inside inactive element */
+.menu-item-arrow-inactive svg {
+  color: light-dark(#667085, #9ca3af) !important;
+}
+
+.menu-item-arrow-inactive svg path {
+  stroke: light-dark(#667085, #9ca3af) !important;
+  fill: none !important;
+}
+
 .menu-item-arrow-active,
-.treeview.menu-open .menu-item-arrow {
+.treeview.menu-open .menu-item-arrow,
+.treeview.menu-open > a .menu-item-arrow {
   color: light-dark(#465fff, #9cb9ff) !important;
-  transform: translateY(-50%) rotate(-90deg) !important;
+  transform: translateY(-50%) rotate(180deg) !important;
+}
+
+/* SVG with active class */
+svg.menu-item-arrow-active,
+.treeview.menu-open svg.menu-item-arrow,
+.treeview.menu-open > a svg.menu-item-arrow {
+  color: light-dark(#465fff, #9cb9ff) !important;
+  transform: translateY(-50%) rotate(180deg) !important;
+}
+
+svg.menu-item-arrow-active path,
+.treeview.menu-open svg.menu-item-arrow path,
+.treeview.menu-open > a svg.menu-item-arrow path {
+  stroke: light-dark(#465fff, #9cb9ff) !important;
+}
+
+/* SVG inside active element */
+.treeview.menu-open .menu-item-arrow svg,
+.treeview.menu-open > a .menu-item-arrow svg {
+  color: light-dark(#465fff, #9cb9ff) !important;
+}
+
+.treeview.menu-open .menu-item-arrow svg path,
+.treeview.menu-open > a .menu-item-arrow svg path {
+  stroke: light-dark(#465fff, #9cb9ff) !important;
+}
+
+/* Nested submenu arrows */
+.menu-dropdown-item .menu-item-arrow {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) rotate(0deg) !important;
+}
+
+.menu-dropdown-item.treeview.menu-open .menu-item-arrow,
+.menu-dropdown .treeview.menu-open .menu-item-arrow {
+  transform: translateY(-50%) rotate(180deg) !important;
 }
 
 /* Remove float-end interference */
-.menu-item .float-end {
+.menu-item .float-end,
+.menu-dropdown-item .float-end {
   position: absolute !important;
   right: 12px !important;
   float: none !important;
@@ -377,6 +513,38 @@ li.treeview > div > .menu-dropdown[style*="display: flex"],
   box-sizing: border-box !important;
   min-height: 36px !important;
   transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+/* Nested submenu items with treeview */
+.menu-dropdown .treeview > .menu-dropdown-item {
+  padding-right: 36px !important;
+}
+
+/* Ensure SVG icons are visible in dropdown items */
+.menu-dropdown-item svg.menu-item-arrow {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure SVG icons are visible in main menu items */
+.menu-item svg.menu-item-arrow {
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .menu-dropdown-item-inactive {

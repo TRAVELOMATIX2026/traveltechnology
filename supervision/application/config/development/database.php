@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'traveltechnology_traveltech';
-$db['default']['password'] = '6Oeb**~gcOl_nxRJ';
-$db['default']['database'] = 'traveltechnology_tmx_v1';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'tmxv3';
 $db['default']['db_debug'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['dbdriver'] = 'mysqli';

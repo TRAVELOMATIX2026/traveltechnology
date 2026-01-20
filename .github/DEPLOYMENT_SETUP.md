@@ -8,25 +8,37 @@ You need to add the following secrets to your GitHub repository:
 
 ### For Development Environment (develop branch)
 
-**Required Secrets:**
+**Required FTP Secrets:**
 1. `DEV_FTP_HOST`: `154.221.33.114` (or `ftp.traveltechnology.co.in`)
 2. `DEV_FTP_USER`: `traveltechnology`
 3. `DEV_FTP_PASS`: `t1b[nMo[qPX_+@dH`
 4. `DEV_FTP_PATH`: `/public_html` (or your actual development path)
 
+**Required Database Secrets:**
+1. `DEV_DB_USERNAME`: Development database username
+2. `DEV_DB_PASSWORD`: Development database password
+3. `DEV_DB_NAME`: Development database name
+
 **Optional Secrets:**
 - `DEV_FTP_PORT`: FTP port number (defaults to 21 if not set, use 22 for SFTP)
+- `DEV_DB_HOST`: Database host (defaults to `localhost` if not set)
 
 ### For Production Environment (main branch)
 
-**Required Secrets:**
+**Required FTP Secrets:**
 1. `PROD_FTP_HOST`: `154.221.33.114` (or `ftp.traveltechnology.co.in`)
 2. `PROD_FTP_USER`: `traveltechnology`
 3. `PROD_FTP_PASS`: `t1b[nMo[qPX_+@dH`
 4. `PROD_FTP_PATH`: `/public_html` (or your actual production path)
 
+**Required Database Secrets:**
+1. `PROD_DB_USERNAME`: Production database username (e.g., `traveltechnology_traveltech`)
+2. `PROD_DB_PASSWORD`: Production database password
+3. `PROD_DB_NAME`: Production database name (e.g., `traveltechnology_tmx_v1`)
+
 **Optional Secrets:**
 - `PROD_FTP_PORT`: FTP port number (defaults to 21 if not set, use 22 for SFTP)
+- `PROD_DB_HOST`: Database host (defaults to `localhost` if not set)
 
 > **Note:** All secret names follow GitHub's naming rules:
 > - Only alphanumeric characters `[a-z]`, `[A-Z]`, `[0-9]` and underscores `_`
@@ -75,11 +87,30 @@ FTP credentials are transmitted over the network. For better security:
 - Use SFTP (port 22) if available
 - Consider using FTPS (FTP over SSL) if supported by your hosting provider
 
+## Database Credentials Management
+
+During deployment, the GitHub Actions workflow automatically updates database credentials in production `database.php` files using the secrets you configure.
+
+### How It Works:
+1. Before creating the deployment package, the workflow runs `scripts/update-db-credentials.sh`
+2. This script updates database credentials in:
+   - `agent/application/config/production/database.php`
+   - `b2c/config/production/database.php`
+   - `supervision/application/config/production/database.php`
+3. The credentials are replaced with values from GitHub Secrets
+4. The updated files are then included in the deployment package
+
+### Important Notes:
+- Database credentials are **never** committed to git
+- Credentials are updated **only during deployment** from GitHub Secrets
+- Local development files remain unchanged
+- Production database files are automatically configured with server credentials during deployment
+
 ## What Gets Deployed
 
 ### Included Files:
 - All PHP files
-- Configuration files
+- Configuration files (with production database credentials automatically updated)
 - Views, controllers, models
 - Assets (if not excluded)
 
