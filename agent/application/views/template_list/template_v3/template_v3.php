@@ -206,7 +206,7 @@ if (empty($default_view)) {
                   </li>
                   
                   <!-- Menu Actions -->
-                  <li class="user-footer profile-actions">
+                  <li class="profile-actions">
                     <a href="<?php echo base_url().'user/account?uid='.intval($GLOBALS['CI']->entity_user_id); ?>" class="profile-action-btn">
                       <i class="bi bi-person-circle"></i>
                       <span>Profile</span>
