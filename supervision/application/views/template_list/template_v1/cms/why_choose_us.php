@@ -43,7 +43,7 @@
 						<td>
 							<div class="d-flex gap-2">
 								<?= get_edit_button($v['origin']) ?>
-								<a href="<?php echo base_url(); ?>cms/delete_why_choose/<?php echo $v['origin']; ?>/<?php echo $v['origin']; ?>" onclick="return confirm('Do you want delete this record');" class="btn btn-sm btn-danger">
+								<a href="<?php echo base_url(); ?>index.php/cms/delete_why_choose/<?php echo $v['origin']; ?>" onclick="return confirm('Do you want delete this record');" class="btn btn-sm btn-danger">
 									<i class="bi bi-trash"></i> Delete
 								</a>
 							</div>

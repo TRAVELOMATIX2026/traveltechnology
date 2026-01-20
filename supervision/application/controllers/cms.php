@@ -2747,7 +2747,6 @@ error_reporting(E_ALL);
 	public function delete_why_choose($origin)
 
 	{
-
 		$this->custom_db->delete_record('why_choose_us', array('origin' => $origin));
 
 		redirect('cms/why_choose_us');
@@ -4797,6 +4796,40 @@ error_reporting(E_ALL);
 		$this->session->set_flashdata($delete ? 'success' : 'error', $message);
 
 		redirect('cms/list_collaborations');
+
+	}
+
+	public function faqs($offset = 0)
+
+	{
+
+		$this->load->library('pagination');
+
+		$config['base_url'] = base_url('cms/faqs/');
+
+		$config['per_page'] = 10;
+
+		$config['reuse_query_string'] = TRUE;
+
+		$config['uri_segment'] = 3;
+
+		$total_records = $this->custom_db->count_records('cms_faqs');
+
+		$config['total_rows'] = $total_records;
+
+		$this->pagination->initialize($config);
+
+		$limit = $config['per_page'];
+
+		$collaboration = $this->custom_db->single_table_records('cms_faqs', '*', [],  $offset, $limit);
+
+		$page_data['faqs_list'] = $collaboration['data'];
+
+		$page_data['pagination_links'] = $this->pagination->create_links();
+
+		$page_data['offset'] = $offset;
+
+		$this->template->view('cms/faqs', $page_data);
 
 	}
 
