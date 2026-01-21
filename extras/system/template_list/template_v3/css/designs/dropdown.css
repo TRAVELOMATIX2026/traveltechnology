@@ -348,7 +348,6 @@
     box-shadow: var(--shadow-lg);
     z-index: var(--z-index-dropdown);
     opacity: 0;
-    visibility: hidden;
     transform: perspective(1000px) rotateX(-90deg) translateY(-20px);
     transform-origin: top left;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
