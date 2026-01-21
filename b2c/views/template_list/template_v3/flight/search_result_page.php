@@ -851,24 +851,24 @@ echo $GLOBALS['CI']->template->isolated_view('flight/search_panel_summary');
 										<?php
 											$sorting_list .= '<ul class="sortul">';
 												$sorting_list .= '<li class="sortli hide_lines">';
-												$sorting_list .= '<a class="sorta name-l-2-h loader asc"><i class="material-icons">flight</i> <strong>Airline</strong></a>';
-												$sorting_list .= '<a class="sorta name-h-2-l hide loader des"><i class="material-icons">flight</i> <strong>Airline</strong></a>';
+												$sorting_list .= '<a class="sorta name-l-2-h loader asc name"><i class="material-icons">flight</i> <strong>Airline</strong></a>';
+												$sorting_list .= '<a class="sorta name-h-2-l hide loader des name"><i class="material-icons">flight</i> <strong>Airline</strong></a>';
 												$sorting_list .= '</li>';
 												$sorting_list .= '<li class="sortli">';
-												$sorting_list .= '<a class="sorta departure-l-2-h loader asc"><i class="material-icons">flight_takeoff</i> <strong>Depart</strong></a>';
-												$sorting_list .= '<a class="sorta departure-h-2-l hide loader des"><i class="material-icons">flight_takeoff</i> <strong>Depart</strong></a>';
+												$sorting_list .= '<a class="sorta departure-l-2-h loader asc departure"><i class="material-icons">flight_takeoff</i> <strong>Depart</strong></a>';
+												$sorting_list .= '<a class="sorta departure-h-2-l hide loader des departure"><i class="material-icons">flight_takeoff</i> <strong>Depart</strong></a>';
 												$sorting_list .= '</li>';
 												$sorting_list .= '<li class="sortli hide_lines">';
-													$sorting_list .= '<a class="sorta duration-l-2-h loader asc"><i class="material-icons">schedule</i> <strong>Duration</strong></a>';
-													$sorting_list .= '<a class="sorta duration-h-2-l hide loader des"><i class="material-icons">schedule</i> <strong>Duration</strong></a>';
+													$sorting_list .= '<a class="sorta duration-l-2-h loader asc duration"><i class="material-icons">schedule</i> <strong>Duration</strong></a>';
+													$sorting_list .= '<a class="sorta duration-h-2-l hide loader des duration"><i class="material-icons">schedule</i> <strong>Duration</strong></a>';
 												$sorting_list .= '</li>';
 												$sorting_list .= '<li class="sortli">';
-													$sorting_list .= '<a class="sorta arrival-l-2-h loader asc"><i class="material-icons">flight_land</i> <strong>Arrive</strong></a>';
-													$sorting_list .= '<a class="sorta arrival-h-2-l hide loader des"><i class="material-icons">flight_land</i> <strong>Arrive</strong></a>';
+													$sorting_list .= '<a class="sorta arrival-l-2-h loader asc arrival"><i class="material-icons">flight_land</i> <strong>Arrive</strong></a>';
+													$sorting_list .= '<a class="sorta arrival-h-2-l hide loader des arrival"><i class="material-icons">flight_land</i> <strong>Arrive</strong></a>';
 												$sorting_list .= '</li>';
 												$sorting_list .= '<li class="sortli">';
-													$sorting_list .= '<a class="sorta price-l-2-h loader asc"><i class="material-icons">attach_money</i> <strong>Price</strong></a>';
-													$sorting_list .= '<a class="sorta price-h-2-l hide loader des"><i class="material-icons">attach_money</i> <strong>Price</strong></a>';
+													$sorting_list .= '<a class="sorta price-l-2-h loader asc price"><i class="material-icons">attach_money</i> <strong>Price</strong></a>';
+													$sorting_list .= '<a class="sorta price-h-2-l hide loader des price"><i class="material-icons">attach_money</i> <strong>Price</strong></a>';
 												$sorting_list .= '</li>';
 											$sorting_list .= '</ul>';
 											echo $sorting_list;
@@ -1351,298 +1351,6 @@ echo $GLOBALS['CI']->template->isolated_view('flight/search_panel_summary');
 			$(".coleft").hide();
 			$(".resultalls").removeClass("open");
       	});
-		
-		//************************** **********/
-		//airline price sort
-		<?php
-		$i=1;
-		for ($i=1; $i<=2; $i++) ://Multiple Filters Need to be loaded - Balu A
-		?>
-		$("#top-sort-list-<?=$i?> .price-l-2-h").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .price-h-2-l').removeClass('hide');
-			
-			// Show loader immediately
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			// Use requestAnimationFrame to ensure loader is visible before sorting
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.f-p:first',
-					item: '.r-r-i',
-					order: 'asc',
-					is_num: true
-				});
-				
-				// Hide loader after sorting completes
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		$("#top-sort-list-<?=$i?> .price-h-2-l").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .price-l-2-h').removeClass('hide');
-			
-			// Show loader immediately
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			// Use requestAnimationFrame to ensure loader is visible before sorting
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.f-p:first',
-					item: '.r-r-i',
-					order: 'desc',
-					is_num: true
-				});
-				
-				// Hide loader after sorting completes
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		//airline name sort
-		$("#top-sort-list-<?=$i?> .name-l-2-h").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .name-h-2-l').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.a-n:first',
-					item: '.r-r-i',
-					order: 'asc',
-					is_num: false
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		$("#top-sort-list-<?=$i?> .name-h-2-l").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .name-l-2-h').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.a-n:first',
-					item: '.r-r-i',
-					order: 'desc',
-					is_num: false
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		//duration sort
-		$("#top-sort-list-<?=$i?> .duration-l-2-h").click(function() {
-			
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .duration-h-2-l').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.f-d:first',
-					item: '.r-r-i',
-					order: 'asc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		$("#top-sort-list-<?=$i?> .duration-h-2-l").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .duration-l-2-h').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.f-d:first',
-					item: '.r-r-i',
-					order: 'desc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		//departure name sort
-		$("#top-sort-list-<?=$i?> .departure-l-2-h").click(function() {
-			
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .departure-h-2-l').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.fdtv:first',
-					item: '.r-r-i',
-					order: 'asc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		$("#top-sort-list-<?=$i?> .departure-h-2-l").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .departure-l-2-h').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.fdtv:first',
-					item: '.r-r-i',
-					order: 'desc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		//arrival sort
-		$("#top-sort-list-<?=$i?> .arrival-l-2-h").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .arrival-h-2-l').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.fatv:first',
-					item: '.r-r-i',
-					order: 'asc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		$("#top-sort-list-<?=$i?> .arrival-h-2-l").click(function() {
-			$(this).addClass('hide');
-			$('#top-sort-list-<?=$i?> .arrival-l-2-h').removeClass('hide');
-			
-			if (typeof window.showResultLoader === 'function') {
-				window.showResultLoader();
-			} else if (typeof showResultLoader === 'function') {
-				showResultLoader();
-			}
-			
-			requestAnimationFrame(function() {
-				$("#flight_search_result #t-w-i-<?=$i?>").jSort({
-					sort_by: '.fatv:first',
-					item: '.r-r-i',
-					order: 'desc',
-					is_num: true
-				});
-				
-				setTimeout(function() {
-					if (typeof window.hideResultLoader === 'function') {
-						window.hideResultLoader();
-					} else if (typeof hideResultLoader === 'function') {
-						hideResultLoader();
-					}
-				}, 400);
-			});
-		});
-		<?php
-		endfor;
-		?>
 	});
 function showLoader1()
 {
@@ -1666,62 +1374,11 @@ $(document).ready(function () {
 $(window).scroll(function() {
 	$(window).scrollTop() > 40 ? ($(".vertcl_banner_right").addClass("banner_sticky")) : ($(".vertcl_banner_right").removeClass("banner_sticky"));	
 });
-$(document).ready(function () {
-    const $defaultTab = $('.price-ofr-tab .best');
-
-    $('.price-ofr-tab a').removeClass('active');
-    $defaultTab.addClass('active');
-
-    // initial sort
-    sortGroups("price", 'asc');
-});
 </script>
 <script type="text/javascript"> 
 	$('.durtntime').each(function () {
     console.log($('.durtntime').text());
 });
-
-
-function sortGroups(type, order) {
-	$("#flight_search_result .r-w-g").each(function() {
-		let $wrapper = $(this);
-		let $items = $wrapper.children(".rowresult").detach();
-		$items.sort(function(a, b) {
-			let aVal = 0,
-				bVal = 0; // BEST (weighted score) 
-			if (type === 'best') {
-				const ap = parseFloat($(a).find('.price').data('price')?.replace(',', '.')) || 0;
-				const bp = parseFloat($(b).find('.price').data('price')?.replace(',', '.')) || 0;
-				const as = parseInt($(a).find('.stps').data('category')) || 0;
-				const bs = parseInt($(b).find('.stps').data('category')) || 0;
-				const al = parseInt($(a).find('.layover-duration').data('layoverdurationhm')) || 0;
-				const bl = parseInt($(b).find('.layover-duration').data('layoverdurationhm')) || 0;
-				aVal = (ap * 1) + (as * 50) + (al * 10);
-				bVal = (bp * 1) + (bs * 50) + (bl * 10);
-			} // CHEAPEST 
-			if (type === 'price') {
-				aVal = parseFloat($(a).find('.price').data('price')?.replace(',', '.')) || 0;
-				bVal = parseFloat($(b).find('.price').data('price')?.replace(',', '.')) || 0;
-			} // SHORTEST (stops) 
-			if (type === 'stops') {
-				console.log(type);
-				aVal = parseInt($(a).find('.stps').data('category')) || 0;
-				console.log(parseInt($(a).find('.stps').data('category')));
-				bVal = parseInt($(b).find('.stps').data('category')) || 0;
-				console.log(parseInt($(b).find('.stps').data('category')));
-			} // FLEXIBLE (layover time) 
-			if (type === 'layover') {
-				aVal = parseInt($(a).find('.layover-duration').data('layoverdurationhm')) || 0;
-				bVal = parseInt($(b).find('.layover-duration').data('layoverdurationhm')) || 0;
-			}
-			return order === "asc" ? aVal - bVal : bVal - aVal;
-		});
-		$wrapper.append($items);
-		
-	});
-}
-
-
 </script>
 </script>
 

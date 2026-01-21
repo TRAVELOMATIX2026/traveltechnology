@@ -348,6 +348,31 @@ function check_empty_search_result() {
 
 	}
 
+	function getTotalFareUniversal(fareObj) {
+    if (!fareObj) return 0;
+		
+    // B2C
+    if (fareObj.TotalFare && !isNaN(fareObj.TotalFare)) {
+		console.log(fareObj.TotalFare, "fareObj ddddd");
+        return parseFloat(fareObj.TotalFare);
+    }
+
+    // B2B
+    if (fareObj._CustomerBuying && !isNaN(fareObj._CustomerBuying)) {
+        return parseFloat(fareObj._CustomerBuying);
+    }
+
+    if (fareObj._TotalPayable && !isNaN(fareObj._TotalPayable)) {
+        return parseFloat(fareObj._TotalPayable);
+    }
+
+    //  fallback
+    var base = parseFloat(fareObj.BaseFare || fareObj._BaseFare || 0);
+    var tax  = parseFloat(fareObj.TotalTax || fareObj._TaxSum || 0);
+
+    return base + tax;
+}
+
 
 	var minDefaultPrice = maxDefaultPrice = '';
 
@@ -1228,11 +1253,16 @@ function check_empty_search_result() {
 		var refundableLabel = (curIsRefundable) ? 'Refundable' : 'Non-Refundable';
 
 		// Price details
-		var baseFare = parseFloat(curFareDetails.BaseFare);
-		var currencySymbol = curFareDetails.CurrencySymbol;
-		var totalTax = curFareDetails.TotalTax;
-		var totalFare = baseFare + totalTax;
-		totalFare = totalFare.toFixed(2);
+
+		// Base & Tax for breakup
+		var baseFare = parseFloat(curFareDetails.BaseFare || curFareDetails._BaseFare || 0);
+		var totalTax = parseFloat(curFareDetails.TotalTax || curFareDetails._TaxSum || 0);
+
+		// Final selling price
+		var totalFare = getTotalFareUniversal(curFareDetails).toFixed(2);
+
+		// Currency
+		var currencySymbol = curFareDetails.CurrencySymbol || '$';
 
 		var priceSingle = flightDetails.PassengerFareBreakdown.ADT.total_price_markup;
 		var crs = bookingSource.substr(-2) +'_';
@@ -1663,8 +1693,9 @@ function check_empty_search_result() {
 			//console.log('sel lover:',min_lay,'--',max_lay,':',minLay,'--',maxLay,'--check:',layoverCheck);
 			allFlights = allFlights.filter(function(item) {
 				//const currentPrice = parseFloat(item.PassengerFareBreakdown.ADT.total_price_markup); 
-				var fare_key = module+'_PriceDetails';
-        		const currentPrice = parseFloat(item.FareDetails[fare_key].TotalFare).toFixed(2); 
+        		var fare_key = module+'_PriceDetails';
+        		var fareObj = item.FareDetails[fare_key];
+				const currentPrice = getTotalFareUniversal(fareObj); 
 
 				var lovers = item.SegmentSummary[0].Stopdetails.map(itm => itm && itm.AirportCode).filter(Boolean);
 
@@ -1727,7 +1758,7 @@ function check_empty_search_result() {
 	let currentSortType = 'best';
 	let currentSortOrder = 'asc';
 
-	$(".price-ofr-tab a").on("click", function (e) {
+	/*$(".price-ofr-tab a").on("click", function (e) {
 	    e.preventDefault();
 
 	    $(".price-ofr-tab a").removeClass("active");
@@ -1748,9 +1779,9 @@ function check_empty_search_result() {
 	    if ($(this).hasClass("flexiable")) {
 	        apply_sort('flexiable');
 	    }
-	});
+	});*/
 
-	function apply_sort(type) {
+	/*function apply_sort(type) {
 
     if (!flightList || flightList.length === 0) return;
 
@@ -1780,11 +1811,9 @@ function check_empty_search_result() {
     sortedList.sort(function (a, b) {
 
         var fare_key = module + '_PriceDetails';
-        var aFare = a.FareDetails[fare_key];
-        var bFare = b.FareDetails[fare_key];
 
-        const priceA = parseFloat(aFare.TotalFare);
-        const priceB = parseFloat(bFare.TotalFare);
+        const priceA = getTotalFareUniversal(a.FareDetails[fare_key]);
+		const priceB = getTotalFareUniversal(b.FareDetails[fare_key]);
 
         const durationA = timeToMinutes(a.SegmentSummary[0].TotalDuaration);
         const durationB = timeToMinutes(b.SegmentSummary[0].TotalDuaration);
@@ -1850,10 +1879,157 @@ function check_empty_search_result() {
     setTimeout(function() {
         hideResultLoader();
     }, 300);
-}
+	}*/
 
+	$(document).on("click", "#top-sort-list-1 .sortul li a", function (e) {
+		e.preventDefault();
+	
+		$(this).addClass("active");
+		
+		if ($(this).hasClass("name")) apply_sort("name");
+		else if ($(this).hasClass("departure")) apply_sort("departure");
+		else if ($(this).hasClass("duration")) apply_sort("duration");
+		else if ($(this).hasClass("arrival")) apply_sort("arrival");
+		else if ($(this).hasClass("price")) apply_sort("price");
+	});
+	function apply_sort(type) 
+	{
+		console.log(type);
+			// console.log(tripType);
+			var fare_key = module+'_PriceDetails';
 
+		if (!flightList || flightList.length === 0) return;
 
+		// toggle order
+		if (currentSortType === type) {
+			currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+				} else {
+			currentSortType = type;
+			currentSortOrder = 'asc';
+		}
+		
+		if(type=='price' && currentSortOrder == 'desc'){
+		$("#top-sort-list-1 .price-l-2-h ").addClass("hide");
+		$('#top-sort-list-1 .price-h-2-l').removeClass('hide');
+		}
+		else{
+		$("#top-sort-list-1 .price-l-2-h ").removeClass("hide");
+		$('#top-sort-list-1 .price-h-2-l').addClass('hide');
+		}
+
+		if(type=='arrival' && currentSortOrder == 'desc'){
+		$("#top-sort-list-1 .arrival-l-2-h ").addClass("hide");
+		$('#top-sort-list-1 .arrival-h-2-l').removeClass('hide');
+		}
+		else{
+		$("#top-sort-list-1 .arrival-l-2-h ").removeClass("hide");
+		$('#top-sort-list-1 .arrival-h-2-l').addClass('hide');
+		}
+
+		if(type=='duration' && currentSortOrder == 'desc'){
+		$("#top-sort-list-1 .duration-l-2-h ").addClass("hide");
+		$('#top-sort-list-1 .duration-h-2-l').removeClass('hide');
+		}
+		else{
+		$("#top-sort-list-1 .duration-l-2-h ").removeClass("hide");
+		$('#top-sort-list-1 .duration-h-2-l').addClass('hide');
+		}
+		
+		if(type=='departure' && currentSortOrder == 'desc'){
+		$("#top-sort-list-1 .departure-l-2-h ").addClass("hide");
+		$('#top-sort-list-1 .departure-h-2-l').removeClass('hide');
+		}
+		else{
+		$("#top-sort-list-1 .departure-l-2-h ").removeClass("hide");
+		$('#top-sort-list-1 .departure-h-2-l').addClass('hide');
+		}
+		if(type=='name' && currentSortOrder == 'desc'){
+		$("#top-sort-list-1 .name-l-2-h ").addClass("hide");
+		$('#top-sort-list-1 .name-h-2-l').removeClass('hide');
+		}
+		else{
+		$("#top-sort-list-1 .name-l-2-h ").removeClass("hide");
+		$('#top-sort-list-1 .name-h-2-l').addClass('hide');
+		}
+		
+		
+		flightListFiltered = flightList.slice().sort(function (a, b) {
+		//    console.log(flightListFiltered);
+			const priceA = getTotalFareUniversal(a.FareDetails[fare_key]);
+			const priceB = getTotalFareUniversal(b.FareDetails[fare_key]);
+
+			const durationA = parseInt(a.SegmentSummary[0].TotalDuaration);
+			const durationB = parseInt(b.SegmentSummary[0].TotalDuaration);
+			const departA = timeToMinutesFromDateTime(a.SegmentSummary[0].DestinationDetails
+	._DateTime);
+			const departB = timeToMinutesFromDateTime(b.SegmentSummary[0].DestinationDetails
+	._DateTime);
+	
+	const arriveA = timeToMinutesFromDateTime(a.SegmentSummary[0].OriginDetails
+	._DateTime);
+	const arriveB = timeToMinutesFromDateTime(b.SegmentSummary[0].OriginDetails
+	._DateTime);
+	// console.log(arriveA);
+	const airlineA =
+		(a.SegmentSummary?.[0]?.AirlineDetails.AirlineName || a.AirlineDetails.AirlineName || '').toLowerCase();
+	
+	const airlineB =
+		(b.SegmentSummary?.[0]?.AirlineDetails.AirlineName || b.AirlineDetails.AirlineName || '').toLowerCase();
+		// console.log(airlineB);
+			let result = 0;
+
+			switch (type) {
+			case 'airline':
+		// A → Z
+				if (airlineA < airlineB) result = -1;
+				else if (airlineA > airlineB) result = 1;
+				else result = 0;
+				break;
+
+				case 'price':
+					result = priceA - priceB;
+					break;
+
+				case 'duration':
+					// ✅ LEAST STOPS → SHORTEST → CHEAPEST
+					result = (durationA - durationB) ; 
+					break;
+
+				case 'arrive':
+					result = arriveA - arriveB;
+					break;
+				case 'departure':
+					result = departA - departB;
+
+				default:
+					result =
+						(priceA - priceB) ||
+						(durationA - durationB) ;
+						
+			}
+
+			return currentSortOrder === 'asc' ? result : -result;
+		});
+
+		// 🔁 RENDER
+		second_parent.empty();
+		currentPage = 1;
+		loadFlights(1);
+	}
+	function timeToMinutesFromDateTime(dateTimeStr) {
+		// supports "2026-01-03T06:15:00" or "06:15"
+		if (!dateTimeStr) return 0;
+	
+		// only time present
+		if (dateTimeStr.length <= 5) {
+			const [h, m] = dateTimeStr.split(':');
+			return (parseInt(h) * 60) + parseInt(m);
+		}
+	
+		// full datetime
+		const d = new Date(dateTimeStr);
+		return (d.getHours() * 60) + d.getMinutes();
+	}
 
 
 
@@ -2088,7 +2264,8 @@ function check_empty_search_result() {
         const currentPrice = parseFloat(item.PassengerFareBreakdown.ADT.total_price_markup).toFixed(2);
         //added for display on seach and booking price same on 19-12-2025
         var fare_key = module+'_PriceDetails';
-        const currentPrice_1 = parseFloat(item.FareDetails[fare_key].TotalFare).toFixed(2); 
+        var fareObj = item.FareDetails[fare_key];
+		const currentPrice_1 = getTotalFareUniversal(fareObj); 
         const currentStops = segmentSummary.totalStops;
         const totalDuarationMinutes = segmentSummary.TotalDuarationMinutes;
 
@@ -2298,7 +2475,8 @@ function check_empty_search_result() {
     			const segmentSummary = item.SegmentSummary[0];
 				//const currentPrice = parseFloat(item.PassengerFareBreakdown.ADT.total_price_markup).toFixed(2);
 				var fare_key = module+'_PriceDetails';
-        		const currentPrice = parseFloat(item.FareDetails[fare_key].TotalFare).toFixed(2); 
+        		var fareObj = item.FareDetails[fare_key];
+				const currentPrice = getTotalFareUniversal(fareObj);  
     			const currentStops = segmentSummary.totalStops;
 				const totalDuarationMinutes = segmentSummary.TotalDuarationMinutes;
 				airlineList.add(airlineDetails.AirlineName);
@@ -2323,7 +2501,7 @@ function check_empty_search_result() {
 				airlineData.add({
 					name: airlineDetails.AirlineName,
 					code: airlineDetails.AirlineCode,
-					price: parseFloat(item.PassengerFareBreakdown.ADT.total_price_markup).toFixed(2),
+					price: currentPrice,
 					stops: currentStops,
 					cat:currentStops > 1 ? 2:1
 				});
