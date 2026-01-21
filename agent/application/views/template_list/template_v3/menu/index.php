@@ -111,8 +111,7 @@ function set_default_active_tab($module_name, &$default_active_tab, $is_tab_pane
        box-shadow: none !important;
        outline: none !important;
    }
-   .classes_Select .alladvnce {    padding: var(--spacing-2) var(--spacing-3) !important ;
-  background: var(--color-bg-secondary) !important;}
+   .classes_Select .alladvnce {    padding: var(--spacing-2) var(--spacing-3) !important ;}
    
    /* Form Labels - Modern Typography - Design System */
    .form-label,

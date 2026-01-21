@@ -46,7 +46,7 @@ if(isset($flight_search_params['adult_config']) == false || intval($flight_searc
 
 <form autocomplete="off" name="flight" id="flight_form" action="<?php echo base_url();?>index.php/general/pre_flight_search" method="get" class="activeForm oneway_frm" style="">
 	<div class="trvlhdr-optn">
-      <div class="flightSearchNavigation-f d-flex gap-4 m-0">
+      <div class="flightSearchNavigation-f d-flex gap-2 m-0">
          <div class="trvlhdr nopad dropdown trip_select">
             <div class="smalway">
             <label class="wament m-0 hand-cursor <?= (isset($flight_search_params['trip_type']) == false ? 'active' : (($flight_search_params['trip_type']) == 'oneway' ? 'active' : '')) ?>">
