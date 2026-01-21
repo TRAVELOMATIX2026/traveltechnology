@@ -290,6 +290,8 @@ if (empty($default_view)) {
 		$GLOBALS ['CI']->current_page->footer_js_resource ();
 		echo $GLOBALS ['CI']->current_page->js ();
 		?>
+	<!-- Menu Dropdown Fix Script -->
+	<script src="<?php echo $GLOBALS['CI']->template->template_js_dir('menu-dropdown-fix.js'); ?>?v=<?php echo time(); ?>"></script>
     <script>
         function initMap() {
             var bounds = new google.maps.LatLngBounds();

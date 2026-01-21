@@ -271,68 +271,7 @@
        font-family: var(--font-family-base) !important;
    }
    
-   /* FullCalendar Styling - Design System */
-   .fc {
-       font-family: var(--font-family-base) !important;
-       color: var(--color-text-primary) !important;
-   }
-   
-   .fc-toolbar {
-       background: var(--color-bg-secondary) !important;
-       padding: var(--padding-md) !important;
-       border-radius: var(--border-radius-md) var(--border-radius-md) 0 0 !important;
-       border-bottom: 1px solid var(--color-gray-300) !important;
-   }
-   
-   .fc-toolbar-title {
-       font-family: var(--font-family-heading) !important;
-       font-weight: var(--font-weight-bold) !important;
-       color: var(--color-text-primary) !important;
-   }
-   
-   .fc-button-primary {
-       background: var(--color-primary-primary) !important;
-       border-color: var(--color-primary-primary) !important;
-       color: var(--color-white) !important;
-       border-radius: var(--border-radius-md) !important;
-       transition: background-color 0.2s ease, border-color 0.2s ease !important;
-   }
-   
-   .fc-button-primary:hover,
-   .fc-button-primary:focus {
-       background: var(--color-primary-obsidian) !important;
-       border-color: var(--color-primary-obsidian) !important;
-       color: var(--color-white) !important;
-   }
-   
-   .fc-button-primary:disabled {
-       background: var(--color-gray-400) !important;
-       border-color: var(--color-gray-400) !important;
-       color: var(--color-gray-600) !important;
-   }
-   
-   .fc-daygrid-day {
-       background: var(--color-bg-primary) !important;
-       border-color: var(--color-gray-300) !important;
-   }
-   
-   .fc-daygrid-day-top {
-       color: var(--color-text-primary) !important;
-   }
-   
-   .fc-event {
-       background: var(--color-primary-primary) !important;
-       border-color: var(--color-primary-primary) !important;
-       color: var(--color-white) !important;
-       border-radius: var(--border-radius-sm) !important;
-       padding: 2px 4px !important;
-       font-size: 11px !important;
-   }
-   
-   .fc-event:hover {
-       background: var(--color-primary-obsidian) !important;
-       border-color: var(--color-primary-obsidian) !important;
-   }
+  
    
    /* Row Booking Section */
    .row_bookings_section {
