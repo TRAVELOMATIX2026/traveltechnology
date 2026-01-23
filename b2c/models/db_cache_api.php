@@ -299,7 +299,7 @@ Class Db_Cache_Api extends CI_Model
 		$airport_code_list = $this->cache[$this->set_airline_code_list($condition)];
 		// debug($airport_code_list);exit;
 		$code_list = array();
-		if (valid_array($airport_code_list['data'])) {
+		if (is_array($airport_code_list) && valid_array($airport_code_list['data'])) {
 			foreach ($airport_code_list['data'] as $k => $v) {
 				$code_list[$v['code']] = ucfirst(strtolower($v['name'])).'-('.$v['code'].')';
 			}
