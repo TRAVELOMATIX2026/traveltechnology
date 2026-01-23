@@ -550,49 +550,57 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
       </div>
       
       <div class="why-travel-cards">
-        <div class="why-travel-card card-best-price">
-          <div class="why-travel-icon-wrapper">
-            <div class="why-travel-icon">
-              <i class="material-icons">verified</i>
+        <?php
+          $classes = ['card-best-price','card-24-7','card-satisfaction','card-easy-booking'];
+          $i = 0;
+          foreach ($why_to_choose['data'] as $why_to_choose_item) {
+            $modalId = "descModal".$why_to_choose_item['origin'];
+              $card_class = $classes[$i] ?? 'card-default'; // fallback if more items
+          ?>
+            <div class="why-travel-card <?= $card_class ?>">
+                <div class="why-travel-icon-wrapper">
+                    <div class="why-travel-icon">
+                        <i class="material-icons">
+                            <?= $why_to_choose_item['icon'] ?? 'verified'; ?>
+                        </i>
+                    </div>
+                </div>
+
+                <h3 class="why-travel-card-title">
+                    <?= $why_to_choose_item['title'] ?? 'Best Price'; ?>
+                </h3>
+
+                <p class="why-travel-card-desc">
+                    <?= limit_words($why_to_choose_item['description'], 20); ?>
+                </p>
+
+                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#WCU<?= $modalId ?>" class="why-travel-link">
+                    Learn More <i class="material-icons">arrow_forward</i>
+                </a>
             </div>
-          </div>
-          <h3 class="why-travel-card-title">Best Price</h3>
-          <p class="why-travel-card-desc">Demonstrates commitment to user data security through encryption and secure payment practices</p>
-          <a href="#" class="why-travel-link">Learn More <i class="material-icons">arrow_forward</i></a>
-        </div>
-        
-        <div class="why-travel-card card-24-7">
-          <div class="why-travel-icon-wrapper">
-            <div class="why-travel-icon">
-              <i class="material-icons">support_agent</i>
+            <!-- ✅ Why to Choose Us Modal -->
+            <div class="modal fade" id="WCU<?= $modalId ?>" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <h5 class="modal-title"><?= $why_to_choose_item['title']; ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    <?= $why_to_choose_item['description']; ?>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+
+                </div>
+              </div>
             </div>
-          </div>
-          <h3 class="why-travel-card-title">24/7 Booking</h3>
-          <p class="why-travel-card-desc">Demonstrates commitment to user data security through encryption and secure payment practices</p>
-          <a href="#" class="why-travel-link">Learn More <i class="material-icons">arrow_forward</i></a>
-        </div>
-        
-        <div class="why-travel-card card-satisfaction">
-          <div class="why-travel-icon-wrapper">
-            <div class="why-travel-icon">
-              <i class="material-icons">handshake</i>
-            </div>
-          </div>
-          <h3 class="why-travel-card-title">Customer Satisfaction</h3>
-          <p class="why-travel-card-desc">Demonstrates commitment to user data security through encryption and secure payment practices</p>
-          <a href="#" class="why-travel-link">Learn More <i class="material-icons">arrow_forward</i></a>
-        </div>
-        
-        <div class="why-travel-card card-easy-booking">
-          <div class="why-travel-icon-wrapper">
-            <div class="why-travel-icon">
-              <i class="material-icons">check_circle</i>
-            </div>
-          </div>
-          <h3 class="why-travel-card-title">Easy Booking</h3>
-          <p class="why-travel-card-desc">Demonstrates commitment to user data security through encryption and secure payment practices</p>
-          <a href="#" class="why-travel-link">Learn More <i class="material-icons">arrow_forward</i></a>
-        </div>
+          <?php $i++; } ?>
+
       </div>
     </div>
   </section>
@@ -808,85 +816,29 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
       </div>
       
       <div class="faq-categories">
-        <button class="faq-category-btn active" data-category="hotels">
-          <i class="material-icons">hotel</i>
-          <span>Hotels Booking</span>
-        </button>
-        <button class="faq-category-btn" data-category="bus">
-          <i class="material-icons">directions_bus</i>
-          <span>Bus</span>
-        </button>
-        <button class="faq-category-btn" data-category="tickets">
-          <i class="material-icons">confirmation_number</i>
-          <span>Tickets Booking</span>
-        </button>
+        <?php foreach ($faq_categories['data'] as $k => $cat) { ?>
+          <button class="faq-category-btn <?= ($k==0)?'active':'' ?>"
+                  data-category="<?= $cat['origin'] ?>">
+              <span><?= $cat['name'] ?></span>
+          </button>
+        <?php } ?>
       </div>
-      
       <div class="faq-content-card">
-        <div class="faq-item active">
-          <div class="faq-item-header">
-            <span class="faq-number">01</span>
-            <h3 class="faq-question">How do I make a reservation on your website?</h3>
-            <button class="faq-toggle">
-              <i class="material-icons">close</i>
-            </button>
+        <?php foreach ($faq_data as  $f => $faq_item) { ?>
+          <div class="faq-item <?= ($f==0)?'active':'' ?>" data-category="<?= $faq_item['module_id'] ?>">
+            <div class="faq-item-header">
+              <span class="faq-number">01</span>
+              <h3 class="faq-question">How do I make a reservation on your website?</h3>
+              <button class="faq-toggle">
+                <i class="material-icons">close</i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>Provide a step-by-step guide on how users can browse and book travel services on your platform. Include information on searching for destinations, selecting dates, choosing accommodation, and completing the booking process. Mention any special features or tools that can help users find the best deals.</p>
+            </div>
           </div>
-          <div class="faq-answer">
-            <p>Provide a step-by-step guide on how users can browse and book travel services on your platform. Include information on searching for destinations, selecting dates, choosing accommodation, and completing the booking process. Mention any special features or tools that can help users find the best deals.</p>
-          </div>
-        </div>
+        <?php } ?>
         
-        <div class="faq-item">
-          <div class="faq-item-header">
-            <span class="faq-number">02</span>
-            <h3 class="faq-question">What documents do I need for my trip, and how do I obtain them?</h3>
-            <button class="faq-toggle">
-              <i class="material-icons">add</i>
-            </button>
-          </div>
-          <div class="faq-answer">
-            <p>List all required travel documents such as passports, visas, travel insurance, and any specific permits. Explain the application process, processing times, and where to obtain each document. Include links to official resources and any assistance your platform provides.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-item-header">
-            <span class="faq-number">03</span>
-            <h3 class="faq-question">In the event that I need to modify or cancel my reservation, what are the policies in place?</h3>
-            <button class="faq-toggle">
-              <i class="material-icons">add</i>
-            </button>
-          </div>
-          <div class="faq-answer">
-            <p>Clearly outline your cancellation and modification policies, including timeframes, fees, and refund processes. Explain the difference between refundable and non-refundable bookings, and provide step-by-step instructions for making changes or cancellations through your platform.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-item-header">
-            <span class="faq-number">04</span>
-            <h3 class="faq-question">Can you specify the types of credit/debit cards, digital wallets, or other online payment methods accepted?</h3>
-            <button class="faq-toggle">
-              <i class="material-icons">add</i>
-            </button>
-          </div>
-          <div class="faq-answer">
-            <p>List all accepted payment methods including major credit cards (Visa, Mastercard, American Express), debit cards, digital wallets (PayPal, Apple Pay, Google Pay), bank transfers, and any other payment options. Include information about currency conversion, security measures, and payment processing times.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-item-header">
-            <span class="faq-number">05</span>
-            <h3 class="faq-question">What are the working hours, and what can I expect in terms of response times?</h3>
-            <button class="faq-toggle">
-              <i class="material-icons">add</i>
-            </button>
-          </div>
-          <div class="faq-answer">
-            <p>Provide detailed information about customer support availability, including business hours, time zones, and contact methods. Specify response times for different types of inquiries (email, phone, chat) and any 24/7 support options. Include information about peak times and expected delays.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1278,4 +1230,41 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
     display: none;
   }
 </style>
+
+<script>
+document.querySelectorAll('.faq-category-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+
+        document.querySelectorAll('.faq-category-btn').forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+
+        let cat = this.dataset.category;
+
+        document.querySelectorAll('.faq-item').forEach(item=>{
+            if(item.dataset.category === cat){
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Toggle Answer
+document.querySelectorAll('.faq-toggle').forEach(btn=>{
+    btn.addEventListener('click', function(){
+        let item = this.closest('.faq-item');
+        let ans = item.querySelector('.faq-answer');
+        let icon = this.querySelector('i');
+
+        if(ans.style.display === 'block'){
+            ans.style.display = 'none';
+            icon.innerText = 'add';
+        }else{
+            ans.style.display = 'block';
+            icon.innerText = 'close';
+        }
+    });
+});
+</script>
 

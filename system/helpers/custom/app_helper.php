@@ -1775,4 +1775,19 @@ function formatStatusString($input) {
     unset($word);
     return implode(' ', $words);
 }
+function limit_words($text, $limit = 25)
+{
+    $words = explode(' ', strip_tags($text));
+    if (count($words) > $limit) {
+        return implode(' ', array_slice($words, 0, $limit)) . '...';
+    }
+    return $text;
+}
+function limit_chars($text, $limit = 120){
+    $text = strip_tags($text);
+    if(strlen($text) > $limit){
+        return substr($text, 0, $limit) . '...';
+    }
+    return $text;
+}
 
