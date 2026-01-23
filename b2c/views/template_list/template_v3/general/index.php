@@ -824,23 +824,21 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
         <?php } ?>
       </div>
       <div class="faq-content-card">
-        <?php foreach ($faq_data as  $f => $faq_item) { ?>
+        <?php $q=1; foreach ($faq_data as  $f => $faq_item) { ?>
           <div class="faq-item <?= ($f==0)?'active':'' ?>" data-category="<?= $faq_item['module_id'] ?>">
             <div class="faq-item-header">
-              <span class="faq-number">01</span>
-              <h3 class="faq-question">How do I make a reservation on your website?</h3>
+              <span class="faq-number"><?= sprintf('%02d',$q); ?></span>
+              <h3 class="faq-question"><?= $faq_item['faq']; ?></h3>
               <button class="faq-toggle">
-                <i class="material-icons">close</i>
+                  <i class="material-icons"><?= ($q==1)?'close':'add' ?></i>
               </button>
             </div>
             <div class="faq-answer">
-              <p>Provide a step-by-step guide on how users can browse and book travel services on your platform. Include information on searching for destinations, selecting dates, choosing accommodation, and completing the booking process. Mention any special features or tools that can help users find the best deals.</p>
+                <p><?= $faq_item['solution']; ?></p>
             </div>
           </div>
-        <?php } ?>
-        
+          <?php $q++;} ?>
       </div>
-    </div>
   </section>
 
       </div>
@@ -1230,41 +1228,4 @@ Js_Loader::$js[] = array('src' => $GLOBALS['CI']->template->template_js_dir('mat
     display: none;
   }
 </style>
-
-<script>
-document.querySelectorAll('.faq-category-btn').forEach(btn => {
-    btn.addEventListener('click', function(){
-
-        document.querySelectorAll('.faq-category-btn').forEach(b=>b.classList.remove('active'));
-        this.classList.add('active');
-
-        let cat = this.dataset.category;
-
-        document.querySelectorAll('.faq-item').forEach(item=>{
-            if(item.dataset.category === cat){
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-});
-
-// Toggle Answer
-document.querySelectorAll('.faq-toggle').forEach(btn=>{
-    btn.addEventListener('click', function(){
-        let item = this.closest('.faq-item');
-        let ans = item.querySelector('.faq-answer');
-        let icon = this.querySelector('i');
-
-        if(ans.style.display === 'block'){
-            ans.style.display = 'none';
-            icon.innerText = 'add';
-        }else{
-            ans.style.display = 'block';
-            icon.innerText = 'close';
-        }
-    });
-});
-</script>
 
