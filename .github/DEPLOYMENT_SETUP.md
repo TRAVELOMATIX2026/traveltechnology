@@ -9,7 +9,8 @@ You need to add the following secrets to your GitHub repository:
 ### For Development Environment (develop branch)
 
 **Required FTP Secrets:**
-1. `DEV_FTP_HOST`: `dev.traveltechnology.co.in` (or IP address if available)
+1. `DEV_FTP_HOST`: Use IP address (e.g., `154.221.33.114`) or correct FTP hostname (e.g., `ftp.dev.traveltechnology.co.in`)
+   - ⚠️ **Important**: If domain name fails with "Name or service not known", use IP address instead
 2. `DEV_FTP_USER`: `mani@dev.traveltechnology.co.in`
 3. `DEV_FTP_PASS`: `ClZA~%5z5p?xF+dJ`
 4. `DEV_FTP_PATH`: `/` (or your actual development path)
@@ -158,34 +159,42 @@ You can also manually trigger the production workflow:
 
 If you get FTP connection errors:
 
-1. **Check FTP credentials:**
+1. **"Name or service not known" error:**
+   - This means DNS resolution failed for the FTP hostname
+   - **Solution**: Use an IP address instead of domain name in `DEV_FTP_HOST`
+   - Example: Change `dev.traveltechnology.co.in` to `154.221.33.114` (or your server's IP)
+   - Or try: `ftp.dev.traveltechnology.co.in` if that's the correct FTP hostname
+
+2. **Check FTP credentials:**
    - Verify username and password are correct
    - Check if account is active and not locked
+   - Username format: `mani@dev.traveltechnology.co.in` (full email format)
 
-2. **Verify FTP server address:**
-   - Test with IP: `154.221.33.114`
-   - Or try domain: `ftp.traveltechnology.co.in` (if configured)
+3. **Verify FTP server address:**
+   - **Recommended**: Use IP address (e.g., `154.221.33.114`) for better reliability
+   - Or try domain: `ftp.dev.traveltechnology.co.in` (if configured)
+   - Avoid using: `dev.traveltechnology.co.in` (may not resolve for FTP)
 
-3. **Check FTP port:**
+4. **Check FTP port:**
    - Default FTP port: `21`
    - SFTP port: `22`
-   - Add `FTP_PORT` secret if using non-standard port
+   - Add `DEV_FTP_PORT` secret if using non-standard port
 
-4. **Test FTP connection manually:**
+5. **Test FTP connection manually:**
    ```bash
-   # Using lftp
-   lftp -u traveltechnology,password ftp://154.221.33.114
+   # Using lftp with IP address
+   lftp -u mani@dev.traveltechnology.co.in,password ftp://154.221.33.114
    
    # Or using ftp command
    ftp 154.221.33.114
    ```
 
-5. **Firewall Issues:**
+6. **Firewall Issues:**
    - Ensure FTP port (21) is open
    - Some hosting providers require passive mode FTP
    - Check if your hosting provider allows FTP from external IPs
 
-6. **Passive Mode:**
+7. **Passive Mode:**
    - The workflows use passive mode FTP by default
    - If issues persist, check if your firewall allows passive FTP connections
 
