@@ -126,8 +126,25 @@ jobs:
           FTP_PORT: ${{ secrets.DEV_FTP_PORT || '21' }}
         run: |
           echo "Testing FTP connection..."
+          echo "Host: $FTP_HOST"
+          echo "Port: $FTP_PORT"
+          echo "User: $FTP_USER"
+          
+          # Test DNS resolution first
+          if ! getent hosts "$FTP_HOST" > /dev/null 2>&1; then
+            echo "⚠️  DNS resolution failed for: $FTP_HOST"
+            echo "💡 Try using an IP address instead of domain name"
+            echo "💡 Or check if the hostname is correct"
+          fi
+          
           lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; pwd; quit" || {
             echo "❌ FTP connection failed"
+            echo "Please check:"
+            echo "1. FTP server address is correct: $FTP_HOST"
+            echo "2. If using domain name, try IP address instead"
+            echo "3. FTP port is correct (default: 21, SFTP: 22)"
+            echo "4. FTP credentials are correct"
+            echo "5. Firewall allows FTP connections from GitHub Actions"
             exit 1
           }
           echo "✅ FTP connection successful"
@@ -164,10 +181,29 @@ jobs:
           FTP_PATH: ${{ secrets.DEV_FTP_PATH || '/' }}
         run: |
           echo "Uploading zip package via FTP..."
+          echo "Host: $FTP_HOST"
+          echo "Port: $FTP_PORT"
+          echo "Path: $FTP_PATH"
           FTP_PATH_FINAL="${FTP_PATH%/}"
           
+          # Test DNS resolution before attempting connection
+          if ! getent hosts "$FTP_HOST" > /dev/null 2>&1; then
+            echo "❌ DNS resolution failed for: $FTP_HOST"
+            echo "💡 Please update DEV_FTP_HOST secret with:"
+            echo "   - An IP address (e.g., 154.221.33.114)"
+            echo "   - Or correct domain name (e.g., ftp.dev.traveltechnology.co.in)"
+            exit 1
+          fi
+          
           # Upload zip file via FTP
-          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; set ftp:passive-mode yes; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; cd $FTP_PATH_FINAL; put deployment.zip; quit"
+          lftp -e "set ftp:ssl-allow no; set ssl:verify-certificate no; set ftp:passive-mode yes; open -p $FTP_PORT -u $FTP_USER,$FTP_PASS $FTP_HOST; cd $FTP_PATH_FINAL; put deployment.zip; quit" || {
+            echo "❌ FTP upload failed"
+            echo "Please verify:"
+            echo "1. FTP_HOST is correct (try IP address if domain fails)"
+            echo "2. FTP_USER and FTP_PASS are correct"
+            echo "3. FTP_PATH exists and is accessible: $FTP_PATH_FINAL"
+            exit 1
+          }
           
           echo "✅ Zip file uploaded successfully"
           
