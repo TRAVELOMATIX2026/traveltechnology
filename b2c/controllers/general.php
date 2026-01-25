@@ -93,10 +93,10 @@ class General extends MY_Controller
     // $page_data['tour_styles'] = $tour_styles;
     // $domain_data = $this->custom_db->single_table_records('domain_list', '*', array('status' => '1'));
     // $page_data['domain_data'] = $domain_data;
-    // $features_data = $this->custom_db->get_result_by_query("SELECT * FROM `cms_features` WHERE `status` = 1 LIMIT 3");
-    // $page_data['features_data'] = $features_data;
-    $page_data['features'] = $this->custom_db->single_table_records('why_choose_us', '*', array('status' => '1'),0,3);
-    //debug($page_data['features']);exit;
+    $page_data['faq_categories'] = $this->custom_db->single_table_records('cms_faqs_categories', '*', array('status' => '1'));
+    $faq_data = $this->custom_db->get_result_by_query("SELECT * FROM `cms_faqs` WHERE `status` = 1 LIMIT 3");
+    $page_data['faq_data'] = json_decode(json_encode($faq_data), true);
+    $page_data['why_to_choose'] = $this->custom_db->single_table_records('why_choose_us', '*', array('status' => '1'),0,4);
     $page_data['top_hotels'] = $this->custom_db->single_table_records('dynamic_hotel_urls', '*', array('status' => '1'), 0, 50);
     $page_data['from_airport_names'] = $this->custom_db->get_custom_query('select distinct from_airport_name from top_flight_destinations where status=1 and domain=' . $domain_type . ' limit 0,50');
     $page_data['airlines_names'] = $this->custom_db->get_custom_query('select distinct airlines_name from top_flight_destinations where status=1 and domain=' . $domain_type . ' limit 0,50');
