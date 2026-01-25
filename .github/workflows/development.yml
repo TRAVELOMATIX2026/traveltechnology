@@ -161,7 +161,7 @@ jobs:
           FTP_USER: ${{ secrets.DEV_FTP_USER }}
           FTP_PASS: ${{ secrets.DEV_FTP_PASS }}
           FTP_PORT: ${{ secrets.DEV_FTP_PORT || '21' }}
-          FTP_PATH: ${{ secrets.DEV_FTP_PATH || '/public_html' }}
+          FTP_PATH: ${{ secrets.DEV_FTP_PATH || '/' }}
         run: |
           echo "Uploading zip package via FTP..."
           FTP_PATH_FINAL="${FTP_PATH%/}"

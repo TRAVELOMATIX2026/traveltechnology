@@ -667,7 +667,7 @@
   border: var(--border-width-none) !important;
   color: var(--color-text-primary) !important;
   float: left;
-  font-size: var(--font-size-md) !important;
+  font-size: var(--font-size-lg) !important;
   height: 38px;
   padding: var(--spacing-0) var(--spacing-2) !important;
   font-family: var(--font-family-base);

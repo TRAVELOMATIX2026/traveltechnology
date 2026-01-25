@@ -9,10 +9,10 @@ You need to add the following secrets to your GitHub repository:
 ### For Development Environment (develop branch)
 
 **Required FTP Secrets:**
-1. `DEV_FTP_HOST`: `154.221.33.114` (or `ftp.traveltechnology.co.in`)
-2. `DEV_FTP_USER`: `traveltechnology`
-3. `DEV_FTP_PASS`: `t1b[nMo[qPX_+@dH`
-4. `DEV_FTP_PATH`: `/public_html` (or your actual development path)
+1. `DEV_FTP_HOST`: `dev.traveltechnology.co.in` (or IP address if available)
+2. `DEV_FTP_USER`: `mani@dev.traveltechnology.co.in`
+3. `DEV_FTP_PASS`: `ClZA~%5z5p?xF+dJ`
+4. `DEV_FTP_PATH`: `/` (or your actual development path)
 
 **Required Database Secrets:**
 1. `DEV_DB_USERNAME`: Development database username
