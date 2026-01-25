@@ -4799,13 +4799,86 @@ error_reporting(E_ALL);
 
 	}
 
-	public function faqs($offset = 0)
-
+	public function faqs($id = 0)
 	{
+		//error_reporting(E_ALL);
+		//ini_set('display_errors', 1);
+		$this->form_validation->set_message('required', 'Required.');
 
+		$post_data = $this->input->post();
+
+		// ===== LOAD CATEGORIES =====
+		$cat_data = $this->custom_db->single_table_records(
+			'cms_faqs_categories',
+			'*',
+			['status' => 1]
+		);
+		$data['categories'] = $cat_data['data'];
+
+		// ===== EDIT LOAD =====
+		if (!valid_array($post_data)) {
+
+			if (intval($id) > 0) {
+
+				$tmp_data = $this->custom_db->single_table_records(
+					'cms_faqs',
+					'*',
+					['origin' => $id]
+				);
+
+				if (valid_array($tmp_data['data'][0])) {
+
+					$data['module_id'] = $tmp_data['data'][0]['module_id'];
+					$data['faq']       = $tmp_data['data'][0]['faq'];
+					$data['solution']  = $tmp_data['data'][0]['solution'];
+					$data['status']    = $tmp_data['data'][0]['status'];
+
+				} else {
+					redirect('cms/add_faq');
+				}
+			}
+
+		}
+		// ===== SUBMIT =====
+		else {
+
+			$this->form_validation->set_rules('module_id', 'Category', 'required');
+			$this->form_validation->set_rules('faq', 'Question', 'required');
+			$this->form_validation->set_rules('solution', 'Answer', 'required');
+			$this->form_validation->set_rules('status', 'Status', 'required');
+
+			$save_data['module_id'] = $this->input->post('module_id'); // FK origin
+			$save_data['faq']       = $this->input->post('faq');
+			$save_data['solution']  = $this->input->post('solution');
+			$save_data['status']    = $this->input->post('status');
+
+			if ($this->form_validation->run()) {
+
+				if (intval($id) > 0) {
+
+					$save_data['updated_at'] = date('Y-m-d H:i:s');
+
+					$this->custom_db->update_record(
+						'cms_faqs',
+						$save_data,
+						['origin' => $id]
+					);
+
+				} else {
+
+					$save_data['created_at'] = date('Y-m-d H:i:s');
+					$save_data['updated_at'] = date('Y-m-d H:i:s');
+					$this->custom_db->insert_record('cms_faqs', $save_data);
+				}
+
+				redirect('cms/faqs');
+			}
+		}
+
+		// ===== LIST =====
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url('cms/faqs/');
+		$config['base_url'] = base_url('cms/list_collaborations/');
 
 		$config['per_page'] = 10;
 
@@ -4813,25 +4886,23 @@ error_reporting(E_ALL);
 
 		$config['uri_segment'] = 3;
 
-		$total_records = $this->custom_db->count_records('cms_faqs');
+		$total_records = $this->custom_db->count_records('collaborations');
 
 		$config['total_rows'] = $total_records;
 
 		$this->pagination->initialize($config);
 
 		$limit = $config['per_page'];
-
-		$collaboration = $this->custom_db->single_table_records('cms_faqs', '*', [],  $offset, $limit);
-
-		$page_data['faqs_list'] = $collaboration['data'];
-
+		$tmp_data = $this->custom_db->get_custom_query("SELECT f.*, c.name AS category_name FROM cms_faqs f LEFT JOIN cms_faqs_categories c ON c.origin = f.module_id;");
+		$data['faq_list'] = $tmp_data;
 		$page_data['pagination_links'] = $this->pagination->create_links();
 
-		$page_data['offset'] = $offset;
+		$data['offset'] = $offset;
+		$data['ID'] = $id;
 
-		$this->template->view('cms/faqs', $page_data);
-
+		$this->template->view('cms/faqs', $data);
 	}
+
 
 }
 

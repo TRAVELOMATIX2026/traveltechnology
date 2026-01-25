@@ -152,7 +152,7 @@
     --color-bg-overlay-light: light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
 
     /* Hero Overlay Background - transparent for light, gradient for dark */
-    --hero-overlay-bg: transparent;
+    --hero-overlay-bg: light-dark(rgb(26 115 232 / 65%), rgb(26 45 71 / 78%));
 
     /* Semantic Background Colors */
     --color-bg-success: var(--color-success-light);
